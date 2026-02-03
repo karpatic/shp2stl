@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js GeoJSON Render with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+
+    <!-- TopoJSON-Client -->
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+    <!-- TopoJSON-Simplify -->
+    <script src="https://cdn.jsdelivr.net/npm/topojson-simplify@3"></script>
+    <!-- TopoJSON-Server -->
+    <script src="https://cdn.jsdelivr.net/npm/topojson-server@3"></script>
+
+    <link rel="stylesheet" href="./test.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* Make the split-view reliably full height */
+        html, body { height: 100%; }
+        .container { height: 100%; min-height: 100vh; }
+        #map, #threejs { height: 100%; }
+        #threejs canvas { display: block; width: 100% !important; height: 100% !important; }
+
+        #config-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1200;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px 12px;
+            width: 320px;
+            max-width: calc(100% - 40px);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+        #config-panel .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        #config-panel h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        #toggle-config {
+            padding: 6px 8px;
+            background: rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #222;
+        }
+        #config-panel .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        #config-panel label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 12px;
+            color: #222;
+            min-width: 0;
+        }
+        #config-panel input {
+            padding: 6px 8px;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            width: 100%;
+            min-width: 0;
+        }
+        #config-panel .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        #create-btn {
+            padding: 10px 12px;
+            background-color: #1f6feb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        #create-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        #status {
+            font-size: 12px;
+            color: #333;
+        }
+        #config-panel.collapsed {
+            padding-bottom: 10px;
+        }
+        #config-panel.collapsed .config-body {
+            display: none;
+        }
+
+        #about-details {
+            margin-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 8px;
+        }
+        #about-details summary {
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            color: #222;
+            list-style: none;
+        }
+        #about-details summary::-webkit-details-marker { display: none; }
+        #about-details summary::before {
+            content: '▸';
+            display: inline-block;
+            width: 16px;
+            color: rgba(0,0,0,0.55);
+        }
+        #about-details[open] summary::before { content: '▾'; }
+        #about-details .content {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #222;
+            line-height: 1.35;
+        }
+        #about-details .content p { margin: 0 0 8px 0; }
+        #about-details .content ul { margin: 0; padding-left: 18px; }
+        #about-details .content li { margin: 4px 0; }
+
+        /* Small screens: stack map above 3D view */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            #map, #threejs {
+                flex: none;
+                width: 100%;
+            }
+            #map { height: 45vh; min-height: 280px; }
+            #threejs { height: 55vh; min-height: 320px; }
+        }
+        @media (max-width: 600px) {
+            #config-panel { top: 10px; left: 10px; width: calc(100% - 20px); }
+            #download-btn { bottom: 12px; right: 12px; }
+        }
+        /* keep the existing download button styling from test.css */
+    </style>
+</head>
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/three/three.module.js",
+            "three/addons/": "/three/addons/",
+            "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js",
+            "three-bvh-csg": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.16/build/index.module.js",
+            "STLExporter": "https://cdn.jsdelivr.net/npm/three/examples/jsm/exporters/STLExporter.js"
+        }
+    }
+</script>
+<body>
+    <div class="container">
+        <div id="map"></div>
+        <div id="threejs">
+            <div id="config-panel">
+                <div class="header">
+                    <h3>Parameters</h3>
+                    <button id="toggle-config" type="button" aria-expanded="true">Hide</button>
+                </div>
+
+                <div class="config-body">
+                    <div class="grid">
+                        <label>
+                            innerHeight
+                            <input id="cfg-innerHeight" type="number" min="1" step="1" value="600" />
+                        </label>
+                        <label>
+                            innerWidth
+                            <input id="cfg-innerWidth" type="number" min="1" step="1" value="800" />
+                        </label>
+                        <label>
+                            precision
+                            <input id="cfg-precision" type="number" min="1" step="1" value="100" />
+                        </label>
+                        <label>
+                            scaleToThisSize (cm)
+                            <input id="cfg-scaleToThisSize" type="number" min="1" step="1" value="180" />
+                        </label>
+
+                        <label>
+                            depth
+                            <input id="cfg-depth" type="number" min="0.01" step="0.01" value="6" />
+                        </label>
+                        <label>
+                            width
+                            <input id="cfg-width" type="number" min="0.01" step="0.01" value="0.5" />
+                        </label>
+                        <label>
+                            simplifyBy
+                            <input id="cfg-simplifyBy" type="number" min="0" step="0.001" value="0.01" />
+                        </label>
+                        <label>
+                            simplifyHullBy
+                            <input id="cfg-simplifyHullBy" type="number" min="0" step="0.001" value="0.01" />
+                        </label>
+                    </div>
+
+                    <label style="margin-top: 10px;">
+                        geoJsonUrl
+                        <input id="cfg-geoJsonUrl" type="url" value="https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson" />
+                    </label>
+
+                    <div class="row">
+                        <button id="create-btn" type="button">Create</button>
+                        <div id="status">Not created yet</div>
+                    </div>
+
+                    <details id="about-details" open>
+                        <summary>About / How to use</summary>
+                        <div class="content">
+                            <p>
+                                This page turns a GeoJSON boundary into a <strong>3D-printable</strong> model and lets you download it as an STL.
+                                It renders a convex hull + internal line cuts, then builds a solid via extrusion/CSG.
+                            </p>
+                            <ul>
+                                <li>Edit parameters (URL, simplify values, depth/width).</li>
+                                <li>Click <strong>Create</strong> to save settings and reload.</li>
+                                <li>Use mouse/touch in the 3D view: drag to orbit, scroll/pinch to zoom.</li>
+                                <li>Click <strong>Download STL</strong> and import into your slicer (PrusaSlicer/Cura) for 3D printing.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <button id="download-btn">Download STL</button>
+        </div>
+    </div>
+
+
+    <script type="module">
+        import * as THREE from 'three';
+        window.THREE = THREE;
+
+        import { initialize } from './new/new.js';
+
+        const STORAGE_KEY = 'shp2stl.appConfig.v1';
+        const UI_STORAGE_KEY = 'shp2stl.appConfig.ui.v1';
+        const ABOUT_STORAGE_KEY = 'shp2stl.appConfig.about.v1';
+
+        function getNumber(id) {
+            const el = document.getElementById(id);
+            const n = Number(el.value);
+            return Number.isFinite(n) ? n : undefined;
+        }
+
+        function setNumber(id, value) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (typeof value === 'number' && Number.isFinite(value)) el.value = String(value);
+        }
+
+        function setString(id, value) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (typeof value === 'string') el.value = value;
+        }
+
+        function setStatus(text) {
+            const el = document.getElementById('status');
+            if (el) el.textContent = text;
+        }
+
+        function readConfigFromInputs() {
+            return {
+                props: {
+                    innerHeight: getNumber('cfg-innerHeight'),
+                    innerWidth: getNumber('cfg-innerWidth'),
+                    precision: getNumber('cfg-precision'),
+                    scaleToThisSize: getNumber('cfg-scaleToThisSize'),
+                },
+                shpstl: {
+                    depth: getNumber('cfg-depth'),
+                    width: getNumber('cfg-width'),
+                    simplifyBy: getNumber('cfg-simplifyBy'),
+                    simplifyHullBy: getNumber('cfg-simplifyHullBy'),
+                    geoJsonUrl: document.getElementById('cfg-geoJsonUrl').value,
+                },
+            };
+        }
+
+        function applyConfigToWindow(config) {
+            // Keep the same shape as new.html, but configurable.
+            window.props = { ...config.props };
+            // Parameters actually used by new/new.js (defaults preserved if omitted).
+            window.shpstl = { ...config.shpstl };
+        }
+
+        function tryLoadSavedConfig() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed !== 'object') return null;
+                return parsed;
+            } catch {
+                return null;
+            }
+        }
+
+        function saveConfig(config) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+        }
+
+        function hydrateInputsFromConfig(config) {
+            if (!config) return;
+            const { props, shpstl } = config;
+            if (props) {
+                setNumber('cfg-innerHeight', props.innerHeight);
+                setNumber('cfg-innerWidth', props.innerWidth);
+                setNumber('cfg-precision', props.precision);
+                setNumber('cfg-scaleToThisSize', props.scaleToThisSize);
+            }
+            if (shpstl) {
+                setNumber('cfg-depth', shpstl.depth);
+                setNumber('cfg-width', shpstl.width);
+                setNumber('cfg-simplifyBy', shpstl.simplifyBy);
+                setNumber('cfg-simplifyHullBy', shpstl.simplifyHullBy);
+                setString('cfg-geoJsonUrl', shpstl.geoJsonUrl);
+            }
+        }
+
+        async function runWithCurrentInputs() {
+            const config = readConfigFromInputs();
+            applyConfigToWindow(config);
+            await initialize();
+        }
+
+        const createBtn = document.getElementById('create-btn');
+        createBtn.addEventListener('click', async () => {
+            try {
+                createBtn.disabled = true;
+                setStatus('Creating...');
+
+                // Persist settings, then reload to apply cleanly.
+                const config = readConfigFromInputs();
+                saveConfig(config);
+                setStatus('Saved. Reloading...');
+                window.location.reload();
+            } catch (err) {
+                console.error(err);
+                setStatus('Failed (see console)');
+                createBtn.disabled = false;
+            }
+        });
+
+        // Collapsible config panel (persisted).
+        const configPanel = document.getElementById('config-panel');
+        const toggleBtn = document.getElementById('toggle-config');
+
+        function setCollapsed(collapsed) {
+            configPanel.classList.toggle('collapsed', !!collapsed);
+            toggleBtn.textContent = collapsed ? 'Show' : 'Hide';
+            toggleBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            try {
+                localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ collapsed: !!collapsed }));
+            } catch {}
+        }
+
+        // Restore collapsed state.
+        try {
+            const raw = localStorage.getItem(UI_STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && typeof parsed === 'object' && typeof parsed.collapsed === 'boolean') {
+                    setCollapsed(parsed.collapsed);
+                }
+            }
+        } catch {}
+
+        toggleBtn.addEventListener('click', () => {
+            setCollapsed(!configPanel.classList.contains('collapsed'));
+        });
+
+        // About section: collapsible (persisted).
+        const aboutDetails = document.getElementById('about-details');
+        function setAboutOpen(open) {
+            aboutDetails.open = !!open;
+            try {
+                localStorage.setItem(ABOUT_STORAGE_KEY, JSON.stringify({ open: !!open }));
+            } catch {}
+        }
+        try {
+            const raw = localStorage.getItem(ABOUT_STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && typeof parsed === 'object' && typeof parsed.open === 'boolean') {
+                    setAboutOpen(parsed.open);
+                }
+            }
+        } catch {}
+        aboutDetails.addEventListener('toggle', () => {
+            try {
+                localStorage.setItem(ABOUT_STORAGE_KEY, JSON.stringify({ open: !!aboutDetails.open }));
+            } catch {}
+        });
+
+        // Run once on start using saved config (or the default input values).
+        (async () => {
+            try {
+                const saved = tryLoadSavedConfig();
+                if (saved) hydrateInputsFromConfig(saved);
+
+                setStatus('Creating...');
+                createBtn.disabled = true;
+                await runWithCurrentInputs();
+                setStatus(saved ? 'Created (saved settings)' : 'Created (default settings)');
+                createBtn.disabled = false;
+            } catch (err) {
+                console.error(err);
+                setStatus('Failed on start (see console)');
+                createBtn.disabled = false;
+            }
+        })();
+    </script>
+</body>
+</html>

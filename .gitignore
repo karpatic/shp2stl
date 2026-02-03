@@ -1,0 +1,37 @@
+# Editor / IDE
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node (if you add tooling later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Common build outputs
+/dist/
+/build/
+
+# Generated 3D/export artifacts (keep sources, not exports)
+*.stl
+*.obj
+*.glb
+*.gltf
+
+# Archives
+*.zip
+*.7z
+*.tar
+*.tar.gz

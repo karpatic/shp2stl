@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js GeoJSON Render with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+    
+    <!-- TopoJSON-Client -->        
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>      
+    <!-- TopoJSON-Simplify -->      
+    <script src="https://cdn.jsdelivr.net/npm/topojson-simplify@3"></script>
+    <!-- TopoJSON-Server -->        
+    <script src="https://cdn.jsdelivr.net/npm/topojson-server@3"></script>       
+
+    <link rel="stylesheet" href="./test.css">
+</head>
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/three/three.module.js", 
+            "three/addons/": "/three/addons/",
+            "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js",
+            "three-bvh-csg": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.16/build/index.module.js",
+            "STLExporter": "https://cdn.jsdelivr.net/npm/three/examples/jsm/exporters/STLExporter.js"
+        }
+    }
+</script>
+<body>
+    <div class="container">
+        <div id="map"></div>
+        <div id="threejs">
+            <button id="download-btn">Download STL</button>
+        </div>
+    </div>
+ 
+    
+    <script type="module">  
+        window.props = {
+            innerHeight: 600,
+            innerWidth: 800,
+            precision: 100,
+            scaleToThisSize: 180 // in CM
+        } 
+
+        import * as THREE from 'three';
+        window.THREE = THREE;
+        
+        import { initialize } from './new/new.js';
+        initialize(); 
+    </script> 
+</body>
+</html>

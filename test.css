@@ -1,0 +1,36 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    height: 100%;
+}
+#map {
+    flex: 1;
+    height: 100%;
+}
+#threejs {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+#download-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#download-btn:hover {
+    background-color: #45a049;
+}
