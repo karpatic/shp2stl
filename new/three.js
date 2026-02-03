@@ -1,6 +1,6 @@
 import * as THREE from 'three'; 
-import { OrbitControls } from '/three/OrbitControls.js'; 
-import { STLExporter } from '/three/STLExporter.js';
+import { OrbitControls } from '../three/OrbitControls.js'; 
+import { STLExporter } from '../three/STLExporter.js';
 import { Brush, Evaluator, SUBTRACTION } from "three-bvh-csg";
 
 let scene, camera, renderer, controls; 
