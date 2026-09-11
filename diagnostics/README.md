@@ -4,6 +4,22 @@ Author: Codex app agent · 2026-09-11.
 
 Current results are in [REPORT.md](REPORT.md). The original sections below describe the historical CSG investigation; the **Planar follow-up** section documents the new default workflow.
 
+## Focused hull-line follow-up
+
+Author: Codex app agent · 2026-09-11.
+
+`node diagnostics/hull-check.mjs` checks the existing frozen DC/Baltimore rings plus a polygon-with-hole/island case. It failed on the concatenated boundaries before the fix and passes afterward; it also runs under `npm test`. No historical CSG regeneration is needed.
+
+The four retained `hull-before-*` / `hull-after-*` runs use the existing isolated-browser harness. Before screenshots were taken from `ae7d630` production source, after the new red-capable check was written and run. To reproduce the fixed views:
+
+```sh
+HULL_CHECK=1 LIMIT_SECONDS=60 node diagnostics/run.mjs optimized baltimore hull-after-baltimore
+HULL_CHECK=1 LIMIT_SECONDS=60 node diagnostics/run.mjs optimized dc hull-after-dc
+python3 diagnostics/hull-evidence.py
+```
+
+The evidence command compares the retained before/after preprocessing and base bytes, inspects the actual SVG commands, and independently checks the downloaded STL edges, orientation and connected components using the existing mesh reader. `HULL_CHECK` adds a painted map crop, actual overlay SVG and path-command JSON; it does not change app geometry. The first capture attempt selected Leaflet's attribution SVG too; the selector was narrowed to the overlay pane, then the before run completed successfully. Original planar/CSG artifacts are untouched.
+
 Baseline: `919e9d656352be041a5d3118e325e088a137e760` (fresh `main`). No applicable on-disk `AGENTS.md` was present in this checkout or its ancestor directories. Carlos's supplied instructions governed the work. All source changes, worktrees and retained artifacts for this investigation are scoped to this repository; nothing was deployed or pushed.
 
 ## Setup and bounded runs

@@ -1,0 +1,27 @@
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"dc","polygons":1,"rings":1,"paths":1,"inventedSegments":[],"simplifiedPaths":1}
+Polygon coordinate length: 2
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.57, 39.217 ]
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.626, 39.267 ]
+Polygon coordinate length: [ -76.59, 39.276 ]
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"baltimore","polygons":3,"rings":3,"paths":3,"inventedSegments":[],"simplifiedPaths":3}
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"exterior + hole + disconnected island","polygons":2,"rings":3,"paths":3,"inventedSegments":[],"simplifiedPaths":3}
+PASS: frozen hull edge provenance, exterior/hole/island separation, simplification and closure

@@ -1,0 +1,178 @@
+{
+  "variant": "optimized",
+  "dataset": "dc",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
+    }
+  },
+  "sources": {
+    "app.html": "32b6950738e29e5cc2211f0d51092cde6ee23e0d9da8f69bd125d225ba2c2831",
+    "new/new.js": "dc84ad2cb5595ab670cc43faf836e7a17aa617d948c0e330a46a4060198c4705",
+    "new/leaflet.js": "534aef67ac8a45bd45cdf01a4e5ec191796267ddc373bc1e36077c0e94bdf96e",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "2bc3a80d94d579d77a2bdd7a22c2a8d5ca3c7f1c665027e123012200b52d8a6f",
+    "new/planar-boolean.js": "85bba92f98628e96d8c369007fd2861e5295f74af6ef5a2431ff51b184019238",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 60000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1408488,
+  "computePeakRSSKiB": 1364044,
+  "computeCpuSeconds": 6,
+  "processCpuSeconds": 7,
+  "wallMs": 4203,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "truncateGeoJSON",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 454.2000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHullLines",
+      "ms": 454.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 80.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 125.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 9.5
+    },
+    {
+      "kind": "stage",
+      "name": "getOverlappingLines",
+      "ms": 19.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 11.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x28dc0013f200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 13.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 23.200000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 17.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 111.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 306
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 68.7999999821186
+    },
+    {
+      "kind": "complete",
+      "ms": 2503.5999999940395,
+      "heap": 37406702
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x28dc0013f200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    }
+  ]
+}

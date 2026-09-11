@@ -82,12 +82,11 @@ function getConvexHullLines(geojson) {
   else{
     console.warn("Invalid hull geometry type:", feature.geometry.type);
   }
-  // Create a single polyline feature from all the lines
-  const allCoords = lines.flatMap((line) => turf.getCoords(line));
-  const lineString = turf.lineString(allCoords);
+  // Keep each exterior/hole ring closed and separate. Concatenating rings adds
+  // artificial end-to-start segments to both the map and extruded boundary.
   return {
     type: "FeatureCollection",
-    features: [lineString],
+    features: lines,
   };
 }
 

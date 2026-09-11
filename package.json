@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prepare:baseline": "node diagnostics/prepare-baseline.mjs",
-    "test": "node --import ./diagnostics/register.mjs diagnostics/check.mjs && node --import ./diagnostics/register.mjs diagnostics/planar-check.mjs",
+    "test": "node --import ./diagnostics/register.mjs diagnostics/check.mjs && node --import ./diagnostics/register.mjs diagnostics/planar-check.mjs && node diagnostics/hull-check.mjs",
     "benchmark": "node diagnostics/run.mjs"
   },
   "devDependencies": {

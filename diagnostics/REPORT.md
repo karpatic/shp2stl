@@ -2,6 +2,39 @@
 
 Author: Codex app agent · September 11, 2026.
 
+## Hull/SVG continuation — September 11, 2026
+
+Author: Codex app agent. Started from clean local `ae7d630` atop `f5be65e`. **Local joint review only; no push or deployment.** This section supersedes the earlier report's retained hull-line concatenation and single-component Baltimore result; the prior planar investigation below is preserved.
+
+**Reproduced and fixed:** Baltimore's red diagonal was introduced by `getConvexHullLines` flattening three closed rings into one LineString. The same invented segments entered the raised boundary mesh and STL. Returning the already-built individual LineString features fixes the shared source representation. Each exterior/hole ring keeps its original closing edge; no SVG command, mesh cap, polygon closure, hole boundary or source ring is deleted. No planar/CSG construction code changed.
+
+Ranked hypotheses and observed results:
+
+1. **Disconnected rings concatenated — confirmed.** The unsimplified union has three polygons, each with one closed exterior. The old line contains every original edge plus exactly two invented segments: `[-76.7114075425686,39.3674285504703] → [-76.618,39.237]` (about 16.6 km), and `[-76.618,39.237] → [-76.579,39.207]` (about 4.7 km). The first crosses the main interior and is unmistakable in the painted browser. Both survive simplification. The focused check was written and run before the production edit: [red failure](results/hull-red.txt), then [green result](results/hull-green.txt). DC has one closed ring, no connectors, and passed both times.
+2. **Unwanted endpoint-to-start closure — ruled out for this symptom.** The actual Leaflet overlay is a stroked LineString SVG path with **no `Z` command**, not a filled polygon accidentally closed by the renderer. Before correction its explicit commands include `…L95 168L367 659…L367 659L480 772…`, the two cross-ring jumps. Afterward three independent paths start with `M95 168`, `M367 659`, and `M480 772`, each returning to its own start. Their legitimate last-to-first edges remain. The full GeoJSON line itself was previously open: its first point belongs to ring one and last point to ring three.
+3. **Source/intermediate interior geometry — ruled out as the origin of the main diagonal.** Edge provenance shows both added segments are absent from the union's boundary rings and appear at the flatten operation, before simplification. As a separate location check, the main diagonal's midpoint is about 762 m from the nearest frozen source edge and 768 m from the simplified shared/interior lines (local equirectangular segment distance). The source geography, solid hull, shared lines and trimmed interior lines are exactly unchanged in fresh before/after browser preprocessing. Legitimate dark-green interior lines remain visible.
+
+**Scope and geometry implications:** the fix changes only the hull-boundary collection. TopoJSON now simplifies separate closed rings at the same 0.01 quantile. This changes its arc weights: the main simplified outline retains two additional coastal vertices, and one vertex on the middle southern ring is selected differently. Those are visible in the evidence; this is not claimed to be only deletion of two segments from the old simplified path. The raw boundary-edge multiset is exact, and the simplified result matches an independently assembled collection of the union's rings. No new geography simplification rule or tolerance was added. Existing first-hull-only base selection and hole-as-base-shape limitations remain outside this fix; all outline rings, including holes in the regression case, remain separate and closed.
+
+**Checks actually run:** `node diagnostics/hull-check.mjs` (red before edit, green afterward), `npm test` (existing CSG differential checks, planar topology checks, and the new frozen-input/exterior+hole+island boundary check), four sequential `HULL_CHECK=1 LIMIT_SECONDS=60` browser runs, and `python3 diagnostics/hull-evidence.py`. No slow historical baseline, CSG rebuild, public data refetch or worktree was needed. The browser harness uses the frozen dependencies and original settings, waits for painted frames, and clicks the actual Download button. The review page was also opened and visually checked through CUA in Chrome.
+
+| Fresh exported result | DC | Baltimore |
+|---|---:|---:|
+| Red SVG paths, before → after | 1 → 1 | 1 → 3 |
+| Base geometry bytes | Identical | Identical |
+| Complete STL bytes | Identical | Changed boundary strips |
+| Triangles after | 4,444 | 7,258 |
+| Connected components after | 1 | 3 |
+| Zero-area triangles | 0 | 0 |
+| All edges incidence two, opposite orientation | Pass | Pass |
+| Production cap/vertex-link/volume validation | Pass | Pass |
+
+Removing the artificial ties leaves Baltimore's southern outline components disconnected, **each closed**, in one STL file. They are not discarded or connected with invented printable bridges. The validated volume is 131,661.15448 model units³ versus the corrected layer integral 131,661.15563 (difference 0.00115, allowed 0.01317). DC's volume and STL hash remain exact. Preview colors can shift because three line meshes consume more seeded random values than one; materials were not edited.
+
+**Evidence and local review:** <http://127.0.0.1:8765/diagnostics/review.html> now shows the painted before/after maps side by side and links to the full map/3D screenshots. [Machine-readable checks](results/hull-evidence.json), [test log](results/hull-tests.txt), [before SVG](results/hull-before-baltimore/map.svg), [after SVG](results/hull-after-baltimore/map.svg), [before path commands](results/hull-before-baltimore/map-paths.json), [after path commands](results/hull-after-baltimore/map-paths.json). Painted screenshots and source-hashed summaries are retained under `results/hull-{before,after}-{dc,baltimore}/`; large preprocessing, meshes and downloaded `scene.stl` files remain there locally and ignored by Git. Reproduction commands are in [README.md](README.md).
+
+## Prior planar investigation at ae7d630 (retained)
+
 Built on clean local `f5be65e`, preserving its CSG implementation as an explicit fallback. **Planar construction is now the default. No push or public deployment.** The prior investigation remains in [CSG_REPORT.md](CSG_REPORT.md).
 
 ## Result and timings

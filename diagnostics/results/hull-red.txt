@@ -1,0 +1,51 @@
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"dc","polygons":1,"rings":1,"paths":1,"inventedSegments":[],"simplifiedPaths":1}
+Polygon coordinate length: 2
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.57, 39.217 ]
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.626, 39.267 ]
+Polygon coordinate length: [ -76.59, 39.276 ]
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"baltimore","polygons":3,"rings":3,"paths":1,"inventedSegments":[[[-76.618,39.237],[-76.579,39.207]],[[-76.7114075425686,39.3674285504703],[-76.618,39.237]]],"simplifiedPaths":1}
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"exterior + hole + disconnected island","polygons":2,"rings":3,"paths":1,"inventedSegments":[[[0,0],[1,1]],[[1,1],[6,0]]],"simplifiedPaths":1}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: baltimore: inter-ring segments are not hull boundaries
+
+2 !== 0
+
+exterior + hole + disconnected island: inter-ring segments are not hull boundaries
+
+2 !== 0
+
+
+2 !== 0
+
+    at file:///home/carlos/Documents/GitHub/pages/shp2stl/diagnostics/hull-check.mjs:39:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

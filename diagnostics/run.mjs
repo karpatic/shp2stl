@@ -190,6 +190,12 @@ try {
     await page.waitForFunction(()=>window.diagRenderCount>0,null,{timeout:15000});
     await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     await page.screenshot({path:out+'/browser.png'});
+    if (process.env.HULL_CHECK) {
+      // Capture the actual painted Leaflet SVG, including its path commands.
+      writeFileSync(out+'/map.svg', await page.locator('#map .leaflet-overlay-pane svg').evaluate(svg=>svg.outerHTML));
+      writeFileSync(out+'/map-paths.json', JSON.stringify(await page.locator('#map .leaflet-overlay-pane svg path').evaluateAll(paths=>paths.map(p=>({stroke:p.getAttribute('stroke'),d:p.getAttribute('d')}))),null,2));
+      await page.locator('#map').screenshot({path:out+'/map.png'});
+    }
     const downloadPromise=page.waitForEvent('download',{timeout:15000});
     await page.locator('#download-btn').click();
     const download=await downloadPromise;

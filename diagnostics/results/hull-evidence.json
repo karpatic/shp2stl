@@ -1,0 +1,114 @@
+{
+  "dc": {
+    "preprocessingEqual": {
+      "geojson": true,
+      "hull": true,
+      "hullLines": true,
+      "lines": true,
+      "interiorLines": true
+    },
+    "baseGeometryBytesExact": true,
+    "stlBytesExact": true,
+    "stlSHA256": [
+      "16c24fdc12f773ca05966969586b92e71fc724ff6b56fe4f138dcb20f70f3f73",
+      "16c24fdc12f773ca05966969586b92e71fc724ff6b56fe4f138dcb20f70f3f73"
+    ],
+    "redSvgPaths": [
+      1,
+      1
+    ],
+    "svgCloseCommands": 0,
+    "eachPaintedRingClosed": true,
+    "interiorSvgPathsExact": true,
+    "export": {
+      "triangles": 4444,
+      "bounds": [
+        [
+          -80.41644287109375,
+          -100.59636688232422,
+          0.0
+        ],
+        [
+          80.59196472167969,
+          100.3541259765625,
+          12.0
+        ]
+      ],
+      "area": 46711.663536921464,
+      "signedVolume": 86223.42729843417,
+      "zeroAreaTriangles": 0,
+      "exactEdgeIncidence": {
+        "2": 6666
+      },
+      "orientedSurfaceSHA256": "b9023afc1534606a5e52af778ee496a10a42ff5ec18915d0e7b4d92cf98ad0d3"
+    },
+    "oppositeEdgeOrientation": true,
+    "components": 1,
+    "validation": {
+      "triangles": 4444,
+      "vertices": 2208,
+      "edges": 6666,
+      "area": 46711.663536921464,
+      "volume": 86223.42729843417,
+      "expectedVolume": 86223.42473662575,
+      "volumeTolerance": 0.008622342473662574,
+      "closed": true
+    }
+  },
+  "baltimore": {
+    "preprocessingEqual": {
+      "geojson": true,
+      "hull": true,
+      "hullLines": false,
+      "lines": true,
+      "interiorLines": true
+    },
+    "baseGeometryBytesExact": true,
+    "stlBytesExact": false,
+    "stlSHA256": [
+      "76681d891a3086106f2228ea844c51bc29389e2d082bfade096fa5318d492c63",
+      "6e1a5a36f5c23f1cf3f60aaf01d6979331def99faf483229c61ad2a099e58dda"
+    ],
+    "redSvgPaths": [
+      1,
+      3
+    ],
+    "svgCloseCommands": 0,
+    "eachPaintedRingClosed": true,
+    "interiorSvgPathsExact": true,
+    "export": {
+      "triangles": 7258,
+      "bounds": [
+        [
+          -80.67410278320312,
+          -100.29573822021484,
+          0.0
+        ],
+        [
+          80.57550811767578,
+          100.218017578125,
+          12.0
+        ]
+      ],
+      "area": 91797.92238689311,
+      "signedVolume": 131661.15448035998,
+      "zeroAreaTriangles": 0,
+      "exactEdgeIncidence": {
+        "2": 10887
+      },
+      "orientedSurfaceSHA256": "ab13f0bf1e6eca79350c5930d4499923e9a2eabfa1a7cb31a36f0fd2093ab833"
+    },
+    "oppositeEdgeOrientation": true,
+    "components": 3,
+    "validation": {
+      "triangles": 7258,
+      "vertices": 3611,
+      "edges": 10887,
+      "area": 91797.92238689311,
+      "volume": 131661.15448035998,
+      "expectedVolume": 131661.15562601047,
+      "volumeTolerance": 0.013166115562601046,
+      "closed": true
+    }
+  }
+}

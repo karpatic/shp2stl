@@ -8,6 +8,13 @@
 <button data-dataset="baltimore">Baltimore — planar, 128 grooves</button>
 <p>Downloads are unified solids; the preview retains the original translucent boundary objects. To inspect the preserved CSG path, append <code>?geometry=csg</code> to the app URL (Baltimore is slow).</p>
 <p><a href="./README.md">Investigation and commands</a> · <a href="./REPORT.md">Measured results</a></p>
+<h2>Hull line fix — local joint review</h2>
+<p>Baltimore's separate closed rings now remain separate paths. The diagonal connectors are removed from the map and STL. Its three exported components remain closed; DC's STL is byte-identical. The unchanged simplifier selects slightly different coastal vertices with separate rings.</p>
+<div style="display:flex;gap:12px">
+  <figure style="margin:0;flex:1"><figcaption>Before</figcaption><a href="results/hull-before-baltimore/browser.png"><img style="width:100%" src="results/hull-before-baltimore/map.png" alt="Before: red diagonal connects Baltimore's separate hull rings across its interior"></a></figure>
+  <figure style="margin:0;flex:1"><figcaption>After</figcaption><a href="results/hull-after-baltimore/browser.png"><img style="width:100%" src="results/hull-after-baltimore/map.png" alt="After: separate closed red hull boundaries without the diagonal connectors"></a></figure>
+</div>
+<p>Click an image for the full painted map and 3D preview. <a href="results/hull-evidence.json">STL and SVG checks</a>.</p>
 <small>Author: Codex app agent · 2026-09-11</small>
 <script>
 for(const button of document.querySelectorAll('button'))button.onclick=()=>{
