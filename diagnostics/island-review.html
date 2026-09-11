@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><title>Island bases — local STL review</title>
+<style>body{margin:0;background:#f3f5f5;color:#143132;font:16px system-ui}header{padding:20px 28px}h1{font-size:22px;margin:0 0 8px}main{display:flex}section{width:33.333%}h2{padding-left:28px;font-size:18px}.view{height:620px}canvas{display:block}p{margin:8px 0}button,select{font:inherit;padding:6px}img{width:48%;vertical-align:top}</style>
+<header><h1>Island bases: actual downloaded STLs</h1><p>Full floors in every mode. Connecting pads join shores at base height; raised community walls stay unchanged. Drag to orbit; scroll to zoom.</p>
+<p><select id="city"><option value="baltimore">Baltimore</option><option value="dc">DC</option></select> <select id="area"><option value="whole">Whole model</option></select> <button id="under">Underside</button></p>
+<p>Author: Codex app agent · 2026-09-11 · <a href="ISLAND_BASES.md">Checks and limitations</a> · <a href="review.html">Frozen app presets</a> · Local review only</p></header>
+<main><section><h2>Disconnected</h2><div class="view" id="disconnected"></div></section><section><h2>Connections (default)</h2><div class="view" id="connections"></div></section><section><h2>Hull base</h2><div class="view" id="hull"></div></section></main>
+<script type="importmap">{"imports":{"three":"../three/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';import {OrbitControls} from '../three/OrbitControls.js';
+const city=new URLSearchParams(location.search).get('city')==='dc'?'dc':'baltimore';
+document.querySelector('#city').value=city;
+document.querySelector('#city').onchange=e=>{location.search='?city='+e.target.value};
+const root=`results/island-pads-${city}`;
+const data=await (await fetch(`${root}/connections/regions.json`)).json();
+const presets={whole:[0,0,110]};
+for(const [i,link] of data.regions.connections.links.entries()) {
+ const name=`pad${i}`;presets[name]=[(link.a[0]+link.b[0])/2,(link.a[1]+link.b[1])/2,9];
+ document.querySelector('#area').add(new Option(`Connecting pad ${i+1}`,name));
+}
+const panels=[];let underside=false;
+for(const id of ['disconnected','connections','hull']) {
+ const dir=`island-pads-${city}/${id}`;
+ const buffer=await (await fetch(`results/${dir}/scene.stl`)).arrayBuffer(),data=new DataView(buffer),n=data.getUint32(80,true),coords=new Float32Array(n*9);
+ for(let i=0;i<n;i++)for(let j=0;j<9;j++)coords[i*9+j]=data.getFloat32(84+50*i+12+j*4,true);
+ const colors=new Float32Array(coords.length),wallColor=new THREE.Color('#3e8e92'),floorColor=new THREE.Color('#dce5e5');
+ for(let i=0;i<n;i++){const color=Math.max(coords[i*9+2],coords[i*9+5],coords[i*9+8])>6.001?wallColor:floorColor;for(let j=0;j<3;j++)color.toArray(colors,i*9+j*3);}
+ const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(coords,3));geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));geometry.computeVertexNormals();
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#eef2f2');scene.add(new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.7})));
+ scene.add(new THREE.AmbientLight(0xffffff,1.6));const light=new THREE.DirectionalLight(0xffffff,2.5);scene.add(light);
+ const el=document.getElementById(id),aspect=el.clientWidth/el.clientHeight,camera=new THREE.OrthographicCamera(-10*aspect,10*aspect,10,-10,.1,1000);
+ camera.up.set(0,1,0);const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(el.clientWidth,el.clientHeight);el.appendChild(renderer.domElement);
+ const controls=new OrbitControls(camera,renderer.domElement),render=()=>renderer.render(scene,camera);controls.addEventListener('change',render);
+ panels.push({light,camera,controls,aspect,render});
+}
+function show(){const p=presets[document.querySelector('#area').value];for(const v of panels){const [x,y,s]=p;v.camera.left=-s*v.aspect;v.camera.right=s*v.aspect;v.camera.top=s;v.camera.bottom=-s;v.camera.zoom=1;v.camera.updateProjectionMatrix();v.camera.position.set(x,y-s*.8,underside?-s*3-15:s*3+25);v.controls.target.set(x,y,6);v.light.position.set(x-s,y-s,s*5+40);v.controls.update();v.render();}}
+document.querySelector('#area').onchange=()=>{underside=false;show()};document.querySelector('#under').onclick=()=>{underside=!underside;show()};
+show();await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));document.body.dataset.ready='true';
+</script>

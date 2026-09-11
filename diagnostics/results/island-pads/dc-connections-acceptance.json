@@ -1,0 +1,24 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "dataset": "dc",
+  "geometrySource": "actual downloaded STL roof/floor caps",
+  "uncoveredSourceOverlapM2": 0.0,
+  "overlapInCompartmentsM2": 0.0,
+  "communityAnchors": [
+    4,
+    6,
+    8,
+    3,
+    2,
+    7,
+    1,
+    0
+  ],
+  "seams": [],
+  "pockets": [],
+  "mixed": [],
+  "unowned": [],
+  "freeCompartments": 9,
+  "failures": []
+}

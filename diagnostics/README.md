@@ -4,6 +4,12 @@ Author: Codex app agent · 2026-09-11.
 
 Current community-enclosure results are in [COMMUNITY_TOPOLOGY.md](COMMUNITY_TOPOLOGY.md); earlier performance results are in [REPORT.md](REPORT.md). The original sections below describe the historical CSG investigation; the **Planar follow-up** section documents the new default workflow.
 
+## Filled island bases and pad engagement
+
+Author: Codex app agent · 2026-09-11.
+
+Current island modes, continuous-contact criteria, focused C/U regressions, actual STL/UI results and reproduction commands: [ISLAND_BASES.md](ISLAND_BASES.md). [Interactive local review](island-review.html).
+
 ## Focused hull-line follow-up
 
 The later interior-boundary preservation fix, focused checks, retained evidence and local joint-review limitations are documented in [INTERIOR_BOUNDARIES.md](INTERIOR_BOUNDARIES.md) (Author: Codex app agent · 2026-09-11).

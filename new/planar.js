@@ -5,6 +5,7 @@ import libtess from "../three/vendor/libtess/libtess.js";
 import RBush from "../three/vendor/rbush.js";
 import pc, { strokeLines, insetRegion, conditionExterior, FLOAT32_CONFORMITY } from "./planar-boolean.js";
 import { createLineShapes } from "./three.js";
+import { islandBase } from "./islands.js";
 const union = (...polys) => (polys.length ? pc.union(...polys) : []);
 export function lineFootprints(lines, options) {
   // Retain the original strip construction in double precision. Float32 conversion
@@ -17,14 +18,14 @@ export function heightRegions(
   { hull, hullLines, lines, interiorLines, sourceExterior },
   options,
 ) {
-  // Deliberately retain the existing first-hull-only and hole-as-shape behavior.
+  // Every retained exterior receives a floor. Interior source voids keep the
+  // approved filled-floor convention; their source-facing walls remain above.
   const coastline = sourceExterior ? conditionExterior(sourceExterior.features[0].geometry.coordinates, options.width) : null;
   const feature = coastline ? {type: "MultiPolygon", coordinates: coastline} : hull.features[0].geometry;
-  const ring =
-    feature.type === "MultiPolygon"
-      ? feature.coordinates[0][0]
-      : feature.coordinates[0];
-  const H = union([ring]);
+  const exteriors = feature.type === "MultiPolygon" ? feature.coordinates.map(p=>[p[0]]) : [[feature.coordinates[0]]];
+  const land = union(exteriors);
+  const connections = islandBase(land, options);
+  const H = connections.footprint;
   const C = options.sourceTopology ? strokeLines(interiorLines, options.width) : union(...lineFootprints(interiorLines, options));
   let B = options.sourceTopology ? strokeLines(hullLines, options.width) : union(...lineFootprints(hullLines, options));
   // Interior rims sit above the existing floor. Only exterior boundaries need
@@ -40,24 +41,21 @@ export function heightRegions(
     // A centered coastline stroke seals narrow water inlets into false pockets.
     // Put the full nominal exterior wall width INSIDE the original land outline.
     // Source holes stay in the arc network; they are not filled or reassigned.
-    const land = union(coastline);
-    const innerLand = insetRegion(land, options.width), stroke = L;
-    B = pc.difference(land, innerLand);
-    L = union(pc.intersection(stroke, land), B);
+    const sourceLand = union(coastline);
+    const innerLand = insetRegion(sourceLand, options.width), stroke = L;
+    B = pc.difference(sourceLand, innerLand);
+    L = union(pc.intersection(stroke, sourceLand), B);
     support = B;
-    const innerFloor = pc.intersection(innerLand, H);
-    const grooveRoof = pc.intersection(C, innerFloor);
-    const outsideLand = coastline.length>1 ? union(coastline.slice(1)) : [];
-    const outsideBand = outsideLand.length ? pc.difference(outsideLand, innerLand) : [];
+    const grooveRoof = pc.intersection(C, innerLand);
+    const addedSupport = pc.difference(H, land);
     const lowFloor = pc.difference(H, grooveRoof);
-    sourceLayers = [outsideBand.length ? union(lowFloor, outsideBand) : lowFloor,
-      outsideBand.length ? union(H, outsideBand) : H, L];
+    sourceLayers = [lowFloor, H, L];
     // Factor the height interfaces using the same sets. Re-subtracting full
     // layers repeatedly sweeps thousands of identical coastline edges.
     sourceCaps = [
       null,
       {up: [], down: grooveRoof},
-      {up: pc.difference(innerFloor, stroke), down: pc.difference(pc.intersection(stroke, innerLand), H)},
+      {up: union(pc.difference(innerLand, stroke), pc.difference(land, sourceLand), addedSupport), down: []},
       {up: L, down: []},
     ];
   } else if (options.sourceTopology) support = pc.intersection(support, L);
@@ -65,6 +63,8 @@ export function heightRegions(
   if (sourceCaps) sourceCaps[0] = {up: [], down: layers[0]};
   return {
     H,
+    land,
+    connections,
     C,
     B,
     L,

@@ -1,0 +1,405 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "datasets": {
+    "baltimore": {
+      "modes": {
+        "connections": {
+          "triangles": 36922,
+          "signedVolume": 142638.00185687386,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.033618583814984,
+          "componentBounds": [
+            [
+              [
+                -80.48553466796875,
+                -100.0,
+                0.0
+              ],
+              [
+                80.48553466796875,
+                99.96794128417969,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 4,
+          "missingFloorArea": 0.0005852495795151222,
+          "wallDifferenceArea": 0.005296393105065391,
+          "supportArea": 18.71156341639369,
+          "joins": [
+            {
+              "kind": "shore-pad",
+              "width": 3.2,
+              "gap": 0.3720699373751081,
+              "neckWidth": 3.1999999999999975,
+              "contacts": [
+                {
+                  "width": 3.199960000000003,
+                  "penetration": 0.3787056712788565,
+                  "requiredWidth": 2.08,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 1.119960000000003,
+                  "penetrationMargin": 0.07870567127885653
+                },
+                {
+                  "width": 3.062743573458846,
+                  "penetration": 0.3757216874206141,
+                  "requiredWidth": 2.08,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 0.9827435734588459,
+                  "penetrationMargin": 0.07572168742061414
+                }
+              ],
+              "attachmentArea": [
+                2.1758958356297073,
+                3.1820038125443477
+              ],
+              "attachmentVolume": [
+                13.055375013778244,
+                19.092022875265833
+              ],
+              "reason": null,
+              "filledCornerPockets": 0
+            },
+            {
+              "kind": "shore-pad",
+              "width": 4,
+              "gap": 0.8445370470506308,
+              "neckWidth": 3.9999999999999942,
+              "contacts": [
+                {
+                  "width": 3.999959999999997,
+                  "penetration": 0.37134990436849397,
+                  "requiredWidth": 2.6,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 1.399959999999997,
+                  "penetrationMargin": 0.07134990436849398
+                },
+                {
+                  "width": 3.9999600000000006,
+                  "penetration": 0.36895945261369395,
+                  "requiredWidth": 2.6,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 1.3999600000000005,
+                  "penetrationMargin": 0.06895945261369396
+                }
+              ],
+              "attachmentArea": [
+                3.4357748471411456,
+                2.214045449209576
+              ],
+              "attachmentVolume": [
+                20.614649082846807,
+                13.284272695257457
+              ],
+              "reason": null,
+              "filledCornerPockets": 0
+            },
+            {
+              "kind": "solid-fallback",
+              "width": 1.9,
+              "gap": 4.115753028509853,
+              "neckWidth": 1.900000000000004,
+              "contacts": [
+                {
+                  "width": 1.8999600000000114,
+                  "penetration": 0.31048686608008474,
+                  "requiredWidth": 1.2349999999999999,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 0.6649600000000115,
+                  "penetrationMargin": 0.010486866080084756
+                },
+                {
+                  "width": 1.8999599999999923,
+                  "penetration": 0.38263934806751926,
+                  "requiredWidth": 1.2349999999999999,
+                  "requiredPenetration": 0.3,
+                  "widthMargin": 0.6649599999999924,
+                  "penetrationMargin": 0.08263934806751927
+                }
+              ],
+              "attachmentArea": [
+                1.3322845067992364,
+                1.230494295411406
+              ],
+              "attachmentVolume": [
+                7.993707040795419,
+                7.382965772468304
+              ],
+              "reason": "shorter local span; broad candidates failed engagement or pocket checks",
+              "filledCornerPockets": 0
+            }
+          ],
+          "previewMatchesDownload": true
+        },
+        "disconnected": {
+          "triangles": 36906,
+          "signedVolume": 142525.73248142883,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.03271528081813312,
+          "componentBounds": [
+            [
+              [
+                28.232736587524414,
+                -87.5409927368164,
+                0.0
+              ],
+              [
+                35.868038177490234,
+                -80.37765502929688,
+                12.0
+              ]
+            ],
+            [
+              [
+                2.3986639976501465,
+                -81.806640625,
+                0.0
+              ],
+              [
+                55.389469146728516,
+                -37.84119415283203,
+                12.0
+              ]
+            ],
+            [
+              [
+                -80.48553466796875,
+                -53.88615036010742,
+                0.0
+              ],
+              [
+                80.48553466796875,
+                99.96794128417969,
+                12.0
+              ]
+            ],
+            [
+              [
+                36.44538116455078,
+                -100.0,
+                0.0
+              ],
+              [
+                78.35025024414062,
+                -75.53162384033203,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 4,
+          "missingFloorArea": 0.0005904237080867992,
+          "wallDifferenceArea": 0.005296393105065391,
+          "supportArea": 0.0,
+          "joins": [],
+          "previewMatchesDownload": true
+        },
+        "hull": {
+          "triangles": 31130,
+          "signedVolume": 164167.38930804696,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.06512540179844295,
+          "componentBounds": [
+            [
+              [
+                -80.48553466796875,
+                -100.0,
+                0.0
+              ],
+              [
+                80.48553466796875,
+                99.96794128417969,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 4,
+          "missingFloorArea": 5.8147543419975486e-05,
+          "wallDifferenceArea": 0.005296393105065391,
+          "supportArea": 3606.943113564278,
+          "joins": [],
+          "previewMatchesDownload": true
+        }
+      },
+      "ui": [
+        {
+          "kind": "complete",
+          "ms": 13852.799999982119,
+          "heap": 87413067
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "connections",
+          "ms": 7813,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "disconnected",
+          "ms": 9204,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "hull",
+          "ms": 7671,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "connections",
+          "ms": 11066,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "ui-check",
+          "idleFrames": 0,
+          "before": {
+            "frames": 32,
+            "angle": 0,
+            "distance": 200
+          },
+          "after": {
+            "frames": 63,
+            "angle": -0.7027644600390892,
+            "distance": 190
+          }
+        }
+      ]
+    },
+    "dc": {
+      "modes": {
+        "connections": {
+          "triangles": 8654,
+          "signedVolume": 85348.79416733506,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.011760280618526757,
+          "componentBounds": [
+            [
+              [
+                -80.23912048339844,
+                -100.0,
+                0.0
+              ],
+              [
+                80.23912048339844,
+                100.0,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 1,
+          "missingFloorArea": 0.0002484804912283628,
+          "wallDifferenceArea": 0.0012501531189999867,
+          "supportArea": 0.0,
+          "joins": [],
+          "previewMatchesDownload": true
+        },
+        "disconnected": {
+          "triangles": 8654,
+          "signedVolume": 85348.79416733506,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.011760280618526757,
+          "componentBounds": [
+            [
+              [
+                -80.23912048339844,
+                -100.0,
+                0.0
+              ],
+              [
+                80.23912048339844,
+                100.0,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 1,
+          "missingFloorArea": 0.0002484804912283628,
+          "wallDifferenceArea": 0.0012501531189999867,
+          "supportArea": 0.0,
+          "joins": [],
+          "previewMatchesDownload": true
+        },
+        "hull": {
+          "triangles": 7558,
+          "signedVolume": 99001.87605554229,
+          "closedOrientedEdges": true,
+          "manifoldVertexFans": true,
+          "occupancyTolerance": 0.01922320370568759,
+          "componentBounds": [
+            [
+              [
+                -80.23912048339844,
+                -100.0,
+                0.0
+              ],
+              [
+                80.23912048339844,
+                100.0,
+                12.0
+              ]
+            ]
+          ],
+          "landComponents": 1,
+          "missingFloorArea": 0.0001793004426522924,
+          "wallDifferenceArea": 0.0012501531189999867,
+          "supportArea": 2275.513788275676,
+          "joins": [],
+          "previewMatchesDownload": true
+        }
+      },
+      "ui": [
+        {
+          "kind": "complete",
+          "ms": 4153.799999982119,
+          "heap": 65288779
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "connections",
+          "ms": 2009,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "disconnected",
+          "ms": 2678,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "hull",
+          "ms": 2678,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "island-mode-check",
+          "mode": "connections",
+          "ms": 2417,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "ui-check",
+          "idleFrames": 0,
+          "before": {
+            "frames": 20,
+            "angle": 0,
+            "distance": 200
+          },
+          "after": {
+            "frames": 68,
+            "angle": -0.7068036531354495,
+            "distance": 190.00000000000009
+          }
+        }
+      ]
+    }
+  }
+}

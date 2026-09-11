@@ -61,6 +61,8 @@ const server = createServer((req, res) => {
       let src = data.toString().replace('export async function initialize()', instrumentation + '\nexport async function initialize()');
       src = src.replace('// Display the GeoJSON', `window.diagData('preprocess', {geojson,hull,hullLines,lines,interiorLines,...(typeof sourceExterior!=='undefined'&&sourceExterior?{sourceExterior}:{})});\n // Display the GeoJSON`);
       src = src.replace('scene.add(currentResult);', `scene.add(currentResult); window.diagScene=scene; window.diagResult=currentResult; if(typeof exportModel!=='undefined' && exportModel.geometry)window.diagData('planar-validation',exportModel.geometry.userData.validation); window.diag({kind:'complete', ms:performance.now()-window.diagStart,heap:performance.memory?.usedJSHeapSize});`);
+      if (process.env.ISLAND_CHECK) src = src.replace('const depth = Math.fround', `window.diagRegionData={dataset:'${dataset}',center,bounds:minMax,regions};
+    const depth = Math.fround`);
       data = src;
     } else if (path.endsWith('/three/three-bvh-csg.js') && process.env.FRAGMENTS) {
       data = data.toString().replace('const tri = triangles[ i ];', `const tri = triangles[ i ];
@@ -79,6 +81,7 @@ const server = createServer((req, res) => {
       data = data.toString() + '\n' + wrappers(['truncateGeoJSON','getConvexHull','getConvexHullLines','simplifyGeoJSON','getOverlappingLines','getInteriorLines','reprojectGeoJSON','scaleGeoJSON','getMinMaxCoordinates']);
     } else if (path.endsWith('/new/planar.js')) {
       data = data.toString() + '\n' + wrappers(['heightRegions','layerGeometry']);
+      if (process.env.FAIL_ISLAND) data += `\n{const original=heightRegions;heightRegions=(input,options)=>{if(options.islandConnections==='connections')throw Error('No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base');return original(input,options);};}`;
       if (process.env.FAIL_PLANAR) data += `\n{const original=layerGeometry;layerGeometry=(...args)=>{throw Error('Planar diagnostic failure');};}`;
     } else if (path.endsWith('/new/three.js')) {
       data = data.toString() + '\n' + wrappers(['createThreeDGeometry','createThreeDGeometryLines']);
@@ -121,7 +124,7 @@ page.on('console', msg => {
   if (msg.type()==='warning') log({kind:'warning',text:msg.text().slice(0,240)});
   if (msg.type() === 'error') {
     log({kind:'error',text:msg.text()});
-    if((process.env.FAIL_CUT && /CSG operation failed/.test(msg.text())) || (process.env.FAIL_PLANAR && /Planar diagnostic failure/.test(msg.text())))status='expected-failure';
+    if((process.env.FAIL_CUT && /CSG operation failed/.test(msg.text())) || (process.env.FAIL_PLANAR && /Planar diagnostic failure/.test(msg.text())) || (process.env.FAIL_ISLAND && /continuous broad engagement/.test(msg.text())))status='expected-failure';
   }
 });
 page.on('pageerror', e => log({kind:'error',text:e.message}));
@@ -145,7 +148,7 @@ await context.route('**/*', async route => {
 });
 const config = { props:{innerHeight:600,innerWidth:800,precision:100,scaleToThisSize:180},shpstl:{depth:6,width:.5,simplifyBy:.01,simplifyHullBy:.01,geoJsonUrl:manifest[dataset+'.geojson'].url} };
 await page.addInitScript(config => {
-  localStorage.setItem('shp2stl.appConfig.v1',JSON.stringify(config));
+  if(!localStorage.getItem('shp2stl.appConfig.v1'))localStorage.setItem('shp2stl.appConfig.v1',JSON.stringify(config));
   localStorage.setItem('shp2stl.appConfig.ui.v1',JSON.stringify({collapsed:true}));
   // Identical deterministic colors make screenshots comparable, not geometry.
   window.diagSeed=12345; Math.random=()=>((window.diagSeed=Math.imul(window.diagSeed,1664525)+1013904223>>>0)/4294967296);
@@ -180,8 +183,24 @@ try {
   if(status==='expected-failure') {
     const disabled=await page.locator('#download-btn').isDisabled();
     const uiStatus=await page.locator('#status').textContent();
-    if(!disabled || !uiStatus.includes('Failed'))throw Error('A failed cut enabled partial output');
+    if(!disabled || !/Failed|failure|continuous broad engagement/.test(uiStatus))throw Error('A failed cut enabled partial output');
     log({kind:'failure-check',disabled,uiStatus});
+    if(process.env.FAIL_ISLAND) {
+      const select=page.locator('#cfg-islandConnections');
+      if(await select.isDisabled())throw Error('Failed start prevents selecting another island mode');
+      await page.locator('#toggle-config').click();
+      await select.selectOption('disconnected');
+      await page.waitForFunction(()=>document.querySelector('#download-btn')?.dataset.islandConnections==='disconnected' && !document.querySelector('#download-btn').disabled);
+      await page.locator('#toggle-config').click();
+      await select.selectOption('connections');
+      await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Choose a mode to retry'));
+      if(!await page.locator('#download-btn').isDisabled())throw Error('Failed rebuild enabled stale download');
+      await select.selectOption('hull');
+      await page.waitForFunction(()=>document.querySelector('#download-btn').dataset.islandConnections==='hull' && !document.querySelector('#download-btn').disabled);
+      log({kind:'island-failure-recovery',startRecovery:'disconnected',rebuildRecovery:'hull',staleDownloadDisabled:true});
+      await page.screenshot({path:out+'/recovered.png'});
+      status='expected-failure';
+    }
   }
   if(status==='complete') {
     if(process.env.PROFILE) writeFileSync(out+'/cpu.cpuprofile',JSON.stringify((await cdp.send('Profiler.stop')).profile));
@@ -205,6 +224,47 @@ try {
       return {position:Array.from(g.attributes.position.array),normal:Array.from(g.attributes.normal.array),uv:Array.from(g.attributes.uv.array),index:g.index?Array.from(g.index.array):null,groups:g.groups,drawRange:g.drawRange};
     });
     writeFileSync(out+'/result-geometry.json',JSON.stringify(geometry));
+    if(process.env.ISLAND_CHECK) {
+      const select=page.locator('#cfg-islandConnections');
+      if(await select.inputValue()!=='connections')throw Error('Fresh default is not Connections');
+      const choices=await select.locator('option').allTextContents();
+      if(JSON.stringify(choices)!==JSON.stringify(['Connections','Disconnected','Hull base']))throw Error('Unexpected mode options');
+      await page.locator('#toggle-config').click();
+      const camera=()=>page.evaluate(()=>({position:window.diagControls.object.position.toArray(),target:window.diagControls.target.toArray()}));
+      for(const mode of ['connections','disconnected','hull','connections']) {
+        const before=await camera(),start=Date.now();
+        if(await select.inputValue()!==mode) {
+          await select.selectOption(mode);
+          await page.waitForFunction(mode=>!document.querySelector('#download-btn').disabled && document.querySelector('#download-btn').dataset.islandConnections===mode,mode);
+        }
+        if(JSON.stringify(await camera())!==JSON.stringify(before))throw Error('Mode switch changed review camera');
+        const dir=out+'/'+mode;mkdirSync(dir,{recursive:true});
+        writeFileSync(dir+'/regions.json',JSON.stringify(await page.evaluate(()=>window.diagRegionData)));
+        const downloading=page.waitForEvent('download');await page.locator('#download-btn').click();await (await downloading).saveAs(dir+'/scene.stl');
+        const preview=await page.evaluate(()=>Array.from(window.diagResult.geometry.attributes.position.array));
+        writeFileSync(dir+'/preview-position.json',JSON.stringify(preview));
+        await page.screenshot({path:dir+'/browser.png'});
+        await page.locator('#toggle-config').click();
+        for(const [name,position] of [['top',[0,-60,235]],['underside',[0,-60,-235]]]) {
+          await page.evaluate(position=>{window.diagControls.target.set(0,0,3);window.diagControls.object.position.fromArray(position);window.diagControls.update();},position);
+          await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+          await page.locator('#threejs').screenshot({path:dir+'/'+name+'.png'});
+        }
+        const links=await page.evaluate(()=>window.diagRegionData.regions.connections.links);
+        if(mode==='connections') for(const [i,link] of links.entries()) {
+          const x=(link.a[0]+link.b[0])/2,y=(link.a[1]+link.b[1])/2;
+          for(const [name,sign] of [['pad-top',1],['pad-underside',-1]]) {
+            await page.evaluate(({x,y,sign})=>{window.diagControls.target.set(x,y,3);window.diagControls.object.position.set(x,y-12,sign*32);window.diagControls.update();},{x,y,sign});
+            await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+            await page.locator('#threejs').screenshot({path:dir+'/'+name+'-'+i+'.png'});
+          }
+        }
+        await page.locator('#toggle-config').click();
+        await page.evaluate(before=>{window.diagControls.target.fromArray(before.target);window.diagControls.object.position.fromArray(before.position);window.diagControls.update();},before);
+        await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+        log({kind:'island-mode-check',mode,ms:Date.now()-start,cameraPreserved:true});
+      }
+    }
     if(process.env.UI_CHECK) {
       const before=await page.evaluate(()=>({frames:window.diagRenderCount,angle:window.diagControls.getAzimuthalAngle(),distance:window.diagControls.object.position.distanceTo(window.diagControls.target)}));
       await page.waitForTimeout(1000);
@@ -236,7 +296,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

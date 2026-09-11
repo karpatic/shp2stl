@@ -36,6 +36,7 @@ export async function initialize() {
   const downloadButton = document.getElementById("download-btn");
   downloadButton.disabled = true;
   const defaults = {
+    islandConnections: "connections",
     depth: 6,
     width: 0.5,
     simplifyBy: 0.01,
@@ -135,47 +136,62 @@ export async function initialize() {
   hullBrush.updateMatrixWorld();
   let currentResult = hullBrush;
   let exportModel = scene;
+  let rebuildConnections;
   if (!useCSG) {
-    await stage("Combining planar regions…");
-    const regions = heightRegions(
-      { hull, hullLines, lines, interiorLines, sourceExterior },
-      window.shpstl,
-    );
-    const depth = Math.fround(window.shpstl.depth);
-    const grooveHeight = Math.fround(depth * 0.3);
-    await stage("Extruding and checking the complete solid…");
-    const completeGeometry = layerGeometry(regions.layers, [
-      0,
-      grooveHeight,
-      depth,
-      Math.fround(depth * 2),
-    ], regions.caps);
-    // The map also paints the actual wall footprint, without a screen-width
-    // stroke that could visually seal a narrow water channel.
-    const factor = Math.max(minMax.maxX-minMax.minX,minMax.maxY-minMax.minY)/200;
-    const cx = (minMax.minX+minMax.maxX)/2, cy = (minMax.minY+minMax.maxY)/2;
-    const cos = Math.cos(center.lat*Math.PI/180);
-    const coordinates = regions.layers[2].map(p=>p.map(r=>r.map(([x,y])=>[
-      (x*factor+cx)/cos+center.lng,y*factor+cy+center.lat,
-    ])));
-    hullMapLayer.remove(); lineMapLayer.remove();
-    L.geoJSON({type:"MultiPolygon",coordinates},{stroke:false,fillColor:"#004433",fillOpacity:1}).addTo(map);
-    // Paint exactly the validated downloadable solid, including its real joins.
-    currentResult.geometry.dispose();
-    currentResult.geometry = completeGeometry.toNonIndexed();
-    currentResult.geometry.computeVertexNormals();
-    const positions = currentResult.geometry.attributes.position;
-    const colors = new Float32Array(positions.count*3);
-    const wallColor = new THREE.Color(0x46959a), floorColor = new THREE.Color(0xdce5e5);
-    for (let i=0;i<positions.count;i+=3) {
-      const color = Math.max(positions.getZ(i),positions.getZ(i+1),positions.getZ(i+2))>depth ? wallColor : floorColor;
-      for (let j=0;j<3;j++) color.toArray(colors,(i+j)*3);
-    }
-    currentResult.geometry.setAttribute("color",new THREE.BufferAttribute(colors,3));
-    currentResult.material.setValues({color:0xffffff,vertexColors:true,transparent:false,opacity:1});
+    let wallMapLayer;
     scene.add(new THREE.AmbientLight(0xffffff,.8));
-    exportModel = new THREE.Mesh(completeGeometry);
-    exportModel.updateMatrixWorld();
+    rebuildConnections = async (mode) => {
+      downloadButton.disabled = true;
+      currentResult.visible = false;
+      requestRender();
+      window.shpstl.islandConnections = mode;
+      await stage("Combining planar regions…");
+      const regions = heightRegions(
+        { hull, hullLines, lines, interiorLines, sourceExterior },
+        window.shpstl,
+      );
+      const depth = Math.fround(window.shpstl.depth);
+      const grooveHeight = Math.fround(depth * 0.3);
+      await stage("Extruding and checking the complete solid…");
+      const completeGeometry = layerGeometry(regions.layers, [
+        0,
+        grooveHeight,
+        depth,
+        Math.fround(depth * 2),
+      ], regions.caps);
+      // The map also paints the actual wall footprint, without a screen-width
+      // stroke that could visually seal a narrow water channel.
+      const factor = Math.max(minMax.maxX-minMax.minX,minMax.maxY-minMax.minY)/200;
+      const cx = (minMax.minX+minMax.maxX)/2, cy = (minMax.minY+minMax.maxY)/2;
+      const cos = Math.cos(center.lat*Math.PI/180);
+      const coordinates = regions.layers[2].map(p=>p.map(r=>r.map(([x,y])=>[
+        (x*factor+cx)/cos+center.lng,y*factor+cy+center.lat,
+      ])));
+      hullMapLayer.remove(); lineMapLayer.remove();
+      wallMapLayer?.remove();
+      wallMapLayer = L.geoJSON({type:"MultiPolygon",coordinates},{stroke:false,fillColor:"#004433",fillOpacity:1}).addTo(map);
+      // Paint exactly the validated downloadable solid, including its real joins.
+      currentResult.geometry.dispose();
+      currentResult.geometry = completeGeometry.toNonIndexed();
+      currentResult.geometry.computeVertexNormals();
+      const positions = currentResult.geometry.attributes.position;
+      const colors = new Float32Array(positions.count*3);
+      const wallColor = new THREE.Color(0x46959a), floorColor = new THREE.Color(0xdce5e5);
+      for (let i=0;i<positions.count;i+=3) {
+        const color = Math.max(positions.getZ(i),positions.getZ(i+1),positions.getZ(i+2))>depth ? wallColor : floorColor;
+        for (let j=0;j<3;j++) color.toArray(colors,(i+j)*3);
+      }
+      currentResult.geometry.setAttribute("color",new THREE.BufferAttribute(colors,3));
+      currentResult.material.setValues({color:0xffffff,vertexColors:true,transparent:false,opacity:1});
+      if (exportModel.geometry) exportModel.geometry.dispose();
+      exportModel = new THREE.Mesh(completeGeometry);
+      exportModel.updateMatrixWorld();
+      currentResult.visible = true;
+      requestRender();
+      downloadButton.dataset.islandConnections = mode;
+      downloadButton.disabled = false;
+    };
+    await rebuildConnections(window.shpstl.islandConnections);
   } else {
     await stage("Building with reference CSG…");
     const evaluator = new Evaluator();
@@ -217,4 +233,5 @@ export async function initialize() {
   requestRender();
   downloadButton.addEventListener("click", () => exportToSTL(exportModel));
   downloadButton.disabled = false;
+  return rebuildConnections;
 }

@@ -1,0 +1,226 @@
+{
+  "variant": "optimized",
+  "dataset": "baltimore",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson"
+    }
+  },
+  "sources": {
+    "app.html": "d20b106d69c6b01fd8b731ad4a11d336f0284a8546ae21636c1c4318d40f5b37",
+    "new/new.js": "b5138cbf0e5f9332f8cbcdd6c9661172ddbebb0bafb79d22ddb8152ede6fa8d0",
+    "new/leaflet.js": "37293ff79c1ec13baf709be41a766776414d43385f4d8ef601df432a5d21c1c9",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "7b3b31acf9d5c6d797b56e1fa2012854abb2da4cfc2550d230d654504e494ce3",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "6f68f6e520ef73b631229bd009ae5dabd5d7edcf78e76257ac16a5bfdf66300c",
+    "new/islands.js": "fc7d2d971724a3d0fb56ac76398e359a9c7db6721625f4e452053ae44571606a",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 150000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1551076,
+  "computePeakRSSKiB": 1415592,
+  "computeCpuSeconds": 25,
+  "processCpuSeconds": 147,
+  "wallMs": 73184,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 3497.199999988079
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 508.5
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 464.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 2.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 3.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.7000000178813934
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x208c00142e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 40.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x208c00142e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 3983.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1738.199999988079
+    },
+    {
+      "kind": "complete",
+      "ms": 13852.799999982119,
+      "heap": 87413067
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x208c00142e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x208c00142e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "connections",
+      "ms": 7813,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1841.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1202.800000011921
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "disconnected",
+      "ms": 9204,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1582.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1116.199999988079
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "hull",
+      "ms": 7671,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 3242.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 844.2999999821186
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "connections",
+      "ms": 11066,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "ui-check",
+      "idleFrames": 0,
+      "before": {
+        "frames": 32,
+        "angle": 0,
+        "distance": 200
+      },
+      "after": {
+        "frames": 63,
+        "angle": -0.7027644600390892,
+        "distance": 190
+      }
+    }
+  ]
+}

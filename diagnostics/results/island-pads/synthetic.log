@@ -1,0 +1,4 @@
+PASS: every retained exterior has a fully occupied base and underside
+PASS: all modes, MST lengths, positive-volume attachment, deterministic default, exact caps, unchanged walls, central void floor, single island and manifold meshes
+PASS: regular quad and compact fallback; C/U tips, hairline, corner and sub-sample notch rejected; alternate shore leaves inlet open; undersized islands fail explicitly
+PASS: actual source-hole floor, rim and factored caps

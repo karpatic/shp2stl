@@ -74,7 +74,7 @@
             color: #222;
             min-width: 0;
         }
-        #config-panel input {
+        #config-panel input, #config-panel select {
             padding: 6px 8px;
             border: 1px solid rgba(0,0,0,0.2);
             border-radius: 6px;
@@ -224,9 +224,23 @@
                         <input id="cfg-geoJsonUrl" type="url" value="https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson" />
                     </label>
 
+                    <label style="margin-top: 10px;" for="cfg-islandConnections">
+                        Island connections
+                        <select id="cfg-islandConnections" aria-describedby="island-help" disabled>
+                            <option value="connections" selected>Connections</option>
+                            <option value="disconnected">Disconnected</option>
+                            <option value="hull">Hull base</option>
+                        </select>
+                    </label>
+                    <p id="island-help" style="font-size:12px;line-height:1.35;margin:6px 0;">
+                        All islands have filled bases. Connections add broad shoreline pads at base height,
+                        with compact local joins where needed. Connections require broad contact at both ends;
+                        features too small for that contact need another mode.
+                        Disconnected keeps islands separate; Hull base fills their convex hull.
+                    </p>
                     <div class="row">
                         <button id="create-btn" type="button">Create</button>
-                        <div id="status">Not created yet</div>
+                        <div id="status" role="status" aria-live="polite">Not created yet</div>
                     </div>
 
                     <details id="about-details" open>
@@ -234,11 +248,11 @@
                         <div class="content">
                             <p>
                                 This page turns a GeoJSON boundary into a <strong>3D-printable</strong> model and lets you download it as an STL.
-                                It renders a convex hull + internal line cuts, then builds a solid via extrusion/CSG.
+                                It fills every island base, preserves community walls, and adds your selected print supports at base height.
                             </p>
                             <ul>
                                 <li>Edit parameters (URL, simplify values, depth/width).</li>
-                                <li>Click <strong>Create</strong> to save settings and reload.</li>
+                                <li>Click <strong>Create</strong> to apply parameter edits. Island connections rebuild immediately; pending parameter edits apply together with the switch.</li>
                                 <li>Use mouse/touch in the 3D view: drag to orbit, scroll/pinch to zoom.</li>
                                 <li>Click <strong>Download STL</strong> and import into your slicer (PrusaSlicer/Cura) for 3D printing.</li>
                             </ul>
@@ -294,6 +308,7 @@
                     scaleToThisSize: getNumber('cfg-scaleToThisSize'),
                 },
                 shpstl: {
+                    islandConnections: document.getElementById('cfg-islandConnections').value,
                     depth: getNumber('cfg-depth'),
                     width: getNumber('cfg-width'),
                     simplifyBy: getNumber('cfg-simplifyBy'),
@@ -336,6 +351,7 @@
                 setNumber('cfg-scaleToThisSize', props.scaleToThisSize);
             }
             if (shpstl) {
+                setString('cfg-islandConnections', ['connections','disconnected','hull'].includes(shpstl.islandConnections) ? shpstl.islandConnections : 'connections');
                 setNumber('cfg-depth', shpstl.depth);
                 setNumber('cfg-width', shpstl.width);
                 setNumber('cfg-simplifyBy', shpstl.simplifyBy);
@@ -344,10 +360,15 @@
             }
         }
 
+        let rebuildConnections, appliedConfig;
+        const connectionsSelect = document.getElementById('cfg-islandConnections');
         async function runWithCurrentInputs() {
             const config = readConfigFromInputs();
             applyConfigToWindow(config);
-            await initialize();
+            rebuildConnections = await initialize();
+            appliedConfig = config;
+            connectionsSelect.disabled = !rebuildConnections;
+            if (!rebuildConnections) document.getElementById('island-help').textContent = 'Island connections are available in the standard planar model. Remove ?geometry=csg to use them.';
         }
 
         const createBtn = document.getElementById('create-btn');
@@ -364,6 +385,39 @@
             } catch (err) {
                 console.error(err);
                 setStatus('Failed (see console)');
+                createBtn.disabled = false;
+            }
+        });
+
+        connectionsSelect.addEventListener('change', async () => {
+            const config = readConfigFromInputs();
+            connectionsSelect.disabled = true;
+            createBtn.disabled = true;
+            document.getElementById('download-btn').disabled = true;
+            try {
+                // Apply pending parameter edits together; a pure support switch
+                // reuses the prepared geography, scene and camera in place.
+                if (!rebuildConnections) {
+                    saveConfig(config);
+                    window.location.reload();
+                    return;
+                }
+                const previous = structuredClone(appliedConfig);
+                previous.shpstl.islandConnections = config.shpstl.islandConnections;
+                saveConfig(config);
+                if (JSON.stringify(previous) !== JSON.stringify(config)) {
+                    setStatus('Applying parameters and island connections…');
+                    window.location.reload();
+                    return;
+                }
+                await rebuildConnections(config.shpstl.islandConnections);
+                appliedConfig = config;
+                setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
+            } catch (err) {
+                console.error(err);
+                setStatus(err.message + '. Choose a mode to retry.');
+            } finally {
+                connectionsSelect.disabled = false;
                 createBtn.disabled = false;
             }
         });
@@ -432,7 +486,8 @@
                 createBtn.disabled = false;
             } catch (err) {
                 console.error(err);
-                setStatus('Failed on start (see console)');
+                setStatus(err.message || 'Failed on start (see console)');
+                connectionsSelect.disabled = new URLSearchParams(location.search).get('geometry') === 'csg';
                 createBtn.disabled = false;
             }
         })();

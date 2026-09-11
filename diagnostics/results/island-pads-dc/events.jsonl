@@ -1,0 +1,35 @@
+{"kind":"stage","name":"getConvexHull","ms":602.6000000238419}
+{"kind":"stage","name":"getConvexHull","ms":29.099999994039536}
+{"kind":"stage","name":"getInteriorLines","ms":22.69999998807907}
+{"kind":"stage","name":"reprojectGeoJSON","ms":1.4000000059604645}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.19999998807907104}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.5}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.20000001788139343}
+{"kind":"stage","name":"reprojectGeoJSON","ms":2.9000000059604645}
+{"kind":"stage","name":"getMinMaxCoordinates","ms":7.300000011920929}
+{"kind":"stage","name":"scaleGeoJSON","ms":3.199999988079071}
+{"kind":"warning","text":"[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."}
+{"kind":"warning","text":"[.WebGL-0xd3401c09800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"createThreeDGeometry","ms":13.299999982118607}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.09999999403953552}
+{"kind":"warning","text":"[.WebGL-0xd3401c09800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"stage","name":"heightRegions","ms":440}
+{"kind":"stage","name":"layerGeometry","ms":437.80000001192093}
+{"kind":"complete","ms":4153.799999982119,"heap":65288779}
+{"kind":"warning","text":"[.WebGL-0xd3401c09800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0xd3401c09800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"}
+{"kind":"island-mode-check","mode":"connections","ms":2009,"cameraPreserved":true}
+{"kind":"stage","name":"heightRegions","ms":196.40000000596046}
+{"kind":"stage","name":"layerGeometry","ms":213.80000001192093}
+{"kind":"island-mode-check","mode":"disconnected","ms":2678,"cameraPreserved":true}
+{"kind":"stage","name":"heightRegions","ms":284.2000000178814}
+{"kind":"stage","name":"layerGeometry","ms":348}
+{"kind":"island-mode-check","mode":"hull","ms":2678,"cameraPreserved":true}
+{"kind":"stage","name":"heightRegions","ms":148.69999998807907}
+{"kind":"stage","name":"layerGeometry","ms":216.89999997615814}
+{"kind":"island-mode-check","mode":"connections","ms":2417,"cameraPreserved":true}
+{"kind":"ui-check","idleFrames":0,"before":{"frames":20,"angle":0,"distance":200},"after":{"frames":68,"angle":-0.7068036531354495,"distance":190.00000000000009}}

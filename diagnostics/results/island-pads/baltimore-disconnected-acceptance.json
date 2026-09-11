@@ -1,0 +1,126 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "dataset": "baltimore",
+  "geometrySource": "actual downloaded STL roof/floor caps",
+  "uncoveredSourceOverlapM2": 0.0003641982103224186,
+  "overlapInCompartmentsM2": 0.0,
+  "communityAnchors": [
+    27,
+    21,
+    47,
+    58,
+    46,
+    54,
+    36,
+    3,
+    50,
+    7,
+    12,
+    32,
+    24,
+    37,
+    33,
+    41,
+    31,
+    29,
+    38,
+    4,
+    25,
+    1,
+    26,
+    8,
+    55,
+    10,
+    49,
+    52,
+    30,
+    13,
+    48,
+    43,
+    44,
+    14,
+    16,
+    6,
+    28,
+    0,
+    2,
+    42,
+    9,
+    51,
+    45,
+    15,
+    22,
+    18,
+    34,
+    11,
+    53,
+    23,
+    35,
+    5,
+    17,
+    19,
+    20
+  ],
+  "seams": [
+    {
+      "communities": [
+        "Greenmount East",
+        "Clifton-Berea",
+        "Midway/Coldstream"
+      ],
+      "compartments": [
+        16,
+        6,
+        5
+      ],
+      "passCheck": true
+    },
+    {
+      "communities": [
+        "Oldtown/Middle East",
+        "Patterson Park North & East",
+        "Madison/East End"
+      ],
+      "compartments": [
+        2,
+        9,
+        8
+      ],
+      "passCheck": true
+    }
+  ],
+  "pockets": [
+    {
+      "point": [
+        -76.588317933211,
+        39.21328936317
+      ],
+      "ownedFraction": 0,
+      "enclosed": false,
+      "passCheck": true
+    },
+    {
+      "point": [
+        -76.5665,
+        39.2405
+      ],
+      "ownedFraction": 0,
+      "enclosed": false,
+      "passCheck": true
+    },
+    {
+      "point": [
+        -76.58331793343,
+        39.24928936308
+      ],
+      "ownedFraction": 0,
+      "enclosed": false,
+      "passCheck": true
+    }
+  ],
+  "mixed": [],
+  "unowned": [],
+  "freeCompartments": 61,
+  "failures": []
+}
