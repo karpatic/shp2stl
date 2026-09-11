@@ -65,3 +65,14 @@ for(let i=0;i<z.length;i++){
 }
 assert.ok(layerGeometry(sourceRegions.layers,z,sourceRegions.caps).userData.validation.closed);
 console.log('PASS: open inlet, full-width inward wall, exact factored cap identities and closed solid');
+
+// Independent height semantics and a solid, capped partition at the interface.
+const {dimensions}=await import('../new/dimensions.js');
+assert.deepEqual(dimensions({depth:6,width:.5}).levels,[0,Math.fround(1.8),6,12]);
+for(const [baseHeight,wallHeight] of [[6,6],[2.5,6],[2.5,3.5],[.01,.01]]) {
+ const {levels}=dimensions({baseHeight,wallHeight,width:.5});
+ assert(levels[1]>0 && levels[1]<levels[2] && levels[2]<levels[3]);
+}
+for(const key of ['baseHeight','wallHeight','minConnectorWidth'])for(const value of [0,-1,NaN,Infinity,201])
+ assert.throws(()=>dimensions({[key]:value,width:.5}),/must be between/);
+console.log('PASS: legacy and independent heights; grooves stay strictly within the base; invalid dimensions rejected');

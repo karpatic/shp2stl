@@ -2,7 +2,7 @@
 // Artificial print supports only; these footprints never enter community walls.
 import pc from './planar-boolean.js';
 
-// Nominal fallback width; pads adapt to the smaller source and the local gap.
+// Legacy nominal scale retained when no explicit connector minimum is supplied.
 const nominalWidth = width => Math.max(1, 4 * width);
 const cross = (a,b,c) => (b[0]-a[0])*(c[1]-b[1])-(b[1]-a[1])*(c[0]-b[0]);
 const area = region => region.reduce((sum,p) => sum+p.reduce((s,r,i) => {
@@ -88,7 +88,7 @@ function connectingPad(edge, land, nominal) {
         // The convex corridor between those patches must also have a broad
         // neck: exact minimum distance between its two longitudinal edges.
         const neckWidth=nearest([q[0],q[1],q[0]],[q[3],q[2],q[3]]).distance;
-        if(neckWidth<nominal*.6)continue;
+        if(neckWidth<nominal*.6+2e-5)continue;
         // No automatic inlet/pocket filling. Try another local shore instead.
         if(pc.union([land[edge.i],land[edge.j]],footprint).some(p=>p.length>1))continue;
         const length=((bl[0]-al[0])+(bh[0]-ah[0]))/2;
@@ -129,7 +129,12 @@ function convexHull(land) {
 }
 
 export function islandBase(land, options) {
-  const mode=options.islandConnections ?? 'connections', width=nominalWidth(options.width);
+  const mode=options.islandConnections ?? 'connections';
+  const minimum=options.minConnectorWidth ?? nominalWidth(options.width)*.6;
+  if(!Number.isFinite(minimum)||minimum<.01||minimum>200) throw Error('Minimum connector width must be between 0.01 and 200 mm');
+  // One dimensional scale drives broad spans, compact fallback, embed depth,
+  // continuous-contact width/depth and neck checks. Never relax it on failure.
+  const width=minimum/.6;
   if(!['connections','disconnected','hull'].includes(mode)) throw Error('Unknown island connection mode');
   if(!Number.isFinite(width)||options.width<=0) throw Error('Invalid connection width');
   if(!land.length) throw Error('No retained island bases');
@@ -150,7 +155,7 @@ export function islandBase(land, options) {
     links.push({...edge,...pad}); supports.push(pad.footprint);
     if(links.length===land.length-1)break;
   }
-  if(links.length!==land.length-1)throw Error('No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base');
+  if(links.length!==land.length-1)throw Error(`No island pad with continuous broad engagement at minimum ${minimum} mm; use Disconnected or Hull base`);
   const footprint=pc.union(land,...supports);
   if(footprint.length!==1) throw Error('Island connections did not form a connected base');
   return {mode,width,links,rejectedEdges,footprint};

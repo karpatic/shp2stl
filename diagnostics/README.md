@@ -4,6 +4,12 @@ Author: Codex app agent · 2026-09-11.
 
 Current community-enclosure results are in [COMMUNITY_TOPOLOGY.md](COMMUNITY_TOPOLOGY.md); earlier performance results are in [REPORT.md](REPORT.md). The original sections below describe the historical CSG investigation; the **Planar follow-up** section documents the new default workflow.
 
+## 3MF and independent dimensions
+
+Author: Codex app agent · 2026-09-11.
+
+Current implementation, package and geometry audit, actual browser downloads, dimensions and limitations: [3MF_DIMENSIONS.md](3MF_DIMENSIONS.md). [Local downloaded-part review](3mf-review.html).
+
 ## Filled island bases and pad engagement
 
 Author: Codex app agent · 2026-09-11.

@@ -46,5 +46,21 @@
   "libtess/LICENSE": {
     "url": "https://registry.npmjs.org/libtess/-/libtess-1.2.2.tgz",
     "localSHA256": "2eb98a7a44eb7d22867ddabf57ad1749aefdc8f13f781574dfdc255ff15f611d"
+  },
+  "fflate/fflate.js": {
+    "url": "https://cdn.jsdelivr.net/npm/fflate@0.8.2/esm/browser.js",
+    "upstreamSHA256": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "localSHA256": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "bytes": 89198,
+    "license": "MIT",
+    "adaptation": "None"
+  },
+  "fflate/LICENSE": {
+    "url": "https://cdn.jsdelivr.net/npm/fflate@0.8.2/LICENSE",
+    "upstreamSHA256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243",
+    "localSHA256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243",
+    "bytes": 1069,
+    "license": "MIT",
+    "adaptation": "None"
   }
 }

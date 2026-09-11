@@ -135,3 +135,23 @@ if(process.argv.includes('--evidence')) {
  fs.mkdirSync('diagnostics/results/island-pads',{recursive:true});
  fs.writeFileSync('diagnostics/results/island-pads/synthetic.json',JSON.stringify({author:'Codex app agent',date:'2026-09-11',cShore,other,falsePad,weak,alternate,facing,pad,small,fallback},null,2));
 }
+
+// Explicit minimum drives broad and fallback search independently of wall width.
+for(const minimum of [1.2,1.6,2]) {
+ const result=islandBase(facing,{width:.5,minConnectorWidth:minimum});
+ assert.deepEqual(islandBase(facing,{width:1,minConnectorWidth:minimum}),result);
+ for(const link of result.links) {
+  assert(link.neckWidth>=minimum);
+  assert.equal(link.requiredNeckWidth,minimum);
+  for(const e of link.engagement) {
+   assert(e.width>=minimum && e.requiredWidth>=minimum);
+   assert.equal(e.requiredPenetration,minimum/4);
+   assert(e.penetration>=e.requiredPenetration);
+  }
+ }
+ assert(!padEngagement(falsePad,[cShore],falseEnd,[-1,0],minimum/.6*.35,minimum/.6,8).accepted);
+}
+assert.throws(()=>islandBase(small,{width:.5,minConnectorWidth:4}),/continuous broad engagement/);
+for(const mode of ['disconnected','hull'])assert(islandBase(small,{width:.5,minConnectorWidth:4,islandConnections:mode}).footprint.length);
+for(const minConnectorWidth of [0,-1,NaN,Infinity,201])assert.throws(()=>islandBase(facing,{width:.5,minConnectorWidth}),/Minimum connector width/);
+console.log('PASS: explicit minima, positive depth, independent wall width, stricter concave rejection, infeasible minimum and alternate modes');

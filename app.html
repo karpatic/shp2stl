@@ -158,6 +158,9 @@
             #config-panel { top: 10px; left: 10px; width: calc(100% - 20px); }
             #download-btn { bottom: 12px; right: 12px; }
         }
+        #config-panel .config-body { max-height: calc(100vh - 170px); overflow-y: auto; }
+        #download-3mf-btn { position:absolute; bottom:70px; right:20px; z-index:1000; padding:10px 20px; border:0; border-radius:5px; background:#237d80; color:white; cursor:pointer; }
+        #download-3mf-btn:disabled { opacity:.5; cursor:default; }
         /* keep the existing download button styling from test.css */
     </style>
 </head>
@@ -197,16 +200,24 @@
                             <input id="cfg-precision" type="number" min="1" step="1" value="100" />
                         </label>
                         <label>
-                            scaleToThisSize (cm)
-                            <input id="cfg-scaleToThisSize" type="number" min="1" step="1" value="180" />
+                            Legacy scale (unused; XY = 200 mm)
+                            <input id="cfg-scaleToThisSize" disabled type="number" min="1" step="1" value="180" />
                         </label>
 
                         <label>
-                            depth
-                            <input id="cfg-depth" type="number" min="0.01" step="0.01" value="6" />
+                            Base height (mm)
+                            <input id="cfg-baseHeight" type="number" min="0.01" max="200" step="0.01" value="6" />
                         </label>
                         <label>
-                            width
+                            Wall height above base (mm)
+                            <input id="cfg-wallHeight" type="number" min="0.01" max="200" step="0.01" value="6" />
+                        </label>
+                        <label>
+                            Minimum connector width (mm)
+                            <input id="cfg-minConnectorWidth" type="number" min="0.01" max="200" step="0.01" value="1.2" />
+                        </label>
+                        <label>
+                            Wall width (mm)
                             <input id="cfg-width" type="number" min="0.01" step="0.01" value="0.5" />
                         </label>
                         <label>
@@ -234,10 +245,11 @@
                     </label>
                     <p id="island-help" style="font-size:12px;line-height:1.35;margin:6px 0;">
                         All islands have filled bases. Connections add broad shoreline pads at base height,
-                        with compact local joins where needed. Connections require broad contact at both ends;
+                        with compact local joins where needed. Connections enforce the minimum at each continuous attachment and the narrowest neck;
                         features too small for that contact need another mode.
                         Disconnected keeps islands separate; Hull base fills their convex hull.
                     </p>
+                    <p id="dimension-readback" style="font-size:12px;line-height:1.4">Base height applies to all faces, pads and hull backing. Grooves scale with the base. XY extent is 200 mm; import STL in mm.</p>
                     <div class="row">
                         <button id="create-btn" type="button">Create</button>
                         <div id="status" role="status" aria-live="polite">Not created yet</div>
@@ -247,20 +259,21 @@
                         <summary>About / How to use</summary>
                         <div class="content">
                             <p>
-                                This page turns a GeoJSON boundary into a <strong>3D-printable</strong> model and lets you download it as an STL.
+                                This page turns a GeoJSON boundary into a <strong>3D-printable</strong> model and lets you download STL or 3MF.
                                 It fills every island base, preserves community walls, and adds your selected print supports at base height.
                             </p>
                             <ul>
-                                <li>Edit parameters (URL, simplify values, depth/width).</li>
+                                <li>Edit parameters (URL, simplification, heights and widths).</li>
                                 <li>Click <strong>Create</strong> to apply parameter edits. Island connections rebuild immediately; pending parameter edits apply together with the switch.</li>
                                 <li>Use mouse/touch in the 3D view: drag to orbit, scroll/pinch to zoom.</li>
-                                <li>Click <strong>Download STL</strong> and import into your slicer (PrusaSlicer/Cura) for 3D printing.</li>
+                                <li>Download STL as one unified solid, or 3MF with named Base and Walls parts aligned in one assembly for slicer assignments. No colors or materials are assigned by the file.</li>
                             </ul>
                         </div>
                     </details>
                 </div>
             </div>
 
+            <button id="download-3mf-btn" disabled>Download 3MF</button>
             <button id="download-btn" disabled>Download STL</button>
         </div>
     </div>
@@ -271,6 +284,7 @@
         window.THREE = THREE;
 
         import { initialize } from './new/new.js';
+        import { dimensions } from './new/dimensions.js';
 
         const STORAGE_KEY = 'shp2stl.appConfig.v1';
         const UI_STORAGE_KEY = 'shp2stl.appConfig.ui.v1';
@@ -309,7 +323,9 @@
                 },
                 shpstl: {
                     islandConnections: document.getElementById('cfg-islandConnections').value,
-                    depth: getNumber('cfg-depth'),
+                    baseHeight: getNumber('cfg-baseHeight'),
+                    wallHeight: getNumber('cfg-wallHeight'),
+                    minConnectorWidth: getNumber('cfg-minConnectorWidth'),
                     width: getNumber('cfg-width'),
                     simplifyBy: getNumber('cfg-simplifyBy'),
                     simplifyHullBy: getNumber('cfg-simplifyHullBy'),
@@ -352,7 +368,9 @@
             }
             if (shpstl) {
                 setString('cfg-islandConnections', ['connections','disconnected','hull'].includes(shpstl.islandConnections) ? shpstl.islandConnections : 'connections');
-                setNumber('cfg-depth', shpstl.depth);
+                setNumber('cfg-baseHeight', shpstl.baseHeight ?? shpstl.depth);
+                setNumber('cfg-wallHeight', shpstl.wallHeight ?? shpstl.depth);
+                setNumber('cfg-minConnectorWidth', shpstl.minConnectorWidth ?? Math.max(1, 4 * (shpstl.width ?? .5)) * .6);
                 setNumber('cfg-width', shpstl.width);
                 setNumber('cfg-simplifyBy', shpstl.simplifyBy);
                 setNumber('cfg-simplifyHullBy', shpstl.simplifyHullBy);
@@ -364,6 +382,7 @@
         const connectionsSelect = document.getElementById('cfg-islandConnections');
         async function runWithCurrentInputs() {
             const config = readConfigFromInputs();
+            dimensions(config.shpstl);
             applyConfigToWindow(config);
             rebuildConnections = await initialize();
             appliedConfig = config;
@@ -372,44 +391,32 @@
         }
 
         const createBtn = document.getElementById('create-btn');
-        createBtn.addEventListener('click', async () => {
-            try {
-                createBtn.disabled = true;
-                setStatus('Creating...');
-
-                // Persist settings, then reload to apply cleanly.
-                const config = readConfigFromInputs();
-                saveConfig(config);
-                setStatus('Saved. Reloading...');
-                window.location.reload();
-            } catch (err) {
-                console.error(err);
-                setStatus('Failed (see console)');
-                createBtn.disabled = false;
-            }
-        });
-
-        connectionsSelect.addEventListener('change', async () => {
+        const downloadButtons = [document.getElementById('download-btn'), document.getElementById('download-3mf-btn')];
+        // Editing any field invalidates exports immediately, including before Create.
+        document.querySelectorAll('#config-panel input').forEach(input => input.addEventListener('input', () => {
+            downloadButtons.forEach(button => button.disabled = true);
+            setStatus('Parameters changed. Click Create to apply.');
+        }));
+        async function applyInputs() {
             const config = readConfigFromInputs();
             connectionsSelect.disabled = true;
             createBtn.disabled = true;
-            document.getElementById('download-btn').disabled = true;
+            downloadButtons.forEach(button => button.disabled = true);
             try {
-                // Apply pending parameter edits together; a pure support switch
-                // reuses the prepared geography, scene and camera in place.
-                if (!rebuildConnections) {
-                    saveConfig(config);
-                    window.location.reload();
-                    return;
-                }
-                const previous = structuredClone(appliedConfig);
-                previous.shpstl.islandConnections = config.shpstl.islandConnections;
+                dimensions(config.shpstl);
                 saveConfig(config);
-                if (JSON.stringify(previous) !== JSON.stringify(config)) {
-                    setStatus('Applying parameters and island connections…');
+                // Dimensions/support edits reuse geography and preserve the camera.
+                // URL/simplification changes still require fresh preprocessing.
+                const previous = appliedConfig && structuredClone(appliedConfig);
+                if (previous) for (const key of ['islandConnections', 'baseHeight', 'wallHeight', 'minConnectorWidth'])
+                    previous.shpstl[key] = config.shpstl[key];
+                if (!rebuildConnections || JSON.stringify(previous) !== JSON.stringify(config)) {
+                    setStatus('Applying geography parameters…');
                     window.location.reload();
                     return;
                 }
+                applyConfigToWindow(config);
+                window.shpstl.sourceTopology = true;
                 await rebuildConnections(config.shpstl.islandConnections);
                 appliedConfig = config;
                 setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
@@ -420,7 +427,9 @@
                 connectionsSelect.disabled = false;
                 createBtn.disabled = false;
             }
-        });
+        }
+        createBtn.addEventListener('click', applyInputs);
+        connectionsSelect.addEventListener('change', applyInputs);
 
         // Collapsible config panel (persisted).
         const configPanel = document.getElementById('config-panel');

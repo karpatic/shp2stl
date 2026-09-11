@@ -1,0 +1,1027 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "datasets": {
+    "dc": {
+      "cases": {
+        "connections": {
+          "levels": [
+            0,
+            1.7999999523162842,
+            6,
+            12
+          ],
+          "minConnectorWidth": 1.2,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 46451.27493348098,
+              "signedVolume": 85348.79416733506,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "b219ee83a7f94aa64d807b2a8235c36a72b5c5a9be8d08254785a0642ffd5381"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 32977.993075191574,
+              "signedVolume": 81961.65423715251,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "983ce55add28eec7c4180d2e8473968970ef6ba0ab1ea81b6a407898efb2ae94"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  6.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 14602.328501683573,
+              "signedVolume": 3387.1399301821,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "1f46b5679f22d9d34fad6afeee0c4573eb0db0adf36279785364e69065dcb11c"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": true
+        },
+        "disconnected": {
+          "levels": [
+            0,
+            1.7999999523162842,
+            6,
+            12
+          ],
+          "minConnectorWidth": 1.2,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 46451.27493348098,
+              "signedVolume": 85348.79416733506,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "b219ee83a7f94aa64d807b2a8235c36a72b5c5a9be8d08254785a0642ffd5381"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 32977.993075191574,
+              "signedVolume": 81961.65423715251,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "983ce55add28eec7c4180d2e8473968970ef6ba0ab1ea81b6a407898efb2ae94"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  6.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 14602.328501683573,
+              "signedVolume": 3387.1399301821,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "1f46b5679f22d9d34fad6afeee0c4573eb0db0adf36279785364e69065dcb11c"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": true
+        },
+        "hull": {
+          "levels": [
+            0,
+            1.7999999523162842,
+            6,
+            12
+          ],
+          "minConnectorWidth": 1.2,
+          "stats": {
+            "STL": {
+              "triangles": 7558,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 50595.10772224325,
+              "signedVolume": 99001.87605554229,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 11337
+              },
+              "orientedSurfaceSHA256": "abd64ce924b7049bc034ec054dfc92841e76dc16fa1724aa0c352f2cf927347c"
+            },
+            "Base": {
+              "triangles": 2770,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 37121.82586395384,
+              "signedVolume": 95614.7361253601,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 4155
+              },
+              "orientedSurfaceSHA256": "3d701f8e419934c21f8ed37e02acb2b062a4b498fe07dabc4c1e1106fba4766a"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  6.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  12.0
+                ]
+              ],
+              "area": 14602.328501683573,
+              "signedVolume": 3387.1399301821,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "1f46b5679f22d9d34fad6afeee0c4573eb0db0adf36279785364e69065dcb11c"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007967763463391777,
+              0.0007967763463391777
+            ],
+            [
+              0.0,
+              0.00033992247262951884,
+              0.00033992247262951884
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": true
+        },
+        "base-2.5": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            8.5
+          ],
+          "minConnectorWidth": 1.2,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  8.5
+                ]
+              ],
+              "area": 43246.78869487731,
+              "signedVolume": 37537.829190230404,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "e643b35e0c028f7222c8abfdc03f07efb22192291b09c89dcc7584fc7f2e5aba"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 29773.506836587916,
+              "signedVolume": 34150.68926004817,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "1c4b16f3d0f46ac13957764ca9928d37fb8aa8cb3bec926e05f46448af0e25bd"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  8.5
+                ]
+              ],
+              "area": 14602.328501683573,
+              "signedVolume": 3387.1399301821148,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "7c284ae26ab2a2c12b14125247b63cffb14bbf334b2745df0850fe14826b9642"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        },
+        "wall-3.5": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            6
+          ],
+          "minConnectorWidth": 1.2,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 37632.92125392327,
+              "signedVolume": 36126.52088598756,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "16e4a9d751cda251aa92ff256bc00b0913c2a0a715e31d1f28136e6686b67e9d"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 29773.506836587916,
+              "signedVolume": 34150.68926004817,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "1c4b16f3d0f46ac13957764ca9928d37fb8aa8cb3bec926e05f46448af0e25bd"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 8988.461060729602,
+              "signedVolume": 1975.8316259396977,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "a20b315f83851fb376dbe0ecb7d4a4a1d11a5aae25f424b6e0507bd13d95754d"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        },
+        "minimum-1.6": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            6
+          ],
+          "minConnectorWidth": 1.6,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 37632.92125392327,
+              "signedVolume": 36126.52088598756,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "16e4a9d751cda251aa92ff256bc00b0913c2a0a715e31d1f28136e6686b67e9d"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 29773.506836587916,
+              "signedVolume": 34150.68926004817,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "1c4b16f3d0f46ac13957764ca9928d37fb8aa8cb3bec926e05f46448af0e25bd"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 8988.461060729602,
+              "signedVolume": 1975.8316259396977,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "a20b315f83851fb376dbe0ecb7d4a4a1d11a5aae25f424b6e0507bd13d95754d"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        },
+        "changed-disconnected": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            6
+          ],
+          "minConnectorWidth": 1.6,
+          "stats": {
+            "STL": {
+              "triangles": 8654,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 37632.92125392327,
+              "signedVolume": 36126.52088598756,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 12981
+              },
+              "orientedSurfaceSHA256": "16e4a9d751cda251aa92ff256bc00b0913c2a0a715e31d1f28136e6686b67e9d"
+            },
+            "Base": {
+              "triangles": 4414,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 29773.506836587916,
+              "signedVolume": 34150.68926004817,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 6621
+              },
+              "orientedSurfaceSHA256": "1c4b16f3d0f46ac13957764ca9928d37fb8aa8cb3bec926e05f46448af0e25bd"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 8988.461060729602,
+              "signedVolume": 1975.8316259396977,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "a20b315f83851fb376dbe0ecb7d4a4a1d11a5aae25f424b6e0507bd13d95754d"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007804177544504119,
+              0.0007804177544504119
+            ],
+            [
+              0.0,
+              0.0003235638807407529,
+              0.0003235638807407529
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        },
+        "changed-hull": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            6
+          ],
+          "minConnectorWidth": 1.6,
+          "stats": {
+            "STL": {
+              "triangles": 7558,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 42014.28417194808,
+              "signedVolume": 41815.305006074035,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 11337
+              },
+              "orientedSurfaceSHA256": "11cb751cd6635596ca150e3db14ee3b2a131750a84adeb28e824857c1e0b9271"
+            },
+            "Base": {
+              "triangles": 2770,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 34154.86975461265,
+              "signedVolume": 39839.4733801348,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 4155
+              },
+              "orientedSurfaceSHA256": "cbfb52a46a57a0a8dfc2896340fda718bae71278f4fd32a1f580071a66c4e8aa"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 8988.461060729602,
+              "signedVolume": 1975.8316259396977,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "a20b315f83851fb376dbe0ecb7d4a4a1d11a5aae25f424b6e0507bd13d95754d"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007967763463391777,
+              0.0007967763463391777
+            ],
+            [
+              0.0,
+              0.00033992247262951884,
+              0.00033992247262951884
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        },
+        "saved-hull": {
+          "levels": [
+            0,
+            0.75,
+            2.5,
+            6
+          ],
+          "minConnectorWidth": 1.6,
+          "stats": {
+            "STL": {
+              "triangles": 7558,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 42014.28417194808,
+              "signedVolume": 41815.305006074035,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 11337
+              },
+              "orientedSurfaceSHA256": "11cb751cd6635596ca150e3db14ee3b2a131750a84adeb28e824857c1e0b9271"
+            },
+            "Base": {
+              "triangles": 2770,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  0.0
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  2.5
+                ]
+              ],
+              "area": 34154.86975461265,
+              "signedVolume": 39839.4733801348,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 4155
+              },
+              "orientedSurfaceSHA256": "cbfb52a46a57a0a8dfc2896340fda718bae71278f4fd32a1f580071a66c4e8aa"
+            },
+            "Walls": {
+              "triangles": 4832,
+              "bounds": [
+                [
+                  -80.23912048339844,
+                  -100.0,
+                  2.5
+                ],
+                [
+                  80.23912048339844,
+                  100.0,
+                  6.0
+                ]
+              ],
+              "area": 8988.461060729602,
+              "signedVolume": 1975.8316259396977,
+              "zeroAreaTriangles": 0,
+              "exactEdgeIncidence": {
+                "2": 7248
+              },
+              "orientedSurfaceSHA256": "a20b315f83851fb376dbe0ecb7d4a4a1d11a5aae25f424b6e0507bd13d95754d"
+            }
+          },
+          "sectionDifferenceAreas": [
+            [
+              0.0,
+              0.0007967763463391777,
+              0.0007967763463391777
+            ],
+            [
+              0.0,
+              0.00033992247262951884,
+              0.00033992247262951884
+            ],
+            [
+              0.0,
+              0.001250153118543805,
+              0.001250153118543805
+            ]
+          ],
+          "joins": [],
+          "defaultSTLByteIdentical": null
+        }
+      },
+      "wallMs": 42505,
+      "events": [
+        {
+          "kind": "complete",
+          "ms": 4189.5999999940395,
+          "heap": 56642406
+        },
+        {
+          "kind": "dimensions-rebuild",
+          "name": "base-2.5",
+          "ms": 631,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "format-download",
+          "name": "base-2.5",
+          "ext": "stl",
+          "ms": 145
+        },
+        {
+          "kind": "format-download",
+          "name": "base-2.5",
+          "ext": "3mf",
+          "ms": 171
+        },
+        {
+          "kind": "dimensions-rebuild",
+          "name": "wall-3.5",
+          "ms": 652,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "format-download",
+          "name": "wall-3.5",
+          "ext": "stl",
+          "ms": 137
+        },
+        {
+          "kind": "format-download",
+          "name": "wall-3.5",
+          "ext": "3mf",
+          "ms": 198
+        },
+        {
+          "kind": "dimensions-rebuild",
+          "name": "minimum-1.6",
+          "ms": 775,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "format-download",
+          "name": "minimum-1.6",
+          "ext": "stl",
+          "ms": 133
+        },
+        {
+          "kind": "format-download",
+          "name": "minimum-1.6",
+          "ext": "3mf",
+          "ms": 155
+        },
+        {
+          "kind": "dimensions-rebuild",
+          "name": "changed-disconnected",
+          "ms": 643,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "format-download",
+          "name": "changed-disconnected",
+          "ext": "stl",
+          "ms": 135
+        },
+        {
+          "kind": "format-download",
+          "name": "changed-disconnected",
+          "ext": "3mf",
+          "ms": 226
+        },
+        {
+          "kind": "dimensions-rebuild",
+          "name": "changed-hull",
+          "ms": 750,
+          "cameraPreserved": true
+        },
+        {
+          "kind": "format-download",
+          "name": "changed-hull",
+          "ext": "stl",
+          "ms": 161
+        },
+        {
+          "kind": "format-download",
+          "name": "changed-hull",
+          "ext": "3mf",
+          "ms": 121
+        },
+        {
+          "kind": "invalid-dimension",
+          "field": "baseHeight",
+          "value": "0",
+          "message": "Base height must be between 0.01 and 200 mm. Choose a mode to retry."
+        },
+        {
+          "kind": "invalid-dimension",
+          "field": "wallHeight",
+          "value": "-1",
+          "message": "Wall height above base must be between 0.01 and 200 mm. Choose a mode to retry."
+        },
+        {
+          "kind": "invalid-dimension",
+          "field": "minConnectorWidth",
+          "value": "201",
+          "message": "Minimum connector width must be between 0.01 and 200 mm. Choose a mode to retry."
+        },
+        {
+          "kind": "complete",
+          "ms": 3229.0999999940395,
+          "heap": 63325983
+        },
+        {
+          "kind": "format-download",
+          "name": "saved-hull",
+          "ext": "stl",
+          "ms": 163
+        },
+        {
+          "kind": "format-download",
+          "name": "saved-hull",
+          "ext": "3mf",
+          "ms": 217
+        },
+        {
+          "kind": "saved-dimensions",
+          "baseHeight": 2.5,
+          "wallHeight": 3.5,
+          "minConnectorWidth": 1.6
+        },
+        {
+          "kind": "ui-check",
+          "idleFrames": 0,
+          "before": {
+            "frames": 5,
+            "angle": 0,
+            "distance": 200
+          },
+          "after": {
+            "frames": 54,
+            "angle": -0.7068173266160129,
+            "distance": 190.00000000000009
+          }
+        }
+      ]
+    }
+  }
+}

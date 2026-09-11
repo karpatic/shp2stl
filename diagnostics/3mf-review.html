@@ -1,0 +1,49 @@
+<!doctype html><meta charset="utf-8"><title>3MF parts and dimensions — local review</title>
+<style>
+body{margin:0;background:#edf2f2;color:#173537;font:16px system-ui}header{padding:18px 26px;background:white}h1{font-size:23px;margin:0 0 8px}p{margin:8px 0}button,select{font:inherit;padding:6px}label{margin-right:12px}a{color:#136c76}#view{height:650px}canvas{display:block}#readback{font-weight:600}small{color:#516769}
+</style>
+<header><h1>3MF: Base and Walls in one aligned assembly</h1>
+<p>Actual browser downloads. Colors below distinguish parts in this viewer; the file assigns no colors or materials. Drag to orbit; scroll to zoom.</p>
+<p><select id="city"><option value="baltimore">Baltimore</option><option value="dc">DC</option></select>
+<select id="case"><option value="connections">Default connections · 6 + 6 mm</option><option value="disconnected">Default disconnected · 6 + 6 mm</option><option value="hull">Default hull · 6 + 6 mm</option><option value="base-2.5">Lower base · 2.5 + 6 mm</option><option value="wall-3.5">Lower walls · 2.5 + 3.5 mm</option><option value="minimum-1.6">1.6 mm minimum · 2.5 + 3.5 mm</option><option value="changed-disconnected">Changed disconnected · 2.5 + 3.5 mm</option><option value="changed-hull">Changed hull · 2.5 + 3.5 mm</option></select></p>
+<p><label><input id="base" type="checkbox" checked> Base</label><label><input id="walls" type="checkbox" checked> Walls</label><label><input id="explode" type="checkbox"> Explode view (+24 mm)</label><button id="side">Side</button> <button id="under">Underside</button> <button id="top">Overview</button></p>
+<p id="readback">Loading…</p><p><a id="threeMF">Download 3MF</a> · <a id="stl">Download matching STL</a> · <a href="review.html">Open app presets</a> · <a href="3MF_DIMENSIONS.md">Checks and limitations</a></p>
+<small>Author: Codex app agent · 2026-09-11 · Local review only. The exploded view is a display offset; exported components have identity transforms.</small></header>
+<div id="view"></div>
+<script type="importmap">{"imports":{"three":"../three/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from '../three/OrbitControls.js';
+import {unzipSync,strFromU8} from '../three/vendor/fflate/fflate.js';
+const params=new URLSearchParams(location.search),city=params.get('city')==='dc'?'dc':'baltimore';
+const select=document.querySelector('#case');if([...select.options].some(o=>o.value===params.get('case')))select.value=params.get('case');
+document.querySelector('#city').value=city;
+for(const id of ['city','case'])document.querySelector('#'+id).onchange=()=>{location.search=new URLSearchParams({city:document.querySelector('#city').value,case:select.value})};
+const root=`results/dimensions-${city}/${select.value}`;
+const zip=unzipSync(new Uint8Array(await (await fetch(root+'/scene.3mf')).arrayBuffer()));
+const xml=new DOMParser().parseFromString(strFromU8(zip['3D/3dmodel.model']),'application/xml');
+if(xml.querySelector('parsererror'))throw Error('Invalid 3MF XML');
+const data=await (await fetch(root+'/regions.json')).json(),dims=data.dimensions;
+document.querySelector('#readback').textContent=`Base: Z = 0–${dims.baseHeight} mm. Walls: Z = ${dims.baseHeight}–${dims.baseHeight+dims.wallHeight} mm. Grooves: ${Number((dims.baseHeight*.3).toFixed(3))} mm. Connector minimum: ${dims.minConnectorWidth} mm.`;
+document.querySelector('#threeMF').href=root+'/scene.3mf';document.querySelector('#stl').href=root+'/scene.stl';
+const el=document.querySelector('#view'),scene=new THREE.Scene(),aspect=el.clientWidth/el.clientHeight;
+scene.background=new THREE.Color('#edf2f2');scene.add(new THREE.AmbientLight(0xffffff,.8));
+const light=new THREE.DirectionalLight(0xffffff,1.8);light.position.set(-100,-180,250);scene.add(light);
+const camera=new THREE.OrthographicCamera(-115*aspect,115*aspect,115,-115,.1,1500);
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(el.clientWidth,el.clientHeight);el.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement),render=()=>renderer.render(scene,camera);controls.addEventListener('change',render);
+const parts={};
+for(const obj of xml.querySelectorAll('object')) {
+ if(!obj.querySelector('mesh'))continue;
+ const vertices=[...obj.querySelectorAll('vertex')].flatMap(v=>['x','y','z'].map(k=>Number(v.getAttribute(k))));
+ const indices=[...obj.querySelectorAll('triangle')].flatMap(t=>['v1','v2','v3'].map(k=>Number(t.getAttribute(k))));
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));g.setIndex(indices);
+ const geom=g.toNonIndexed();geom.computeVertexNormals();g.dispose();
+ const name=obj.getAttribute('name'),mesh=new THREE.Mesh(geom,new THREE.MeshStandardMaterial({color:name==='Base'?'#8aa0a5':'#147e87',roughness:.75}));
+ parts[name]=mesh;scene.add(mesh);
+}
+function show(kind){controls.target.set(0,0,dims.baseHeight);camera.position.fromArray(kind==='side'?[0,-350,18]:kind==='under'?[0,-130,-330]:[0,-155,340]);light.position.set(-100,-180,kind==='under'?-250:250);controls.update();render();}
+for(const id of ['base','walls','explode'])document.querySelector('#'+id).onchange=()=>{parts.Base.visible=document.querySelector('#base').checked;parts.Walls.visible=document.querySelector('#walls').checked;parts.Walls.position.z=document.querySelector('#explode').checked?24:0;render()};
+for(const id of ['side','under','top'])document.querySelector('#'+id).onclick=()=>show(id);
+show('top');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));document.body.dataset.ready='true';
+</script>

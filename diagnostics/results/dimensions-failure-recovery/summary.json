@@ -1,0 +1,294 @@
+{
+  "variant": "optimized",
+  "dataset": "dc",
+  "status": "expected-failure",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
+    }
+  },
+  "sources": {
+    "app.html": "50f95777889751431aba103dfe2803ddba3a73dbc071143ce3c525d3b8c89497",
+    "new/new.js": "60bd0f196f2d175583471434cb8d0fcb8538dddff09af3b363a793f3cb586e48",
+    "new/leaflet.js": "37293ff79c1ec13baf709be41a766776414d43385f4d8ef601df432a5d21c1c9",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "7b3b31acf9d5c6d797b56e1fa2012854abb2da4cfc2550d230d654504e494ce3",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "6f68f6e520ef73b631229bd009ae5dabd5d7edcf78e76257ac16a5bfdf66300c",
+    "new/islands.js": "5c75f710e1fb3d2f2fe7c877aa9604124e464d33d518e006bc6d2992f99ee761",
+    "new/dimensions.js": "9a341adff4744a25bbde89b55136b9415a86c303b78e4524fea530385134fbd1",
+    "new/3mf.js": "81867ee4bef27987ea362b56df4bba4450a9b9ed98085edece9c620870d575a2",
+    "three/vendor/fflate/fflate.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 45000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1452564,
+  "computePeakRSSKiB": 1452564,
+  "computeCpuSeconds": 39,
+  "processCpuSeconds": 45,
+  "wallMs": 30399,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 1810.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 73.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 88
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 2.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 2.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 6.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 7.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 5.4000000059604645
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xe6c0016be00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 93.10000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xe6c0016be00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "error",
+      "text": "Error: No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base\n    at heightRegions (http://127.0.0.1:40639/new/planar.js:396:114)\n    at rebuildConnections (http://127.0.0.1:40639/new/new.js:181:59)\n    at async initialize (http://127.0.0.1:40639/new/new.js:238:5)\n    at async runWithCurrentInputs (http://127.0.0.1:40639/app.html:387:34)\n    at async http://127.0.0.1:40639/app.html:493:17"
+    },
+    {
+      "kind": "failure-check",
+      "disabled": true,
+      "uiStatus": "No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base"
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 1624.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 76.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 46.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 9.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 6.799999982118607
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 12.900000005960464
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xe6c017ab200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 32.79999998211861
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.9000000059604645
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xe6c017ab200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1325
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1084
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 505.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 478.69999998807907
+    },
+    {
+      "kind": "complete",
+      "ms": 11650.300000011921,
+      "heap": 45968975
+    },
+    {
+      "kind": "error",
+      "text": "Error: No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base\n    at heightRegions (http://127.0.0.1:40639/new/planar.js:396:114)\n    at rebuildConnections (http://127.0.0.1:40639/new/new.js:181:59)\n    at async HTMLSelectElement.applyInputs (http://127.0.0.1:40639/app.html:420:17)"
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 653.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 863.3999999761581
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 165.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 360.2999999821186
+    },
+    {
+      "kind": "island-failure-recovery",
+      "startRecovery": "disconnected",
+      "rebuildRecovery": "hull",
+      "staleDownloadDisabled": true
+    }
+  ]
+}

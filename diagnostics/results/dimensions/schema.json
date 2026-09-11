@@ -1,0 +1,109 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "engine": "4.1.0",
+  "sources": {
+    "spec.md": [
+      "https://raw.githubusercontent.com/3MFConsortium/spec_core/997b385e06f3181cf9aae0c578e0b45ccd48ccb2/3MF%20Core%20Specification.md",
+      "4db7a7a13e7f757c6afc1a9ad731b56d8d068b1a766025692ff757d0f7f16940"
+    ],
+    "xml.xsd": [
+      "https://www.w3.org/2001/xml.xsd",
+      "61960fb3131e38022caad5360e2f33a3382578ab3c80cd58bd74320ede61b20c"
+    ]
+  },
+  "schemaSHA256": "f362bc5db6b0b66f9603d7788f0b770fd09bb152eb18ad0085ef9eb65e3a9645",
+  "seconds": 59.39982957599568,
+  "packages": [
+    {
+      "file": "diagnostics/results/dimensions-dc/base-2.5/scene.3mf",
+      "sha256": "148682c48310f3e1ff5fe60d9d381e447428b2b4e27f2014f9e098e683277f34",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/changed-disconnected/scene.3mf",
+      "sha256": "8a2af6788920cd3555efbc3402baae9dd72e24d0a1a1f152b98ddd74c546b9ef",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/changed-hull/scene.3mf",
+      "sha256": "6795f19d4761a9c469f9c3d09fa5167e6fdb46159bf6f24ae7aafec947ca1234",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/connections/scene.3mf",
+      "sha256": "3c6f82a3a2f4cba57decfc2819f57893f68a63bd1e5a3b90545a93fedf5d7866",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/disconnected/scene.3mf",
+      "sha256": "b4ee1b421fa53d2b362db6d05430ae3d7660d66d1edc2956cf41c4945666a56a",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/hull/scene.3mf",
+      "sha256": "b1991f00475d9919b0376e087d93a16da36a6ee154c86e98deb480bdeefa6d42",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/minimum-1.6/scene.3mf",
+      "sha256": "20ff6e987d5ae48d718736c3d8be5a15e26023fed0c6e3941cb664461bd2f907",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/saved-hull/scene.3mf",
+      "sha256": "c13dd254c71ad6321e34e6976039cb23d80c4902dda42ca6ca2232afb7612c5d",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-dc/wall-3.5/scene.3mf",
+      "sha256": "a2a5f0c6d5eac14b691433f5094bcc71664d5208a3dcb6a8859f743b29459457",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/base-2.5/scene.3mf",
+      "sha256": "50ae8a86d6234e42fd9be29db85d8cc7a08b8de85a1135cad23f0bda3923d28c",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/changed-disconnected/scene.3mf",
+      "sha256": "e6b6b0f35da05d1462675357a9e19f803cfbb89b4ae05edfd2add063fc6ca5a2",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/changed-hull/scene.3mf",
+      "sha256": "a0d5b3345165781bd90e4a6d2ff30173c6c686deed433fbb971640e3f1f3a58f",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/connections/scene.3mf",
+      "sha256": "d6e25bda7e825f85136572c39d3a0c72403a06871111931a697cb56f687599a9",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/disconnected/scene.3mf",
+      "sha256": "7ea27eb491f5fcee0c12c4d268376ff529f35cc679e0e3ec9d8060b977708ae6",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/hull/scene.3mf",
+      "sha256": "14fc6ddb6225023b4c423cf507878dff9f1ccb20be4159c205a540516d983b76",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/minimum-1.6/scene.3mf",
+      "sha256": "153e91097be1181f8b44c63191f54f417824c59dd4d8b8b4a39567c6772491a4",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/saved-hull/scene.3mf",
+      "sha256": "11223735ba4639d882fad826d65b2088612631494ab7dc6be98f3285d39c6d93",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/dimensions-baltimore/wall-3.5/scene.3mf",
+      "sha256": "24d69db3e24e14e5e4322999d3b89cefcc95dbe658396f45e51081d908b41aab",
+      "valid": true
+    }
+  ]
+}

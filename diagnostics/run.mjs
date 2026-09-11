@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import { resolve, extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { checkDimensionsUI } from './dimensions-ui.mjs';
 
 const [variant = 'baseline', dataset = 'dc', label = `${variant}-${dataset}`] = process.argv.slice(2);
 const limitMs = Number(process.env.LIMIT_SECONDS || 120) * 1000;
@@ -61,7 +62,7 @@ const server = createServer((req, res) => {
       let src = data.toString().replace('export async function initialize()', instrumentation + '\nexport async function initialize()');
       src = src.replace('// Display the GeoJSON', `window.diagData('preprocess', {geojson,hull,hullLines,lines,interiorLines,...(typeof sourceExterior!=='undefined'&&sourceExterior?{sourceExterior}:{})});\n // Display the GeoJSON`);
       src = src.replace('scene.add(currentResult);', `scene.add(currentResult); window.diagScene=scene; window.diagResult=currentResult; if(typeof exportModel!=='undefined' && exportModel.geometry)window.diagData('planar-validation',exportModel.geometry.userData.validation); window.diag({kind:'complete', ms:performance.now()-window.diagStart,heap:performance.memory?.usedJSHeapSize});`);
-      if (process.env.ISLAND_CHECK) src = src.replace('const depth = Math.fround', `window.diagRegionData={dataset:'${dataset}',center,bounds:minMax,regions};
+      if (process.env.ISLAND_CHECK || process.env.THREEMF_CHECK) src = src.replace('const depth = Math.fround', `window.diagRegionData={dataset:'${dataset}',center,bounds:minMax,regions,dimensions:dims,options:{...window.shpstl}};
     const depth = Math.fround`);
       data = src;
     } else if (path.endsWith('/three/three-bvh-csg.js') && process.env.FRAGMENTS) {
@@ -241,6 +242,9 @@ try {
         const dir=out+'/'+mode;mkdirSync(dir,{recursive:true});
         writeFileSync(dir+'/regions.json',JSON.stringify(await page.evaluate(()=>window.diagRegionData)));
         const downloading=page.waitForEvent('download');await page.locator('#download-btn').click();await (await downloading).saveAs(dir+'/scene.stl');
+        if(process.env.THREEMF_CHECK) {
+          const exporting=page.waitForEvent('download');await page.locator('#download-3mf-btn').click();await (await exporting).saveAs(dir+'/scene.3mf');
+        }
         const preview=await page.evaluate(()=>Array.from(window.diagResult.geometry.attributes.position.array));
         writeFileSync(dir+'/preview-position.json',JSON.stringify(preview));
         await page.screenshot({path:dir+'/browser.png'});
@@ -265,6 +269,7 @@ try {
         log({kind:'island-mode-check',mode,ms:Date.now()-start,cameraPreserved:true});
       }
     }
+    if(process.env.THREEMF_CHECK) await checkDimensionsUI(page,out,log,dataset);
     if(process.env.UI_CHECK) {
       const before=await page.evaluate(()=>({frames:window.diagRenderCount,angle:window.diagControls.getAzimuthalAngle(),distance:window.diagControls.object.position.distanceTo(window.diagControls.target)}));
       await page.waitForTimeout(1000);
@@ -296,7 +301,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js','new/dimensions.js','new/3mf.js','three/vendor/fflate/fflate.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

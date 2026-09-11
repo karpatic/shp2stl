@@ -1,0 +1,675 @@
+{
+  "variant": "optimized",
+  "dataset": "baltimore",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson"
+    }
+  },
+  "sources": {
+    "app.html": "50f95777889751431aba103dfe2803ddba3a73dbc071143ce3c525d3b8c89497",
+    "new/new.js": "60bd0f196f2d175583471434cb8d0fcb8538dddff09af3b363a793f3cb586e48",
+    "new/leaflet.js": "37293ff79c1ec13baf709be41a766776414d43385f4d8ef601df432a5d21c1c9",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "7b3b31acf9d5c6d797b56e1fa2012854abb2da4cfc2550d230d654504e494ce3",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "6f68f6e520ef73b631229bd009ae5dabd5d7edcf78e76257ac16a5bfdf66300c",
+    "new/islands.js": "5c75f710e1fb3d2f2fe7c877aa9604124e464d33d518e006bc6d2992f99ee761",
+    "new/dimensions.js": "9a341adff4744a25bbde89b55136b9415a86c303b78e4524fea530385134fbd1",
+    "new/3mf.js": "81867ee4bef27987ea362b56df4bba4450a9b9ed98085edece9c620870d575a2",
+    "three/vendor/fflate/fflate.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 210000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1570124,
+  "computePeakRSSKiB": 1570124,
+  "computeCpuSeconds": 157,
+  "processCpuSeconds": 211,
+  "wallMs": 135777,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 2738.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 435.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 263.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.5999999940395355
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x222400147400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 56
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 2.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x222400147400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 3791.399999976158
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1150.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 526.8000000119209
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 539.2999999821186
+    },
+    {
+      "kind": "complete",
+      "ms": 13112.59999999404,
+      "heap": 69785193
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x222400147400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x222400147400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "connections",
+      "ms": 8513,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1252.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 893.4000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 526.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 338.40000000596046
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "disconnected",
+      "ms": 9113,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1435.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 751.2000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 170.59999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 441.59999999403954
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "hull",
+      "ms": 7870,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 2950
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 899.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 382.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 359.40000000596046
+    },
+    {
+      "kind": "island-mode-check",
+      "mode": "connections",
+      "ms": 11743,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 790.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 409.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 597.9000000059605
+    },
+    {
+      "kind": "dimensions-rebuild",
+      "name": "base-2.5",
+      "ms": 2184,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "format-download",
+      "name": "base-2.5",
+      "ext": "stl",
+      "ms": 303
+    },
+    {
+      "kind": "format-download",
+      "name": "base-2.5",
+      "ext": "3mf",
+      "ms": 416
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 880.1999999880791
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 375
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 403.90000000596046
+    },
+    {
+      "kind": "dimensions-rebuild",
+      "name": "wall-3.5",
+      "ms": 1999,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "format-download",
+      "name": "wall-3.5",
+      "ext": "stl",
+      "ms": 268
+    },
+    {
+      "kind": "format-download",
+      "name": "wall-3.5",
+      "ext": "3mf",
+      "ms": 468
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 2463.7000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 896.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 585.8000000119209
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 563.5
+    },
+    {
+      "kind": "dimensions-rebuild",
+      "name": "minimum-1.6",
+      "ms": 4818,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "format-download",
+      "name": "minimum-1.6",
+      "ext": "stl",
+      "ms": 319
+    },
+    {
+      "kind": "format-download",
+      "name": "minimum-1.6",
+      "ext": "3mf",
+      "ms": 395
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1324.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1050.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 492.60000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 408.09999999403954
+    },
+    {
+      "kind": "dimensions-rebuild",
+      "name": "changed-disconnected",
+      "ms": 3491,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "format-download",
+      "name": "changed-disconnected",
+      "ext": "stl",
+      "ms": 293
+    },
+    {
+      "kind": "format-download",
+      "name": "changed-disconnected",
+      "ext": "3mf",
+      "ms": 435
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 982.1999999880791
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 735.4000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 224.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 473.2000000178814
+    },
+    {
+      "kind": "dimensions-rebuild",
+      "name": "changed-hull",
+      "ms": 2644,
+      "cameraPreserved": true
+    },
+    {
+      "kind": "format-download",
+      "name": "changed-hull",
+      "ext": "stl",
+      "ms": 217
+    },
+    {
+      "kind": "format-download",
+      "name": "changed-hull",
+      "ext": "3mf",
+      "ms": 436
+    },
+    {
+      "kind": "error",
+      "text": "Error: Base height must be between 0.01 and 200 mm\n    at dimensions (http://127.0.0.1:37089/new/dimensions.js:9:13)\n    at HTMLButtonElement.applyInputs (http://127.0.0.1:37089/app.html:406:17)"
+    },
+    {
+      "kind": "invalid-dimension",
+      "field": "baseHeight",
+      "value": "0",
+      "message": "Base height must be between 0.01 and 200 mm. Choose a mode to retry."
+    },
+    {
+      "kind": "error",
+      "text": "Error: Wall height above base must be between 0.01 and 200 mm\n    at dimensions (http://127.0.0.1:37089/new/dimensions.js:9:13)\n    at HTMLButtonElement.applyInputs (http://127.0.0.1:37089/app.html:406:17)"
+    },
+    {
+      "kind": "invalid-dimension",
+      "field": "wallHeight",
+      "value": "-1",
+      "message": "Wall height above base must be between 0.01 and 200 mm. Choose a mode to retry."
+    },
+    {
+      "kind": "error",
+      "text": "Error: Minimum connector width must be between 0.01 and 200 mm\n    at dimensions (http://127.0.0.1:37089/new/dimensions.js:9:13)\n    at HTMLButtonElement.applyInputs (http://127.0.0.1:37089/app.html:406:17)"
+    },
+    {
+      "kind": "invalid-dimension",
+      "field": "minConnectorWidth",
+      "value": "201",
+      "message": "Minimum connector width must be between 0.01 and 200 mm. Choose a mode to retry."
+    },
+    {
+      "kind": "error",
+      "text": "Error: No island pad with continuous broad engagement at minimum 20 mm; use Disconnected or Hull base\n    at islandBase (http://127.0.0.1:37089/new/islands.js:158:41)\n    at heightRegions (http://127.0.0.1:37089/new/planar.js:27:23)\n    at heightRegions (http://127.0.0.1:37089/new/planar.js:382:28)\n    at rebuildConnections (http://127.0.0.1:37089/new/new.js:181:59)\n    at async HTMLSelectElement.applyInputs (http://127.0.0.1:37089/app.html:420:17)"
+    },
+    {
+      "kind": "infeasible-minimum",
+      "value": 20,
+      "message": "No island pad with continuous broad engagement at minimum 20 mm; use Disconnected or Hull base. Choose a mode to retry."
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1218.2000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 780.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 419
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 402.5
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 880
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 646.8000000119209
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 300.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 390.7000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 859.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 583.8000000119209
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 201.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 360.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 1963.800000011921
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 280.5
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 152.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 3.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 26.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 1181
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1125.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 245.60000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 395.69999998807907
+    },
+    {
+      "kind": "complete",
+      "ms": 7955.399999976158,
+      "heap": 125308290
+    },
+    {
+      "kind": "format-download",
+      "name": "saved-hull",
+      "ext": "stl",
+      "ms": 253
+    },
+    {
+      "kind": "format-download",
+      "name": "saved-hull",
+      "ext": "3mf",
+      "ms": 466
+    },
+    {
+      "kind": "saved-dimensions",
+      "baseHeight": 2.5,
+      "wallHeight": 3.5,
+      "minConnectorWidth": 1.6
+    },
+    {
+      "kind": "ui-check",
+      "idleFrames": 0,
+      "before": {
+        "frames": 5,
+        "angle": 0,
+        "distance": 200
+      },
+      "after": {
+        "frames": 43,
+        "angle": -0.7061298876152323,
+        "distance": 189.99999999999991
+      }
+    }
+  ]
+}
