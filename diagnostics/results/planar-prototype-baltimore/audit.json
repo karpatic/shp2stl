@@ -1,0 +1,2356 @@
+{
+  "dataset": "baltimore",
+  "reference": "reference-baltimore-cpu",
+  "ms": 815.3691799999999,
+  "hullShapes": 3,
+  "levels": [
+    0,
+    1.8,
+    6,
+    12
+  ],
+  "layerAreas": [
+    19851.99212104053,
+    20792.22604782954,
+    1546.987061101247
+  ],
+  "layerComponents": [
+    17,
+    1,
+    1
+  ],
+  "audit": {
+    "hullLines": [
+      {
+        "i": 0,
+        "vertices": 53,
+        "regions": 1,
+        "area": 590.107506866,
+        "capArea": 590.1077912555916,
+        "capXorArea": 0.00104626421955345,
+        "triangleArea": 593.9135806161974
+      }
+    ],
+    "lines": [
+      {
+        "i": 0,
+        "vertices": 13,
+        "regions": 1,
+        "area": 16.876814390964967,
+        "capArea": 16.876848198834807,
+        "capXorArea": 0.000052886003373942,
+        "triangleArea": 16.876837609100676
+      },
+      {
+        "i": 1,
+        "vertices": 5,
+        "regions": 1,
+        "area": 8.455145686517994,
+        "capArea": 8.45514534994794,
+        "capXorArea": 0,
+        "triangleArea": 8.455140242936977
+      },
+      {
+        "i": 2,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.25031809359697377,
+        "capArea": 0.25031885284448663,
+        "capXorArea": 0,
+        "triangleArea": 0.25031883655901765
+      },
+      {
+        "i": 3,
+        "vertices": 11,
+        "regions": 1,
+        "area": 17.34248849811246,
+        "capArea": 17.342470627621594,
+        "capXorArea": 0,
+        "triangleArea": 17.34247170924027
+      },
+      {
+        "i": 4,
+        "vertices": 11,
+        "regions": 1,
+        "area": 12.69275705733699,
+        "capArea": 12.692722437669445,
+        "capXorArea": 0.000006431391994965452,
+        "triangleArea": 12.692723779972084
+      },
+      {
+        "i": 5,
+        "vertices": 11,
+        "regions": 1,
+        "area": 9.508041324538567,
+        "capArea": 9.508041142162938,
+        "capXorArea": 0.000013251803807179385,
+        "triangleArea": 9.50803700133838
+      },
+      {
+        "i": 6,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.523501655207781,
+        "capArea": 5.523469241475027,
+        "capXorArea": 0.000026581521069601877,
+        "triangleArea": 5.523475312387745
+      },
+      {
+        "i": 7,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.1025861028744544,
+        "capArea": 3.102582759120992,
+        "capXorArea": 4.594589881889988e-7,
+        "triangleArea": 3.1025823528871115
+      },
+      {
+        "i": 8,
+        "vertices": 9,
+        "regions": 1,
+        "area": 7.597150021189236,
+        "capArea": 7.597136652991139,
+        "capXorArea": 0.000018396872974335565,
+        "triangleArea": 7.597137814045709
+      },
+      {
+        "i": 9,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.68939420943616,
+        "capArea": 8.689408415500793,
+        "capXorArea": 0.000010816391977641615,
+        "triangleArea": 8.68940463862964
+      },
+      {
+        "i": 10,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.880075002392005,
+        "capArea": 9.88003922039411,
+        "capXorArea": 0.000009000425961858127,
+        "triangleArea": 9.88004727243242
+      },
+      {
+        "i": 11,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.904614112007039,
+        "capArea": 5.904623412364344,
+        "capXorArea": 0.000016161215853571775,
+        "triangleArea": 5.904620302266267
+      },
+      {
+        "i": 12,
+        "vertices": 5,
+        "regions": 1,
+        "area": 7.287269632053153,
+        "capArea": 7.28725129030704,
+        "capXorArea": 7.772119943183498e-7,
+        "triangleArea": 7.287253376896842
+      },
+      {
+        "i": 13,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.173778067128069,
+        "capArea": 5.1737930228550795,
+        "capXorArea": 0.000015694196008553263,
+        "triangleArea": 5.173792187957588
+      },
+      {
+        "i": 14,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.269884986796509,
+        "capArea": 5.269899092521527,
+        "capXorArea": 0,
+        "triangleArea": 5.26989450587007
+      },
+      {
+        "i": 15,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.4806960336240422,
+        "capArea": 3.4807030112949917,
+        "capXorArea": 0,
+        "triangleArea": 3.4807043052035738
+      },
+      {
+        "i": 16,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.9058123168315,
+        "capArea": 10.905801988349051,
+        "capXorArea": 0,
+        "triangleArea": 10.905805163045528
+      },
+      {
+        "i": 17,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.0558129109019774,
+        "capArea": 1.0558127689345156,
+        "capXorArea": 0,
+        "triangleArea": 1.0558125861343797
+      },
+      {
+        "i": 18,
+        "vertices": 11,
+        "regions": 1,
+        "area": 15.683375591758022,
+        "capArea": 15.683362133062019,
+        "capXorArea": 0.00005503881993718096,
+        "triangleArea": 15.68336712065502
+      },
+      {
+        "i": 19,
+        "vertices": 7,
+        "regions": 1,
+        "area": 14.435939438672449,
+        "capArea": 14.435903071298526,
+        "capXorArea": 0.00007207235194073291,
+        "triangleArea": 14.43590048889746
+      },
+      {
+        "i": 20,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.275062542730439,
+        "capArea": 9.275082541414122,
+        "capXorArea": 0,
+        "triangleArea": 9.275072841497604
+      },
+      {
+        "i": 21,
+        "vertices": 11,
+        "regions": 1,
+        "area": 17.092996626550487,
+        "capArea": 17.0930061206046,
+        "capXorArea": 0,
+        "triangleArea": 17.093005437032843
+      },
+      {
+        "i": 22,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.2041786954499685,
+        "capArea": 5.204167953990122,
+        "capXorArea": 0,
+        "triangleArea": 5.204168458920321
+      },
+      {
+        "i": 23,
+        "vertices": 11,
+        "regions": 1,
+        "area": 11.049411271342592,
+        "capArea": 11.049413646567132,
+        "capXorArea": 8.730322633709875e-7,
+        "triangleArea": 11.0494152186875
+      },
+      {
+        "i": 24,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.432263869465999,
+        "capArea": 9.432255745977955,
+        "capXorArea": 7.49987975723343e-7,
+        "triangleArea": 9.432262699410785
+      },
+      {
+        "i": 25,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.4776074500759933,
+        "capArea": 1.4776071044698256,
+        "capXorArea": 0.000011812021966761677,
+        "triangleArea": 1.4776077669594088
+      },
+      {
+        "i": 26,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.8551691166940145,
+        "capArea": 2.8551743927050666,
+        "capXorArea": 0,
+        "triangleArea": 2.8551716111178393
+      },
+      {
+        "i": 27,
+        "vertices": 11,
+        "regions": 1,
+        "area": 22.753667317331292,
+        "capArea": 22.753649178729574,
+        "capXorArea": 0.000015946166058711242,
+        "triangleArea": 22.75365588011482
+      },
+      {
+        "i": 28,
+        "vertices": 45,
+        "regions": 1,
+        "area": 7.6801148722115045,
+        "capArea": 7.680101413769023,
+        "capXorArea": 0.000012753056864767132,
+        "triangleArea": 7.680112181948061
+      },
+      {
+        "i": 29,
+        "vertices": 21,
+        "regions": 1,
+        "area": 5.590865694344473,
+        "capArea": 5.590867465727911,
+        "capXorArea": 0.0000013314489706317545,
+        "triangleArea": 5.5908684155529045
+      },
+      {
+        "i": 30,
+        "vertices": 7,
+        "regions": 1,
+        "area": 1.2971499443083871,
+        "capArea": 1.2971510185019497,
+        "capXorArea": 0,
+        "triangleArea": 1.297150745665931
+      },
+      {
+        "i": 31,
+        "vertices": 7,
+        "regions": 1,
+        "area": 3.552751021979475,
+        "capArea": 3.5527552955055626,
+        "capXorArea": 0,
+        "triangleArea": 3.5527530663384823
+      },
+      {
+        "i": 32,
+        "vertices": 11,
+        "regions": 1,
+        "area": 1.396764198889457,
+        "capArea": 1.396764223216394,
+        "capXorArea": 0,
+        "triangleArea": 1.3967628825503198
+      },
+      {
+        "i": 33,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.89779079485794,
+        "capArea": 3.897771466671088,
+        "capXorArea": 0,
+        "triangleArea": 3.8977716284789494
+      },
+      {
+        "i": 34,
+        "vertices": 9,
+        "regions": 1,
+        "area": 22.103971810846815,
+        "capArea": 22.10400960402967,
+        "capXorArea": 0.00008910424685382168,
+        "triangleArea": 22.10400415438926
+      },
+      {
+        "i": 35,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.964112227040005,
+        "capArea": 4.964122203313309,
+        "capXorArea": 0.000030152076305967057,
+        "triangleArea": 4.964124053396517
+      },
+      {
+        "i": 36,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.250239723997424,
+        "capArea": 5.250236980097611,
+        "capXorArea": 0.000008651464440845302,
+        "triangleArea": 5.25024031981593
+      },
+      {
+        "i": 37,
+        "vertices": 15,
+        "regions": 1,
+        "area": 14.072054612761804,
+        "capArea": 14.072065150880235,
+        "capXorArea": 0.000029816710366503685,
+        "triangleArea": 14.072066326622007
+      },
+      {
+        "i": 38,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.878355398550184,
+        "capArea": 4.878364730523117,
+        "capXorArea": 0.000007794984185238718,
+        "triangleArea": 4.878365808108356
+      },
+      {
+        "i": 39,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.880731766567806,
+        "capArea": 8.880740327617332,
+        "capXorArea": 0.000015203329667201615,
+        "triangleArea": 8.880736609804444
+      },
+      {
+        "i": 40,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.357726321411292,
+        "capArea": 2.357730093460532,
+        "capXorArea": 2.7682449399435427e-7,
+        "triangleArea": 2.3577291459805565
+      },
+      {
+        "i": 41,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.142288498228027,
+        "capArea": 6.142280875855704,
+        "capXorArea": 0.000006409625029846211,
+        "triangleArea": 6.142282330620219
+      },
+      {
+        "i": 42,
+        "vertices": 13,
+        "regions": 1,
+        "area": 13.683718094047435,
+        "capArea": 13.683766195958242,
+        "capXorArea": 0.000043085382912977366,
+        "triangleArea": 13.68376468981296
+      },
+      {
+        "i": 43,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.048785001037459,
+        "capArea": 10.048792630786238,
+        "capXorArea": 0.0000038976331779849716,
+        "triangleArea": 10.048792179848533
+      },
+      {
+        "i": 44,
+        "vertices": 13,
+        "regions": 1,
+        "area": 2.602281607231994,
+        "capArea": 2.602279724392499,
+        "capXorArea": 0,
+        "triangleArea": 2.602281867015563
+      },
+      {
+        "i": 45,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.792873144430999,
+        "capArea": 9.792873852240998,
+        "capXorArea": 0,
+        "triangleArea": 9.79286573499246
+      },
+      {
+        "i": 46,
+        "vertices": 27,
+        "regions": 1,
+        "area": 7.417799255172014,
+        "capArea": 7.417796946544509,
+        "capXorArea": 0.0000041464815154768075,
+        "triangleArea": 7.417801129767305
+      },
+      {
+        "i": 47,
+        "vertices": 11,
+        "regions": 1,
+        "area": 2.961895570121989,
+        "capArea": 2.9618939069825103,
+        "capXorArea": 0,
+        "triangleArea": 2.961896083209467
+      },
+      {
+        "i": 48,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.916762560679999,
+        "capArea": 4.916762364831989,
+        "capXorArea": 0,
+        "triangleArea": 4.916757344400736
+      },
+      {
+        "i": 49,
+        "vertices": 41,
+        "regions": 1,
+        "area": 5.268799064571006,
+        "capArea": 5.268799425979989,
+        "capXorArea": 0.000004528255487912247,
+        "triangleArea": 5.268801098017342
+      },
+      {
+        "i": 50,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.226387475409126,
+        "capArea": 6.226387275077059,
+        "capXorArea": 0,
+        "triangleArea": 6.22638511873447
+      },
+      {
+        "i": 51,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.900606719018924,
+        "capArea": 4.9006076925030015,
+        "capXorArea": 0.00000832168007036671,
+        "triangleArea": 4.900606716480979
+      },
+      {
+        "i": 52,
+        "vertices": 19,
+        "regions": 1,
+        "area": 7.668379759165042,
+        "capArea": 7.6683871309909915,
+        "capXorArea": 0,
+        "triangleArea": 7.668384149962321
+      },
+      {
+        "i": 53,
+        "vertices": 25,
+        "regions": 1,
+        "area": 2.801449549612002,
+        "capArea": 2.801448262779502,
+        "capXorArea": 0,
+        "triangleArea": 2.8014494506473966
+      },
+      {
+        "i": 54,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.2003483708430167,
+        "capArea": 1.2003475323370196,
+        "capXorArea": 0,
+        "triangleArea": 1.2003472978622085
+      },
+      {
+        "i": 55,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.07970001722731,
+        "capArea": 8.079701729872568,
+        "capXorArea": 5.416505928224069e-7,
+        "triangleArea": 8.079706490214448
+      },
+      {
+        "i": 56,
+        "vertices": 11,
+        "regions": 1,
+        "area": 9.712628404818929,
+        "capArea": 9.712623486953134,
+        "capXorArea": 0.000004551732558866206,
+        "triangleArea": 9.712623350744252
+      },
+      {
+        "i": 57,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.671840273781299,
+        "capArea": 5.671833975942263,
+        "capXorArea": 0.000012668153658523806,
+        "triangleArea": 5.671833163389238
+      },
+      {
+        "i": 58,
+        "vertices": 11,
+        "regions": 1,
+        "area": 15.166543399554484,
+        "capArea": 15.16655915631054,
+        "capXorArea": 0.0000667833146508201,
+        "triangleArea": 15.16655653314956
+      },
+      {
+        "i": 59,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.386456603119996,
+        "capArea": 4.386465460451973,
+        "capXorArea": 0.0000014105914942774689,
+        "triangleArea": 4.386463309041574
+      },
+      {
+        "i": 60,
+        "vertices": 11,
+        "regions": 1,
+        "area": 17.24251263889073,
+        "capArea": 17.242486748225474,
+        "capXorArea": 0.00009017721004056511,
+        "triangleArea": 17.24248962395359
+      },
+      {
+        "i": 61,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.1691166928999337,
+        "capArea": 1.1691165731401725,
+        "capXorArea": 0.0000028612200821953593,
+        "triangleArea": 1.1691175109954202
+      },
+      {
+        "i": 62,
+        "vertices": 11,
+        "regions": 1,
+        "area": 16.156152055776502,
+        "capArea": 16.156149762056003,
+        "capXorArea": 0,
+        "triangleArea": 16.1561425682238
+      },
+      {
+        "i": 63,
+        "vertices": 17,
+        "regions": 1,
+        "area": 4.259201478488997,
+        "capArea": 4.259206075005938,
+        "capXorArea": 5.995310061734926e-7,
+        "triangleArea": 4.259205604208773
+      },
+      {
+        "i": 64,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.571712571886991,
+        "capArea": 4.5717128200950015,
+        "capXorArea": 0,
+        "triangleArea": 4.571712586944159
+      },
+      {
+        "i": 65,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.43406400207499,
+        "capArea": 7.434061554146467,
+        "capXorArea": 0.000022235367509892967,
+        "triangleArea": 7.434060062882963
+      },
+      {
+        "i": 66,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.5874401933350555,
+        "capArea": 6.5874333491395305,
+        "capXorArea": 0,
+        "triangleArea": 6.587433969389167
+      },
+      {
+        "i": 67,
+        "vertices": 5,
+        "regions": 1,
+        "area": 12.030840347606045,
+        "capArea": 12.030854930895998,
+        "capXorArea": 0.000014658223392416403,
+        "triangleArea": 12.030844524542772
+      },
+      {
+        "i": 68,
+        "vertices": 7,
+        "regions": 1,
+        "area": 12.11245793174919,
+        "capArea": 12.112471064578244,
+        "capXorArea": 0.0000014945625252948957,
+        "triangleArea": 12.112464438479947
+      },
+      {
+        "i": 69,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.189159618131157,
+        "capArea": 6.189147328078093,
+        "capXorArea": 0,
+        "triangleArea": 6.189144667207074
+      },
+      {
+        "i": 70,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.886546819365037,
+        "capArea": 10.886551198746133,
+        "capXorArea": 0,
+        "triangleArea": 10.886546847403224
+      },
+      {
+        "i": 71,
+        "vertices": 7,
+        "regions": 1,
+        "area": 11.07398979766009,
+        "capArea": 11.073982034104688,
+        "capXorArea": 0,
+        "triangleArea": 11.073977484691568
+      },
+      {
+        "i": 72,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.897253081399924,
+        "capArea": 3.897256477348435,
+        "capXorArea": 0.000004361125490959239,
+        "triangleArea": 3.8972534204604017
+      },
+      {
+        "i": 73,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.1225086732090404,
+        "capArea": 3.1225115096999616,
+        "capXorArea": 5.559205646932242e-7,
+        "triangleArea": 3.122511536850652
+      },
+      {
+        "i": 74,
+        "vertices": 13,
+        "regions": 1,
+        "area": 12.613808289351866,
+        "capArea": 12.613785577573736,
+        "capXorArea": 0.00007597602252928937,
+        "triangleArea": 12.613782883348449
+      },
+      {
+        "i": 75,
+        "vertices": 13,
+        "regions": 1,
+        "area": 17.158204397172767,
+        "capArea": 17.158204221437927,
+        "capXorArea": 0.00001814643167108443,
+        "triangleArea": 17.158216299278138
+      },
+      {
+        "i": 76,
+        "vertices": 15,
+        "regions": 1,
+        "area": 22.80523120709738,
+        "capArea": 22.80523021977035,
+        "capXorArea": 0.000014942626819447469,
+        "triangleArea": 22.8052318775608
+      },
+      {
+        "i": 77,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.127674325563873,
+        "capArea": 9.127656908000006,
+        "capXorArea": 0,
+        "triangleArea": 9.127665866214556
+      },
+      {
+        "i": 78,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.62670503822055,
+        "capArea": 8.626709261006482,
+        "capXorArea": 0,
+        "triangleArea": 8.626708681859782
+      },
+      {
+        "i": 79,
+        "vertices": 13,
+        "regions": 1,
+        "area": 7.165942972132996,
+        "capArea": 7.165942813567483,
+        "capXorArea": 0,
+        "triangleArea": 7.165942872900359
+      },
+      {
+        "i": 80,
+        "vertices": 19,
+        "regions": 1,
+        "area": 4.145667536752512,
+        "capArea": 4.145671093399017,
+        "capXorArea": 0.0000015381969546979235,
+        "triangleArea": 4.145670730345046
+      },
+      {
+        "i": 81,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.316855052959994,
+        "capArea": 6.316846268847627,
+        "capXorArea": 0.000009011738910658096,
+        "triangleArea": 6.316847174890427
+      },
+      {
+        "i": 82,
+        "vertices": 9,
+        "regions": 1,
+        "area": 19.729104382065543,
+        "capArea": 19.729152595495634,
+        "capXorArea": 0.00007946089908728027,
+        "triangleArea": 19.729147724967333
+      },
+      {
+        "i": 83,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.673647297559683,
+        "capArea": 8.673670116680796,
+        "capXorArea": 0.00006030765553077799,
+        "triangleArea": 8.67367223463225
+      },
+      {
+        "i": 84,
+        "vertices": 11,
+        "regions": 1,
+        "area": 1.5452461257130023,
+        "capArea": 1.5452461257129952,
+        "capXorArea": 0,
+        "triangleArea": 1.5452458191021936
+      },
+      {
+        "i": 85,
+        "vertices": 9,
+        "regions": 1,
+        "area": 7.232637251536488,
+        "capArea": 7.232621301942956,
+        "capXorArea": 0.00000785482698972828,
+        "triangleArea": 7.232627327413411
+      },
+      {
+        "i": 86,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.0140018557874555,
+        "capArea": 5.013998867563259,
+        "capXorArea": 0.00003486374362182687,
+        "triangleArea": 5.014000576673425
+      },
+      {
+        "i": 87,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.865978768927562,
+        "capArea": 10.865945778946525,
+        "capXorArea": 0.000007054553634588956,
+        "triangleArea": 10.865941688141902
+      },
+      {
+        "i": 88,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.350907365469965,
+        "capArea": 9.35090153919002,
+        "capXorArea": 0,
+        "triangleArea": 9.350906256794133
+      },
+      {
+        "i": 89,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.888999326424042,
+        "capArea": 4.88900558052859,
+        "capXorArea": 0,
+        "triangleArea": 4.889007776516564
+      },
+      {
+        "i": 90,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.925014850276966,
+        "capArea": 4.925023758220021,
+        "capXorArea": 0,
+        "triangleArea": 4.9250220665544475
+      },
+      {
+        "i": 91,
+        "vertices": 9,
+        "regions": 1,
+        "area": 8.326831118839,
+        "capArea": 8.326835160966507,
+        "capXorArea": 0,
+        "triangleArea": 8.326830136723856
+      },
+      {
+        "i": 92,
+        "vertices": 15,
+        "regions": 1,
+        "area": 15.39329912405151,
+        "capArea": 15.3933321237771,
+        "capXorArea": 0.000029686492098335293,
+        "triangleArea": 15.393335167747864
+      },
+      {
+        "i": 93,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.849231161324951,
+        "capArea": 9.849222264161995,
+        "capXorArea": 0.00007772435628794483,
+        "triangleArea": 9.849220634780067
+      },
+      {
+        "i": 94,
+        "vertices": 9,
+        "regions": 1,
+        "area": 3.3298329143179615,
+        "capArea": 3.3298286476965586,
+        "capXorArea": 0,
+        "triangleArea": 3.3298367011830123
+      },
+      {
+        "i": 95,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.8783957150479296,
+        "capArea": 1.8783921092299352,
+        "capXorArea": 0,
+        "triangleArea": 1.8783917197361006
+      },
+      {
+        "i": 96,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.913122304625574,
+        "capArea": 7.913122079359937,
+        "capXorArea": 0,
+        "triangleArea": 7.913115403117445
+      },
+      {
+        "i": 97,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.36866911227549437,
+        "capArea": 0.3686691122754979,
+        "capXorArea": 0,
+        "triangleArea": 0.36866948001079436
+      },
+      {
+        "i": 98,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.5738433801581095,
+        "capArea": 5.5738634172764705,
+        "capXorArea": 0.000024302056544911466,
+        "triangleArea": 5.573865838188794
+      },
+      {
+        "i": 99,
+        "vertices": 13,
+        "regions": 1,
+        "area": 19.5272102386809,
+        "capArea": 19.527215398595615,
+        "capXorArea": 0,
+        "triangleArea": 19.5272164359435
+      },
+      {
+        "i": 100,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.305810652066157,
+        "capArea": 6.305809268570556,
+        "capXorArea": 0,
+        "triangleArea": 6.305807231612562
+      },
+      {
+        "i": 101,
+        "vertices": 7,
+        "regions": 1,
+        "area": 1.8016603863009948,
+        "capArea": 1.8016591175760226,
+        "capXorArea": 0,
+        "triangleArea": 1.8016594141854512
+      },
+      {
+        "i": 102,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.044808985298495,
+        "capArea": 4.044813504107516,
+        "capXorArea": 0,
+        "triangleArea": 4.044812258575803
+      },
+      {
+        "i": 103,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.4195114676299991,
+        "capArea": 1.4195122515540008,
+        "capXorArea": 4.4358700135305185e-7,
+        "triangleArea": 1.4195116306885733
+      },
+      {
+        "i": 104,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.761113199647986,
+        "capArea": 7.7610992782925035,
+        "capXorArea": 0,
+        "triangleArea": 7.761101502038997
+      },
+      {
+        "i": 105,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.723787094449904,
+        "capArea": 4.723803089260855,
+        "capXorArea": 0.000015994810951269756,
+        "triangleArea": 4.7238048871658975
+      },
+      {
+        "i": 106,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.256607968402932,
+        "capArea": 10.256595610587055,
+        "capXorArea": 0.00001128715950926562,
+        "triangleArea": 10.256597826022698
+      },
+      {
+        "i": 107,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.9642638875975251,
+        "capArea": 0.9642627068299987,
+        "capXorArea": 5.532149884857063e-7,
+        "triangleArea": 0.9642628800402235
+      },
+      {
+        "i": 108,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.467227593758025,
+        "capArea": 10.467219864429069,
+        "capXorArea": 0,
+        "triangleArea": 10.46721525003204
+      },
+      {
+        "i": 109,
+        "vertices": 7,
+        "regions": 1,
+        "area": 13.381878262374414,
+        "capArea": 13.38189747199553,
+        "capXorArea": 0.000020911638969778323,
+        "triangleArea": 13.381905274777637
+      },
+      {
+        "i": 110,
+        "vertices": 9,
+        "regions": 1,
+        "area": 9.851190152124673,
+        "capArea": 9.851220066865153,
+        "capXorArea": 0.00005280188247525075,
+        "triangleArea": 9.851218176525435
+      },
+      {
+        "i": 111,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.308346111292394,
+        "capArea": 3.3083386899561447,
+        "capXorArea": 0.000008171413583113463,
+        "triangleArea": 3.308337509937701
+      },
+      {
+        "i": 112,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.0032822080754613,
+        "capArea": 2.003280171632923,
+        "capXorArea": 0.0000028041380346621736,
+        "triangleArea": 2.003279959579231
+      },
+      {
+        "i": 113,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.339681013192603,
+        "capArea": 3.339680453205119,
+        "capXorArea": 0,
+        "triangleArea": 3.339682711932255
+      },
+      {
+        "i": 114,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.237956484584501,
+        "capArea": 1.2379552599974488,
+        "capXorArea": 0,
+        "triangleArea": 1.2379560473655147
+      },
+      {
+        "i": 115,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.144267800568429,
+        "capArea": 5.144283147407492,
+        "capXorArea": 0,
+        "triangleArea": 5.14428504836178
+      },
+      {
+        "i": 116,
+        "vertices": 9,
+        "regions": 1,
+        "area": 14.966367281253468,
+        "capArea": 14.966376630596983,
+        "capXorArea": 3.341955014946052e-7,
+        "triangleArea": 14.966358777816367
+      },
+      {
+        "i": 117,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.1935010606202923,
+        "capArea": 3.1935025907879435,
+        "capXorArea": 3.1259037314157467e-7,
+        "triangleArea": 3.193500695644616
+      },
+      {
+        "i": 118,
+        "vertices": 9,
+        "regions": 1,
+        "area": 3.753049476552519,
+        "capArea": 3.7530482828129834,
+        "capXorArea": 0,
+        "triangleArea": 3.753051302627682
+      },
+      {
+        "i": 119,
+        "vertices": 9,
+        "regions": 1,
+        "area": 9.382831311539803,
+        "capArea": 9.382757415688502,
+        "capXorArea": 0.00006668721516689402,
+        "triangleArea": 9.38276393621345
+      },
+      {
+        "i": 120,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.8918635582380148,
+        "capArea": 2.891861183935511,
+        "capXorArea": 0,
+        "triangleArea": 2.891860742762219
+      },
+      {
+        "i": 121,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.914857132219975,
+        "capArea": 4.914857111082014,
+        "capXorArea": 0,
+        "triangleArea": 4.914854375444577
+      },
+      {
+        "i": 122,
+        "vertices": 15,
+        "regions": 1,
+        "area": 1.8821989145390106,
+        "capArea": 1.8821976165019976,
+        "capXorArea": 0,
+        "triangleArea": 1.8821977698785304
+      },
+      {
+        "i": 123,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.620084154844999,
+        "capArea": 4.620084654036001,
+        "capXorArea": 0,
+        "triangleArea": 4.620081769219709
+      },
+      {
+        "i": 124,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.289081592243008,
+        "capArea": 5.289087366125983,
+        "capXorArea": 0,
+        "triangleArea": 5.2890872273173954
+      },
+      {
+        "i": 125,
+        "vertices": 13,
+        "regions": 1,
+        "area": 10.182833389521477,
+        "capArea": 10.182830962340532,
+        "capXorArea": 0.0000025436284971647183,
+        "triangleArea": 10.182829908345866
+      },
+      {
+        "i": 126,
+        "vertices": 11,
+        "regions": 1,
+        "area": 10.614793812806539,
+        "capArea": 10.614786692184982,
+        "capXorArea": 0,
+        "triangleArea": 10.61478785626366
+      },
+      {
+        "i": 127,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.779933699137018,
+        "capArea": 4.779929020783513,
+        "capXorArea": 0,
+        "triangleArea": 4.7799259951998465
+      }
+    ],
+    "interiorLines": [
+      {
+        "i": 0,
+        "vertices": 13,
+        "regions": 1,
+        "area": 16.876814390964967,
+        "capArea": 16.876848198834807,
+        "capXorArea": 0.000052886003373942,
+        "triangleArea": 16.876837609100676
+      },
+      {
+        "i": 1,
+        "vertices": 5,
+        "regions": 1,
+        "area": 8.455145686517994,
+        "capArea": 8.45514534994794,
+        "capXorArea": 0,
+        "triangleArea": 8.455140242936977
+      },
+      {
+        "i": 2,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.25031809359697377,
+        "capArea": 0.25031885284448663,
+        "capXorArea": 0,
+        "triangleArea": 0.25031883655901765
+      },
+      {
+        "i": 3,
+        "vertices": 11,
+        "regions": 1,
+        "area": 17.34248849811246,
+        "capArea": 17.342470627621594,
+        "capXorArea": 0,
+        "triangleArea": 17.34247170924027
+      },
+      {
+        "i": 4,
+        "vertices": 11,
+        "regions": 1,
+        "area": 12.69275705733699,
+        "capArea": 12.692722437669445,
+        "capXorArea": 0.000006431391994965452,
+        "triangleArea": 12.692723779972084
+      },
+      {
+        "i": 5,
+        "vertices": 11,
+        "regions": 1,
+        "area": 8.863171287072987,
+        "capArea": 8.863171962073466,
+        "capXorArea": 0.000011045981295865204,
+        "triangleArea": 8.863167969175265
+      },
+      {
+        "i": 6,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.523501655207781,
+        "capArea": 5.523469241475027,
+        "capXorArea": 0.000026581521069601877,
+        "triangleArea": 5.523475312387745
+      },
+      {
+        "i": 7,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.1634651442529957,
+        "capArea": 1.163466370623098,
+        "capXorArea": 0,
+        "triangleArea": 1.1634657831400546
+      },
+      {
+        "i": 8,
+        "vertices": 9,
+        "regions": 1,
+        "area": 7.597150021189236,
+        "capArea": 7.597136652991139,
+        "capXorArea": 0.000018396872974335565,
+        "triangleArea": 7.597137814045709
+      },
+      {
+        "i": 9,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.68939420943616,
+        "capArea": 8.689408415500793,
+        "capXorArea": 0.000010816391977641615,
+        "triangleArea": 8.68940463862964
+      },
+      {
+        "i": 10,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.880075002392005,
+        "capArea": 9.88003922039411,
+        "capXorArea": 0.000009000425961858127,
+        "triangleArea": 9.88004727243242
+      },
+      {
+        "i": 11,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.904614112007039,
+        "capArea": 5.904623412364344,
+        "capXorArea": 0.000016161215853571775,
+        "triangleArea": 5.904620302266267
+      },
+      {
+        "i": 12,
+        "vertices": 5,
+        "regions": 1,
+        "area": 7.287269632053153,
+        "capArea": 7.28725129030704,
+        "capXorArea": 7.772119943183498e-7,
+        "triangleArea": 7.287253376896842
+      },
+      {
+        "i": 13,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.173778067128069,
+        "capArea": 5.1737930228550795,
+        "capXorArea": 0.000015694196008553263,
+        "triangleArea": 5.173792187957588
+      },
+      {
+        "i": 14,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.565464125831959,
+        "capArea": 4.565473017253513,
+        "capXorArea": 0,
+        "triangleArea": 4.565468334594371
+      },
+      {
+        "i": 15,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.4806960336240422,
+        "capArea": 3.4807030112949917,
+        "capXorArea": 0.000006977670936159086,
+        "triangleArea": 3.4807043052035738
+      },
+      {
+        "i": 16,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.9058123168315,
+        "capArea": 10.905801988349051,
+        "capXorArea": 0,
+        "triangleArea": 10.905805163045528
+      },
+      {
+        "i": 17,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.3959298211944713,
+        "capArea": 0.395929709301015,
+        "capXorArea": 0,
+        "triangleArea": 0.39592980669294775
+      },
+      {
+        "i": 18,
+        "vertices": 11,
+        "regions": 1,
+        "area": 14.99034711028321,
+        "capArea": 14.990322200246283,
+        "capXorArea": 0.00003515536263876129,
+        "triangleArea": 14.990326729021035
+      },
+      {
+        "i": 19,
+        "vertices": 7,
+        "regions": 1,
+        "area": 13.46653654412421,
+        "capArea": 13.46653717828167,
+        "capXorArea": 6.819118425482884e-7,
+        "triangleArea": 13.46653782541398
+      },
+      {
+        "i": 20,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.275062542730439,
+        "capArea": 9.275082541414122,
+        "capXorArea": 0,
+        "triangleArea": 9.275072841497604
+      },
+      {
+        "i": 21,
+        "vertices": 11,
+        "regions": 1,
+        "area": 15.722815528619407,
+        "capArea": 15.722812510760463,
+        "capXorArea": 0,
+        "triangleArea": 15.722808422925482
+      },
+      {
+        "i": 22,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.2041786954499685,
+        "capArea": 5.204167953990009,
+        "capXorArea": 0,
+        "triangleArea": 5.204168458920321
+      },
+      {
+        "i": 23,
+        "vertices": 11,
+        "regions": 1,
+        "area": 10.246733804845121,
+        "capArea": 10.246743965038831,
+        "capXorArea": 0.000015985538084350992,
+        "triangleArea": 10.24674558400875
+      },
+      {
+        "i": 24,
+        "vertices": 5,
+        "regions": 1,
+        "area": 8.769066378983041,
+        "capArea": 8.769051338351971,
+        "capXorArea": 0.0000014999760082901048,
+        "triangleArea": 8.769057861798501
+      },
+      {
+        "i": 25,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.4776074500759933,
+        "capArea": 1.4776071044698256,
+        "capXorArea": 0.000011812021966761677,
+        "triangleArea": 1.4776077669594088
+      },
+      {
+        "i": 26,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.8551691166940145,
+        "capArea": 2.8551743927050666,
+        "capXorArea": 0,
+        "triangleArea": 2.8551716111178393
+      },
+      {
+        "i": 27,
+        "vertices": 11,
+        "regions": 1,
+        "area": 21.925004070161094,
+        "capArea": 21.924991914559428,
+        "capXorArea": 0.000015903100461400754,
+        "triangleArea": 21.925001299874566
+      },
+      {
+        "i": 28,
+        "vertices": 45,
+        "regions": 1,
+        "area": 7.6801148722115045,
+        "capArea": 7.680101413769023,
+        "capXorArea": 0.000012466622820284101,
+        "triangleArea": 7.680112181948061
+      },
+      {
+        "i": 29,
+        "vertices": 21,
+        "regions": 1,
+        "area": 5.590865694344473,
+        "capArea": 5.590867566664883,
+        "capXorArea": 0.0000013314489706317545,
+        "triangleArea": 5.5908684155529045
+      },
+      {
+        "i": 30,
+        "vertices": 7,
+        "regions": 1,
+        "area": 1.2971499443083871,
+        "capArea": 1.2971510185019497,
+        "capXorArea": 0,
+        "triangleArea": 1.297150745665931
+      },
+      {
+        "i": 31,
+        "vertices": 7,
+        "regions": 1,
+        "area": 3.552751021979475,
+        "capArea": 3.5527552955055626,
+        "capXorArea": 0,
+        "triangleArea": 3.5527530663384823
+      },
+      {
+        "i": 32,
+        "vertices": 11,
+        "regions": 1,
+        "area": 1.396764198889457,
+        "capArea": 1.3967622553938668,
+        "capXorArea": 0,
+        "triangleArea": 1.3967623810549412
+      },
+      {
+        "i": 33,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.89779079485794,
+        "capArea": 3.8977714666709176,
+        "capXorArea": 0,
+        "triangleArea": 3.8977716284789494
+      },
+      {
+        "i": 34,
+        "vertices": 9,
+        "regions": 1,
+        "area": 21.145892589278446,
+        "capArea": 21.14582512095012,
+        "capXorArea": 0.00010324627965019317,
+        "triangleArea": 21.145838262396865
+      },
+      {
+        "i": 35,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.188460395956554,
+        "capArea": 4.188480886927664,
+        "capXorArea": 0.000001133593286795076,
+        "triangleArea": 4.18848564507789
+      },
+      {
+        "i": 36,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.250239723997424,
+        "capArea": 5.250236980097611,
+        "capXorArea": 0.000008651464440845302,
+        "triangleArea": 5.25024031981593
+      },
+      {
+        "i": 37,
+        "vertices": 15,
+        "regions": 1,
+        "area": 14.072054612761804,
+        "capArea": 14.072065150880235,
+        "capXorArea": 0.000029816710366503685,
+        "triangleArea": 14.072066326622007
+      },
+      {
+        "i": 38,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.214593697334294,
+        "capArea": 4.2145906659345655,
+        "capXorArea": 0.000013836742709827377,
+        "triangleArea": 4.214589328461443
+      },
+      {
+        "i": 39,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.880731766567806,
+        "capArea": 8.880740327617332,
+        "capXorArea": 0.000015203329667201615,
+        "triangleArea": 8.880736609804444
+      },
+      {
+        "i": 40,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.357726321411292,
+        "capArea": 2.357730093460532,
+        "capXorArea": 2.7682449399435427e-7,
+        "triangleArea": 2.3577291459805565
+      },
+      {
+        "i": 41,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.142288498228027,
+        "capArea": 6.142280875855704,
+        "capXorArea": 0.000006409625029846211,
+        "triangleArea": 6.142282330620219
+      },
+      {
+        "i": 42,
+        "vertices": 13,
+        "regions": 1,
+        "area": 13.683718094047435,
+        "capArea": 13.683766195958015,
+        "capXorArea": 0.000043085382912977366,
+        "triangleArea": 13.68376468981296
+      },
+      {
+        "i": 43,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.048785001037459,
+        "capArea": 10.048792630786238,
+        "capXorArea": 0.0000038976331779849716,
+        "triangleArea": 10.048792179848533
+      },
+      {
+        "i": 44,
+        "vertices": 13,
+        "regions": 1,
+        "area": 2.602281607231994,
+        "capArea": 2.602279724392499,
+        "capXorArea": 0,
+        "triangleArea": 2.602281867015563
+      },
+      {
+        "i": 45,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.792873144430999,
+        "capArea": 9.792873852240998,
+        "capXorArea": 0,
+        "triangleArea": 9.79286573499246
+      },
+      {
+        "i": 46,
+        "vertices": 27,
+        "regions": 1,
+        "area": 7.417799255172014,
+        "capArea": 7.417797447509513,
+        "capXorArea": 0.000005054808013937873,
+        "triangleArea": 7.417801129767305
+      },
+      {
+        "i": 47,
+        "vertices": 11,
+        "regions": 1,
+        "area": 2.961895570121989,
+        "capArea": 2.961893906982496,
+        "capXorArea": 1.892199890107804e-7,
+        "triangleArea": 2.961896083209467
+      },
+      {
+        "i": 48,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.916762560679999,
+        "capArea": 4.916762364831996,
+        "capXorArea": 0,
+        "triangleArea": 4.916757344400736
+      },
+      {
+        "i": 49,
+        "vertices": 41,
+        "regions": 1,
+        "area": 5.268799064571006,
+        "capArea": 5.268799425979992,
+        "capXorArea": 0.000005317282507633081,
+        "triangleArea": 5.268801098017342
+      },
+      {
+        "i": 50,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.226387475409126,
+        "capArea": 6.226387275077059,
+        "capXorArea": 0,
+        "triangleArea": 6.22638511873447
+      },
+      {
+        "i": 51,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.900606719018924,
+        "capArea": 4.900607692503058,
+        "capXorArea": 0.00000832168007036671,
+        "triangleArea": 4.900606716480979
+      },
+      {
+        "i": 52,
+        "vertices": 15,
+        "regions": 1,
+        "area": 6.913445241704537,
+        "capArea": 6.913452125912517,
+        "capXorArea": 0,
+        "triangleArea": 6.913447081425147
+      },
+      {
+        "i": 53,
+        "vertices": 25,
+        "regions": 1,
+        "area": 2.801449549612002,
+        "capArea": 2.8014480970515194,
+        "capXorArea": 0,
+        "triangleArea": 2.8014494506473966
+      },
+      {
+        "i": 54,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.2003483708430167,
+        "capArea": 1.2003475323370196,
+        "capXorArea": 0,
+        "triangleArea": 1.2003472978622085
+      },
+      {
+        "i": 55,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.07970001722731,
+        "capArea": 8.079701729872568,
+        "capXorArea": 5.416505928224069e-7,
+        "triangleArea": 8.079706490214448
+      },
+      {
+        "i": 56,
+        "vertices": 11,
+        "regions": 1,
+        "area": 9.712628404818929,
+        "capArea": 9.712623486953134,
+        "capXorArea": 0.000004551732558866206,
+        "triangleArea": 9.712623350744252
+      },
+      {
+        "i": 57,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.671840273781299,
+        "capArea": 5.671833975942263,
+        "capXorArea": 0.000012668153658523806,
+        "triangleArea": 5.671833163389238
+      },
+      {
+        "i": 58,
+        "vertices": 11,
+        "regions": 1,
+        "area": 14.310617325181738,
+        "capArea": 14.310614609702952,
+        "capXorArea": 0.00004375081107355072,
+        "triangleArea": 14.310613350433414
+      },
+      {
+        "i": 59,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.386456603119996,
+        "capArea": 4.3864654604517455,
+        "capXorArea": 0.0000014105914942774689,
+        "triangleArea": 4.386463309041574
+      },
+      {
+        "i": 60,
+        "vertices": 11,
+        "regions": 1,
+        "area": 17.24251263889073,
+        "capArea": 17.242486748225474,
+        "capXorArea": 0.00009017721004056511,
+        "triangleArea": 17.24248962395359
+      },
+      {
+        "i": 61,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.1691166928999337,
+        "capArea": 1.1691165731401725,
+        "capXorArea": 0.0000028612200821953593,
+        "triangleArea": 1.1691175109954202
+      },
+      {
+        "i": 62,
+        "vertices": 11,
+        "regions": 1,
+        "area": 16.156152055776502,
+        "capArea": 16.156149762056003,
+        "capXorArea": 0,
+        "triangleArea": 16.1561425682238
+      },
+      {
+        "i": 63,
+        "vertices": 17,
+        "regions": 1,
+        "area": 4.259201478488997,
+        "capArea": 4.259206075005952,
+        "capXorArea": 5.995310061734926e-7,
+        "triangleArea": 4.259205604208773
+      },
+      {
+        "i": 64,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.571712571886991,
+        "capArea": 4.5717128200950015,
+        "capXorArea": 0,
+        "triangleArea": 4.571712586944159
+      },
+      {
+        "i": 65,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.43406400207499,
+        "capArea": 7.434061554146467,
+        "capXorArea": 0.000022235367509892967,
+        "triangleArea": 7.434060062882963
+      },
+      {
+        "i": 66,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.5874401933350555,
+        "capArea": 6.5874333491395305,
+        "capXorArea": 0,
+        "triangleArea": 6.587433969389167
+      },
+      {
+        "i": 67,
+        "vertices": 5,
+        "regions": 1,
+        "area": 12.030840347606045,
+        "capArea": 12.030854930895998,
+        "capXorArea": 0.000014658223449259822,
+        "triangleArea": 12.030844524542772
+      },
+      {
+        "i": 68,
+        "vertices": 7,
+        "regions": 1,
+        "area": 12.11245793174919,
+        "capArea": 12.112471064578244,
+        "capXorArea": 0.0000014945625252948957,
+        "triangleArea": 12.112464438479947
+      },
+      {
+        "i": 69,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.189159618131157,
+        "capArea": 6.189147328078093,
+        "capXorArea": 0,
+        "triangleArea": 6.189144667207074
+      },
+      {
+        "i": 70,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.886546819365037,
+        "capArea": 10.886551198746133,
+        "capXorArea": 0,
+        "triangleArea": 10.886546847403224
+      },
+      {
+        "i": 71,
+        "vertices": 7,
+        "regions": 1,
+        "area": 11.07398979766009,
+        "capArea": 11.073982034104688,
+        "capXorArea": 0,
+        "triangleArea": 11.073977484691568
+      },
+      {
+        "i": 72,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.897253081399924,
+        "capArea": 3.897256477348435,
+        "capXorArea": 0.000004361125490959239,
+        "triangleArea": 3.8972534204604017
+      },
+      {
+        "i": 73,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.1225086732090404,
+        "capArea": 3.1225115096999616,
+        "capXorArea": 5.559205646932242e-7,
+        "triangleArea": 3.122511536850652
+      },
+      {
+        "i": 74,
+        "vertices": 13,
+        "regions": 1,
+        "area": 12.613808289351866,
+        "capArea": 12.613785577573736,
+        "capXorArea": 0.00007597602252928937,
+        "triangleArea": 12.613782883348449
+      },
+      {
+        "i": 75,
+        "vertices": 13,
+        "regions": 1,
+        "area": 16.47584092045804,
+        "capArea": 16.47581963578864,
+        "capXorArea": 0.000017740535440680105,
+        "triangleArea": 16.475827025999024
+      },
+      {
+        "i": 76,
+        "vertices": 15,
+        "regions": 1,
+        "area": 22.083195339284416,
+        "capArea": 22.083193919264374,
+        "capXorArea": 0.000011104081863777537,
+        "triangleArea": 22.083195255707324
+      },
+      {
+        "i": 77,
+        "vertices": 5,
+        "regions": 1,
+        "area": 9.127674325563873,
+        "capArea": 9.127656908000063,
+        "capXorArea": 0,
+        "triangleArea": 9.127665866214556
+      },
+      {
+        "i": 78,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.62670503822055,
+        "capArea": 8.626709261006482,
+        "capXorArea": 0,
+        "triangleArea": 8.626708681859782
+      },
+      {
+        "i": 79,
+        "vertices": 13,
+        "regions": 1,
+        "area": 7.165942972132996,
+        "capArea": 7.165942813567483,
+        "capXorArea": 0,
+        "triangleArea": 7.165942872900359
+      },
+      {
+        "i": 80,
+        "vertices": 19,
+        "regions": 1,
+        "area": 4.145667536752512,
+        "capArea": 4.145671093399017,
+        "capXorArea": 0.0000015381969546979235,
+        "triangleArea": 4.145670730345046
+      },
+      {
+        "i": 81,
+        "vertices": 7,
+        "regions": 1,
+        "area": 6.316855052959994,
+        "capArea": 6.316846268847627,
+        "capXorArea": 0.000009011738910658096,
+        "triangleArea": 6.316847174890427
+      },
+      {
+        "i": 82,
+        "vertices": 9,
+        "regions": 1,
+        "area": 19.024314607339875,
+        "capArea": 19.02436280558595,
+        "capXorArea": 0.00008544899355911184,
+        "triangleArea": 19.024357580798096
+      },
+      {
+        "i": 83,
+        "vertices": 7,
+        "regions": 1,
+        "area": 8.673647297559683,
+        "capArea": 8.673670116680796,
+        "capXorArea": 0.00006030765553077799,
+        "triangleArea": 8.67367223463225
+      },
+      {
+        "i": 84,
+        "vertices": 7,
+        "regions": 1,
+        "area": 0.6950141099104972,
+        "capArea": 0.6950143024424964,
+        "capXorArea": 0,
+        "triangleArea": 0.6950137794937632
+      },
+      {
+        "i": 85,
+        "vertices": 9,
+        "regions": 1,
+        "area": 7.232637251536488,
+        "capArea": 7.232621301942956,
+        "capXorArea": 0.00000785482698972828,
+        "triangleArea": 7.232627327413411
+      },
+      {
+        "i": 86,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.0140018557874555,
+        "capArea": 5.013998867563259,
+        "capXorArea": 0.00003486374362182687,
+        "triangleArea": 5.014000576673425
+      },
+      {
+        "i": 87,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.062624715557831,
+        "capArea": 10.062598694883945,
+        "capXorArea": 0.000001346501676380285,
+        "triangleArea": 10.062593497510534
+      },
+      {
+        "i": 88,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.350907365469965,
+        "capArea": 9.350901539190033,
+        "capXorArea": 0,
+        "triangleArea": 9.350906256794133
+      },
+      {
+        "i": 89,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.888999326424042,
+        "capArea": 4.88900558052859,
+        "capXorArea": 0,
+        "triangleArea": 4.889007776516564
+      },
+      {
+        "i": 90,
+        "vertices": 7,
+        "regions": 1,
+        "area": 4.925014850276966,
+        "capArea": 4.925023758220021,
+        "capXorArea": 0,
+        "triangleArea": 4.9250220665544475
+      },
+      {
+        "i": 91,
+        "vertices": 9,
+        "regions": 1,
+        "area": 7.6766894064759965,
+        "capArea": 7.676697302194504,
+        "capXorArea": 0,
+        "triangleArea": 7.676693634551036
+      },
+      {
+        "i": 92,
+        "vertices": 15,
+        "regions": 1,
+        "area": 15.39329912405151,
+        "capArea": 15.3933321237771,
+        "capXorArea": 0.000029686492098335293,
+        "triangleArea": 15.393335167747864
+      },
+      {
+        "i": 93,
+        "vertices": 7,
+        "regions": 1,
+        "area": 9.849231161324951,
+        "capArea": 9.849222264161995,
+        "capXorArea": 0.00007772435628794483,
+        "triangleArea": 9.849220634780067
+      },
+      {
+        "i": 94,
+        "vertices": 9,
+        "regions": 1,
+        "area": 3.3298329143179615,
+        "capArea": 3.3298321533370085,
+        "capXorArea": 0,
+        "triangleArea": 3.32984133228274
+      },
+      {
+        "i": 95,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.8783957150479296,
+        "capArea": 1.878392109229992,
+        "capXorArea": 0,
+        "triangleArea": 1.8783917197361006
+      },
+      {
+        "i": 96,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.913122304625574,
+        "capArea": 7.913122079359937,
+        "capXorArea": 0,
+        "triangleArea": 7.913115403117445
+      },
+      {
+        "i": 97,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.36866911227549437,
+        "capArea": 0.3686691122754979,
+        "capXorArea": 0,
+        "triangleArea": 0.36866948001079436
+      },
+      {
+        "i": 98,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.5738433801581095,
+        "capArea": 5.5738634172764705,
+        "capXorArea": 0.000024302056544911466,
+        "triangleArea": 5.573865838188794
+      },
+      {
+        "i": 99,
+        "vertices": 13,
+        "regions": 1,
+        "area": 19.5272102386809,
+        "capArea": 19.527215398595615,
+        "capXorArea": 0,
+        "triangleArea": 19.5272164359435
+      },
+      {
+        "i": 100,
+        "vertices": 5,
+        "regions": 1,
+        "area": 6.305810652066157,
+        "capArea": 6.305809268570556,
+        "capXorArea": 0,
+        "triangleArea": 6.305807231612562
+      },
+      {
+        "i": 101,
+        "vertices": 7,
+        "regions": 1,
+        "area": 1.8016603863009948,
+        "capArea": 1.8016591175760226,
+        "capXorArea": 0,
+        "triangleArea": 1.8016594141854512
+      },
+      {
+        "i": 102,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.044808985298495,
+        "capArea": 4.044813504107516,
+        "capXorArea": 0,
+        "triangleArea": 4.044812258575803
+      },
+      {
+        "i": 103,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.4195114676299991,
+        "capArea": 1.4195122515540004,
+        "capXorArea": 4.435869993546504e-7,
+        "triangleArea": 1.4195116306885733
+      },
+      {
+        "i": 104,
+        "vertices": 7,
+        "regions": 1,
+        "area": 7.761113199647986,
+        "capArea": 7.7610992782925035,
+        "capXorArea": 0,
+        "triangleArea": 7.761101502038997
+      },
+      {
+        "i": 105,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.723787094449904,
+        "capArea": 4.723803089260855,
+        "capXorArea": 0.000015994810951269756,
+        "triangleArea": 4.7238048871658975
+      },
+      {
+        "i": 106,
+        "vertices": 9,
+        "regions": 1,
+        "area": 10.256607968402932,
+        "capArea": 10.256595610586942,
+        "capXorArea": 0.00001128715950926562,
+        "triangleArea": 10.256597826022698
+      },
+      {
+        "i": 107,
+        "vertices": 5,
+        "regions": 1,
+        "area": 0.9642638875975251,
+        "capArea": 0.9642627068299987,
+        "capXorArea": 5.532149884857063e-7,
+        "triangleArea": 0.9642628800402235
+      },
+      {
+        "i": 108,
+        "vertices": 7,
+        "regions": 1,
+        "area": 10.467227593758025,
+        "capArea": 10.467219864429069,
+        "capXorArea": 0,
+        "triangleArea": 10.46721525003204
+      },
+      {
+        "i": 109,
+        "vertices": 7,
+        "regions": 1,
+        "area": 12.62424470294792,
+        "capArea": 12.624227948558968,
+        "capXorArea": 5.589905640590587e-7,
+        "triangleArea": 12.624236489663417
+      },
+      {
+        "i": 110,
+        "vertices": 9,
+        "regions": 1,
+        "area": 9.851190152124673,
+        "capArea": 9.851220066865153,
+        "capXorArea": 0.00005280188247525075,
+        "triangleArea": 9.851218176525435
+      },
+      {
+        "i": 111,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.308346111292394,
+        "capArea": 3.3083386899561447,
+        "capXorArea": 0.000008171413583113463,
+        "triangleArea": 3.308337509937701
+      },
+      {
+        "i": 112,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.0032822080754613,
+        "capArea": 2.003280171632923,
+        "capXorArea": 0.0000028041380346621736,
+        "triangleArea": 2.003279959579231
+      },
+      {
+        "i": 113,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.339681013192603,
+        "capArea": 3.339680453205119,
+        "capXorArea": 0,
+        "triangleArea": 3.339682711932255
+      },
+      {
+        "i": 114,
+        "vertices": 5,
+        "regions": 1,
+        "area": 1.237956484584501,
+        "capArea": 1.2379552599974915,
+        "capXorArea": 0,
+        "triangleArea": 1.2379560473655147
+      },
+      {
+        "i": 115,
+        "vertices": 7,
+        "regions": 1,
+        "area": 5.144267800568429,
+        "capArea": 5.144283147407464,
+        "capXorArea": 0,
+        "triangleArea": 5.14428504836178
+      },
+      {
+        "i": 116,
+        "vertices": 9,
+        "regions": 1,
+        "area": 14.220687900663535,
+        "capArea": 14.220684913272976,
+        "capXorArea": 0,
+        "triangleArea": 14.220677610887662
+      },
+      {
+        "i": 117,
+        "vertices": 5,
+        "regions": 1,
+        "area": 3.1935010606202923,
+        "capArea": 3.1935025907879435,
+        "capXorArea": 3.1259037314157467e-7,
+        "triangleArea": 3.193500695644616
+      },
+      {
+        "i": 118,
+        "vertices": 9,
+        "regions": 1,
+        "area": 3.753049476552519,
+        "capArea": 3.753048282813012,
+        "capXorArea": 0,
+        "triangleArea": 3.753051302627682
+      },
+      {
+        "i": 119,
+        "vertices": 9,
+        "regions": 1,
+        "area": 9.382831311539803,
+        "capArea": 9.382757415688502,
+        "capXorArea": 0.00006668721516689402,
+        "triangleArea": 9.38276393621345
+      },
+      {
+        "i": 120,
+        "vertices": 5,
+        "regions": 1,
+        "area": 2.8918635582380148,
+        "capArea": 2.891861183935511,
+        "capXorArea": 0,
+        "triangleArea": 2.891860742762219
+      },
+      {
+        "i": 121,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.914857132219975,
+        "capArea": 4.914857111082011,
+        "capXorArea": 0,
+        "triangleArea": 4.914854375444577
+      },
+      {
+        "i": 122,
+        "vertices": 15,
+        "regions": 1,
+        "area": 1.8821989145390106,
+        "capArea": 1.8821976165019976,
+        "capXorArea": 0,
+        "triangleArea": 1.8821977698785304
+      },
+      {
+        "i": 123,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.620084154844999,
+        "capArea": 4.620084654036001,
+        "capXorArea": 0,
+        "triangleArea": 4.620081769219709
+      },
+      {
+        "i": 124,
+        "vertices": 5,
+        "regions": 1,
+        "area": 5.289081592243008,
+        "capArea": 5.289087366125983,
+        "capXorArea": 0,
+        "triangleArea": 5.2890872273173954
+      },
+      {
+        "i": 125,
+        "vertices": 13,
+        "regions": 1,
+        "area": 10.182833389521477,
+        "capArea": 10.182830962340532,
+        "capXorArea": 0,
+        "triangleArea": 10.182829908345866
+      },
+      {
+        "i": 126,
+        "vertices": 11,
+        "regions": 1,
+        "area": 10.614793812806539,
+        "capArea": 10.614786692184982,
+        "capXorArea": 0,
+        "triangleArea": 10.61478785626366
+      },
+      {
+        "i": 127,
+        "vertices": 5,
+        "regions": 1,
+        "area": 4.107763333961017,
+        "capArea": 4.10776333396101,
+        "capXorArea": 0,
+        "triangleArea": 4.107763833026183
+      }
+    ]
+  },
+  "base": {
+    "ms": 558.9283190000001,
+    "triangles": 3508,
+    "vertices": 1765,
+    "rawArea": 52816.564703798635
+  },
+  "scene": {
+    "ms": 1016.2544499999999,
+    "triangles": 7628,
+    "vertices": 3829,
+    "rawArea": 94324.60149495059
+  },
+  "rssMiB": 146.875
+}

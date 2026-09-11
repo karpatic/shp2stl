@@ -1,2 +1,4 @@
 # Frozen network bytes must survive checkout without newline conversion.
 diagnostics/fixtures/** -text
+# Preserve pinned upstream source and license bytes, including whitespace.
+three/vendor/** -text -whitespace

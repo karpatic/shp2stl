@@ -161,8 +161,8 @@ function createMesh( geometry ) {
 } 
 
 // Returns a meshgroup of extruded lines
-function createThreeDGeometryLines(geojson, options = {}) {
-  const geometries = [];
+function createLineShapes(geojson, options = {}) {
+  const shapes = [];
 
   const width = typeof options.width === "number" ? options.width : window?.shpstl?.width;
   const depth = typeof options.depth === "number" ? options.depth : window?.shpstl?.depth;
@@ -346,13 +346,16 @@ function createThreeDGeometryLines(geojson, options = {}) {
     const shape = buildStripShape(pts, halfW);
     if (!shape) throw new Error("Could not build a complete line strip");
 
-    const extrudeSettings = {
-      depth,
-      bevelEnabled: false,
-    };
+    shapes.push(shape);
+  });
+  return shapes;
+}
 
+function createThreeDGeometryLines(geojson, options = {}) {
+  const depth = typeof options.depth === "number" ? options.depth : window?.shpstl?.depth;
+  return createLineShapes(geojson, options).map(shape => {
     try {
-      const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+      const geometry = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
       if (!geometry.index) {
         geometry.computeVertexNormals();
         const positionAttribute = geometry.getAttribute("position");
@@ -362,13 +365,11 @@ function createThreeDGeometryLines(geojson, options = {}) {
           geometry.setIndex(indices);
         }
       }
-      geometries.push(geometry);
+      return geometry;
     } catch (error) {
       throw new Error("Could not create a complete line geometry", { cause: error });
     }
   });
-
-  return geometries;
 }
 
 function createMeshesFromGeometries(geometries) {
@@ -396,5 +397,6 @@ export {
   createThreeDGeometry,
   createMesh,
   createThreeDGeometryLines,
+  createLineShapes,
   createMeshesFromGeometries
 };

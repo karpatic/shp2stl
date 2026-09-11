@@ -1,0 +1,603 @@
+{
+  "variant": "optimized",
+  "dataset": "dc",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
+    }
+  },
+  "sources": {
+    "app.html": "32b6950738e29e5cc2211f0d51092cde6ee23e0d9da8f69bd125d225ba2c2831",
+    "new/new.js": "dc84ad2cb5595ab670cc43faf836e7a17aa617d948c0e330a46a4060198c4705",
+    "new/leaflet.js": "f30ca8b4931f44f0ab02aa9b2e4a81baa49e6a60569059bf040d947152fa3ddf",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "2bc3a80d94d579d77a2bdd7a22c2a8d5ca3c7f1c665027e123012200b52d8a6f",
+    "new/planar-boolean.js": "1ffb938acdf9eda38639fbfbb44ca4aceb008d56bcdc07778ca7304addfb5936",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 45000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1435000,
+  "computePeakRSSKiB": 1343760,
+  "computeCpuSeconds": 20,
+  "processCpuSeconds": 26,
+  "wallMs": 16416,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "truncateGeoJSON",
+      "ms": 2.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 1772.800000011921
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHullLines",
+      "ms": 1776.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 188.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 162.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 16.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "getOverlappingLines",
+      "ms": 59.5
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 25.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.899999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 8.700000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.6000000238418579
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.3999999761581421
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x63400172800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.8999999761581421
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 26.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 61.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 22
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 64.60000002384186
+    },
+    {
+      "kind": "cut-start",
+      "cut": 1,
+      "input": {
+        "triangles": 240,
+        "vertices": 720,
+        "groups": 2,
+        "bytes": 23040
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 58367704
+    },
+    {
+      "kind": "cut-end",
+      "cut": 1,
+      "ms": 321.5,
+      "output": {
+        "triangles": 540,
+        "vertices": 1620,
+        "groups": 2,
+        "bytes": 51840
+      },
+      "heap": 44802082
+    },
+    {
+      "kind": "cut-start",
+      "cut": 2,
+      "input": {
+        "triangles": 540,
+        "vertices": 1620,
+        "groups": 2,
+        "bytes": 51840
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 44899022
+    },
+    {
+      "kind": "cut-end",
+      "cut": 2,
+      "ms": 276.40000000596046,
+      "output": {
+        "triangles": 977,
+        "vertices": 2931,
+        "groups": 3,
+        "bytes": 93792
+      },
+      "heap": 55580622
+    },
+    {
+      "kind": "cut-start",
+      "cut": 3,
+      "input": {
+        "triangles": 977,
+        "vertices": 2931,
+        "groups": 3,
+        "bytes": 93792
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 55663278
+    },
+    {
+      "kind": "cut-end",
+      "cut": 3,
+      "ms": 44.80000001192093,
+      "output": {
+        "triangles": 1024,
+        "vertices": 3072,
+        "groups": 4,
+        "bytes": 98304
+      },
+      "heap": 58751544
+    },
+    {
+      "kind": "cut-start",
+      "cut": 4,
+      "input": {
+        "triangles": 1024,
+        "vertices": 3072,
+        "groups": 4,
+        "bytes": 98304
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 58845184
+    },
+    {
+      "kind": "cut-end",
+      "cut": 4,
+      "ms": 379.90000000596046,
+      "output": {
+        "triangles": 1810,
+        "vertices": 5430,
+        "groups": 5,
+        "bytes": 173760
+      },
+      "heap": 76484340
+    },
+    {
+      "kind": "cut-start",
+      "cut": 5,
+      "input": {
+        "triangles": 1810,
+        "vertices": 5430,
+        "groups": 5,
+        "bytes": 173760
+      },
+      "cutter": {
+        "triangles": 132,
+        "vertices": 396,
+        "groups": 2,
+        "bytes": 13464
+      },
+      "heap": 76592860
+    },
+    {
+      "kind": "cut-end",
+      "cut": 5,
+      "ms": 245.60000002384186,
+      "output": {
+        "triangles": 2406,
+        "vertices": 7218,
+        "groups": 6,
+        "bytes": 230976
+      },
+      "heap": 51464206
+    },
+    {
+      "kind": "cut-start",
+      "cut": 6,
+      "input": {
+        "triangles": 2406,
+        "vertices": 7218,
+        "groups": 6,
+        "bytes": 230976
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 51547866
+    },
+    {
+      "kind": "cut-end",
+      "cut": 6,
+      "ms": 120.7999999821186,
+      "output": {
+        "triangles": 2558,
+        "vertices": 7674,
+        "groups": 7,
+        "bytes": 245568
+      },
+      "heap": 57129930
+    },
+    {
+      "kind": "cut-start",
+      "cut": 7,
+      "input": {
+        "triangles": 2558,
+        "vertices": 7674,
+        "groups": 7,
+        "bytes": 245568
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 57217462
+    },
+    {
+      "kind": "cut-end",
+      "cut": 7,
+      "ms": 374.7999999821186,
+      "output": {
+        "triangles": 2972,
+        "vertices": 8916,
+        "groups": 8,
+        "bytes": 285312
+      },
+      "heap": 70051182
+    },
+    {
+      "kind": "cut-start",
+      "cut": 8,
+      "input": {
+        "triangles": 2972,
+        "vertices": 8916,
+        "groups": 8,
+        "bytes": 285312
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 70144114
+    },
+    {
+      "kind": "cut-end",
+      "cut": 8,
+      "ms": 1473.300000011921,
+      "output": {
+        "triangles": 4046,
+        "vertices": 12138,
+        "groups": 9,
+        "bytes": 388416
+      },
+      "heap": 51733354
+    },
+    {
+      "kind": "cut-start",
+      "cut": 9,
+      "input": {
+        "triangles": 4046,
+        "vertices": 12138,
+        "groups": 9,
+        "bytes": 388416
+      },
+      "cutter": {
+        "triangles": 60,
+        "vertices": 180,
+        "groups": 2,
+        "bytes": 6120
+      },
+      "heap": 51822574
+    },
+    {
+      "kind": "cut-end",
+      "cut": 9,
+      "ms": 121.30000001192093,
+      "output": {
+        "triangles": 4138,
+        "vertices": 12414,
+        "groups": 10,
+        "bytes": 397248
+      },
+      "heap": 58926594
+    },
+    {
+      "kind": "cut-start",
+      "cut": 10,
+      "input": {
+        "triangles": 4138,
+        "vertices": 12414,
+        "groups": 10,
+        "bytes": 397248
+      },
+      "cutter": {
+        "triangles": 116,
+        "vertices": 348,
+        "groups": 2,
+        "bytes": 11832
+      },
+      "heap": 59025382
+    },
+    {
+      "kind": "cut-end",
+      "cut": 10,
+      "ms": 199.7999999821186,
+      "output": {
+        "triangles": 4650,
+        "vertices": 13950,
+        "groups": 11,
+        "bytes": 446400
+      },
+      "heap": 69234518
+    },
+    {
+      "kind": "cut-start",
+      "cut": 11,
+      "input": {
+        "triangles": 4650,
+        "vertices": 13950,
+        "groups": 11,
+        "bytes": 446400
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 69327310
+    },
+    {
+      "kind": "cut-end",
+      "cut": 11,
+      "ms": 175.40000000596046,
+      "output": {
+        "triangles": 5034,
+        "vertices": 15102,
+        "groups": 12,
+        "bytes": 483264
+      },
+      "heap": 79016822
+    },
+    {
+      "kind": "cut-start",
+      "cut": 12,
+      "input": {
+        "triangles": 5034,
+        "vertices": 15102,
+        "groups": 12,
+        "bytes": 483264
+      },
+      "cutter": {
+        "triangles": 76,
+        "vertices": 228,
+        "groups": 2,
+        "bytes": 7752
+      },
+      "heap": 79108122
+    },
+    {
+      "kind": "cut-end",
+      "cut": 12,
+      "ms": 123.7999999821186,
+      "output": {
+        "triangles": 5284,
+        "vertices": 15852,
+        "groups": 13,
+        "bytes": 507264
+      },
+      "heap": 53432550
+    },
+    {
+      "kind": "cut-start",
+      "cut": 13,
+      "input": {
+        "triangles": 5284,
+        "vertices": 15852,
+        "groups": 13,
+        "bytes": 507264
+      },
+      "cutter": {
+        "triangles": 68,
+        "vertices": 204,
+        "groups": 2,
+        "bytes": 6936
+      },
+      "heap": 53522506
+    },
+    {
+      "kind": "cut-end",
+      "cut": 13,
+      "ms": 331.40000000596046,
+      "output": {
+        "triangles": 5770,
+        "vertices": 17310,
+        "groups": 14,
+        "bytes": 553920
+      },
+      "heap": 66787614
+    },
+    {
+      "kind": "cut-start",
+      "cut": 14,
+      "input": {
+        "triangles": 5770,
+        "vertices": 17310,
+        "groups": 14,
+        "bytes": 553920
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 66880330
+    },
+    {
+      "kind": "cut-end",
+      "cut": 14,
+      "ms": 188.5,
+      "output": {
+        "triangles": 6126,
+        "vertices": 18378,
+        "groups": 15,
+        "bytes": 588096
+      },
+      "heap": 78007798
+    },
+    {
+      "kind": "cut-start",
+      "cut": 15,
+      "input": {
+        "triangles": 6126,
+        "vertices": 18378,
+        "groups": 15,
+        "bytes": 588096
+      },
+      "cutter": {
+        "triangles": 180,
+        "vertices": 540,
+        "groups": 2,
+        "bytes": 18360
+      },
+      "heap": 78116690
+    },
+    {
+      "kind": "cut-end",
+      "cut": 15,
+      "ms": 144.80000001192093,
+      "output": {
+        "triangles": 6915,
+        "vertices": 20745,
+        "groups": 16,
+        "bytes": 663840
+      },
+      "heap": 55528314
+    },
+    {
+      "kind": "complete",
+      "ms": 9736,
+      "heap": 55535157
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x63400172800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    }
+  ]
+}

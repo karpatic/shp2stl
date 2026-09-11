@@ -1,0 +1,31 @@
+{"kind":"stage","name":"truncateGeoJSON","ms":2.800000011920929}
+{"kind":"stage","name":"getConvexHull","ms":1692.699999988079}
+{"kind":"stage","name":"getConvexHullLines","ms":1695.2000000178814}
+{"kind":"stage","name":"simplifyGeoJSON","ms":133.09999999403954}
+{"kind":"stage","name":"simplifyGeoJSON","ms":218.40000000596046}
+{"kind":"stage","name":"getConvexHull","ms":12.199999988079071}
+{"kind":"stage","name":"getOverlappingLines","ms":30.19999998807907}
+{"kind":"stage","name":"getInteriorLines","ms":14.900000005960464}
+{"kind":"stage","name":"reprojectGeoJSON","ms":16.30000001192093}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.5}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.4000000059604645}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.20000001788139343}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"getMinMaxCoordinates","ms":0.800000011920929}
+{"kind":"warning","text":"[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."}
+{"kind":"warning","text":"[.WebGL-0x91c01788c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"stage","name":"scaleGeoJSON","ms":1.9000000059604645}
+{"kind":"stage","name":"createThreeDGeometry","ms":35.400000005960464}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.5}
+{"kind":"stage","name":"createThreeDGeometryLines","ms":67.40000000596046}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"createThreeDGeometryLines","ms":32.29999998211861}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"heightRegions","ms":116.80000001192093}
+{"kind":"stage","name":"layerGeometry","ms":925.3000000119209}
+{"kind":"stage","name":"layerGeometry","ms":194}
+{"kind":"complete","ms":5855.5999999940395,"heap":28002253}
+{"kind":"warning","text":"[.WebGL-0x91c01788c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0x91c01788c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0x91c01788c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"}
+{"kind":"ui-check","idleFrames":0,"before":{"frames":1,"angle":0,"distance":200},"after":{"frames":43,"angle":-0.7065510407400735,"distance":190.00000000000009}}

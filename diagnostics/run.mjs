@@ -60,7 +60,7 @@ const server = createServer((req, res) => {
     if (path.endsWith('/new/new.js')) {
       let src = data.toString().replace('export async function initialize()', instrumentation + '\nexport async function initialize()');
       src = src.replace('// Display the GeoJSON', `window.diagData('preprocess', {geojson,hull,hullLines,lines,interiorLines});\n // Display the GeoJSON`);
-      src = src.replace('scene.add(currentResult);', `scene.add(currentResult); window.diagScene=scene; window.diagResult=currentResult; window.diag({kind:'complete', ms:performance.now()-window.diagStart});`);
+      src = src.replace('scene.add(currentResult);', `scene.add(currentResult); window.diagScene=scene; window.diagResult=currentResult; if(typeof exportModel!=='undefined' && exportModel.geometry)window.diagData('planar-validation',exportModel.geometry.userData.validation); window.diag({kind:'complete', ms:performance.now()-window.diagStart,heap:performance.memory?.usedJSHeapSize});`);
       data = src;
     } else if (path.endsWith('/three/three-bvh-csg.js') && process.env.FRAGMENTS) {
       data = data.toString().replace('const tri = triangles[ i ];', `const tri = triangles[ i ];
@@ -77,6 +77,9 @@ const server = createServer((req, res) => {
         }`);
     } else if (path.endsWith('/new/leaflet.js')) {
       data = data.toString() + '\n' + wrappers(['truncateGeoJSON','getConvexHull','getConvexHullLines','simplifyGeoJSON','getOverlappingLines','getInteriorLines','reprojectGeoJSON','scaleGeoJSON','getMinMaxCoordinates']);
+    } else if (path.endsWith('/new/planar.js')) {
+      data = data.toString() + '\n' + wrappers(['heightRegions','layerGeometry']);
+      if (process.env.FAIL_PLANAR) data += `\n{const original=layerGeometry;layerGeometry=(...args)=>{throw Error('Planar diagnostic failure');};}`;
     } else if (path.endsWith('/new/three.js')) {
       data = data.toString() + '\n' + wrappers(['createThreeDGeometry','createThreeDGeometryLines']);
       data += `\n{
@@ -94,7 +97,7 @@ const server = createServer((req, res) => {
   } catch { res.writeHead(404); res.end(); }
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
-const url = `http://127.0.0.1:${server.address().port}/app.html`;
+const url = `http://127.0.0.1:${server.address().port}/app.html${process.env.CSG_FALLBACK?'?geometry=csg':''}`;
 const launch = await chromium.launchServer({executablePath:process.env.CHROME || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--enable-precise-memory-info','--js-flags=--max-old-space-size=1024']});
 const browser = await chromium.connect(launch.wsEndpoint());
 const context = await browser.newContext({viewport:{width:1440,height:960},acceptDownloads:true});
@@ -118,7 +121,7 @@ page.on('console', msg => {
   if (msg.type()==='warning') log({kind:'warning',text:msg.text().slice(0,240)});
   if (msg.type() === 'error') {
     log({kind:'error',text:msg.text()});
-    if(process.env.FAIL_CUT && /CSG operation failed/.test(msg.text()))status='expected-failure';
+    if((process.env.FAIL_CUT && /CSG operation failed/.test(msg.text())) || (process.env.FAIL_PLANAR && /Planar diagnostic failure/.test(msg.text())))status='expected-failure';
   }
 });
 page.on('pageerror', e => log({kind:'error',text:e.message}));
@@ -212,6 +215,12 @@ try {
       if(variant==='optimized' && idleFrames!==0)throw Error('Stationary view kept rendering');
       log({kind:'ui-check',idleFrames,before,after});
       await page.screenshot({path:out+'/orbit.png'});
+      await page.evaluate(()=>{
+        window.diagControls.object.position.set(90,-120,-180);
+        window.diagControls.update();
+      });
+      await page.waitForTimeout(500);
+      await page.screenshot({path:out+'/underside.png'});
     }
   }
 } catch(e) {
@@ -221,7 +230,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js','three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

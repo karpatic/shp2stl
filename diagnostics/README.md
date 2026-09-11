@@ -2,6 +2,8 @@
 
 Author: Codex app agent · 2026-09-11.
 
+Current results are in [REPORT.md](REPORT.md). The original sections below describe the historical CSG investigation; the **Planar follow-up** section documents the new default workflow.
+
 Baseline: `919e9d656352be041a5d3118e325e088a137e760` (fresh `main`). No applicable on-disk `AGENTS.md` was present in this checkout or its ancestor directories. Carlos's supplied instructions governed the work. All source changes, worktrees and retained artifacts for this investigation are scoped to this repository; nothing was deployed or pushed.
 
 ## Setup and bounded runs
@@ -53,3 +55,42 @@ For experiments with different triangulation, `surface.mjs` samples both directi
 Each run writes `summary.json`, `events.jsonl`, `browser.png`, `scene.stl`, `preprocess.json`, and `result-geometry.json` under `results/<label>/`. Failures/limits retain only the artifacts actually reached. Large raw files and experimental output are kept locally and ignored by Git; the evidence report, selected logs, comparisons and screenshots are committed. Rerunning the commands regenerates the large files. `FRAGMENTS=1 CHECKPOINT=81` enables a bounded detailed trace/checkpoint for inspecting the pathological cut; it is excluded from final timing runs.
 
 See [REPORT.md](REPORT.md) for the measured results, discarded approaches and remaining costs. Serve the repo on `127.0.0.1:8765` and open [review.html](review.html) for DC/Baltimore presets using the frozen bytes.
+
+## Planar follow-up (September 11, 2026)
+
+Author: Codex app agent.
+
+Continuation from `f5be65e`. Start with [REPORT.md](REPORT.md); the previous exact-CSG report is preserved as [CSG_REPORT.md](CSG_REPORT.md). The original `compare.py` deliberately still requires byte equality and remains useful for the fallback.
+
+The smallest prototype reads the existing frozen full-reference preprocessing. No baseline preparation or CSG regeneration is needed when these local artifacts are present:
+
+```sh
+timeout 30s node --import ./diagnostics/register.mjs diagnostics/planar-prototype.mjs dc
+timeout 30s node --import ./diagnostics/register.mjs diagnostics/planar-prototype.mjs baltimore
+```
+
+For each dataset, use its retained reference (`baseline-dc-3` or `reference-baltimore-cpu`) and run the existing surface checker on the prototype. `REGIONS` enables targeted samples and the independent source-outline occupancy oracle; `SCENE=1` compares occupied intervals of the complete downloaded solids. For example:
+
+```sh
+REGIONS=diagnostics/results/planar-prototype-baltimore/regions.json timeout 55s node --import ./diagnostics/register.mjs diagnostics/surface.mjs diagnostics/results/reference-baltimore-cpu diagnostics/results/planar-prototype-baltimore
+SCENE=1 REGIONS=diagnostics/results/planar-prototype-baltimore/regions.json timeout 55s node --import ./diagnostics/register.mjs diagnostics/surface.mjs diagnostics/results/reference-baltimore-cpu diagnostics/results/planar-prototype-baltimore
+```
+
+Retain these JSON outputs as `surface.json` and `scene-surface.json` inside the corresponding prototype directory. Surface distances include the historical fragments and internal overlap faces; they must not be interpreted as strict union-surface equivalence. Raw discrepancies and discrepancies outside the explicit boundary band are reported separately. The independent source oracle uses winding of each original strip before any planar union, not the generated triangles.
+
+Actual browser runs and the lightweight evidence summary:
+
+```sh
+UI_CHECK=1 LIMIT_SECONDS=60 node diagnostics/run.mjs optimized dc planar-final-dc
+UI_CHECK=1 LIMIT_SECONDS=60 node diagnostics/run.mjs optimized baltimore planar-final-baltimore
+FAIL_PLANAR=1 LIMIT_SECONDS=30 node diagnostics/run.mjs optimized dc planar-failure
+CSG_FALLBACK=1 LIMIT_SECONDS=45 node diagnostics/run.mjs optimized dc planar-csg-fallback
+python3 diagnostics/compare.py diagnostics/results/baseline-dc-3 diagnostics/results/planar-csg-fallback
+python3 diagnostics/planar-evidence.py
+npm test
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+`planar-evidence.py` imports the existing mesh metrics, requires unchanged preprocessing, checks that the browser-exported scene exactly matches the validated prototype, verifies oriented base-surface identity between prototype and browser, and summarizes geometry/timing/occupancy results. `run.mjs` additionally records production validation and heap at completion. Its planar stage includes the unified export mesh and the separate preview base; displayed raised lines retain the existing objects. The final screenshots include an underside orbit with unchanged production lighting.
+
+Runtime dependencies are vendored, pinned and licensed in `three/vendor/manifest.json`; no added npm runtime package or CDN is required. The prototype's integer grid and cleanup tolerances are documented in REPORT.md. Invalid topology/cap/volume output is rejected; it never silently switches to CSG or enables a partial download.

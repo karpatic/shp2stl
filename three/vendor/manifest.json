@@ -18,5 +18,33 @@
     "url": "https://cdn.jsdelivr.net/npm/quickselect@3.0.0/LICENSE",
     "upstreamSHA256": "238ddb00e12a420a54e060afa19bdab4f70bf49e0e2a8ebb1a5e851f9ef447df",
     "localSHA256": "238ddb00e12a420a54e060afa19bdab4f70bf49e0e2a8ebb1a5e851f9ef447df"
+  },
+  "clipper/clipper.js": {
+    "url": "https://registry.npmjs.org/clipper-lib/-/clipper-lib-6.4.2.tgz",
+    "upstreamSHA256": "a650c6946682edc1a64016f6553eeb5c32ce45eb7ca0ad5d8221961af011d97c",
+    "localSHA256": "e158e2e9bc4b4119e60e6b9ab5f8d2e5c5094c8ea2ca0976f00ec2517b3c5017",
+    "bytes": 203792,
+    "license": "Boost Software License 1.0; bundled JSBN license",
+    "adaptation": "Node ESM global assignment uses globalThis instead of self; algorithm unchanged."
+  },
+  "libtess/libtess.js": {
+    "url": "https://registry.npmjs.org/libtess/-/libtess-1.2.2.tgz",
+    "upstreamSHA256": "da2fc1342a6f3c75a9e5c347ce2946461522655f27d9afe44b2873445e299667",
+    "localSHA256": "41f0bfc4c6bf540f66863246e600992c5c90a57bb0b11054c8ea628d39a8611e",
+    "bytes": 149892,
+    "license": "SGI Free Software License B 2.0",
+    "adaptation": "Append an ESM default export; algorithm unchanged."
+  },
+  "clipper/LICENSE": {
+    "url": "https://www.boost.org/LICENSE_1_0.txt",
+    "localSHA256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+  },
+  "clipper/JSBN-LICENSE": {
+    "url": "http://www-cs-students.stanford.edu/~tjw/jsbn/LICENSE",
+    "localSHA256": "e0e396530fd1624126e9a7e0df94811e4062e03baeccb07bc33c934b0fd93a85"
+  },
+  "libtess/LICENSE": {
+    "url": "https://registry.npmjs.org/libtess/-/libtess-1.2.2.tgz",
+    "localSHA256": "2eb98a7a44eb7d22867ddabf57ad1749aefdc8f13f781574dfdc255ff15f611d"
   }
 }
