@@ -49,15 +49,16 @@ def package(path):
         model=ET.fromstring(z.read('3D/3dmodel.model'))
     assert model.tag=='{'+CORE+'}model' and model.attrib['unit']=='millimeter'
     objects=model.findall('m:resources/m:object',ns)
-    assert [o.attrib['id'] for o in objects]==['1','2','3']
-    assert [o.attrib['name'] for o in objects]==['Base','Walls','Geographic model']
+    has_labels=any(o.attrib.get('name')=='Labels' for o in objects)
+    assert [o.attrib['id'] for o in objects]==(['1','2','4','3'] if has_labels else ['1','2','3'])
+    assert [o.attrib['name'] for o in objects]==(['Base','Walls','Labels','Geographic model'] if has_labels else ['Base','Walls','Geographic model'])
     assert all(o.attrib['type']=='model' for o in objects)
     build=model.findall('m:build/m:item',ns);assert len(build)==1 and build[0].attrib['objectid']=='3'
-    components=objects[2].findall('m:components/m:component',ns)
-    assert [c.attrib['objectid'] for c in components]==['1','2']
+    components=objects[-1].findall('m:components/m:component',ns)
+    assert [c.attrib['objectid'] for c in components]==(['1','2','4'] if has_labels else ['1','2'])
     for ref in components+build:assert list(map(float,ref.attrib['transform'].split()))==identity
     meshes={}
-    for obj in objects[:2]:
+    for obj in objects[:-1]:
         vertices=[tuple(float(v.attrib[k]) for k in ['x','y','z']) for v in obj.findall('m:mesh/m:vertices/m:vertex',ns)]
         ids=[tuple(int(t.attrib[k]) for k in ['v1','v2','v3']) for t in obj.findall('m:mesh/m:triangles/m:triangle',ns)]
         assert len(ids)>=4 and len(vertices)<2**31 and len(ids)<2**31
@@ -95,60 +96,61 @@ def section(ts,z):
         if winding>0:cells.append(cell)
     return unary_union(cells)
 
-report={}
-for city in sys.argv[1:] or ['dc','baltimore']:
-    root=D/f"{os.environ.get('RUN_PREFIX','dimensions')}-{city}";summary=json.load(open(root/'summary.json'));assert summary['status']=='complete'
-    assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha for p,sha in summary['sources'].items()),'Stale source hashes'
-    cases={}
-    for name in ['connections','disconnected','hull','base-2.5','wall-3.5','minimum-1.6','changed-disconnected','changed-hull','saved-hull']:
-        run=root/name;data=json.load(open(run/'regions.json'));r=data['regions'];levels=data['dimensions']['levels'];minimum=data['dimensions']['minConnectorWidth']
-        stl=list(stl_triangles((run/'scene.stl').read_bytes()));meshes=package(run/'scene.3mf')
-        stats={n:solid(ts) for n,ts in {'STL':stl,**meshes}.items()}
-        base,walls=meshes['Base'],meshes['Walls'];floor=cap(base,levels[2],True)
-        assert stats['Base']['bounds'][0][2]==0 and stats['Base']['bounds'][1][2]==levels[2]
-        assert stats['Walls']['bounds'][0][2]==levels[2] and stats['Walls']['bounds'][1][2]==levels[3]
-        assert abs(stats['STL']['signedVolume']-stats['Base']['signedVolume']-stats['Walls']['signedVolume'])<.01
-        surface=lambda ts:collections.Counter(tuple(sorted(map(tuple,t))) for t in ts)
-        assert surface(stl)==surface(np.array(json.load(open(run/'preview-position.json'))).reshape(-1,3,3))
-        budget=sum(polys(layer).length for layer in r['layers'])*2e-5
-        assert floor.symmetric_difference(polys(r['layers'][1])).area<budget
-        assert cap(walls,levels[2],False).symmetric_difference(cap(walls,levels[3],True)).area<budget,'Missing interface cap'
-        assert cap(walls,levels[2],False).difference(floor).area<budget,'Unsupported raised lines'
-        sections=[]
-        for i,layer in enumerate(r['layers']):
-            z=(levels[i]+levels[i+1])/2
-            a=section(stl,z);b=section(base if i<2 else walls,z);expected=polys(layer)
-            differences=[a.symmetric_difference(b).area,a.symmetric_difference(expected).area,b.symmetric_difference(expected).area]
-            assert max(differences)<budget,(city,name,i,differences,budget)
-            sections.append(differences)
-        assert cap(base,0,False).symmetric_difference(polys(r['layers'][0])).area<budget
-        assert cap(base,levels[1],False).symmetric_difference(polys(r['layers'][1]).difference(polys(r['layers'][0]))).area<budget
-        original=json.load(open(D/f'community-local-{city}'/'regions.json'))['regions']
-        assert polys(r['layers'][2]).symmetric_difference(polys(original['layers'][2])).area<1e-8
-        assert cap(walls,levels[3],True).symmetric_difference(polys(original['layers'][2])).area<budget
-        joins=[]
-        for link in r['connections']['links']:
-            q=link['quad'];neck=LineString(q[:2]).distance(LineString([q[3],q[2]]));assert neck>=minimum
-            footprint=polys(link['footprint']);assert footprint.difference(floor).area<budget
-            assert not unary_union([footprint]+[polys([r['land'][i]]) for i in [link['i'],link['j']]]).interiors
-            contacts=[]
-            for i,e in zip([link['i'],link['j']],link['engagement']):
-                patch=polys([e['patch']]);backing=polys([e['backing']]);land=polys([r['land'][i]])
-                assert patch.difference(land.intersection(footprint)).area<patch.length*2e-6
-                assert backing.difference(land).area<backing.length*2e-6
-                assert patch.difference(floor).area<patch.length*2e-5
-                ring=e['patch'][0];v=np.subtract(ring[1],ring[0]);n=e['inward']
-                width=abs(v[0]*n[1]-v[1]*n[0]);depth=LineString(ring[:2]).distance(LineString([ring[3],ring[2]]))
-                assert width>=e['requiredWidth']>=minimum and depth>=e['requiredPenetration']>0
-                contacts.append(dict(width=width,depth=depth))
-            joins.append(dict(neck=neck,contacts=contacts))
-        exactDefault=None
-        if name in ['connections','disconnected','hull']:
-            prior=D/f'island-pads-{city}'/name/'scene.stl'
-            exactDefault=prior.read_bytes()==(run/'scene.stl').read_bytes();assert exactDefault,'Default STL changed'
-            accepted=import_module('community-enclosure-check').check(run);assert not accepted['failures']
-        cases[name]=dict(levels=levels,minConnectorWidth=minimum,stats=stats,sectionDifferenceAreas=sections,joins=joins,defaultSTLByteIdentical=exactDefault)
-        print(city,name,'PASS',flush=True)
-    report[city]=dict(cases=cases,wallMs=summary['wallMs'],events=[e for e in summary['events'] if e['kind'] in ['complete','dimensions-rebuild','format-download','infeasible-minimum','invalid-dimension','saved-dimensions','ui-check']])
-out=D/os.environ.get('EVIDENCE_DIR','dimensions');out.mkdir(exist_ok=True)
-(out/('evidence-'+ '-'.join(report)+'.json')).write_text(json.dumps(dict(author='Codex app agent',date='2026-09-11',datasets=report),indent=2)+'\n')
+if __name__ == '__main__':
+    report={}
+    for city in sys.argv[1:] or ['dc','baltimore']:
+        root=D/f"{os.environ.get('RUN_PREFIX','dimensions')}-{city}";summary=json.load(open(root/'summary.json'));assert summary['status']=='complete'
+        assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha for p,sha in summary['sources'].items()),'Stale source hashes'
+        cases={}
+        for name in ['connections','disconnected','hull','base-2.5','wall-3.5','minimum-1.6','changed-disconnected','changed-hull','saved-hull']:
+            run=root/name;data=json.load(open(run/'regions.json'));r=data['regions'];levels=data['dimensions']['levels'];minimum=data['dimensions']['minConnectorWidth']
+            stl=list(stl_triangles((run/'scene.stl').read_bytes()));meshes=package(run/'scene.3mf')
+            stats={n:solid(ts) for n,ts in {'STL':stl,**meshes}.items()}
+            base,walls=meshes['Base'],meshes['Walls'];floor=cap(base,levels[2],True)
+            assert stats['Base']['bounds'][0][2]==0 and stats['Base']['bounds'][1][2]==levels[2]
+            assert stats['Walls']['bounds'][0][2]==levels[2] and stats['Walls']['bounds'][1][2]==levels[3]
+            assert abs(stats['STL']['signedVolume']-stats['Base']['signedVolume']-stats['Walls']['signedVolume'])<.01
+            surface=lambda ts:collections.Counter(tuple(sorted(map(tuple,t))) for t in ts)
+            assert surface(stl)==surface(np.array(json.load(open(run/'preview-position.json'))).reshape(-1,3,3))
+            budget=sum(polys(layer).length for layer in r['layers'])*2e-5
+            assert floor.symmetric_difference(polys(r['layers'][1])).area<budget
+            assert cap(walls,levels[2],False).symmetric_difference(cap(walls,levels[3],True)).area<budget,'Missing interface cap'
+            assert cap(walls,levels[2],False).difference(floor).area<budget,'Unsupported raised lines'
+            sections=[]
+            for i,layer in enumerate(r['layers']):
+                z=(levels[i]+levels[i+1])/2
+                a=section(stl,z);b=section(base if i<2 else walls,z);expected=polys(layer)
+                differences=[a.symmetric_difference(b).area,a.symmetric_difference(expected).area,b.symmetric_difference(expected).area]
+                assert max(differences)<budget,(city,name,i,differences,budget)
+                sections.append(differences)
+            assert cap(base,0,False).symmetric_difference(polys(r['layers'][0])).area<budget
+            assert cap(base,levels[1],False).symmetric_difference(polys(r['layers'][1]).difference(polys(r['layers'][0]))).area<budget
+            original=json.load(open(D/f'community-local-{city}'/'regions.json'))['regions']
+            assert polys(r['layers'][2]).symmetric_difference(polys(original['layers'][2])).area<1e-8
+            assert cap(walls,levels[3],True).symmetric_difference(polys(original['layers'][2])).area<budget
+            joins=[]
+            for link in r['connections']['links']:
+                q=link['quad'];neck=LineString(q[:2]).distance(LineString([q[3],q[2]]));assert neck>=minimum
+                footprint=polys(link['footprint']);assert footprint.difference(floor).area<budget
+                assert not unary_union([footprint]+[polys([r['land'][i]]) for i in [link['i'],link['j']]]).interiors
+                contacts=[]
+                for i,e in zip([link['i'],link['j']],link['engagement']):
+                    patch=polys([e['patch']]);backing=polys([e['backing']]);land=polys([r['land'][i]])
+                    assert patch.difference(land.intersection(footprint)).area<patch.length*2e-6
+                    assert backing.difference(land).area<backing.length*2e-6
+                    assert patch.difference(floor).area<patch.length*2e-5
+                    ring=e['patch'][0];v=np.subtract(ring[1],ring[0]);n=e['inward']
+                    width=abs(v[0]*n[1]-v[1]*n[0]);depth=LineString(ring[:2]).distance(LineString([ring[3],ring[2]]))
+                    assert width>=e['requiredWidth']>=minimum and depth>=e['requiredPenetration']>0
+                    contacts.append(dict(width=width,depth=depth))
+                joins.append(dict(neck=neck,contacts=contacts))
+            exactDefault=None
+            if name in ['connections','disconnected','hull']:
+                prior=D/f'island-pads-{city}'/name/'scene.stl'
+                exactDefault=prior.read_bytes()==(run/'scene.stl').read_bytes();assert exactDefault,'Default STL changed'
+                accepted=import_module('community-enclosure-check').check(run);assert not accepted['failures']
+            cases[name]=dict(levels=levels,minConnectorWidth=minimum,stats=stats,sectionDifferenceAreas=sections,joins=joins,defaultSTLByteIdentical=exactDefault)
+            print(city,name,'PASS',flush=True)
+        report[city]=dict(cases=cases,wallMs=summary['wallMs'],events=[e for e in summary['events'] if e['kind'] in ['complete','dimensions-rebuild','format-download','infeasible-minimum','invalid-dimension','saved-dimensions','ui-check']])
+    out=D/os.environ.get('EVIDENCE_DIR','dimensions');out.mkdir(exist_ok=True)
+    (out/('evidence-'+ '-'.join(report)+'.json')).write_text(json.dumps(dict(author='Codex app agent',date='2026-09-11',datasets=report),indent=2)+'\n')

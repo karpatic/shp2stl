@@ -22,10 +22,10 @@ function meshXML(geometry, id, name) {
   return `<object id="${id}" type="model" name="${name}"><mesh><vertices>${vertices.join('')}</vertices><triangles>${triangles.join('')}</triangles></mesh></object>`;
 }
 
-export function package3MF({base, walls}) {
+export function package3MF({base, walls, labels}) {
   const model = `${declaration}<model unit="millimeter" xml:lang="en-US" xmlns="${core}">
-<resources>${meshXML(base, 1, 'Base')}${meshXML(walls, 2, 'Walls')}
-<object id="3" type="model" name="Geographic model"><components><component objectid="1" transform="${identity}"/><component objectid="2" transform="${identity}"/></components></object>
+<resources>${meshXML(base, 1, 'Base')}${meshXML(walls, 2, 'Walls')}${labels ? meshXML(labels, 4, 'Labels') : ''}
+<object id="3" type="model" name="Geographic model"><components><component objectid="1" transform="${identity}"/><component objectid="2" transform="${identity}"/>${labels ? `<component objectid="4" transform="${identity}"/>` : ''}</components></object>
 </resources><build><item objectid="3" transform="${identity}"/></build></model>`;
   return zipSync({
     '[Content_Types].xml': strToU8(`${declaration}<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/></Types>`),

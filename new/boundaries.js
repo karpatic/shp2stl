@@ -52,9 +52,9 @@ export function nodePolygons(input) {
   return result;
 }
 
-export function simplifyTopology(topology, quantile, width, bbox) {
+export function simplifyTopology(topology, quantile, width, bbox, mapSize = 200) {
   const co=Math.cos((bbox[1]+bbox[3])*Math.PI/360);
-  const modelScale=200/Math.max((bbox[2]-bbox[0])*co,bbox[3]-bbox[1]);
+  const modelScale=mapSize/Math.max((bbox[2]-bbox[0])*co,bbox[3]-bbox[1]);
   const limit=width/8, weight=topojson.quantile(topology,quantile);
   const distance=(p,a,b)=>{
     const x=(p[0]-a[0])*co,y=p[1]-a[1],dx=(b[0]-a[0])*co,dy=b[1]-a[1];
@@ -88,7 +88,7 @@ export function communityBoundaries(source, options) {
     return kept.length?turf.multiPolygon(kept,{...f.properties}):null;
   }).filter(Boolean));
   let topology=topojson.presimplify(topojson.topology({collection:nodePolygons(clipped)}));
-  topology=simplifyTopology(topology,Math.max(options.simplifyBy,options.simplifyHullBy ?? options.simplifyBy),options.width,turf.bbox(clipped));
+  topology=simplifyTopology(topology,Math.max(options.simplifyBy,options.simplifyHullBy ?? options.simplifyBy),options.width,turf.bbox(clipped),options.mapSize ?? 200);
   const geojson=topojson.feature(topology,topology.objects.collection);
   const hull=getConvexHull(geojson);
   const hullLines=turf.featureCollection(hull.features[0].geometry.coordinates.map(p=>turf.lineString(p[0],{boundaryRole:'exterior'})));

@@ -2,6 +2,8 @@
 
 Author: Codex app agent · 2026-09-11.
 
+Current size, hole, lettering, local-import and small-converter results: [CUSTOMIZATION.md](CUSTOMIZATION.md). Cache/preset timings: [CACHING.md](CACHING.md).
+
 Current community-enclosure results are in [COMMUNITY_TOPOLOGY.md](COMMUNITY_TOPOLOGY.md); earlier performance results are in [REPORT.md](REPORT.md). The original sections below describe the historical CSG investigation; the **Planar follow-up** section documents the new default workflow.
 
 ## 3MF and independent dimensions

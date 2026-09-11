@@ -57,6 +57,10 @@ function createScene(elementId) {
   // Preserve the original initial render; request another when geometry is ready.
   render();
 
+  new ResizeObserver(() => {
+    const width=container.clientWidth,height=container.clientHeight;
+    if(width>0&&height>0){camera.aspect=width/height;camera.updateProjectionMatrix();renderer.setSize(width,height);requestRender();}
+  }).observe(container);
   return { scene, camera, renderer, controls, requestRender };
 }
 

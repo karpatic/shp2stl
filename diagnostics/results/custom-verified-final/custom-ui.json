@@ -1,0 +1,33 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "dc",
+  "hole": {
+    "x": 1061.601524148124,
+    "y": 719.180186074386,
+    "edit": {
+      "kind": "hole",
+      "diameter": 3,
+      "x": -0.025,
+      "y": -0.325
+    }
+  },
+  "label": {
+    "x": 1171.9923792593793,
+    "y": 388.0076207406207,
+    "edit": {
+      "kind": "label",
+      "text": "BOA",
+      "size": 2,
+      "x": 0.125,
+      "y": 0.125
+    }
+  },
+  "counts": {
+    "validateSolid": 4,
+    "heightValidation": 4,
+    "heightCompute": 1,
+    "exportReady": 1,
+    "painted": 1
+  }
+}

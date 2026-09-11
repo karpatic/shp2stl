@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prepare:baseline": "node diagnostics/prepare-baseline.mjs",
-    "test": "node --import ./diagnostics/register.mjs diagnostics/check.mjs && node --import ./diagnostics/register.mjs diagnostics/planar-check.mjs && node --import ./diagnostics/register.mjs diagnostics/island-check.mjs && node diagnostics/hull-check.mjs && node diagnostics/interior-ring-check.mjs && node diagnostics/community-boundaries-check.mjs && node diagnostics/cache-check.mjs",
+    "test": "node --import ./diagnostics/register.mjs diagnostics/check.mjs && node --import ./diagnostics/register.mjs diagnostics/planar-check.mjs && node --import ./diagnostics/register.mjs diagnostics/island-check.mjs && node diagnostics/hull-check.mjs && node diagnostics/interior-ring-check.mjs && node diagnostics/community-boundaries-check.mjs && node diagnostics/cache-check.mjs && node --import ./diagnostics/register.mjs diagnostics/custom-check.mjs && node diagnostics/formats-check.mjs",
     "benchmark": "node diagnostics/run.mjs"
   },
   "devDependencies": {

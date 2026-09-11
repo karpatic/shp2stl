@@ -62,5 +62,19 @@
     "bytes": 1069,
     "license": "MIT",
     "adaptation": "None"
+  },
+  "helvetiker/regular.typeface.json": {
+    "url": "https://raw.githubusercontent.com/mrdoob/three.js/r176/examples/fonts/helvetiker_regular.typeface.json",
+    "localSHA256": "d5c5467690f74061179a292af83bd85c4c551e0f106b2af99714f11184c96981",
+    "bytes": 63182,
+    "license": "MgOpen",
+    "adaptation": "None"
+  },
+  "helvetiker/LICENSE": {
+    "url": "https://raw.githubusercontent.com/mrdoob/three.js/r176/examples/fonts/LICENSE",
+    "localSHA256": "35e8279356d7890871c4fce804d157e3f21456a7311ef2caab5cb4705c71b6bd",
+    "bytes": 2006,
+    "license": "MgOpen",
+    "adaptation": "None"
   }
 }

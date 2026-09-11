@@ -158,9 +158,18 @@
             #config-panel { top: 10px; left: 10px; width: calc(100% - 20px); }
             #download-btn { bottom: 12px; right: 12px; }
         }
+        #map.local-drawing .leaflet-pane, #map.local-drawing .leaflet-control-container {visibility:hidden}
+        #local-note {position:absolute;left:15px;bottom:20px;z-index:1100;background:white;padding:15px;max-width:35%;font:14px system-ui}
         #config-panel .config-body { max-height: calc(100vh - 170px); overflow-y: auto; }
         #download-3mf-btn { position:absolute; bottom:70px; right:20px; z-index:1000; padding:10px 20px; border:0; border-radius:5px; background:#237d80; color:white; cursor:pointer; }
         #download-3mf-btn:disabled { opacity:.5; cursor:default; }
+        .container.drawing-source #map { display:none; }
+        .container.drawing-source #threejs { width:100%; height:100vh; flex:1; }
+        @media(max-width:900px){
+            #config-panel { position:fixed; top:10px; left:10px; width:calc(100% - 20px); max-width:none; }
+            #config-panel .config-body { max-height:calc(100dvh - 200px); }
+            #local-note { max-width:calc(100% - 150px); left:10px; bottom:10px; padding:8px; font-size:11px; }
+        }
         /* keep the existing download button styling from test.css */
     </style>
 </head>
@@ -177,7 +186,7 @@
 </script>
 <body>
     <div class="container">
-        <div id="map"></div>
+        <div id="map"></div><p id="local-note" hidden>Local Cartesian drawing. No geographic location or source ownership is inferred. The 3D model has a base and inward perimeter walls; source holes remain open.</p>
         <div id="threejs">
             <div id="config-panel">
                 <div class="header">
@@ -200,8 +209,8 @@
                             <input id="cfg-precision" type="number" min="1" step="1" value="100" />
                         </label>
                         <label>
-                            Legacy scale (unused; XY = 200 mm)
-                            <input id="cfg-scaleToThisSize" disabled type="number" min="1" step="1" value="180" />
+                            Map size (mm) · max XY extent
+                            <input id="cfg-mapSize" type="number" min="10" max="500" step="1" value="200" />
                         </label>
 
                         <label>
@@ -240,6 +249,9 @@
                         <button id="preset-baltimore" type="button">Baltimore</button>
                         <button id="refresh-source" type="button" title="Fetch the current URL again, bypassing the browser response cache. Reuse geometry only if the source content is identical.">Refresh source</button>
                     </div>
+                    <label style="margin-top:10px">Import local file<input id="import-file" type="file" accept=".geojson,.json,.zip,.svg"></label>
+                    <p id="import-status" style="font-size:11px">GeoJSON/JSON polygons; zipped 2D polygon shapefile with WGS84 .prj, or converter local-mm ZIP. 10 MB maximum. Files stay in this browser. DBF attributes are not imported.</p>
+                    <a href="converter.html" target="_blank" rel="noopener" style="font-size:12px">SVG → polygon converter</a>
                     <p style="font-size:11px;margin:6px 0">Sources are reused for this session. Refresh source checks for updated URL content.</p>
                     <label style="margin-top: 10px;" for="cfg-islandConnections">
                         Island connections
@@ -255,13 +267,23 @@
                         features too small for that contact need another mode.
                         Disconnected keeps islands separate; Hull base fills their convex hull.
                     </p>
-                    <p id="dimension-readback" style="font-size:12px;line-height:1.4">Base height applies to all faces, pads and hull backing. Grooves scale with the base. XY extent is 200 mm; import STL in mm.</p>
+                    <p id="dimension-readback" style="font-size:12px;line-height:1.4">Base height applies to all faces, pads and hull backing. Grooves scale with the base. Import STL in mm. Map size changes the geography; wall, hole and text widths stay physical millimeters.</p>
                     <div class="row">
                         <button id="create-btn" type="button">Create</button>
                         <div id="status" role="status" aria-live="polite">Not created yet</div>
                     </div>
 
-                    <details id="about-details" open>
+                    <fieldset style="margin:12px 0;border:1px solid #b9caca;border-radius:6px">
+                        <legend>Place on the 3D map</legend>
+                        <div class="grid"><label>Hole diameter (mm)<input id="hole-diameter" type="number" min="1" max="30" step=".5" value="3"></label><button id="hole-tool" type="button" aria-pressed="false">Hole</button>
+                        <label>Label text<input id="label-text" maxlength="24" value="DC"></label><label>Text size (mm)<input id="label-size" type="number" min="1" max="30" step=".5" value="3"></label></div>
+                        <div class="row"><button id="label-tool" type="button" aria-pressed="false">Label</button><button id="cancel-placement" type="button">Cancel</button><button id="undo-placement" type="button">Undo</button></div>
+                        <p id="placement-status" role="status" style="font-size:12px">Set dimensions first, then click an open face. Labels rise 0.8 mm above the base.</p>
+                        <select id="placement-list" aria-label="Placed holes and labels"></select>
+                        <div class="row"><button id="remove-placement" type="button" disabled>Remove selected</button><button id="edit-label" type="button" disabled>Apply text/size to selected</button></div>
+                    </fieldset>
+                    <p style="font-size:12px">Small maps can have tight features. Choose widths for your printer; placement checks do not establish physical strength. Text uses bundled Helvetiker outlines; size is the font em size.</p>
+                    <details id="about-details">
                         <summary>About / How to use</summary>
                         <div class="content">
                             <p>
@@ -272,7 +294,7 @@
                                 <li>Edit parameters (URL, simplification, heights and widths).</li>
                                 <li>Click <strong>Create</strong> to apply parameter edits. Island connections rebuild immediately; pending parameter edits apply together with the switch.</li>
                                 <li>Use mouse/touch in the 3D view: drag to orbit, scroll/pinch to zoom.</li>
-                                <li>Download STL as one unified solid, or 3MF with named Base and Walls parts aligned in one assembly for slicer assignments. No colors or materials are assigned by the file.</li>
+                                <li>Download STL as one unified solid, or 3MF with named Base, Walls and optional Labels parts aligned in one assembly for slicer assignments. No colors or materials are assigned by the file.</li>
                             </ul>
                         </div>
                     </details>
@@ -291,7 +313,8 @@
 
         import { initialize } from './new/new.js';
         import { dimensions } from './new/dimensions.js';
-        import { build, invalidate } from './new/pipeline.js';
+        import { build, invalidate, registerSource } from './new/pipeline.js';
+        import { setupPlacement } from './new/placement.js';
         import { SOURCE_PRESETS } from './new/presets.js';
 
         const STORAGE_KEY = 'shp2stl.appConfig.v1';
@@ -327,9 +350,10 @@
                     innerHeight: getNumber('cfg-innerHeight'),
                     innerWidth: getNumber('cfg-innerWidth'),
                     precision: getNumber('cfg-precision'),
-                    scaleToThisSize: getNumber('cfg-scaleToThisSize'),
+                    scaleToThisSize: 180,
                 },
                 shpstl: {
+                    mapSize: getNumber('cfg-mapSize'),
                     islandConnections: document.getElementById('cfg-islandConnections').value,
                     baseHeight: getNumber('cfg-baseHeight'),
                     wallHeight: getNumber('cfg-wallHeight'),
@@ -362,7 +386,7 @@
         }
 
         function saveConfig(config) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+            if(!config.shpstl.geoJsonUrl.startsWith('local:'))localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
         }
 
         function hydrateInputsFromConfig(config) {
@@ -376,6 +400,7 @@
             }
             if (shpstl) {
                 setString('cfg-islandConnections', ['connections','disconnected','hull'].includes(shpstl.islandConnections) ? shpstl.islandConnections : 'connections');
+                setNumber('cfg-mapSize', shpstl.mapSize ?? 200);
                 setNumber('cfg-baseHeight', shpstl.baseHeight ?? shpstl.depth);
                 setNumber('cfg-wallHeight', shpstl.wallHeight ?? shpstl.depth);
                 setNumber('cfg-minConnectorWidth', shpstl.minConnectorWidth ?? Math.max(1, 4 * (shpstl.width ?? .5)) * .6);
@@ -392,7 +417,7 @@
         const useCSG = new URLSearchParams(location.search).get('geometry') === 'csg';
         let request = 0;
         // Edits cancel publication by pending requests, even before Create.
-        document.querySelectorAll('#config-panel input').forEach(input => input.addEventListener('input', () => {
+        document.querySelectorAll('#config-panel input[id^=cfg-]').forEach(input => input.addEventListener('input', () => {
             request++; invalidate();
             setStatus('Parameters changed. Click Create to apply.');
         }));
@@ -413,6 +438,7 @@
                     if (!applied || id !== request) return;
                 }
                 if (id === request) setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
+                return id === request;
             } catch (err) {
                 if (id !== request) return;
                 console.error(err);
@@ -428,6 +454,13 @@
             applyInputs();
         });
 
+        document.getElementById('import-file').addEventListener('change',async event=>{
+            const file=event.target.files[0];if(!file)return;const importRequest=++request;invalidate();
+            const status=document.getElementById('import-status');
+            if(/\.svg$/i.test(file.name)){status.textContent='Open the SVG converter link above and choose this SVG there. The converter previews its supported polygon subset before export.';event.target.value='';return;}
+            try{const {readLocalFile}=await import('./new/file-formats.js');const json=await readLocalFile(file);if(importRequest!==request)return;const url=await registerSource(json);if(importRequest!==request)return;setString('cfg-geoJsonUrl',url);status.textContent=`Loaded ${file.name} locally. ${json.shp2stl?'Cartesian millimeters; no geographic projection.':'WGS84 polygon coordinates.'} Reimport after reloading this page.`;await applyInputs();}
+            catch(e){if(importRequest===request)status.textContent='Import failed: '+e.message+'. Click Create to restore the current source.';}event.target.value='';
+        });
         // Collapsible config panel (persisted).
         const configPanel = document.getElementById('config-panel');
         const toggleBtn = document.getElementById('toggle-config');
@@ -487,7 +520,21 @@
         if (queryUrl !== null) setString('cfg-geoJsonUrl', queryUrl);
         connectionsSelect.disabled = useCSG;
         if (useCSG) document.getElementById('island-help').textContent = 'Island connections are available in the standard planar model. Remove ?geometry=csg to use them.';
-        applyInputs();
+        setupPlacement(() => applyInputs());
+        const transfer=query.get('drawing');
+        if(transfer){
+            try{
+                if(!/^[a-f0-9-]{36}$/.test(transfer))throw Error('Invalid drawing transfer');
+                const raw=localStorage.getItem('shp2stl.transfer.'+transfer);localStorage.removeItem('shp2stl.transfer.'+transfer);
+                if(!raw||raw.length>2000000)throw Error('Drawing transfer missing or oversized; import the downloaded GeoJSON');
+                const envelope=JSON.parse(raw);if(envelope.version!==1||!Number.isFinite(envelope.created)||Date.now()-envelope.created>600000||envelope.created>Date.now()+1000)throw Error('Drawing transfer expired');
+                const {validateGeoJSON}=await import('./new/file-formats.js');const json=validateGeoJSON(envelope.json);if(!json.shp2stl)throw Error('Expected explicit local-mm drawing');
+                let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+                for(const f of json.features)for(const p of f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates)for(const r of p)for(const [x,y] of r){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}
+                setNumber('cfg-mapSize',Math.max(maxX-minX,maxY-minY));setString('cfg-geoJsonUrl',await registerSource(json));
+                if(await applyInputs()){localStorage.setItem('shp2stl.ack.'+transfer,'created');document.getElementById('import-status').textContent='Converter drawing received and validated locally. Save the GeoJSON or ZIP to keep the source.';}
+            }catch(e){setStatus(e.message);}
+        }else applyInputs();
     </script>
 </body>
 </html>

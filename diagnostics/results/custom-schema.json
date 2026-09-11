@@ -1,0 +1,39 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "engine": "4.1.0",
+  "sources": {
+    "spec.md": [
+      "https://raw.githubusercontent.com/3MFConsortium/spec_core/997b385e06f3181cf9aae0c578e0b45ccd48ccb2/3MF%20Core%20Specification.md",
+      "4db7a7a13e7f757c6afc1a9ad731b56d8d068b1a766025692ff757d0f7f16940"
+    ],
+    "xml.xsd": [
+      "https://www.w3.org/2001/xml.xsd",
+      "61960fb3131e38022caad5360e2f33a3382578ab3c80cd58bd74320ede61b20c"
+    ]
+  },
+  "schemaSHA256": "f362bc5db6b0b66f9603d7788f0b770fd09bb152eb18ad0085ef9eb65e3a9645",
+  "seconds": 1.9815596879925579,
+  "packages": [
+    {
+      "file": "diagnostics/results/custom-verified-final/height/scene.3mf",
+      "sha256": "a6cdaebed2085775e76600cfd6faf33eea7c233924061f9e700355727100f666",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/custom-verified-final/decorated/scene.3mf",
+      "sha256": "79d524582d78a585c1bcbd859c452fd9be3d24e7be06f3e0417932f514c30661",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/custom-baltimore-hull/size40/scene.3mf",
+      "sha256": "c86e063689364144c54bff9c7aa5f5e956348ae194f4dc4397ecc5e7a74dfe8c",
+      "valid": true
+    },
+    {
+      "file": "diagnostics/results/import-verified/handoff/scene.3mf",
+      "sha256": "18fe907be41d34e16a1eeb0b1f91bbf6ca0da9211631b4e8bae5bc4e1e03386c",
+      "valid": true
+    }
+  ]
+}

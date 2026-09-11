@@ -19,11 +19,11 @@ schemaText=re.search(r'```xml\n(<\?xml[^`]+?<xs:schema.*?</xs:schema>)',(cache/'
 # time. XMLSchema handles it without modifying or weakening the official XSD.
 schema=xmlschema.XMLSchema(str(cache/'core.xsd'),locations={'http://www.w3.org/XML/1998/namespace':str((cache/'xml.xsd').resolve())})
 start=time.monotonic();results=[]
-for city in ['dc','baltimore']:
- for p in sorted(Path('diagnostics/results/dimensions-'+city).glob('*/scene.3mf')):
-  with zipfile.ZipFile(p) as z:schema.validate(z.read('3D/3dmodel.model'))
-  results.append(dict(file=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),valid=True))
-assert len(results)==18
+paths=[Path(p) for p in sys.argv[1:]] if len(sys.argv)>1 else [p for city in ['dc','baltimore'] for p in sorted(Path('diagnostics/results/dimensions-'+city).glob('*/scene.3mf'))]
+for p in paths:
+ with zipfile.ZipFile(p) as z:schema.validate(z.read('3D/3dmodel.model'))
+ results.append(dict(file=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),valid=True))
+assert len(results)==len(paths) and results
 report=dict(author='Codex app agent',date='2026-09-11',engine=xmlschema.__version__,sources=sources,schemaSHA256=hashlib.sha256(schemaText.encode()).hexdigest(),seconds=time.monotonic()-start,packages=results)
-Path('diagnostics/results/dimensions/schema.json').write_text(json.dumps(report,indent=2)+'\n')
+Path('diagnostics/results/'+('custom-schema.json' if len(sys.argv)>1 else 'dimensions/schema.json')).write_text(json.dumps(report,indent=2)+'\n')
 print(f'PASS: {len(results)} downloaded packages against unmodified official Core 1.4 appendix XSD ({report["seconds"]:.3f} s)')

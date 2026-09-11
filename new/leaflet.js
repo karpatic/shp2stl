@@ -284,8 +284,7 @@ function getMinMaxCoordinates(geojson) {
 }
 
 // Normalize coordinates while preserving aspect ratio and centering the model
-function scaleGeoJSON(geojson, minMax) {
-  const finalSize = 200;
+function scaleGeoJSON(geojson, minMax, finalSize = 200) {
   // Find the bounds of the projected data
   const { minX, minY, maxX, maxY } = minMax;
   const width = maxX - minX;

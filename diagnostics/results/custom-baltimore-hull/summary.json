@@ -1,0 +1,474 @@
+{
+  "variant": "optimized",
+  "dataset": "baltimore",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson"
+    }
+  },
+  "sources": {
+    "app.html": "d9eee133c0f607750cd0b53d7db665ceac8bb1788d48ee107cc602d5952b4b0e",
+    "new/new.js": "c2c96d2e17feb64455da5650eadc25e2a8c6b9768fa30f06eb396c729068db19",
+    "new/leaflet.js": "7e7511d2ac4847d48533f5f9a2b50ddd06a327625652caf36b36b9aab5593f2a",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "f316eebea8711024a71a97bdec230d3eb111de2a843fd79f2c21914f61691f1b",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "446c38dba8934bd6eeda2fc1f35d5ec3fd382f8177a5c225148b04e6965f5662",
+    "new/islands.js": "5c75f710e1fb3d2f2fe7c877aa9604124e464d33d518e006bc6d2992f99ee761",
+    "new/dimensions.js": "8a72c2b774a976dcee97a106897889becd1361fbc9bf18abf32b40d0d881b2b6",
+    "new/3mf.js": "75a3f708bc4545b99748ae11f97ccbe8d2e5433a3dddf71c55a08c1293557b70",
+    "three/vendor/fflate/fflate.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8",
+    "new/cache.js": "5ac35864698bdaa2ad85f165ce297b5da768324c4e009df539feefb7f71c9e10",
+    "new/pipeline.js": "bee49af62a87d53f6382b991a2537484037bbbc0e1b499aecd833c52edb895b6",
+    "new/presets.js": "983c89be48225795f27037ee18f35ba6a3f2b40b288538a62c28238ca9fce430"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 75000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1584028,
+  "computePeakRSSKiB": 1372280,
+  "computeCpuSeconds": 26,
+  "processCpuSeconds": 44,
+  "wallMs": 29348,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "fetch",
+      "ms": 327.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 2495.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "nodePolygons",
+      "ms": 403.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyTopology",
+      "ms": 49.79999998211861
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 417.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 198
+    },
+    {
+      "kind": "stage",
+      "name": "communityBoundaries",
+      "ms": 5283.800000011921
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.399999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "geography",
+      "ms": 5317.5
+    },
+    {
+      "kind": "stage",
+      "name": "wallXY",
+      "ms": 647.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 182.7000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 711.4000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "wallTemplate",
+      "ms": 711.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "islandBase",
+      "ms": 2066.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 3113.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "regions",
+      "ms": 3114.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 221.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1168.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 146.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 665.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 1842.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 38.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 18.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 18.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 218.89999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 69.09999999403954
+    },
+    {
+      "kind": "complete",
+      "ms": 13261.90000000596,
+      "heap": 37405558
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 12369.299999982119
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x1a7c00145600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 12804.5
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 2260.199999988079
+    },
+    {
+      "kind": "stage",
+      "name": "nodePolygons",
+      "ms": 415.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyTopology",
+      "ms": 32.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 191
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 105.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "communityBoundaries",
+      "ms": 4397.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.6000000238418579
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.2999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "geography",
+      "ms": 4423.4000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "wallXY",
+      "ms": 179.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 42.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 220.59999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "wallTemplate",
+      "ms": 220.7999999821186
+    },
+    {
+      "kind": "error",
+      "text": "Error: No island pad with continuous broad engagement at minimum 1.2 mm; use Disconnected or Hull base\n    at islandBase (http://127.0.0.1:33341/new/islands.js:158:41)\n    at islandBase (http://127.0.0.1:33341/new/islands.js:170:28)\n    at heightRegions (http://127.0.0.1:33341/new/planar.js:44:23)\n    at heightRegions (http://127.0.0.1:33341/new/planar.js:408:28)\n    at http://127.0.0.1:33341/new/pipeline.js:126:124\n    at measure (http://127.0.0.1:33341/new/pipeline.js:27:79)\n    at http://127.0.0.1:33341/new/pipeline.js:126:62\n    at http://127.0.0.1:33341/new/cache.js:10:48"
+    },
+    {
+      "kind": "size40-minimum-rejected",
+      "minimum": 1.2
+    },
+    {
+      "kind": "stage",
+      "name": "islandBase",
+      "ms": 2.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 86.7000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "regions",
+      "ms": 86.7000000178814
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 69.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 408
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 16.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 75.5
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 486.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 10.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 53.5
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 5
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 652.0999999940395
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x1a7c00145600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 803.3000000119209
+    },
+    {
+      "kind": "size40-hull-recovery",
+      "width": 0.5,
+      "minimum": 1.2
+    }
+  ]
+}

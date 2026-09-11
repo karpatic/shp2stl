@@ -1,0 +1,93 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "dc",
+  "before": false,
+  "rows": [
+    {
+      "case": "cold",
+      "name": "cold",
+      "readyMs": 3438,
+      "paintedMs": 3652.300000011921,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "xyBoolean": 11,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "topologyValidation": 3,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "base-2.5",
+      "name": "create-btn",
+      "readyMs": 86.2999999821186,
+      "paintedMs": 163.5,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "wall-3.5",
+      "name": "create-btn",
+      "readyMs": 63.599999994039536,
+      "paintedMs": 130.40000000596046,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "height-return",
+      "name": "create-btn",
+      "readyMs": 50.19999998807907,
+      "paintedMs": 109.40000000596046,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "unchanged",
+      "name": "create-btn",
+      "readyMs": 21,
+      "paintedMs": 54,
+      "counts": {
+        "readyReuse": 1
+      },
+      "frames": 0
+    }
+  ]
+}

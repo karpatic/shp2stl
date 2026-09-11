@@ -1,12 +1,14 @@
 // Author: Codex app agent — 2026-09-11
 // One isolated Chromium run, frozen network inputs, external wall/RSS watchdog.
 import { chromium } from 'playwright-core';
-import { readFileSync, writeFileSync, appendFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { resolve, extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { checkDimensionsUI } from './dimensions-ui.mjs';
+import { checkImportUI } from './import-ui.mjs';
+import { checkCustomUI } from './custom-ui.mjs';
 import { checkCacheUI } from './cache-ui.mjs';
 
 const [variant = 'baseline', dataset = 'dc', label = `${variant}-${dataset}`] = process.argv.slice(2);
@@ -262,6 +264,8 @@ try {
       return {position:Array.from(g.attributes.position.array),normal:Array.from(g.attributes.normal.array),uv:Array.from(g.attributes.uv.array),index:g.index?Array.from(g.index.array):null,groups:g.groups,drawRange:g.drawRange};
     });
     writeFileSync(out+'/result-geometry.json',JSON.stringify(geometry));
+    if(process.env.IMPORT_CHECK) await checkImportUI(page,out,log);
+    if(process.env.CUSTOM_CHECK) await checkCustomUI(page,out,log,dataset);
     if(process.env.CACHE_CHECK) await checkCacheUI(page,out,log,dataset,!!process.env.SOURCE_ROOT);
     if(process.env.ISLAND_CHECK) {
       const select=page.locator('#cfg-islandConnections');
@@ -341,7 +345,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js','new/dimensions.js','new/3mf.js','three/vendor/fflate/fflate.js']),'three/three-bvh-csg.js',...(process.env.SOURCE_ROOT?[]:['new/cache.js','new/pipeline.js','new/presets.js'])].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js','new/dimensions.js','new/3mf.js','three/vendor/fflate/fflate.js']),'three/three-bvh-csg.js',...(process.env.SOURCE_ROOT?[]:[...readdirSync(resolve(root,'new')).filter(f=>f.endsWith('.js')).map(f=>'new/'+f),'converter.html','three/FontLoader.js','three/SVGLoader.js','three/vendor/helvetiker/regular.typeface.json'])].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

@@ -1,0 +1,4 @@
+// Author: Codex app agent, 2026-09-11. Downloaded parts, existing local server.
+import {chromium} from 'playwright-core';import {mkdirSync} from 'node:fs';import {resolve} from 'node:path';
+process.env.TMPDIR=resolve('.tmp');const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+try{const page=await browser.newPage({viewport:{width:1440,height:1050}});const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:8765/diagnostics/custom-review.html');await page.waitForFunction(()=>document.body.dataset.ready==='true');for(const name of ['aligned','exploded']){if(name==='exploded')await page.locator('#explode').check();await page.screenshot({path:'diagnostics/results/custom-verified-final/'+name+'.png'});}if(errors.length)throw Error(errors.join('\n'));}finally{await browser.close();}

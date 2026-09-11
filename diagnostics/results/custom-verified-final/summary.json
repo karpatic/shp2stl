@@ -1,0 +1,1413 @@
+{
+  "variant": "optimized",
+  "dataset": "dc",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
+    }
+  },
+  "sources": {
+    "app.html": "8caf827f77ab7cbdb24a928c1ebe521c6f289c89e9ed3f5f427cc8052d813a81",
+    "new/new.js": "c2c96d2e17feb64455da5650eadc25e2a8c6b9768fa30f06eb396c729068db19",
+    "new/leaflet.js": "7e7511d2ac4847d48533f5f9a2b50ddd06a327625652caf36b36b9aab5593f2a",
+    "new/three.js": "9baf3d5d2a34aa6b9c3e3d52a00ab5835cab9b480d14423b22383e07477a7f09",
+    "new/planar.js": "f316eebea8711024a71a97bdec230d3eb111de2a843fd79f2c21914f61691f1b",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "446c38dba8934bd6eeda2fc1f35d5ec3fd382f8177a5c225148b04e6965f5662",
+    "new/islands.js": "5c75f710e1fb3d2f2fe7c877aa9604124e464d33d518e006bc6d2992f99ee761",
+    "new/dimensions.js": "8a72c2b774a976dcee97a106897889becd1361fbc9bf18abf32b40d0d881b2b6",
+    "new/3mf.js": "75a3f708bc4545b99748ae11f97ccbe8d2e5433a3dddf71c55a08c1293557b70",
+    "three/vendor/fflate/fflate.js": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8",
+    "new/cache.js": "5ac35864698bdaa2ad85f165ce297b5da768324c4e009df539feefb7f71c9e10",
+    "new/converter-ui.js": "82cf08a0143ec554252e15950f903e439334b67a73a5359ae37e4e8750061712",
+    "new/customize.js": "622c58a790170bc0601a75d5b068dfad3060293e7dd00a2eba61b765fb43f0d0",
+    "new/edit-store.js": "153c5dec690e9661842b2fb6bfae2462c718c1e4b63cd3b741141956c46eaf0b",
+    "new/file-formats.js": "ff2b6a8a0f2e8d8c991e2e6f7d32095faec7aa750c641b12306032e68dfb937f",
+    "new/lettering.js": "0d374851ac19ce9c97d97b2e00a95701946ee2c53087ffb0817c9b0cd95d277a",
+    "new/local-drawing.js": "505593184e4922a545d8e6d587ac8b156754b20ae3a5bb8735ce71fff4a6865f",
+    "new/pipeline.js": "26d9cdf3476b826fd9163071459513413095485a7fb05659309a9d4ad05b4611",
+    "new/placement.js": "d35bcf792f0d603484b8654320c5e2ad2ea6cd63f327865875017e28023e9039",
+    "new/presets.js": "983c89be48225795f27037ee18f35ba6a3f2b40b288538a62c28238ca9fce430",
+    "new/svg-convert.js": "60eba83023ec8a5bec31bf5eb2d2fd1ab411cee8524ee14bcbbcdbb2561638dc",
+    "converter.html": "011fb9a31e1bfca340fabafc3e1a4e8d4d627ded1bab5f511db13e7d9eee6faf",
+    "three/FontLoader.js": "cf6d6ca53b326c7c97207e5d77efe21735bb1fb1c74c0fbae3d4dee655cded85",
+    "three/SVGLoader.js": "90aa8d9c60b4f93f2a482669f5761a530479049a5c42f4bcd32575a43d7a119e",
+    "three/vendor/helvetiker/regular.typeface.json": "d5c5467690f74061179a292af83bd85c4c551e0f106b2af99714f11184c96981"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 90000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1543512,
+  "computePeakRSSKiB": 1365188,
+  "computeCpuSeconds": 8,
+  "processCpuSeconds": 44,
+  "wallMs": 22427,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "fetch",
+      "ms": 189.89999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 511.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "nodePolygons",
+      "ms": 158.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyTopology",
+      "ms": 22
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 24.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 15.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "communityBoundaries",
+      "ms": 1375.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.10000002384185791
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "geography",
+      "ms": 1395.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "wallXY",
+      "ms": 251.59999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 28.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 186.5
+    },
+    {
+      "kind": "stage",
+      "name": "wallTemplate",
+      "ms": 186.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "islandBase",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 49.70000001788139
+    },
+    {
+      "kind": "stage",
+      "name": "regions",
+      "ms": 50.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 45.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 251.59999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 22.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 158.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 414.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 11.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 4
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 67.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 15.100000023841858
+    },
+    {
+      "kind": "complete",
+      "ms": 3465.2000000178814,
+      "heap": 64990129
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 2654
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xbfc0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 2911.7000000178814
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xbfc0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 342.5
+    },
+    {
+      "kind": "stage",
+      "name": "nodePolygons",
+      "ms": 124.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyTopology",
+      "ms": 17.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 4.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 5.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "communityBoundaries",
+      "ms": 1162.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 6.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 2.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.10000002384185791
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "geography",
+      "ms": 1183.800000011921
+    },
+    {
+      "kind": "stage",
+      "name": "wallXY",
+      "ms": 83
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 18.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 74.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "wallTemplate",
+      "ms": 74.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "islandBase",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 11.700000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "regions",
+      "ms": 12
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 13.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 121
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 8.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 40.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 162.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 20.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 3.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 1564.199999988079
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xbfc0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 1650.9000000059605
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0xbfc0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "kind": "stage",
+      "name": "customXY",
+      "ms": 15.799999982118607
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 28.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 192.90000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 13.700000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 100.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 9
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 53
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 347.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 24.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 455.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 547.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.2999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 24.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 42.5
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 109.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 27.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 48.20000001788139
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 130.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "customXY",
+      "ms": 25
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 33.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 689
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 41.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 406.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 23.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 260
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 7.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 58.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 13.399999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 55.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 11.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 64.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 1535.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 10
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 45.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 1692.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 1773.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "customXY",
+      "ms": 18.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 27.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 533.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 15.399999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 261
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 18.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 170.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 8
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 64
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 7.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 31.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 27.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 1089.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 43.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 1160.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 1265.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.200000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 36
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 58.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 135
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 39.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 61.70000001788139
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 160.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 19.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 45
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 105.10000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 15.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 39.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 85.10000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 30.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 54.80000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 132
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 339.09999999403954
+    },
+    {
+      "kind": "stage",
+      "name": "nodePolygons",
+      "ms": 143.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyTopology",
+      "ms": 23.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 8.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 11.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "communityBoundaries",
+      "ms": 1208.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 4.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 4.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.09999999403953552
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 2.5
+    },
+    {
+      "kind": "stage",
+      "name": "geography",
+      "ms": 1232.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "wallXY",
+      "ms": 86.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 6.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 48.29999998211861
+    },
+    {
+      "kind": "stage",
+      "name": "wallTemplate",
+      "ms": 48.39999997615814
+    },
+    {
+      "kind": "stage",
+      "name": "islandBase",
+      "ms": 0
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 5.299999982118607
+    },
+    {
+      "kind": "stage",
+      "name": "regions",
+      "ms": 5.399999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "customXY",
+      "ms": 56.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 21.099999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 693.3000000119209
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 24
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 340.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 23.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 269.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 8.5
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 82.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 6.899999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 38.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 4.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 19.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "template",
+      "ms": 1443.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 4.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.2999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.8999999761581421
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 25.5
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 2.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 2935
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 3009.9000000059605
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 19.400000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "svg",
+      "ms": 1.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 46.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 119.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 3
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.0999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 12.799999982118607
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 39.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 96.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 5.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 2.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 31.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 57.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 147.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 4.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.5
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "validateSolid",
+      "ms": 1
+    },
+    {
+      "kind": "stage",
+      "name": "heightCompute",
+      "ms": 23.200000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "exportReady",
+      "ms": 50.10000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "painted",
+      "ms": 111.2000000178814
+    },
+    {
+      "kind": "custom-ui",
+      "city": "dc",
+      "hole": {
+        "x": 1061.601524148124,
+        "y": 719.180186074386,
+        "edit": {
+          "kind": "hole",
+          "diameter": 3,
+          "x": -0.025,
+          "y": -0.325
+        }
+      },
+      "label": {
+        "x": 1171.9923792593793,
+        "y": 388.0076207406207,
+        "edit": {
+          "kind": "label",
+          "text": "BOA",
+          "size": 2,
+          "x": 0.125,
+          "y": 0.125
+        }
+      },
+      "counts": {
+        "validateSolid": 4,
+        "heightValidation": 4,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    }
+  ]
+}
