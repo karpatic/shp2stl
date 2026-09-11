@@ -1,0 +1,18 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "runs": {
+    "baltimore": {
+      "completeMs": 10138.40000000596,
+      "sourceHashesMatch": true,
+      "geometryIdenticalToOwnershipVerifiedSTL": true,
+      "peakRSSMiB": 1558.3203125
+    },
+    "dc": {
+      "completeMs": 6214.5999999940395,
+      "sourceHashesMatch": true,
+      "geometryIdenticalToOwnershipVerifiedSTL": true,
+      "peakRSSMiB": 1495.3359375
+    }
+  }
+}

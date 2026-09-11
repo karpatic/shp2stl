@@ -1,0 +1,705 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "datasets": {
+    "baltimore": {
+      "before": {
+        "triangles": 8446,
+        "bounds": [
+          [
+            -80.67410278320312,
+            -100.29573822021484,
+            0.0
+          ],
+          [
+            80.57550811767578,
+            100.218017578125,
+            12.0
+          ]
+        ],
+        "area": 92420.87802914536,
+        "signedVolume": 131827.60109791666,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 12669
+        },
+        "orientedSurfaceSHA256": "7cb90a654350bd60c95b0c200c56e6f10705a79d3c2d04e2fcfd78ad3dc64ba6"
+      },
+      "after": {
+        "triangles": 38578,
+        "bounds": [
+          [
+            -80.48553466796875,
+            -100.0,
+            0.0
+          ],
+          [
+            80.48553466796875,
+            99.96794128417969,
+            12.0
+          ]
+        ],
+        "area": 103064.48324830219,
+        "signedVolume": 133394.8818840332,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 57867
+        },
+        "orientedSurfaceSHA256": "95984fbc0beb9cef3dde1b46799204bdf598af48538bb4e6d54449ce8ec5f65d"
+      },
+      "componentBounds": [
+        [
+          [
+            28.232736587524414,
+            -87.5409927368164,
+            0.0
+          ],
+          [
+            35.868038177490234,
+            -80.37765502929688,
+            12.0
+          ]
+        ],
+        [
+          [
+            2.3986639976501465,
+            -81.806640625,
+            0.0
+          ],
+          [
+            55.389469146728516,
+            -37.84119415283203,
+            12.0
+          ]
+        ],
+        [
+          [
+            -80.48553466796875,
+            -53.88615036010742,
+            0.0
+          ],
+          [
+            80.48553466796875,
+            99.96794128417969,
+            12.0
+          ]
+        ],
+        [
+          [
+            36.44538116455078,
+            -100.0,
+            0.0
+          ],
+          [
+            78.35025024414062,
+            -75.53162384033203,
+            12.0
+          ]
+        ]
+      ],
+      "probes": [
+        {
+          "label": "seam 1",
+          "coordinate": [
+            -76.59812435,
+            39.31200034
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "seam 2",
+          "coordinate": [
+            -76.59974487,
+            39.31192238
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "seam 3",
+          "coordinate": [
+            -76.5876812,
+            39.29602104
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "seam 4",
+          "coordinate": [
+            -76.58772795,
+            39.29678385
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 1, 0.25",
+          "coordinate": [
+            -76.60792617400563,
+            39.30133943706839
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 1, 0.5",
+          "coordinate": [
+            -76.60455777575285,
+            39.301472234758094
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 1, 0.75",
+          "coordinate": [
+            -76.60118937750008,
+            39.301605032447796
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 2, 0.25",
+          "coordinate": [
+            -76.600183822389,
+            39.301643809834324
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 2, 0.5",
+          "coordinate": [
+            -76.6025466655307,
+            39.30154978953115
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 2, 0.75",
+          "coordinate": [
+            -76.60490950867239,
+            39.30145576922797
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 3, 0.25",
+          "coordinate": [
+            -76.60703281931607,
+            39.30049487348545
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 3, 0.5",
+          "coordinate": [
+            -76.60679328681806,
+            39.2996279980461
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 3, 0.75",
+          "coordinate": [
+            -76.60655375432003,
+            39.29876112260675
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 4, 0.25",
+          "coordinate": [
+            -76.60682818570416,
+            39.29787575994632
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 4, 0.5",
+          "coordinate": [
+            -76.6073421495863,
+            39.29785727272525
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 4, 0.75",
+          "coordinate": [
+            -76.60785611346844,
+            39.297838785504176
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 5, 0.25",
+          "coordinate": [
+            -76.60856793384835,
+            39.2978131788579
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 5, 0.5",
+          "coordinate": [
+            -76.6087657903461,
+            39.2978060594327
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 5, 0.75",
+          "coordinate": [
+            -76.60896364684385,
+            39.297798940007496
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 6, 0.25",
+          "coordinate": [
+            -76.6092335191096,
+            39.297789228975574
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 6, 0.5",
+          "coordinate": [
+            -76.60930553487759,
+            39.297786637368844
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 6, 0.75",
+          "coordinate": [
+            -76.6093775506456,
+            39.29778404576212
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 7, 0.25",
+          "coordinate": [
+            -76.6095120360871,
+            39.297779205827574
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 7, 0.5",
+          "coordinate": [
+            -76.6095745057606,
+            39.29777695749975
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 7, 0.75",
+          "coordinate": [
+            -76.6096369754341,
+            39.297774709171925
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 8, 0.25",
+          "coordinate": [
+            -76.6098284456379,
+            39.297767817829424
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 8, 0.5",
+          "coordinate": [
+            -76.6099574461682,
+            39.29776317481475
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 8, 0.75",
+          "coordinate": [
+            -76.61008644669849,
+            39.29775853180008
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 9, 0.25",
+          "coordinate": [
+            -76.61042120666384,
+            39.2977464816565
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 9, 0.5",
+          "coordinate": [
+            -76.61062696609889,
+            39.2977390745276
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 9, 0.75",
+          "coordinate": [
+            -76.61083272553395,
+            39.2977316673987
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 10, 0.25",
+          "coordinate": [
+            -76.6110384881949,
+            39.29772430621915
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 10, 0.5",
+          "coordinate": [
+            -76.6110384914208,
+            39.2977243521685
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 10, 0.75",
+          "coordinate": [
+            -76.6110384946467,
+            39.29772439811785
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 11, 0.25",
+          "coordinate": [
+            -76.61110251646906,
+            39.298594992895076
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 11, 0.5",
+          "coordinate": [
+            -76.61116653506551,
+            39.29946554172295
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "raw central rim 11, 0.75",
+          "coordinate": [
+            -76.61123055366195,
+            39.30033609055082
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "junction A",
+          "coordinate": [
+            -76.6112945722584,
+            39.3012066393787
+          ],
+          "heights": [
+            1.8,
+            12.0
+          ]
+        },
+        {
+          "label": "junction B",
+          "coordinate": [
+            -76.5978209792473,
+            39.3017378301375
+          ],
+          "heights": [
+            1.8,
+            12.0
+          ]
+        },
+        {
+          "label": "junction C",
+          "coordinate": [
+            -76.611038484969,
+            39.2977242602698
+          ],
+          "heights": [
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "label": "explicit source void floor",
+          "coordinate": [
+            -76.60897522,
+            39.29955008
+          ],
+          "heights": [
+            0.0,
+            6.0
+          ]
+        },
+        {
+          "label": "underside groove with floor above",
+          "coordinate": [
+            -76.56720635389196,
+            39.31354169297347
+          ],
+          "heights": [
+            1.8,
+            12.0
+          ]
+        }
+      ],
+      "layerDifferencesInAfterModelUnits": [
+        {
+          "height": "0\u20131.8",
+          "addedModelArea": 545.4822650101619,
+          "removedModelArea": 654.9445874226471
+        },
+        {
+          "height": "1.8\u20136",
+          "addedModelArea": 260.1251155019453,
+          "removedModelArea": 345.191269532801
+        },
+        {
+          "height": "6\u201312",
+          "addedModelArea": 860.6044838406511,
+          "removedModelArea": 567.684326103381
+        }
+      ],
+      "metersPerModelUnit": 97.16580409638786,
+      "completeMs": 10138.40000000596,
+      "uiCheck": {
+        "kind": "ui-check",
+        "idleFrames": 0,
+        "before": {
+          "frames": 1,
+          "angle": 0,
+          "distance": 200
+        },
+        "after": {
+          "frames": 34,
+          "angle": -0.7045555356097333,
+          "distance": 190
+        }
+      }
+    },
+    "dc": {
+      "before": {
+        "triangles": 4444,
+        "bounds": [
+          [
+            -80.41644287109375,
+            -100.59636688232422,
+            0.0
+          ],
+          [
+            80.59196472167969,
+            100.3541259765625,
+            12.0
+          ]
+        ],
+        "area": 46711.663536921464,
+        "signedVolume": 86223.42729843417,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 6666
+        },
+        "orientedSurfaceSHA256": "b9023afc1534606a5e52af778ee496a10a42ff5ec18915d0e7b4d92cf98ad0d3"
+      },
+      "after": {
+        "triangles": 8654,
+        "bounds": [
+          [
+            -80.23912048339844,
+            -100.0,
+            0.0
+          ],
+          [
+            80.23912048339844,
+            100.0,
+            12.0
+          ]
+        ],
+        "area": 46451.27493348098,
+        "signedVolume": 85348.79416733506,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 12981
+        },
+        "orientedSurfaceSHA256": "b219ee83a7f94aa64d807b2a8235c36a72b5c5a9be8d08254785a0642ffd5381"
+      },
+      "componentBounds": [
+        [
+          [
+            -80.23912048339844,
+            -100.0,
+            0.0
+          ],
+          [
+            80.23912048339844,
+            100.0,
+            12.0
+          ]
+        ]
+      ],
+      "probes": [
+        {
+          "label": "underside groove with floor above",
+          "coordinate": [
+            -76.95425355364459,
+            38.91133049593009
+          ],
+          "heights": [
+            1.8,
+            12.0
+          ]
+        }
+      ],
+      "layerDifferencesInAfterModelUnits": [
+        {
+          "height": "0\u20131.8",
+          "addedModelArea": 24.713812585121847,
+          "removedModelArea": 177.0863206204106
+        },
+        {
+          "height": "1.8\u20136",
+          "addedModelArea": 0.3419112623953786,
+          "removedModelArea": 147.38318492349381
+        },
+        {
+          "height": "6\u201312",
+          "addedModelArea": 174.37664360188032,
+          "removedModelArea": 171.5075190065513
+        }
+      ],
+      "metersPerModelUnit": 113.59886090952907,
+      "completeMs": 6214.5999999940395,
+      "uiCheck": {
+        "kind": "ui-check",
+        "idleFrames": 0,
+        "before": {
+          "frames": 1,
+          "angle": 0,
+          "distance": 200
+        },
+        "after": {
+          "frames": 41,
+          "angle": -0.7064485886213134,
+          "distance": 189.99999999999991
+        }
+      }
+    }
+  }
+}

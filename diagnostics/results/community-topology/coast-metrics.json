@@ -1,0 +1,28 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "baltimore": {
+    "rawVertices": 3627,
+    "simplifiedVertices": 1460,
+    "valid": true,
+    "componentsBefore": 4,
+    "componentsAfter": 4,
+    "maxBoundaryDisplacementModel": 0.06243898688515944,
+    "maxBoundaryDisplacementMeters": 6.066934367660333,
+    "symmetricDifferenceModelArea": 14.315331126172955,
+    "individualPolygonsValid": true,
+    "interComponentOverlapArea": 0.0
+  },
+  "dc": {
+    "rawVertices": 14465,
+    "simplifiedVertices": 279,
+    "valid": true,
+    "componentsBefore": 1,
+    "componentsAfter": 1,
+    "maxBoundaryDisplacementModel": 0.062473922998658976,
+    "maxBoundaryDisplacementMeters": 7.09696648919729,
+    "symmetricDifferenceModelArea": 9.590315612720772,
+    "individualPolygonsValid": true,
+    "interComponentOverlapArea": 0
+  }
+}

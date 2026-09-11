@@ -1,3 +1,4 @@
+import { communityBoundaries } from './boundaries.js';
 import * as THREE from "three";
 import {
   createLeafletMap,
@@ -22,7 +23,6 @@ import {
 } from "./three.js";
 import { Evaluator, SUBTRACTION } from "three-bvh-csg";
 import { heightRegions, layerGeometry } from "./planar.js";
-import planarBoolean from "./planar-boolean.js";
 
 async function stage(message) {
   const status = document.getElementById("status");
@@ -50,18 +50,24 @@ export async function initialize() {
   // Load the GeoJSON data
   let geojson = await (await fetch(window.shpstl.geoJsonUrl)).json();
   await stage("Preparing boundaries…");
-  truncateGeoJSON(geojson);
-  let hullLines = getConvexHullLines(geojson);
-  hullLines = await simplifyGeoJSON(hullLines, window.shpstl.simplifyHullBy);
-  geojson = await simplifyGeoJSON(geojson, window.shpstl.simplifyBy);
-  let hull = getConvexHull(geojson);
-  let lines = getOverlappingLines(geojson);
-  let interiorLines = getInteriorLines(lines, hull);
+  let hull, hullLines, lines, interiorLines, sourceExterior;
+  if (useCSG) {
+    // Keep the explicit historical comparison path unchanged.
+    truncateGeoJSON(geojson);
+    hullLines = await simplifyGeoJSON(getConvexHullLines(geojson), window.shpstl.simplifyHullBy);
+    geojson = await simplifyGeoJSON(geojson, window.shpstl.simplifyBy);
+    hull = getConvexHull(geojson);
+    lines = getOverlappingLines(geojson);
+    interiorLines = getInteriorLines(lines, hull);
+  } else {
+    ({ geojson, hull, hullLines, lines, interiorLines, sourceExterior } = communityBoundaries(geojson, window.shpstl));
+  }
+  window.shpstl.sourceTopology = !useCSG;
 
   // Display the GeoJSON data on the map
   let { map } = createLeafletMap();
   const { scene, requestRender } = createScene("threejs");
-  L.geoJSON(hullLines, {
+  const hullMapLayer = L.geoJSON(hullLines, {
     style: {
       color: "#ff0000",
       weight: 8,
@@ -70,7 +76,7 @@ export async function initialize() {
       fillOpacity: 0.2,
     },
   }).addTo(map);
-  L.geoJSON(interiorLines, {
+  const lineMapLayer = L.geoJSON(useCSG ? interiorLines : lines, {
     style: {
       color: "#004433",
       weight: 8,
@@ -90,7 +96,9 @@ export async function initialize() {
   reprojectGeoJSON(lines, center);
   reprojectGeoJSON(interiorLines, center);
 
-  const minMax = getMinMaxCoordinates(hull);
+  if (sourceExterior) reprojectGeoJSON(sourceExterior, center);
+  const minMax = getMinMaxCoordinates(sourceExterior || hull);
+  if (sourceExterior) scaleGeoJSON(sourceExterior, minMax);
 
   await stage("Building boundary shapes…");
   // Create the hull
@@ -103,18 +111,19 @@ export async function initialize() {
 
   // Create the hull lines
   scaleGeoJSON(hullLines, minMax);
-  const hullLinesGeometries = createThreeDGeometryLines(hullLines);
-  const hullLineMeshGroup = createMeshesFromGeometries(hullLinesGeometries);
-  hullLineMeshGroup.scale.set(1, 1, 2); // twice the depth
-  scene.add(hullLineMeshGroup);
+  if (useCSG) {
+    const hullLineMeshGroup = createMeshesFromGeometries(createThreeDGeometryLines(hullLines));
+    hullLineMeshGroup.scale.set(1, 1, 2);
+    scene.add(hullLineMeshGroup);
+  }
 
-  // Create the lines
   scaleGeoJSON(lines, minMax);
-  const lineGeometries = createThreeDGeometryLines(lines);
-  const lineMeshGroup = createMeshesFromGeometries(lineGeometries);
-  lineMeshGroup.position.z = window.shpstl.depth;
-  lineMeshGroup.updateMatrixWorld();
-  scene.add(lineMeshGroup);
+  if (useCSG) {
+    const lineMeshGroup = createMeshesFromGeometries(createThreeDGeometryLines(lines));
+    lineMeshGroup.position.z = window.shpstl.depth;
+    lineMeshGroup.updateMatrixWorld();
+    scene.add(lineMeshGroup);
+  }
 
   // Create the interior-lines
   scaleGeoJSON(interiorLines, minMax);
@@ -129,7 +138,7 @@ export async function initialize() {
   if (!useCSG) {
     await stage("Combining planar regions…");
     const regions = heightRegions(
-      { hull, hullLines, lines, interiorLines },
+      { hull, hullLines, lines, interiorLines, sourceExterior },
       window.shpstl,
     );
     const depth = Math.fround(window.shpstl.depth);
@@ -140,17 +149,31 @@ export async function initialize() {
       grooveHeight,
       depth,
       Math.fround(depth * 2),
-    ]);
-    const baseGeometry = layerGeometry(
-      [planarBoolean.difference(regions.H, regions.C), regions.H],
-      [0, grooveHeight, depth],
-    );
-    // Keep the existing translucent raised-line objects in the painted preview.
-    // Their overlaps are resolved in the single validated download mesh.
+    ], regions.caps);
+    // The map also paints the actual wall footprint, without a screen-width
+    // stroke that could visually seal a narrow water channel.
+    const factor = Math.max(minMax.maxX-minMax.minX,minMax.maxY-minMax.minY)/200;
+    const cx = (minMax.minX+minMax.maxX)/2, cy = (minMax.minY+minMax.maxY)/2;
+    const cos = Math.cos(center.lat*Math.PI/180);
+    const coordinates = regions.layers[2].map(p=>p.map(r=>r.map(([x,y])=>[
+      (x*factor+cx)/cos+center.lng,y*factor+cy+center.lat,
+    ])));
+    hullMapLayer.remove(); lineMapLayer.remove();
+    L.geoJSON({type:"MultiPolygon",coordinates},{stroke:false,fillColor:"#004433",fillOpacity:1}).addTo(map);
+    // Paint exactly the validated downloadable solid, including its real joins.
     currentResult.geometry.dispose();
-    currentResult.geometry = baseGeometry.toNonIndexed();
+    currentResult.geometry = completeGeometry.toNonIndexed();
     currentResult.geometry.computeVertexNormals();
-    baseGeometry.dispose();
+    const positions = currentResult.geometry.attributes.position;
+    const colors = new Float32Array(positions.count*3);
+    const wallColor = new THREE.Color(0x46959a), floorColor = new THREE.Color(0xdce5e5);
+    for (let i=0;i<positions.count;i+=3) {
+      const color = Math.max(positions.getZ(i),positions.getZ(i+1),positions.getZ(i+2))>depth ? wallColor : floorColor;
+      for (let j=0;j<3;j++) color.toArray(colors,(i+j)*3);
+    }
+    currentResult.geometry.setAttribute("color",new THREE.BufferAttribute(colors,3));
+    currentResult.material.setValues({color:0xffffff,vertexColors:true,transparent:false,opacity:1});
+    scene.add(new THREE.AmbientLight(0xffffff,.8));
     exportModel = new THREE.Mesh(completeGeometry);
     exportModel.updateMatrixWorld();
   } else {

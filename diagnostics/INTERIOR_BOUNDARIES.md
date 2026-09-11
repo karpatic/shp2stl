@@ -1,5 +1,9 @@
 Author: Codex app agent · 2026-09-11.
 
+**Superseded for the default application by [Community separation](COMMUNITY_TOPOLOGY.md).** The checks below established ring survival and mesh closure, not community enclosure or source ownership. Carlos rejected that result; the subsequent review confirmed open seams and processing-created pockets. The original record follows.
+
+Author: Codex app agent · 2026-09-11.
+
 # Interior-boundary preservation — local joint review
 
 Implemented from clean `main` at `33c57de`, within Carlos's approved general geometry scope. No push, public deployment, worktree, historical CSG rebuild, source-geography edits, city-specific production logic, coordinate exceptions or threshold changes.

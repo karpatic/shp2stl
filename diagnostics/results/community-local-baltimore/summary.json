@@ -1,0 +1,171 @@
+{
+  "variant": "optimized",
+  "dataset": "baltimore",
+  "status": "complete",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson"
+    }
+  },
+  "sources": {
+    "app.html": "32b6950738e29e5cc2211f0d51092cde6ee23e0d9da8f69bd125d225ba2c2831",
+    "new/new.js": "8544872766d447b639f5ff861c2de3592bd4ae4a3bfdb6302d868593f3757312",
+    "new/leaflet.js": "37293ff79c1ec13baf709be41a766776414d43385f4d8ef601df432a5d21c1c9",
+    "new/three.js": "d57da5b2df6a4d86dbbbea8af9939963c9357b9616c408c528f295bc4ba7336a",
+    "new/planar.js": "fbb9dba529f2e99bb74447262544fe774ca9c1e141957d91841937c20c56df2a",
+    "new/planar-boolean.js": "81651a219749c027464eca07c9cf8208bc107bd3b12d6fccb4e610d94c48257a",
+    "new/boundaries.js": "6f68f6e520ef73b631229bd009ae5dabd5d7edcf78e76257ac16a5bfdf66300c",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 90000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1595720,
+  "computePeakRSSKiB": 1404848,
+  "computeCpuSeconds": 21,
+  "processCpuSeconds": 90,
+  "wallMs": 36235,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 3114.0999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 390.30000001192093
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 163
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 2.899999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.9000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.100000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 2.5
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 2.4000000059604645
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x31cc01785800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 57.70000001788139
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.199999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.7999999821186066
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "heightRegions",
+      "ms": 990.3999999761581
+    },
+    {
+      "kind": "stage",
+      "name": "layerGeometry",
+      "ms": 1211.199999988079
+    },
+    {
+      "kind": "complete",
+      "ms": 10138.40000000596,
+      "heap": 92639740
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x31cc01785800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x31cc01785800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x31cc01785800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "kind": "ui-check",
+      "idleFrames": 0,
+      "before": {
+        "frames": 1,
+        "angle": 0,
+        "distance": 200
+      },
+      "after": {
+        "frames": 34,
+        "angle": -0.7045555356097333,
+        "distance": 190
+      }
+    }
+  ]
+}

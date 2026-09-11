@@ -59,7 +59,7 @@ const server = createServer((req, res) => {
     let data = readFileSync(path);
     if (path.endsWith('/new/new.js')) {
       let src = data.toString().replace('export async function initialize()', instrumentation + '\nexport async function initialize()');
-      src = src.replace('// Display the GeoJSON', `window.diagData('preprocess', {geojson,hull,hullLines,lines,interiorLines});\n // Display the GeoJSON`);
+      src = src.replace('// Display the GeoJSON', `window.diagData('preprocess', {geojson,hull,hullLines,lines,interiorLines,...(typeof sourceExterior!=='undefined'&&sourceExterior?{sourceExterior}:{})});\n // Display the GeoJSON`);
       src = src.replace('scene.add(currentResult);', `scene.add(currentResult); window.diagScene=scene; window.diagResult=currentResult; if(typeof exportModel!=='undefined' && exportModel.geometry)window.diagData('planar-validation',exportModel.geometry.userData.validation); window.diag({kind:'complete', ms:performance.now()-window.diagStart,heap:performance.memory?.usedJSHeapSize});`);
       data = src;
     } else if (path.endsWith('/three/three-bvh-csg.js') && process.env.FRAGMENTS) {
@@ -236,7 +236,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

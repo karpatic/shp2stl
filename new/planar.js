@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import libtess from "../three/vendor/libtess/libtess.js";
 import RBush from "../three/vendor/rbush.js";
-import pc from "./planar-boolean.js";
+import pc, { strokeLines, insetRegion, conditionExterior, FLOAT32_CONFORMITY } from "./planar-boolean.js";
 import { createLineShapes } from "./three.js";
 const union = (...polys) => (polys.length ? pc.union(...polys) : []);
 export function lineFootprints(lines, options) {
@@ -14,35 +14,65 @@ export function lineFootprints(lines, options) {
   ]);
 }
 export function heightRegions(
-  { hull, hullLines, lines, interiorLines },
+  { hull, hullLines, lines, interiorLines, sourceExterior },
   options,
 ) {
   // Deliberately retain the existing first-hull-only and hole-as-shape behavior.
-  const feature = hull.features[0].geometry;
+  const coastline = sourceExterior ? conditionExterior(sourceExterior.features[0].geometry.coordinates, options.width) : null;
+  const feature = coastline ? {type: "MultiPolygon", coordinates: coastline} : hull.features[0].geometry;
   const ring =
     feature.type === "MultiPolygon"
       ? feature.coordinates[0][0]
       : feature.coordinates[0];
   const H = union([ring]);
-  const C = union(...lineFootprints(interiorLines, options));
-  const B = union(...lineFootprints(hullLines, options));
+  const C = options.sourceTopology ? strokeLines(interiorLines, options.width) : union(...lineFootprints(interiorLines, options));
+  let B = options.sourceTopology ? strokeLines(hullLines, options.width) : union(...lineFootprints(hullLines, options));
   // Interior rims sit above the existing floor. Only exterior boundaries need
   // base support; extending interior rims downward would fill underside grooves.
   const exteriorLines = {
     ...hullLines,
     features: hullLines.features.filter(f => f.properties?.boundaryRole !== "interior"),
   };
-  const support = union(...lineFootprints(exteriorLines, options));
-  const L = union(...lineFootprints(lines, options));
+  let support = options.sourceTopology ? strokeLines(exteriorLines, options.width) : union(...lineFootprints(exteriorLines, options));
+  let L = options.sourceTopology ? strokeLines(lines, options.width) : union(...lineFootprints(lines, options));
+  let sourceCaps, sourceLayers;
+  if (sourceExterior) {
+    // A centered coastline stroke seals narrow water inlets into false pockets.
+    // Put the full nominal exterior wall width INSIDE the original land outline.
+    // Source holes stay in the arc network; they are not filled or reassigned.
+    const land = union(coastline);
+    const innerLand = insetRegion(land, options.width), stroke = L;
+    B = pc.difference(land, innerLand);
+    L = union(pc.intersection(stroke, land), B);
+    support = B;
+    const innerFloor = pc.intersection(innerLand, H);
+    const grooveRoof = pc.intersection(C, innerFloor);
+    const outsideLand = coastline.length>1 ? union(coastline.slice(1)) : [];
+    const outsideBand = outsideLand.length ? pc.difference(outsideLand, innerLand) : [];
+    const lowFloor = pc.difference(H, grooveRoof);
+    sourceLayers = [outsideBand.length ? union(lowFloor, outsideBand) : lowFloor,
+      outsideBand.length ? union(H, outsideBand) : H, L];
+    // Factor the height interfaces using the same sets. Re-subtracting full
+    // layers repeatedly sweeps thousands of identical coastline edges.
+    sourceCaps = [
+      null,
+      {up: [], down: grooveRoof},
+      {up: pc.difference(innerFloor, stroke), down: pc.difference(pc.intersection(stroke, innerLand), H)},
+      {up: L, down: []},
+    ];
+  } else if (options.sourceTopology) support = pc.intersection(support, L);
+  const layers = sourceLayers || [union(pc.difference(H, C), support), union(H, support), options.sourceTopology ? L : union(B, L)];
+  if (sourceCaps) sourceCaps[0] = {up: [], down: layers[0]};
   return {
     H,
     C,
     B,
     L,
-    layers: [union(pc.difference(H, C), support), union(H, support), union(B, L)],
+    layers,
+    caps: sourceCaps,
   };
 }
-export function layerGeometry(layers, levels) {
+export function layerGeometry(layers, levels, caps) {
   if (
     levels.length !== layers.length + 1 ||
     levels.some((v, i) => !Number.isFinite(v) || (i && v <= levels[i - 1]))
@@ -93,8 +123,10 @@ export function layerGeometry(layers, levels) {
   for (let i = 0; i <= layers.length; i++) {
     const below = layers[i - 1] ?? [],
       above = layers[i] ?? [];
-    cap(pc.difference(below, above), levels[i], true);
-    cap(pc.difference(above, below), levels[i], false);
+    // These are already normalized regions. At the outer height levels, an
+    // empty operand needs no sweep over thousands of shoreline segments.
+    cap(caps ? caps[i].up : !below.length ? [] : !above.length ? below : pc.difference(below, above), levels[i], true);
+    cap(caps ? caps[i].down : !above.length ? [] : !below.length ? above : pc.difference(above, below), levels[i], false);
   }
   for (let i = 0; i < layers.length; i++)
     for (const polygon of layers[i])
@@ -129,16 +161,16 @@ export function layerGeometry(layers, levels) {
     if (!vertexMap.has(k)) {
       const near = weldTree
         .search({
-          minX: p[0] - 2e-5,
-          maxX: p[0] + 2e-5,
-          minY: p[1] - 2e-5,
-          maxY: p[1] + 2e-5,
+          minX: p[0] - FLOAT32_CONFORMITY,
+          maxX: p[0] + FLOAT32_CONFORMITY,
+          minY: p[1] - FLOAT32_CONFORMITY,
+          maxY: p[1] + FLOAT32_CONFORMITY,
         })
         .find(
           (v) =>
             vertices[v.id][2] === p[2] &&
             Math.hypot(vertices[v.id][0] - p[0], vertices[v.id][1] - p[1]) <=
-              2e-5,
+              FLOAT32_CONFORMITY,
         );
       if (near) vertexMap.set(k, near.id);
       else {
@@ -162,7 +194,7 @@ export function layerGeometry(layers, levels) {
     })),
   );
   const edgeCache = new Map(),
-    eps = 2e-5;
+    eps = FLOAT32_CONFORMITY;
   function edge(a, b) {
     const k = a < b ? `${a},${b}` : `${b},${a}`;
     if (!edgeCache.has(k)) {

@@ -3,16 +3,17 @@
 <title>SHP2STL local review</title>
 <style>body{font:18px system-ui;max-width:720px;margin:64px auto;line-height:1.6}button{font:inherit;padding:12px;margin:8px}</style>
 <h1>SHP2STL local review</h1>
-<h2>Interior boundaries — local joint review</h2>
-<p>The general exterior-component cutoff now preserves interior perimeters. Existing floor, grooves and exterior walls are unchanged; the central rim connects all three shared-wall junctions.</p>
-<p><a href="results/interior-ring-fix/stl-review.html">Interactive before/after downloaded STL close-up</a> · <a href="INTERIOR_BOUNDARIES.md">Checks and actual geometry differences</a></p>
-<a href="results/interior-ring-fix/central-before-after.png"><img style="width:100%" src="results/interior-ring-fix/central-before-after.png" alt="Painted before and after views of the restored central perimeter"></a>
-<p>Baltimore retains 77 additional interior paths, including tiny source slivers. Two produce additional disconnected raised shells outside the existing floor; base coverage has not been redesigned. <a href="results/interior-ring-final-baltimore/scene.stl">Baltimore STL</a> · <a href="results/interior-ring-final-dc/scene.stl">DC STL (unchanged)</a>.</p>
-<p>These presets use the frozen public inputs and original reproduction settings. Each opens the actual app and saves its settings on this local origin.</p>
-<button data-dataset="dc">DC — planar, 15 grooves</button>
-<button data-dataset="baltimore">Baltimore — planar, 128 grooves</button>
-<p>Downloads are unified solids; the preview retains the original translucent boundary objects. To inspect the preserved CSG path, append <code>?geometry=csg</code> to the app URL (Baltimore is slow).</p>
-<p><a href="./README.md">Investigation and commands</a> · <a href="./REPORT.md">Measured results</a></p>
+<h2>Community separation — local joint review</h2>
+<p>The source-derived boundary network closes the reported seams. Exterior walls remain inside the source coastline so they do not close water inlets into unowned pockets. The genuine central source void stays explicit.</p>
+<p><a href="community-review.html">Interactive before/after downloaded STL comparison</a> · <a href="COMMUNITY_TOPOLOGY.md">Ownership checks, measured changes and limitations</a></p>
+<a href="results/community-topology/stl-green.png"><img style="width:100%" src="results/community-topology/stl-green.png" alt="Actual STL before and after: the Greenmount junction is now continuous"></a>
+<p>All 55 Baltimore community anchors and eight DC ward anchors have separate enclosures. Baltimore has four supported source components; the two unsupported added shells are gone. The first-exterior floor convention remains.</p>
+<p><a href="results/community-local-baltimore/scene.stl">Baltimore STL</a> · <a href="results/community-local-dc/scene.stl">DC STL</a>. Nothing has been pushed or publicly deployed.</p>
+<p>These presets use the frozen public inputs and reproduction settings on this local origin.</p>
+<button data-dataset="dc">DC — source topology</button>
+<button data-dataset="baltimore">Baltimore — source topology</button>
+<p>The default map and 3D preview show the geometry used for export. The prior CSG comparison path remains available with <code>?geometry=csg</code>; it does not use this correction.</p>
+<p><a href="./README.md">Commands and earlier evidence</a> · <a href="./INTERIOR_BOUNDARIES.md">Superseded interior-ring attempt</a></p>
 <h2>Prior hull-line fix evidence</h2>
 <p>Baltimore's separate closed rings now remain separate paths. The diagonal connectors are removed from the map and STL. Its three exported components remain closed; DC's STL is byte-identical. The unchanged simplifier selects slightly different coastal vertices with separate rings.</p>
 <div style="display:flex;gap:12px">

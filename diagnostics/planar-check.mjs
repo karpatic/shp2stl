@@ -50,3 +50,18 @@ assert.deepEqual(after.layers.slice(0,2), before.layers.slice(0,2), 'interior ri
 assert.notDeepEqual(after.layers[2],before.layers[2], 'interior rim reaches raised walls');
 assert.ok(layerGeometry(after.layers,z).userData.validation.closed);
 console.log('PASS: restored interior rim above an unchanged floor and underside groove');
+
+// Author: Codex app agent, 2026-09-11. A narrow open inlet must stay open.
+const coast=[[0,0],[10,0],[10,10],[6,10],[6,8],[7,8],[7,6],[4,6],[4,8],[5.8,8],[5.8,10],[0,10],[0,0]];
+const sourceExterior=fc([{type:'Feature',geometry:{type:'MultiPolygon',coordinates:[[coast]]}}]);
+const sourceRegions=heightRegions({hull:sourceExterior,sourceExterior,hullLines:fc([line(coast,'exterior')]),lines:fc([line(coast),groove]),interiorLines:fc([groove])},{width:.5,depth:6,sourceTopology:true});
+assert.equal(pc.intersection(sourceRegions.L,rect(5.875,7,.05,4)).length,0,'An open source-water path must not become a closed wall pocket');
+assert.ok(pc.intersection(sourceRegions.L,rect(.39,4,.02,.02)).length,'Inward exterior wall keeps the full nominal width');
+assert.equal(pc.intersection(sourceRegions.L,rect(.59,4,.02,.02)).length,0);
+for(let i=0;i<z.length;i++){
+ const low=sourceRegions.layers[i-1]||[],high=sourceRegions.layers[i]||[];
+ assert.equal(pc.xor(sourceRegions.caps[i].up,pc.difference(low,high)).length,0,'Factored upper cap equals the full set difference');
+ assert.equal(pc.xor(sourceRegions.caps[i].down,pc.difference(high,low)).length,0,'Factored lower cap equals the full set difference');
+}
+assert.ok(layerGeometry(sourceRegions.layers,z,sourceRegions.caps).userData.validation.closed);
+console.log('PASS: open inlet, full-width inward wall, exact factored cap identities and closed solid');

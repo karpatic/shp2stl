@@ -1,0 +1,32 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "baltimore": {
+    "sourceUntouched": true,
+    "originalVerticesRetainedByNoding": true,
+    "sourcePositions": 43549,
+    "nodedPositions": 43564,
+    "arcs": 413,
+    "arcPositionsBefore": 24229,
+    "arcPositionsAfter": 3197,
+    "maxShortcutDeviationModel": 0.062476836081176046,
+    "boundModel": 0.0625,
+    "maxShortcutDeviationMeters": 6.070612015225688,
+    "endpointReuseCoordinateBandDegrees": 6.813341672413084e-14,
+    "endpointReuseUpperBoundMeters": 1.0714216684397796e-8
+  },
+  "dc": {
+    "sourceUntouched": true,
+    "originalVerticesRetainedByNoding": true,
+    "sourcePositions": 22755,
+    "nodedPositions": 22757,
+    "arcs": 27,
+    "arcPositionsBefore": 18729,
+    "arcPositionsAfter": 632,
+    "maxShortcutDeviationModel": 0.062387355382030364,
+    "boundModel": 0.0625,
+    "maxShortcutDeviationMeters": 7.087132506556627,
+    "endpointReuseCoordinateBandDegrees": 6.84961378501078e-14,
+    "endpointReuseUpperBoundMeters": 1.0771255842663721e-8
+  }
+}

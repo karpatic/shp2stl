@@ -49,6 +49,8 @@ function getConvexHull(geojson) {
     }
   });
 
+  if (!union.geometry) union = turf.feature(union);
+
   // Filter small exterior components, preserving every interior ring belonging
   // to a retained component. The island cutoff is not a hole-size cutoff.
   const minArea = 150000;
