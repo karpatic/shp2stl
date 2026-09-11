@@ -1,0 +1,913 @@
+{
+  "dc": {
+    "preprocessingEqual": {
+      "geojson": true,
+      "hull": true,
+      "hullLines": false,
+      "lines": true,
+      "interiorLines": true
+    },
+    "baseGeometryBytesExact": true,
+    "sharedSvgPathsExact": true,
+    "stlBytesExact": true,
+    "exportBeforeAfter": [
+      {
+        "triangles": 4444,
+        "bounds": [
+          [
+            -80.41644287109375,
+            -100.59636688232422,
+            0.0
+          ],
+          [
+            80.59196472167969,
+            100.3541259765625,
+            12.0
+          ]
+        ],
+        "area": 46711.663536921464,
+        "signedVolume": 86223.42729843417,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 6666
+        },
+        "orientedSurfaceSHA256": "b9023afc1534606a5e52af778ee496a10a42ff5ec18915d0e7b4d92cf98ad0d3"
+      },
+      {
+        "triangles": 4444,
+        "bounds": [
+          [
+            -80.41644287109375,
+            -100.59636688232422,
+            0.0
+          ],
+          [
+            80.59196472167969,
+            100.3541259765625,
+            12.0
+          ]
+        ],
+        "area": 46711.663536921464,
+        "signedVolume": 86223.42729843417,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 6666
+        },
+        "orientedSurfaceSHA256": "b9023afc1534606a5e52af778ee496a10a42ff5ec18915d0e7b4d92cf98ad0d3"
+      }
+    ],
+    "orientedClosedComponents": 1,
+    "componentBounds": [
+      [
+        [
+          -80.41644287109375,
+          -100.59636688232422,
+          0.0
+        ],
+        [
+          80.59196472167969,
+          100.3541259765625,
+          12.0
+        ]
+      ]
+    ],
+    "boundaryPathsBeforeAfter": [
+      [
+        147
+      ],
+      [
+        147
+      ]
+    ],
+    "validation": {
+      "triangles": 4444,
+      "vertices": 2208,
+      "edges": 6666,
+      "area": 46711.663536921464,
+      "volume": 86223.42729843417,
+      "expectedVolume": 86223.42473662575,
+      "volumeTolerance": 0.008622342473662574,
+      "closed": true
+    },
+    "completeMs": 8060.0999999940395
+  },
+  "baltimore": {
+    "preprocessingEqual": {
+      "geojson": true,
+      "hull": false,
+      "hullLines": false,
+      "lines": true,
+      "interiorLines": true
+    },
+    "baseGeometryBytesExact": true,
+    "sharedSvgPathsExact": true,
+    "stlBytesExact": false,
+    "exportBeforeAfter": [
+      {
+        "triangles": 7258,
+        "bounds": [
+          [
+            -80.67410278320312,
+            -100.29573822021484,
+            0.0
+          ],
+          [
+            80.57550811767578,
+            100.218017578125,
+            12.0
+          ]
+        ],
+        "area": 91797.92238689311,
+        "signedVolume": 131661.15448035998,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 10887
+        },
+        "orientedSurfaceSHA256": "ab13f0bf1e6eca79350c5930d4499923e9a2eabfa1a7cb31a36f0fd2093ab833"
+      },
+      {
+        "triangles": 8446,
+        "bounds": [
+          [
+            -80.67410278320312,
+            -100.29573822021484,
+            0.0
+          ],
+          [
+            80.57550811767578,
+            100.218017578125,
+            12.0
+          ]
+        ],
+        "area": 92420.87802914536,
+        "signedVolume": 131827.60109791666,
+        "zeroAreaTriangles": 0,
+        "exactEdgeIncidence": {
+          "2": 12669
+        },
+        "orientedSurfaceSHA256": "7cb90a654350bd60c95b0c200c56e6f10705a79d3c2d04e2fcfd78ad3dc64ba6"
+      }
+    ],
+    "orientedClosedComponents": 5,
+    "componentBounds": [
+      [
+        [
+          36.586326599121094,
+          -100.29573822021484,
+          0.0
+        ],
+        [
+          78.68806457519531,
+          -75.7181167602539,
+          12.0
+        ]
+      ],
+      [
+        [
+          2.0139451026916504,
+          -87.94032287597656,
+          0.0
+        ],
+        [
+          55.7021598815918,
+          -40.27903747558594,
+          12.0
+        ]
+      ],
+      [
+        [
+          -80.67410278320312,
+          -54.02616500854492,
+          0.0
+        ],
+        [
+          80.57550811767578,
+          100.218017578125,
+          12.0
+        ]
+      ],
+      [
+        [
+          27.65319061279297,
+          -81.96510314941406,
+          6.0
+        ],
+        [
+          28.98543357849121,
+          -79.84085845947266,
+          12.0
+        ]
+      ],
+      [
+        [
+          31.76397132873535,
+          -40.82408142089844,
+          6.0
+        ],
+        [
+          33.40815734863281,
+          -39.27825164794922,
+          12.0
+        ]
+      ]
+    ],
+    "boundaryPathsBeforeAfter": [
+      [
+        16,
+        6,
+        5
+      ],
+      [
+        16,
+        6,
+        4,
+        7,
+        6,
+        9,
+        5,
+        4,
+        5,
+        4,
+        11,
+        4,
+        5,
+        6,
+        4,
+        16,
+        5,
+        4,
+        8,
+        4,
+        14,
+        5,
+        9,
+        11,
+        9,
+        5,
+        5,
+        5,
+        4,
+        4,
+        12,
+        4,
+        4,
+        4,
+        4,
+        5,
+        4,
+        4,
+        7,
+        5,
+        7,
+        4,
+        10,
+        8,
+        4,
+        9,
+        9,
+        4,
+        5,
+        4,
+        4,
+        4,
+        5,
+        4,
+        5,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        8,
+        6,
+        4,
+        5,
+        5,
+        6,
+        4,
+        4,
+        4,
+        8,
+        6,
+        5,
+        5,
+        6,
+        4,
+        5,
+        4,
+        5
+      ]
+    ],
+    "validation": {
+      "triangles": 8446,
+      "vertices": 4199,
+      "edges": 12669,
+      "area": 92420.87802914536,
+      "volume": 131827.60109791666,
+      "expectedVolume": 131827.60240836235,
+      "volumeTolerance": 0.013182760240836235,
+      "closed": true
+    },
+    "completeMs": 18071.90000000596,
+    "centralRawRingExact": true,
+    "centralSvg": "M386 418L426 416L398 417L401 430L391 431L387 431L386 418",
+    "junctions": [
+      {
+        "label": "A",
+        "pixel": [
+          386,
+          418
+        ],
+        "sharedSvg": "M392 379L395 404L387 404L386 418"
+      },
+      {
+        "label": "B",
+        "pixel": [
+          426,
+          416
+        ],
+        "sharedSvg": "M453 401L425 403L426 416"
+      },
+      {
+        "label": "C",
+        "pixel": [
+          387,
+          431
+        ],
+        "sharedSvg": "M387 431L388 442"
+      }
+    ],
+    "retainedInteriorPaths": 77,
+    "meshProbe": {
+      "author": "Codex app agent",
+      "date": "2026-09-11",
+      "center": {
+        "lng": -76.62048611447625,
+        "lat": 39.28450390389205
+      },
+      "bounds": {
+        "minX": -0.07028776133144603,
+        "minY": -0.0875039038920491,
+        "maxX": 0.07028776133144603,
+        "maxY": 0.0875039038920491
+      },
+      "sourceWallWidth": 0.5,
+      "perimeterSamples": [
+        {
+          "label": "source perimeter segment 1 t=0.25",
+          "x": 11.109833657423774,
+          "y": 19.239750945415647,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 1 t=0.5",
+          "x": 14.089333788639514,
+          "y": 19.391512962643702,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 1 t=0.75",
+          "x": 17.06883391985525,
+          "y": 19.543274979871757,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 2 t=0.25",
+          "x": 17.95829275475499,
+          "y": 19.587590015887464,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 2 t=0.5",
+          "x": 15.86825145843899,
+          "y": 19.480143034675123,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 2 t=0.75",
+          "x": 13.778210162122992,
+          "y": 19.37269605346278,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 3 t=0.25",
+          "x": 11.900046160514545,
+          "y": 18.274578484091133,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 3 t=0.5",
+          "x": 12.111923455222101,
+          "y": 17.283907895931833,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 3 t=0.75",
+          "x": 12.323800749929656,
+          "y": 16.29323730777253,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 4 t=0.25",
+          "x": 12.081053816922593,
+          "y": 15.281439409570355,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 4 t=0.5",
+          "x": 11.626429589207975,
+          "y": 15.26031209952748,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 4 t=0.75",
+          "x": 11.171805361493357,
+          "y": 15.239184789484607,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 5 t=0.25",
+          "x": 10.542168140430961,
+          "y": 15.209921356498842,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 5 t=0.5",
+          "x": 10.367155147083183,
+          "y": 15.20178523355595,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 5 t=0.75",
+          "x": 10.192142153735405,
+          "y": 15.19364911061306,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 6 t=0.25",
+          "x": 9.953427966494335,
+          "y": 15.182551283552403,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 6 t=0.5",
+          "x": 9.88972677260104,
+          "y": 15.179589579434635,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 6 t=0.75",
+          "x": 9.826025578707748,
+          "y": 15.176627875316868,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 7 t=0.25",
+          "x": 9.707067141930166,
+          "y": 15.17109676832179,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 7 t=0.5",
+          "x": 9.651809899045876,
+          "y": 15.16852736544448,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 7 t=0.75",
+          "x": 9.596552656161585,
+          "y": 15.16595796256717,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 8 t=0.25",
+          "x": 9.427188627762648,
+          "y": 15.158082493939144,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 8 t=0.5",
+          "x": 9.313081842248002,
+          "y": 15.152776428188428,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 8 t=0.75",
+          "x": 9.198975056733355,
+          "y": 15.147470362437714,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 9 t=0.25",
+          "x": 8.902864773494368,
+          "y": 15.133699384185826,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 9 t=0.5",
+          "x": 8.72086127577003,
+          "y": 15.125234471684653,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 9 t=0.75",
+          "x": 8.53885777804569,
+          "y": 15.116769559183481,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 10 t=0.25",
+          "x": 8.356851426867749,
+          "y": 15.108357157881432,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 10 t=0.5",
+          "x": 8.356848573414148,
+          "y": 15.108409669080558,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 10 t=0.75",
+          "x": 8.356845719960548,
+          "y": 15.108462180279682,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 11 t=0.25",
+          "x": 8.300215531432219,
+          "y": 16.103383250656005,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 11 t=0.5",
+          "x": 8.243588196357491,
+          "y": 17.0982518098332,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        },
+        {
+          "label": "source perimeter segment 11 t=0.75",
+          "x": 8.186960861282763,
+          "y": 18.093120369010396,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            0,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": true,
+          "sourceFloor": true,
+          "meshFloor": true
+        }
+      ],
+      "samples": 3272,
+      "mismatches": [
+        {
+          "label": "junction B",
+          "x": 20.04833405107099,
+          "y": 19.69503699709981,
+          "sourceWall": true,
+          "planarWall": true,
+          "meshWall": true,
+          "heights": [
+            1.7999999523162842,
+            12
+          ],
+          "sourceLow": true,
+          "meshLow": false,
+          "sourceFloor": true,
+          "meshFloor": true
+        }
+      ],
+      "wallSamples": 543,
+      "unexpectedMismatches": [],
+      "lowerBoundaryDistances": [
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+Simplifying GeoJSON...
+Simplification complete
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: a closed ring collapsed by line simplification must retain its source perimeter
++ actual - expected
+
+  [
+    [
+      0.01,
+      0.01
+    ],
+    [
+-     0.01001,
+      0.01,
+-   ],
+-   [
+-     0.01001,
+-     0.01001
+-   ],
+-   [
+      0.01,
+-     0.01001
+    ],
+-   [
+-     0.01,
+-     0.01
+-   ]
+  ]
+
+    at file:///home/carlos/Documents/GitHub/pages/shp2stl/diagnostics/interior-ring-check.mjs:15:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [ [ 0.01, 0.01 ], [ 0.01, 0.01 ] ],
+  expected: [
+    [ 0.01, 0.01 ],
+    [ 0.01001, 0.01 ],
+    [ 0.01001, 0.01001 ],
+    [ 0.01, 0.01001 ],
+    [ 0.01, 0.01 ]
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

@@ -6,6 +6,8 @@ Current results are in [REPORT.md](REPORT.md). The original sections below descr
 
 ## Focused hull-line follow-up
 
+The later interior-boundary preservation fix, focused checks, retained evidence and local joint-review limitations are documented in [INTERIOR_BOUNDARIES.md](INTERIOR_BOUNDARIES.md) (Author: Codex app agent · 2026-09-11).
+
 Author: Codex app agent · 2026-09-11.
 
 `node diagnostics/hull-check.mjs` checks the existing frozen DC/Baltimore rings plus a polygon-with-hole/island case. It failed on the concatenated boundaries before the fix and passes afterward; it also runs under `npm test`. No historical CSG regeneration is needed.

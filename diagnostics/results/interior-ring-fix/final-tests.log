@@ -1,0 +1,45 @@
+
+> test
+> node --import ./diagnostics/register.mjs diagnostics/check.mjs && node --import ./diagnostics/register.mjs diagnostics/planar-check.mjs && node diagnostics/hull-check.mjs && node diagnostics/interior-ring-check.mjs
+
+{ indexedPlanes: 152, maxFragments: 477 }
+PASS: half-edge data; splitter coordinates/order/cache reuse; shared overlaps; immutable inputs; convergence failure
+PASS: crossed underside grooves, raised crossings, holes, disconnected solids, incomplete-output rejection
+PASS: restored interior rim above an unchanged floor and underside groove
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"dc","polygons":1,"rings":1,"paths":1,"inventedSegments":[],"simplifiedPaths":1}
+Polygon coordinate length: 2
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.57, 39.217 ]
+Polygon coordinate length: [ -76.589, 39.213 ]
+Polygon coordinate length: [ -76.626, 39.267 ]
+Polygon coordinate length: [ -76.59, 39.276 ]
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"baltimore","polygons":3,"rings":80,"paths":80,"inventedSegments":[],"simplifiedPaths":80}
+Polygon coordinate length: 2
+Polygon coordinate length: 2
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+{"name":"exterior + hole + disconnected island","polygons":2,"rings":3,"paths":3,"inventedSegments":[],"simplifiedPaths":3}
+PASS: frozen hull edge provenance, exterior/hole/island separation, simplification and closure
+Simplifying GeoJSON...
+Simplification complete
+Simplifying GeoJSON...
+Simplification complete
+PASS: 143251.853 m² interior hole; exterior island filtering and separate closed paths
+Simplifying GeoJSON...
+Simplification complete
+PASS: 160600.693 m² interior hole; exterior island filtering and separate closed paths
+PASS: dc: 1 exterior components, 0 raw source holes
+PASS: baltimore: 4 exterior components, 69 raw source holes

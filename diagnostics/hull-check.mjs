@@ -13,7 +13,7 @@ async function check(name, source) {
   const hull = getConvexHull(source);
   const rings = hull.features[0].geometry.coordinates.flat();
   const actual = getConvexHullLines(source);
-  const expected = turf.featureCollection(rings.map(r=>turf.lineString(r)));
+  const expected = turf.featureCollection(hull.features[0].geometry.coordinates.flatMap(p=>p.map((r,i)=>turf.lineString(r,{boundaryRole:i?'interior':'exterior'}))));
   const simplified = await simplifyGeoJSON(actual, .01);
   const oracle = await simplifyGeoJSON(expected, .01);
   const actualRings = actual.features.map(f=>f.geometry.coordinates);
@@ -26,7 +26,7 @@ async function check(name, source) {
     assert.equal(invented.length, 0, `${name}: inter-ring segments are not hull boundaries`);
     assert.deepEqual(edges(actualRings), edges(rings), `${name}: retain every boundary edge, including closure`);
     assert.deepEqual(actualRings, rings, `${name}: one path per exterior/hole ring in source order`);
-    assert.deepEqual(simplified, oracle, `${name}: simplify separate boundaries without connectors`);
+    assert.deepEqual(simplified.features.map(f=>f.geometry), oracle.features.map(f=>f.geometry), `${name}: simplify separate boundaries without connectors`);
     for (const f of simplified.features) assert.deepEqual(f.geometry.coordinates[0], f.geometry.coordinates.at(-1), `${name}: retain ring closure`);
     assert.deepEqual(source, original, `${name}: do not mutate source`);
   } catch (error) { failures.push(error.message); }

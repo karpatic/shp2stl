@@ -10,12 +10,26 @@ function createLeafletMap() {
 
 // recieves and returns a featurecollection
 async function simplifyGeoJSON(geojson, simplifyBy = 0.01) {
+  // Interior boundary rings carry source junctions and can collapse under the
+  // line simplifier. Preserve them exactly, and keep them out of the exterior
+  // quantile so adding holes does not change existing exterior walls/support.
+  const isInterior = f => f.geometry.type === "LineString" && f.properties?.boundaryRole === "interior";
+  if (geojson.features.some(isInterior)) {
+    const otherFeatures = geojson.features.filter(f => !isInterior(f));
+    const simplified = otherFeatures.length
+      ? await simplifyGeoJSON({ ...geojson, features: otherFeatures }, simplifyBy)
+      : { features: [] };
+    let index = 0;
+    return { ...geojson, features: geojson.features.map(f =>
+      isInterior(f) ? structuredClone(f) : simplified.features[index++]) };
+  }
   console.log("Simplifying GeoJSON...");
   let topoData = topojson.topology({ collection: geojson });
   topoData = topojson.presimplify(topoData);
   let min_weight = topojson.quantile(topoData, simplifyBy); // default 0.5
   topoData = topojson.simplify(topoData, min_weight);
   const feat = topojson.feature(topoData, topoData.objects.collection);
+
 
   console.log("Simplification complete");
   return feat;
@@ -35,22 +49,17 @@ function getConvexHull(geojson) {
     }
   });
 
-  // Filter out small polygons as artifacts from union result
+  // Filter small exterior components, preserving every interior ring belonging
+  // to a retained component. The island cutoff is not a hole-size cutoff.
   const minArea = 150000;
   const filteredCoordinates =
     union.geometry.type == "Polygon"
       ? [union.geometry.coordinates]
       : union.geometry.coordinates
-          .map((polygons) => {
-            return polygons.filter((polygon) => {
-              const area = turf.area({
-                type: "Polygon",
-                coordinates: [polygon],
-              });
-              return area >= minArea;
-            });
-          })
-          .filter((polygons) => polygons && polygons.length > 0);
+          .filter((polygon) => turf.area({
+            type: "Polygon",
+            coordinates: [polygon[0]],
+          }) >= minArea);
 
   // Create a feature for the filtered union
   return {
@@ -70,13 +79,13 @@ function getConvexHullLines(geojson) {
   const feature = hull.features[0]; // Since hull is a FeatureCollection of 1 item
   if (feature.geometry.type === "MultiPolygon") {
     feature.geometry.coordinates.forEach((polygon) => {
-      polygon.forEach((coords) => {
-        lines.push(turf.lineString(coords));
+      polygon.forEach((coords, ringIndex) => {
+        lines.push(turf.lineString(coords, { boundaryRole: ringIndex ? "interior" : "exterior" }));
       });
     });
   } else if (feature.geometry.type === "Polygon") {
-    feature.geometry.coordinates.forEach((coords) => {
-      lines.push(turf.lineString(coords));
+    feature.geometry.coordinates.forEach((coords, ringIndex) => {
+      lines.push(turf.lineString(coords, { boundaryRole: ringIndex ? "interior" : "exterior" }));
     });
   }
   else{

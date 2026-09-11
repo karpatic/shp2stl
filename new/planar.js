@@ -26,13 +26,20 @@ export function heightRegions(
   const H = union([ring]);
   const C = union(...lineFootprints(interiorLines, options));
   const B = union(...lineFootprints(hullLines, options));
+  // Interior rims sit above the existing floor. Only exterior boundaries need
+  // base support; extending interior rims downward would fill underside grooves.
+  const exteriorLines = {
+    ...hullLines,
+    features: hullLines.features.filter(f => f.properties?.boundaryRole !== "interior"),
+  };
+  const support = union(...lineFootprints(exteriorLines, options));
   const L = union(...lineFootprints(lines, options));
   return {
     H,
     C,
     B,
     L,
-    layers: [union(pc.difference(H, C), B), union(H, B), union(B, L)],
+    layers: [union(pc.difference(H, C), support), union(H, support), union(B, L)],
   };
 }
 export function layerGeometry(layers, levels) {

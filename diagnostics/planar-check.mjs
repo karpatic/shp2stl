@@ -1,6 +1,6 @@
 // Author: Codex app agent — 2026-09-11.
 import assert from "node:assert/strict";
-import { layerGeometry, validateSolid } from "../new/planar.js";
+import { heightRegions, layerGeometry, validateSolid } from "../new/planar.js";
 import pc from "../new/planar-boolean.js";
 const rect = (x, y, w, h) => [
   [
@@ -35,3 +35,18 @@ console.log(
 );
 
 assert.throws(() => pc.union(rect(6e9, 0, 10, 10)), /integer range/);
+
+// Restoring a rim must leave the floor and the underside groove beneath it.
+const fc = features => ({type:'FeatureCollection',features});
+const line = (coordinates, boundaryRole) => ({type:'Feature',properties:{boundaryRole},geometry:{type:'LineString',coordinates}});
+const exterior = line(rect(0,0,10,10)[0], 'exterior');
+const rim = line(rect(2,2,3,3)[0], 'interior');
+const groove = line([[1,2],[9,2]]);
+const inputs = {hull:fc([{type:'Feature',geometry:{type:'MultiPolygon',coordinates:[rect(0,0,10,10)]}}]),
+  hullLines:fc([exterior]), lines:fc([groove]), interiorLines:fc([groove])};
+const before = heightRegions(inputs,{depth:6,width:.5});
+const after = heightRegions({...inputs,hullLines:fc([exterior,rim])},{depth:6,width:.5});
+assert.deepEqual(after.layers.slice(0,2), before.layers.slice(0,2), 'interior rim preserves base and grooves');
+assert.notDeepEqual(after.layers[2],before.layers[2], 'interior rim reaches raised walls');
+assert.ok(layerGeometry(after.layers,z).userData.validation.closed);
+console.log('PASS: restored interior rim above an unchanged floor and underside groove');
