@@ -235,6 +235,12 @@
                         <input id="cfg-geoJsonUrl" type="url" value="https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson" />
                     </label>
 
+                    <div class="row" style="margin-top:6px">
+                        <button id="preset-dc" type="button">DC</button>
+                        <button id="preset-baltimore" type="button">Baltimore</button>
+                        <button id="refresh-source" type="button" title="Fetch the current URL again, bypassing the browser response cache. Reuse geometry only if the source content is identical.">Refresh source</button>
+                    </div>
+                    <p style="font-size:11px;margin:6px 0">Sources are reused for this session. Refresh source checks for updated URL content.</p>
                     <label style="margin-top: 10px;" for="cfg-islandConnections">
                         Island connections
                         <select id="cfg-islandConnections" aria-describedby="island-help" disabled>
@@ -285,6 +291,8 @@
 
         import { initialize } from './new/new.js';
         import { dimensions } from './new/dimensions.js';
+        import { build, invalidate } from './new/pipeline.js';
+        import { SOURCE_PRESETS } from './new/presets.js';
 
         const STORAGE_KEY = 'shp2stl.appConfig.v1';
         const UI_STORAGE_KEY = 'shp2stl.appConfig.ui.v1';
@@ -378,58 +386,47 @@
             }
         }
 
-        let rebuildConnections, appliedConfig;
         const connectionsSelect = document.getElementById('cfg-islandConnections');
-        async function runWithCurrentInputs() {
-            const config = readConfigFromInputs();
-            dimensions(config.shpstl);
-            applyConfigToWindow(config);
-            rebuildConnections = await initialize();
-            appliedConfig = config;
-            connectionsSelect.disabled = !rebuildConnections;
-            if (!rebuildConnections) document.getElementById('island-help').textContent = 'Island connections are available in the standard planar model. Remove ?geometry=csg to use them.';
-        }
-
         const createBtn = document.getElementById('create-btn');
         const downloadButtons = [document.getElementById('download-btn'), document.getElementById('download-3mf-btn')];
-        // Editing any field invalidates exports immediately, including before Create.
+        const useCSG = new URLSearchParams(location.search).get('geometry') === 'csg';
+        let request = 0;
+        // Edits cancel publication by pending requests, even before Create.
         document.querySelectorAll('#config-panel input').forEach(input => input.addEventListener('input', () => {
-            downloadButtons.forEach(button => button.disabled = true);
+            request++; invalidate();
             setStatus('Parameters changed. Click Create to apply.');
         }));
-        async function applyInputs() {
-            const config = readConfigFromInputs();
-            connectionsSelect.disabled = true;
-            createBtn.disabled = true;
-            downloadButtons.forEach(button => button.disabled = true);
+        async function applyInputs({refresh=false} = {}) {
+            const id = ++request, config = readConfigFromInputs();
+            invalidate();
             try {
                 dimensions(config.shpstl);
                 saveConfig(config);
-                // Dimensions/support edits reuse geography and preserve the camera.
-                // URL/simplification changes still require fresh preprocessing.
-                const previous = appliedConfig && structuredClone(appliedConfig);
-                if (previous) for (const key of ['islandConnections', 'baseHeight', 'wallHeight', 'minConnectorWidth'])
-                    previous.shpstl[key] = config.shpstl[key];
-                if (!rebuildConnections || JSON.stringify(previous) !== JSON.stringify(config)) {
-                    setStatus('Applying geography parameters…');
-                    window.location.reload();
-                    return;
-                }
                 applyConfigToWindow(config);
-                window.shpstl.sourceTopology = true;
-                await rebuildConnections(config.shpstl.islandConnections);
-                appliedConfig = config;
-                setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
+                if (useCSG) {
+                    // Preserve the explicit historical comparison route.
+                    if (window.csgStarted) { window.location.reload(); return; }
+                    window.csgStarted = true;
+                    await initialize();
+                } else {
+                    const applied = await build(config.shpstl, {refresh});
+                    if (!applied || id !== request) return;
+                }
+                if (id === request) setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
             } catch (err) {
+                if (id !== request) return;
                 console.error(err);
-                setStatus(err.message + '. Choose a mode to retry.');
-            } finally {
-                connectionsSelect.disabled = false;
-                createBtn.disabled = false;
+                downloadButtons.forEach(button => button.disabled = true);
+                setStatus(err.message + '. Choose a mode to retry or click Create.');
             }
         }
-        createBtn.addEventListener('click', applyInputs);
-        connectionsSelect.addEventListener('change', applyInputs);
+        createBtn.addEventListener('click', () => applyInputs());
+        connectionsSelect.addEventListener('change', () => applyInputs());
+        document.getElementById('refresh-source').addEventListener('click', () => applyInputs({refresh:true}));
+        for (const city of ['dc','baltimore']) document.getElementById('preset-'+city).addEventListener('click', () => {
+            setString('cfg-geoJsonUrl', SOURCE_PRESETS[city]);
+            applyInputs();
+        });
 
         // Collapsible config panel (persisted).
         const configPanel = document.getElementById('config-panel');
@@ -482,24 +479,15 @@
             } catch {}
         });
 
-        // Run once on start using saved config (or the default input values).
-        (async () => {
-            try {
-                const saved = tryLoadSavedConfig();
-                if (saved) hydrateInputsFromConfig(saved);
-
-                setStatus('Creating...');
-                createBtn.disabled = true;
-                await runWithCurrentInputs();
-                setStatus(saved ? 'Created (saved settings)' : 'Created (default settings)');
-                createBtn.disabled = false;
-            } catch (err) {
-                console.error(err);
-                setStatus(err.message || 'Failed on start (see console)');
-                connectionsSelect.disabled = new URLSearchParams(location.search).get('geometry') === 'csg';
-                createBtn.disabled = false;
-            }
-        })();
+        // Fresh start is DC. A supplied query URL wins over a saved/custom URL.
+        const saved = tryLoadSavedConfig();
+        if (saved) hydrateInputsFromConfig(saved);
+        const query = new URLSearchParams(location.search);
+        const queryUrl = query.get('geoJsonUrl') ?? query.get('url');
+        if (queryUrl !== null) setString('cfg-geoJsonUrl', queryUrl);
+        connectionsSelect.disabled = useCSG;
+        if (useCSG) document.getElementById('island-help').textContent = 'Island connections are available in the standard planar model. Remove ?geometry=csg to use them.';
+        applyInputs();
     </script>
 </body>
 </html>

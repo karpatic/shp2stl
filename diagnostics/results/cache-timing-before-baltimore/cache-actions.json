@@ -1,0 +1,129 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "baltimore",
+  "before": true,
+  "rows": [
+    {
+      "case": "cold",
+      "name": "cold",
+      "readyMs": 26064.40000000596,
+      "paintedMs": 26692.70000001788,
+      "counts": {
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 5,
+        "createThreeDGeometry": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "base-2.5",
+      "name": "create-btn",
+      "readyMs": 3892.300000011921,
+      "paintedMs": 4081.4000000059605,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "wall-3.5",
+      "name": "create-btn",
+      "readyMs": 4112.5999999940395,
+      "paintedMs": 5138.4000000059605,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "height-return",
+      "name": "create-btn",
+      "readyMs": 5842.799999982119,
+      "paintedMs": 6099.4000000059605,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "unchanged",
+      "name": "create-btn",
+      "readyMs": 3270.4000000059605,
+      "paintedMs": 3507,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "minimum-1.6",
+      "name": "create-btn",
+      "readyMs": 10503.700000017881,
+      "paintedMs": 10685.59999999404,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "minimum-return",
+      "name": "create-btn",
+      "readyMs": 11869.40000000596,
+      "paintedMs": 12088.300000011921,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "disconnected",
+      "name": "mode",
+      "readyMs": 5115.299999982119,
+      "paintedMs": 5316.799999982119,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "hull",
+      "name": "mode",
+      "readyMs": 4935,
+      "paintedMs": 5246.4000000059605,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "connections",
+      "name": "mode",
+      "readyMs": 10279.90000000596,
+      "paintedMs": 10486,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    }
+  ]
+}

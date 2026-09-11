@@ -22,10 +22,9 @@ import {
   createMeshesFromGeometries,
 } from "./three.js";
 import { Evaluator, SUBTRACTION } from "three-bvh-csg";
-import { heightRegions, layerGeometry } from "./planar.js";
+import { build } from "./pipeline.js";
 
-import { dimensions } from './dimensions.js';
-import { exportTo3MF } from './3mf.js';
+
 
 async function stage(message) {
   const status = document.getElementById("status");
@@ -52,6 +51,10 @@ export async function initialize() {
   window.shpstl = Object.assign({}, defaults, window.shpstl || {});
 
   const useCSG = new URLSearchParams(location.search).get("geometry") === "csg";
+  if (!useCSG) {
+    await build(window.shpstl);
+    return mode => build({...window.shpstl, islandConnections:mode});
+  }
   await stage("Loading geography…");
   // Load the GeoJSON data
   let geojson = await (await fetch(window.shpstl.geoJsonUrl)).json();
@@ -142,79 +145,7 @@ export async function initialize() {
   let currentResult = hullBrush;
   let exportModel = scene;
   let rebuildConnections;
-  let exportParts;
-  if (!useCSG) {
-    let wallMapLayer;
-    scene.add(new THREE.AmbientLight(0xffffff,.8));
-    let regionKey, cachedRegions;
-    rebuildConnections = async (mode) => {
-      downloadButton.disabled = true;
-      if (download3mf) download3mf.disabled = true;
-      currentResult.visible = false;
-      requestRender();
-      window.shpstl.islandConnections = mode;
-      const dims = dimensions(window.shpstl);
-      await stage("Combining planar regions…");
-      const key = JSON.stringify([mode, window.shpstl.width, dims.minConnectorWidth]);
-      const regions = key === regionKey ? cachedRegions : heightRegions(
-        { hull, hullLines, lines, interiorLines, sourceExterior },
-        window.shpstl,
-      );
-      regionKey = key; cachedRegions = regions;
-      const depth = Math.fround(dims.baseHeight);
-      await stage("Extruding and checking the complete solid…");
-      // Partition by height, never by overlapping full-height wall solids.
-      // Both named parts are capped and validated before either export is enabled.
-      let completeGeometry, base, walls;
-      try {
-        completeGeometry = layerGeometry(regions.layers, dims.levels, regions.caps);
-        base = layerGeometry(regions.layers.slice(0,2), dims.levels.slice(0,3), regions.caps ? [
-          regions.caps[0], regions.caps[1], {up: regions.layers[1], down: []},
-        ] : undefined);
-        walls = layerGeometry([regions.layers[2]], dims.levels.slice(2));
-      } catch (error) {
-        completeGeometry?.dispose(); base?.dispose(); walls?.dispose();
-        throw error;
-      }
-      exportParts?.base.dispose(); exportParts?.walls.dispose();
-      exportParts = {base, walls};
-      // The map also paints the actual wall footprint, without a screen-width
-      // stroke that could visually seal a narrow water channel.
-      const factor = Math.max(minMax.maxX-minMax.minX,minMax.maxY-minMax.minY)/200;
-      const cx = (minMax.minX+minMax.maxX)/2, cy = (minMax.minY+minMax.maxY)/2;
-      const cos = Math.cos(center.lat*Math.PI/180);
-      const coordinates = regions.layers[2].map(p=>p.map(r=>r.map(([x,y])=>[
-        (x*factor+cx)/cos+center.lng,y*factor+cy+center.lat,
-      ])));
-      hullMapLayer.remove(); lineMapLayer.remove();
-      wallMapLayer?.remove();
-      wallMapLayer = L.geoJSON({type:"MultiPolygon",coordinates},{stroke:false,fillColor:"#004433",fillOpacity:1}).addTo(map);
-      // Paint exactly the validated downloadable solid, including its real joins.
-      currentResult.geometry.dispose();
-      currentResult.geometry = completeGeometry.toNonIndexed();
-      currentResult.geometry.computeVertexNormals();
-      const positions = currentResult.geometry.attributes.position;
-      const colors = new Float32Array(positions.count*3);
-      const wallColor = new THREE.Color(0x46959a), floorColor = new THREE.Color(0xdce5e5);
-      for (let i=0;i<positions.count;i+=3) {
-        const color = Math.max(positions.getZ(i),positions.getZ(i+1),positions.getZ(i+2))>depth ? wallColor : floorColor;
-        for (let j=0;j<3;j++) color.toArray(colors,(i+j)*3);
-      }
-      currentResult.geometry.setAttribute("color",new THREE.BufferAttribute(colors,3));
-      currentResult.material.setValues({color:0xffffff,vertexColors:true,transparent:false,opacity:1});
-      if (exportModel.geometry) exportModel.geometry.dispose();
-      exportModel = new THREE.Mesh(completeGeometry);
-      exportModel.updateMatrixWorld();
-      currentResult.visible = true;
-      requestRender();
-      downloadButton.dataset.islandConnections = mode;
-      downloadButton.disabled = false;
-      if (download3mf) download3mf.disabled = false;
-      const readback = document.getElementById('dimension-readback');
-      if (readback) readback.textContent = `Applied: base ${dims.baseHeight} mm + walls ${dims.wallHeight} mm = ${dims.baseHeight + dims.wallHeight} mm total. Underside grooves: ${Number((dims.baseHeight * .3).toFixed(6))} mm deep (30% of base); ${Number((dims.baseHeight * .7).toFixed(6))} mm floor remains above them. Connector minimum: ${dims.minConnectorWidth} mm.`;
-    };
-    await rebuildConnections(window.shpstl.islandConnections);
-  } else {
+  {
     await stage("Building with reference CSG…");
     const evaluator = new Evaluator();
     evaluator.useGroups = true;
@@ -255,12 +186,5 @@ export async function initialize() {
   requestRender();
   downloadButton.addEventListener("click", () => exportToSTL(exportModel));
   downloadButton.disabled = false;
-  if (download3mf && !useCSG) download3mf.addEventListener('click', () => {
-    try { exportTo3MF(exportParts); }
-    catch (error) {
-      downloadButton.disabled = download3mf.disabled = true;
-      document.getElementById('status').textContent = `Export failed: ${error.message}. Create to retry.`;
-    }
-  });
   return rebuildConnections;
 }

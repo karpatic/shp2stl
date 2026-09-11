@@ -1,0 +1,352 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "dc",
+  "before": false,
+  "rows": [
+    {
+      "case": "cold",
+      "name": "cold",
+      "readyMs": 5751.199999988079,
+      "paintedMs": 6157.0999999940395,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "xyBoolean": 11,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "topologyValidation": 3,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "base-2.5",
+      "name": "create-btn",
+      "readyMs": 95,
+      "paintedMs": 184.80000001192093,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "wall-3.5",
+      "name": "create-btn",
+      "readyMs": 59.5,
+      "paintedMs": 147.30000001192093,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "height-return",
+      "name": "create-btn",
+      "readyMs": 61,
+      "paintedMs": 154,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "unchanged",
+      "name": "create-btn",
+      "readyMs": 17.30000001192093,
+      "paintedMs": 47.70000001788139,
+      "counts": {
+        "readyReuse": 1
+      },
+      "frames": 0
+    },
+    {
+      "case": "minimum-1.6",
+      "name": "create-btn",
+      "readyMs": 839.1999999880791,
+      "paintedMs": 942.5999999940395,
+      "counts": {
+        "xyBoolean": 5,
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "topologyValidation": 2,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "minimum-return",
+      "name": "create-btn",
+      "readyMs": 75.5,
+      "paintedMs": 171.09999999403954,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "disconnected",
+      "name": "mode",
+      "readyMs": 820.3000000119209,
+      "paintedMs": 933.7000000178814,
+      "counts": {
+        "xyBoolean": 5,
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "topologyValidation": 2,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "hull",
+      "name": "mode",
+      "readyMs": 772.7999999821186,
+      "paintedMs": 941.9000000059605,
+      "counts": {
+        "xyBoolean": 6,
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "topologyValidation": 2,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "connections",
+      "name": "mode",
+      "readyMs": 60.099999994039536,
+      "paintedMs": 161.19999998807907,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "city-other",
+      "name": "preset-baltimore",
+      "readyMs": 18949.79999998212,
+      "paintedMs": 19167.5,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "xyBoolean": 1776,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "topologyValidation": 3,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "city-return",
+      "name": "preset-dc",
+      "readyMs": 53.20000001788139,
+      "paintedMs": 132.09999999403954,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "width-0.6",
+      "name": "create-btn",
+      "readyMs": 2399.5999999940395,
+      "paintedMs": 2518.199999988079,
+      "counts": {
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "xyBoolean": 11,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "topologyValidation": 3,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "width-return",
+      "name": "create-btn",
+      "readyMs": 71.5,
+      "paintedMs": 205.69999998807907,
+      "counts": {
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "refresh-unchanged",
+      "name": "refresh-source",
+      "readyMs": 219.80000001192093,
+      "paintedMs": 222.90000000596046,
+      "counts": {
+        "fetch": 1,
+        "readyReuse": 1
+      },
+      "frames": 0
+    },
+    {
+      "case": "latest-city",
+      "name": "preset-dc",
+      "readyMs": 10.100000023841858,
+      "paintedMs": 44.80000001192093,
+      "counts": {
+        "readyReuse": 1
+      },
+      "frames": 0
+    },
+    {
+      "case": "refresh-changed",
+      "name": "refresh-source",
+      "readyMs": 12511.59999999404,
+      "paintedMs": 12756.199999988079,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "xyBoolean": 1776,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "topologyValidation": 3,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    },
+    {
+      "case": "refresh-restored",
+      "name": "refresh-source",
+      "readyMs": 285.59999999403954,
+      "paintedMs": 369.39999997615814,
+      "counts": {
+        "fetch": 1,
+        "validateSolid": 3,
+        "heightValidation": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      },
+      "frames": 1
+    }
+  ]
+}

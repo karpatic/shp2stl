@@ -6,6 +6,7 @@ import RBush from "../three/vendor/rbush.js";
 import pc, { strokeLines, insetRegion, conditionExterior, FLOAT32_CONFORMITY } from "./planar-boolean.js";
 import { createLineShapes } from "./three.js";
 import { islandBase } from "./islands.js";
+const heightTemplates = new WeakMap();
 const union = (...polys) => (polys.length ? pc.union(...polys) : []);
 export function lineFootprints(lines, options) {
   // Retain the original strip construction in double precision. Float32 conversion
@@ -14,63 +15,48 @@ export function lineFootprints(lines, options) {
     shape.getPoints().map((p) => [p.x, p.y]),
   ]);
 }
-export function heightRegions(
-  { hull, hullLines, lines, interiorLines, sourceExterior },
-  options,
+// Wall and coastline math depends on prepared geography and width, not pads/heights.
+export function prepareRegionInputs(
+  { hull, hullLines, lines, interiorLines, sourceExterior }, options,
 ) {
-  // Every retained exterior receives a floor. Interior source voids keep the
-  // approved filled-floor convention; their source-facing walls remain above.
   const coastline = sourceExterior ? conditionExterior(sourceExterior.features[0].geometry.coordinates, options.width) : null;
   const feature = coastline ? {type: "MultiPolygon", coordinates: coastline} : hull.features[0].geometry;
   const exteriors = feature.type === "MultiPolygon" ? feature.coordinates.map(p=>[p[0]]) : [[feature.coordinates[0]]];
   const land = union(exteriors);
-  const connections = islandBase(land, options);
-  const H = connections.footprint;
   const C = options.sourceTopology ? strokeLines(interiorLines, options.width) : union(...lineFootprints(interiorLines, options));
   let B = options.sourceTopology ? strokeLines(hullLines, options.width) : union(...lineFootprints(hullLines, options));
-  // Interior rims sit above the existing floor. Only exterior boundaries need
-  // base support; extending interior rims downward would fill underside grooves.
-  const exteriorLines = {
-    ...hullLines,
-    features: hullLines.features.filter(f => f.properties?.boundaryRole !== "interior"),
-  };
+  const exteriorLines = {...hullLines, features: hullLines.features.filter(f => f.properties?.boundaryRole !== "interior")};
   let support = options.sourceTopology ? strokeLines(exteriorLines, options.width) : union(...lineFootprints(exteriorLines, options));
   let L = options.sourceTopology ? strokeLines(lines, options.width) : union(...lineFootprints(lines, options));
-  let sourceCaps, sourceLayers;
+  let sourceLand, innerLand, stroke, grooveRoof;
   if (sourceExterior) {
-    // A centered coastline stroke seals narrow water inlets into false pockets.
-    // Put the full nominal exterior wall width INSIDE the original land outline.
-    // Source holes stay in the arc network; they are not filled or reassigned.
-    const sourceLand = union(coastline);
-    const innerLand = insetRegion(sourceLand, options.width), stroke = L;
+    sourceLand = union(coastline);
+    innerLand = insetRegion(sourceLand, options.width); stroke = L;
     B = pc.difference(sourceLand, innerLand);
     L = union(pc.intersection(stroke, sourceLand), B);
     support = B;
-    const grooveRoof = pc.intersection(C, innerLand);
+    grooveRoof = pc.intersection(C, innerLand);
+  } else if (options.sourceTopology) support = pc.intersection(support, L);
+  return {land,C,B,L,support,sourceLand,innerLand,stroke,grooveRoof};
+}
+export function heightRegions(input, options, prepared = prepareRegionInputs(input, options)) {
+  const {land,C,B,L,support,sourceLand,innerLand,stroke,grooveRoof} = prepared;
+  const connections = islandBase(land, options), H = connections.footprint;
+  let sourceCaps, sourceLayers;
+  if (input.sourceExterior) {
     const addedSupport = pc.difference(H, land);
     const lowFloor = pc.difference(H, grooveRoof);
     sourceLayers = [lowFloor, H, L];
-    // Factor the height interfaces using the same sets. Re-subtracting full
-    // layers repeatedly sweeps thousands of identical coastline edges.
     sourceCaps = [
       null,
       {up: [], down: grooveRoof},
       {up: union(pc.difference(innerLand, stroke), pc.difference(land, sourceLand), addedSupport), down: []},
       {up: L, down: []},
     ];
-  } else if (options.sourceTopology) support = pc.intersection(support, L);
+  }
   const layers = sourceLayers || [union(pc.difference(H, C), support), union(H, support), options.sourceTopology ? L : union(B, L)];
   if (sourceCaps) sourceCaps[0] = {up: [], down: layers[0]};
-  return {
-    H,
-    land,
-    connections,
-    C,
-    B,
-    L,
-    layers,
-    caps: sourceCaps,
-  };
+  return {H, land, connections, C, B, L, layers, caps: sourceCaps};
 }
 export function layerGeometry(layers, levels, caps) {
   if (
@@ -153,9 +139,10 @@ export function layerGeometry(layers, levels, caps) {
   );
   const vertexMap = new Map(),
     vertices = [];
+  const recipes = [];
   const key = (p) => p.join(",");
   const weldTree = new RBush();
-  function vertex(p) {
+  function vertex(p, recipe) {
     p = p.map(Math.fround);
     const k = key(p);
     if (!vertexMap.has(k)) {
@@ -177,12 +164,13 @@ export function layerGeometry(layers, levels, caps) {
         const id = vertices.length;
         vertexMap.set(k, id);
         vertices.push(p);
+        recipes.push(recipe || [levels.findIndex(z => Math.fround(z) === p[2])]);
         weldTree.insert({ minX: p[0], maxX: p[0], minY: p[1], maxY: p[1], id });
       }
     }
     return vertexMap.get(k);
   }
-  const faces = triangles.map((t) => t.map(vertex));
+  const faces = triangles.map((t) => t.map(p => vertex(p)));
   const tree = new RBush();
   tree.load(
     vertices.map((p, id) => ({
@@ -240,6 +228,7 @@ export function layerGeometry(layers, levels, caps) {
       [0, 1, 2].map(
         (i) => (vertices[a][i] + vertices[b][i] + vertices[c][i]) / 3,
       ),
+      [a, b, c],
     );
     for (let j = 0; j < perimeter.length; j++)
       indices.push(center, perimeter[j], perimeter[(j + 1) % perimeter.length]);
@@ -274,7 +263,10 @@ export function layerGeometry(layers, levels, caps) {
     ),
   );
   geometry.userData.rawArea = rawArea;
-  geometry.userData.validation = validateSolid(geometry, layers, levels);
+
+  try { geometry.userData.validation = validateSolid(geometry, layers, levels); }
+  catch (error) { geometry.dispose(); throw error; }
+  heightTemplates.set(geometry, {recipes, position:geometry.attributes.position.array.slice(), index:geometry.index.array.slice(), validation:{...geometry.userData.validation}});
   return geometry;
 }
 
@@ -295,7 +287,7 @@ export function regionArea(polygons) {
   );
 }
 
-export function validateSolid(geometry, layers, levels) {
+export function validateSolid(geometry, layers, levels, invariant) {
   const p = geometry.attributes.position,
     index = geometry.index.array,
     edges = new Map(),
@@ -317,7 +309,7 @@ export function validateSolid(geometry, layers, levels) {
       throw Error("Nonfinite or collapsed planar face");
     area += length / 2;
     volume += a.dot(cross) / 6;
-    for (let j = 0; j < 3; j++) {
+    if (!invariant) for (let j = 0; j < 3; j++) {
       const u = ids[j],
         v = ids[(j + 1) % 3],
         w = ids[(j + 2) % 3],
@@ -365,12 +357,44 @@ export function validateSolid(geometry, layers, levels) {
     throw Error("Planar volume does not match its height regions");
   return {
     triangles: index.length / 3,
-    vertices: links.size,
-    edges: edges.size,
+    vertices: invariant?.vertices ?? links.size,
+    edges: invariant?.edges ?? edges.size,
     area,
     volume,
     expectedVolume,
     volumeTolerance,
     closed: true,
   };
+}
+
+// Templates stay private to the pipeline. Indices/XY and their oriented edge and
+// vertex-link proof are immutable. A strictly increasing per-layer Z mapping
+// preserves that proof; every changed mesh still checks faces and actual volume.
+export function retargetGeometry(template, layers, levels) {
+  if (levels.length !== layers.length + 1 || levels.some((v,i) =>
+    !Number.isFinite(v) || (i && v <= levels[i-1]))) throw Error('Invalid height layers');
+  const proof = heightTemplates.get(template);
+  if (!proof || template.index.array.length !== proof.index.length ||
+    template.attributes.position.array.length !== proof.position.length ||
+    !template.index.array.every((v,i) => v === proof.index[i]) ||
+    !template.attributes.position.array.every((v,i) => v === proof.position[i]))
+    throw Error('Height template changed since validation');
+  const geometry = template.clone(), p = geometry.attributes.position;
+  try {
+    const {recipes} = proof;
+    for (let i=0;i<p.count;i++) {
+      const recipe = recipes[i];
+      if (recipe.length === 1) {
+        if (recipe[0] < 0) throw Error('Unclassified template height');
+        p.setZ(i, levels[recipe[0]]);
+      } else p.setZ(i, (p.getZ(recipe[0])+p.getZ(recipe[1])+p.getZ(recipe[2]))/3);
+    }
+    p.needsUpdate = true;
+    geometry.userData.validation = validateSolid(geometry, layers, levels, proof.validation);
+    delete geometry.userData.rawArea;
+    geometry.userData.levels = levels.slice();
+    geometry.computeVertexNormals();
+    geometry.computeBoundingBox(); geometry.computeBoundingSphere();
+    return geometry;
+  } catch (error) { geometry.dispose(); throw error; }
 }

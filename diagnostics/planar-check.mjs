@@ -1,6 +1,6 @@
 // Author: Codex app agent — 2026-09-11.
 import assert from "node:assert/strict";
-import { heightRegions, layerGeometry, validateSolid } from "../new/planar.js";
+import { heightRegions, layerGeometry, validateSolid, retargetGeometry } from "../new/planar.js";
 import pc from "../new/planar-boolean.js";
 const rect = (x, y, w, h) => [
   [
@@ -76,3 +76,24 @@ for(const [baseHeight,wallHeight] of [[6,6],[2.5,6],[2.5,3.5],[.01,.01]]) {
 for(const key of ['baseHeight','wallHeight','minConnectorWidth'])for(const value of [0,-1,NaN,Infinity,201])
  assert.throws(()=>dimensions({[key]:value,width:.5}),/must be between/);
 console.log('PASS: legacy and independent heights; grooves stay strictly within the base; invalid dimensions rejected');
+
+// Cached height structure must remain closed across extreme ratios, and must
+// preserve source buffers/indices while producing the exact default positions.
+const originalPositions=cross.attributes.position.array.slice();
+for(const [baseHeight,wallHeight] of [[2.5,6],[2.5,3.5],[.01,200],[200,.01],[6,6]]) {
+  const levels=dimensions({baseHeight,wallHeight}).levels;
+  const result=retargetGeometry(cross,layers,levels);
+  assert.deepEqual(result.index.array,cross.index.array);
+  assert(validateSolid(result,layers,levels).closed); // independent full topology check
+  assert.deepEqual(cross.attributes.position.array,originalPositions);
+  assert.equal(result.boundingBox.min.z,0);assert.equal(result.boundingBox.max.z,levels[3]);
+  assert([...result.attributes.normal.array].every(Number.isFinite));
+  if(baseHeight===6&&wallHeight===6)assert.deepEqual(result.attributes.position.array,originalPositions);
+  result.dispose();
+}
+assert.throws(()=>retargetGeometry(cross,layers,[0,2,1,3]),/Invalid height/);
+console.log('PASS: cached height retargeting, independent topology validation, extremes, bounds, normals and immutable defaults');
+
+const oldIndex=cross.index.array[0];cross.index.array[0]=cross.index.array[1];
+assert.throws(()=>retargetGeometry(cross,layers,z),/template changed/);
+cross.index.array[0]=oldIndex;

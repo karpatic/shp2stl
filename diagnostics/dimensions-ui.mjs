@@ -44,11 +44,13 @@ export async function checkDimensionsUI(page, out, log, dataset) {
     ['changed-hull',{},'hull'],
   ]) {
     const before = await camera(), start = Date.now();
+    await page.evaluate(()=>window.diagSVG=document.querySelector('#map .leaflet-overlay-pane svg path'));
     for (const [key,value] of Object.entries(fields)) {await page.locator('#cfg-'+key).fill(value);await disabled();}
     if (await page.locator('#cfg-islandConnections').inputValue() !== mode)
       await page.locator('#cfg-islandConnections').selectOption(mode);
     else await page.locator('#create-btn').click();
     await enabled(); await checkCamera(before);
+    if(await page.evaluate(()=>!!window.diagRenderer)) assert(await page.evaluate(()=>window.diagSVG===document.querySelector('#map .leaflet-overlay-pane svg path')), 'Height/support edit replaced SVG');
     log({kind:'dimensions-rebuild',name,ms:Date.now()-start,cameraPreserved:true});
     await capture(name);
   }

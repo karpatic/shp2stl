@@ -1,0 +1,306 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "baltimore",
+  "before": false,
+  "rows": [
+    {
+      "case": "cold",
+      "name": "cold",
+      "readyMs": 22878.20000001788,
+      "paintedMs": 23425.600000023842,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "base-2.5",
+      "name": "create-btn",
+      "readyMs": 199.69999998807907,
+      "paintedMs": 359.59999999403954,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "wall-3.5",
+      "name": "create-btn",
+      "readyMs": 156.7999999821186,
+      "paintedMs": 300.59999999403954,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "height-return",
+      "name": "create-btn",
+      "readyMs": 100.80000001192093,
+      "paintedMs": 239.30000001192093,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "unchanged",
+      "name": "create-btn",
+      "readyMs": 24.099999994039536,
+      "paintedMs": 57,
+      "counts": {
+        "readyReuse": 1
+      }
+    },
+    {
+      "case": "minimum-1.6",
+      "name": "create-btn",
+      "readyMs": 4249,
+      "paintedMs": 4411,
+      "counts": {
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "minimum-return",
+      "name": "create-btn",
+      "readyMs": 113.80000001192093,
+      "paintedMs": 222.09999999403954,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "disconnected",
+      "name": "mode",
+      "readyMs": 2429.9000000059605,
+      "paintedMs": 2561.4000000059605,
+      "counts": {
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "hull",
+      "name": "mode",
+      "readyMs": 2017.9000000059605,
+      "paintedMs": 2172.600000023842,
+      "counts": {
+        "layerGeometry": 2,
+        "validateSolid": 5,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "connections",
+      "name": "mode",
+      "readyMs": 150.09999999403954,
+      "paintedMs": 331.30000001192093,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "city-other",
+      "name": "preset-dc",
+      "readyMs": 3325.399999976158,
+      "paintedMs": 3416.0999999940395,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "city-return",
+      "name": "preset-baltimore",
+      "readyMs": 196,
+      "paintedMs": 505.7999999821186,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "width-0.6",
+      "name": "create-btn",
+      "readyMs": 13107,
+      "paintedMs": 13264.09999999404,
+      "counts": {
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "width-return",
+      "name": "create-btn",
+      "readyMs": 156.40000000596046,
+      "paintedMs": 342.80000001192093,
+      "counts": {
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "refresh-unchanged",
+      "name": "refresh-source",
+      "readyMs": 474,
+      "paintedMs": 476.90000000596046,
+      "counts": {
+        "fetch": 1,
+        "readyReuse": 1
+      }
+    },
+    {
+      "case": "latest-city",
+      "name": "preset-baltimore",
+      "readyMs": 20.80000001192093,
+      "paintedMs": 53.69999998807907,
+      "counts": {
+        "readyReuse": 1
+      }
+    },
+    {
+      "case": "refresh-changed",
+      "name": "refresh-source",
+      "readyMs": 3044.199999988079,
+      "paintedMs": 3191.4000000059605,
+      "counts": {
+        "fetch": 1,
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 6,
+        "geography": 1,
+        "wallXY": 1,
+        "layerGeometry": 3,
+        "validateSolid": 6,
+        "wallTemplate": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "regions": 1,
+        "template": 1,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    },
+    {
+      "case": "refresh-restored",
+      "name": "refresh-source",
+      "readyMs": 477.59999999403954,
+      "paintedMs": 686.5999999940395,
+      "counts": {
+        "fetch": 1,
+        "validateSolid": 3,
+        "heightCompute": 1,
+        "svg": 1,
+        "exportReady": 1,
+        "painted": 1
+      }
+    }
+  ]
+}

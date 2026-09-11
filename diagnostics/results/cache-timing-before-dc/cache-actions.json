@@ -1,0 +1,129 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "city": "dc",
+  "before": true,
+  "rows": [
+    {
+      "case": "cold",
+      "name": "cold",
+      "readyMs": 8769.40000000596,
+      "paintedMs": 9560,
+      "counts": {
+        "communityBoundaries": 1,
+        "getConvexHull": 2,
+        "nodePolygons": 1,
+        "simplifyTopology": 1,
+        "getInteriorLines": 1,
+        "reprojectGeoJSON": 6,
+        "getMinMaxCoordinates": 1,
+        "scaleGeoJSON": 5,
+        "createThreeDGeometry": 1,
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "base-2.5",
+      "name": "create-btn",
+      "readyMs": 1053.199999988079,
+      "paintedMs": 1221.0999999940395,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "wall-3.5",
+      "name": "create-btn",
+      "readyMs": 1244.5,
+      "paintedMs": 1385.699999988079,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "height-return",
+      "name": "create-btn",
+      "readyMs": 1546.6000000238419,
+      "paintedMs": 1666.4000000059605,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "unchanged",
+      "name": "create-btn",
+      "readyMs": 1213.5999999940395,
+      "paintedMs": 1379.699999988079,
+      "counts": {
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "minimum-1.6",
+      "name": "create-btn",
+      "readyMs": 1944.2999999821186,
+      "paintedMs": 2061.699999988079,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "minimum-return",
+      "name": "create-btn",
+      "readyMs": 818.9000000059605,
+      "paintedMs": 922.0999999940395,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "disconnected",
+      "name": "mode",
+      "readyMs": 1061.7000000178814,
+      "paintedMs": 1142.300000011921,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "hull",
+      "name": "mode",
+      "readyMs": 1253,
+      "paintedMs": 1359.699999988079,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    },
+    {
+      "case": "connections",
+      "name": "mode",
+      "readyMs": 1562.8999999761581,
+      "paintedMs": 1631,
+      "counts": {
+        "heightRegions": 1,
+        "islandBase": 1,
+        "layerGeometry": 3,
+        "validateSolid": 3
+      }
+    }
+  ]
+}

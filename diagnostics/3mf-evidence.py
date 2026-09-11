@@ -1,5 +1,5 @@
 # Author: Codex app agent, 2026-09-11. Independent audit of actual UI downloads.
-import collections, hashlib, json, math, sys, zipfile
+import collections, hashlib, json, math, sys, zipfile, os
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import numpy as np
@@ -97,7 +97,7 @@ def section(ts,z):
 
 report={}
 for city in sys.argv[1:] or ['dc','baltimore']:
-    root=D/f'dimensions-{city}';summary=json.load(open(root/'summary.json'));assert summary['status']=='complete'
+    root=D/f"{os.environ.get('RUN_PREFIX','dimensions')}-{city}";summary=json.load(open(root/'summary.json'));assert summary['status']=='complete'
     assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha for p,sha in summary['sources'].items()),'Stale source hashes'
     cases={}
     for name in ['connections','disconnected','hull','base-2.5','wall-3.5','minimum-1.6','changed-disconnected','changed-hull','saved-hull']:
@@ -150,5 +150,5 @@ for city in sys.argv[1:] or ['dc','baltimore']:
         cases[name]=dict(levels=levels,minConnectorWidth=minimum,stats=stats,sectionDifferenceAreas=sections,joins=joins,defaultSTLByteIdentical=exactDefault)
         print(city,name,'PASS',flush=True)
     report[city]=dict(cases=cases,wallMs=summary['wallMs'],events=[e for e in summary['events'] if e['kind'] in ['complete','dimensions-rebuild','format-download','infeasible-minimum','invalid-dimension','saved-dimensions','ui-check']])
-out=D/'dimensions';out.mkdir(exist_ok=True)
+out=D/os.environ.get('EVIDENCE_DIR','dimensions');out.mkdir(exist_ok=True)
 (out/('evidence-'+ '-'.join(report)+'.json')).write_text(json.dumps(dict(author='Codex app agent',date='2026-09-11',datasets=report),indent=2)+'\n')

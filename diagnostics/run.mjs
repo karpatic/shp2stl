@@ -7,11 +7,12 @@ import { resolve, extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { checkDimensionsUI } from './dimensions-ui.mjs';
+import { checkCacheUI } from './cache-ui.mjs';
 
 const [variant = 'baseline', dataset = 'dc', label = `${variant}-${dataset}`] = process.argv.slice(2);
 const limitMs = Number(process.env.LIMIT_SECONDS || 120) * 1000;
 const rssLimit = Number(process.env.RSS_MB || 2048) * 1024;
-const root = resolve(['baseline','reference'].includes(variant) ? 'diagnostics/.cache/baseline' : '.');
+const root = process.env.SOURCE_ROOT ? resolve(process.env.SOURCE_ROOT) : resolve(['baseline','reference'].includes(variant) ? 'diagnostics/.cache/baseline' : '.');
 const out = resolve('diagnostics/results', label);
 mkdirSync(out, { recursive: true });
 // Keep Playwright's disposable profile/download directories in this repository.
@@ -27,6 +28,8 @@ const wrappers = (names) => names.map(name => `{
  const original = ${name};
  ${name} = function(...args) {
    const start = performance.now();
+   window.diagCounts ||= {}; window.diagCounts['${name}'] = (window.diagCounts['${name}']||0)+1;
+   if('${name}'==='validateSolid') {const key=args[3]?'heightValidation':'topologyValidation';window.diagCounts[key]=(window.diagCounts[key]||0)+1;}
    const result = original.apply(this, args);
    const done = value => { window.diag({kind:'stage', name:'${name}', ms:performance.now()-start}); return value; };
    return result?.then ? result.then(done) : done(result);
@@ -81,9 +84,15 @@ const server = createServer((req, res) => {
     } else if (path.endsWith('/new/leaflet.js')) {
       data = data.toString() + '\n' + wrappers(['truncateGeoJSON','getConvexHull','getConvexHullLines','simplifyGeoJSON','getOverlappingLines','getInteriorLines','reprojectGeoJSON','scaleGeoJSON','getMinMaxCoordinates']);
     } else if (path.endsWith('/new/planar.js')) {
-      data = data.toString() + '\n' + wrappers(['heightRegions','layerGeometry']);
+      data = data.toString() + '\n' + wrappers(['heightRegions','layerGeometry','validateSolid']);
       if (process.env.FAIL_ISLAND) data += `\n{const original=heightRegions;heightRegions=(input,options)=>{if(options.islandConnections==='connections')throw Error('No island pad with continuous broad engagement at this model scale; use Disconnected or Hull base');return original(input,options);};}`;
       if (process.env.FAIL_PLANAR) data += `\n{const original=layerGeometry;layerGeometry=(...args)=>{throw Error('Planar diagnostic failure');};}`;
+    } else if (path.endsWith('/new/planar-boolean.js')) {
+      data = data.toString() + `\n{const original=operation;operation=(...args)=>{window.diagCounts ||= {};window.diagCounts.xyBoolean=(window.diagCounts.xyBoolean||0)+1;return original(...args);};}`;
+    } else if (path.endsWith('/new/boundaries.js')) {
+      data = data.toString() + '\n' + wrappers(['communityBoundaries','nodePolygons','simplifyTopology']);
+    } else if (path.endsWith('/new/islands.js')) {
+      data = data.toString() + '\n' + wrappers(['islandBase']);
     } else if (path.endsWith('/new/three.js')) {
       data = data.toString() + '\n' + wrappers(['createThreeDGeometry','createThreeDGeometryLines']);
       data += `\n{
@@ -154,6 +163,34 @@ await page.addInitScript(config => {
   // Identical deterministic colors make screenshots comparable, not geometry.
   window.diagSeed=12345; Math.random=()=>((window.diagSeed=Math.imul(window.diagSeed,1664525)+1013904223>>>0)/4294967296);
   window.diagStart=performance.now();
+  window.diagCounts={}; window.diagActions=[];
+  window.shp2stlDiagnostic=event=>{
+    window.diagCounts[event.name]=(window.diagCounts[event.name]||0)+1;
+    window.diag({kind:'stage',...event});
+  };
+  window.shp2stlInspect=({view,regions,prepared,dimensions,options,validation})=>{
+    window.diagResult=view.mesh;window.diagScene=view.scene;window.diagControls=view.controls;window.diagRenderer=view.renderer;
+    window.diagRegionData={dataset:config.shpstl.geoJsonUrl.includes('arcgis')?'baltimore':'dc',center:prepared.center,bounds:prepared.minMax,regions,dimensions,options};
+    if(!window.diagCompleted) {
+      window.diagCompleted=true;
+      window.diagData('planar-validation',validation);
+      window.diag({kind:'complete',ms:performance.now()-window.diagStart,heap:performance.memory?.usedJSHeapSize});
+    }
+  };
+  let action={name:'cold',start:window.diagStart},pending=false;
+  document.addEventListener('click',e=>{
+    if(['create-btn','preset-dc','preset-baltimore','refresh-source'].includes(e.target.id)) action={name:e.target.id,start:performance.now()};
+  },true);
+  document.addEventListener('change',e=>{if(e.target.id==='cfg-islandConnections')action={name:'mode',start:performance.now()};},true);
+  document.addEventListener('DOMContentLoaded',()=>{
+    new MutationObserver(()=>{
+      if(document.querySelector('#download-btn').disabled || pending || !action) return;
+      pending=true;const saved=action,ready=performance.now()-saved.start;action=null;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        window.diagActions.push({name:saved.name,readyMs:ready,paintedMs:performance.now()-saved.start});pending=false;
+      }));
+    }).observe(document.querySelector('#download-btn'),{attributes:true,attributeFilter:['disabled']});
+  });
 },config);
 const cdp = await context.newCDPSession(page);
 if (process.env.PROFILE) { await cdp.send('Profiler.enable'); await cdp.send('Profiler.start'); }
@@ -192,7 +229,7 @@ try {
       await page.locator('#toggle-config').click();
       await select.selectOption('disconnected');
       await page.waitForFunction(()=>document.querySelector('#download-btn')?.dataset.islandConnections==='disconnected' && !document.querySelector('#download-btn').disabled);
-      await page.locator('#toggle-config').click();
+      if(await page.locator('#config-panel').evaluate(el=>el.classList.contains('collapsed'))) await page.locator('#toggle-config').click();
       await select.selectOption('connections');
       await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Choose a mode to retry'));
       if(!await page.locator('#download-btn').isDisabled())throw Error('Failed rebuild enabled stale download');
@@ -225,6 +262,7 @@ try {
       return {position:Array.from(g.attributes.position.array),normal:Array.from(g.attributes.normal.array),uv:Array.from(g.attributes.uv.array),index:g.index?Array.from(g.index.array):null,groups:g.groups,drawRange:g.drawRange};
     });
     writeFileSync(out+'/result-geometry.json',JSON.stringify(geometry));
+    if(process.env.CACHE_CHECK) await checkCacheUI(page,out,log,dataset,!!process.env.SOURCE_ROOT);
     if(process.env.ISLAND_CHECK) {
       const select=page.locator('#cfg-islandConnections');
       if(await select.inputValue()!=='connections')throw Error('Fresh default is not Connections');
@@ -285,6 +323,8 @@ try {
       if(Math.abs(after.angle-before.angle)<.001 || Math.abs(after.distance-before.distance)<.001)throw Error('Orbit/zoom did not update');
       if(variant==='optimized' && idleFrames!==0)throw Error('Stationary view kept rendering');
       log({kind:'ui-check',idleFrames,before,after});
+      const resources=await page.evaluate(()=>window.diagRenderer?{gpu:window.diagRenderer.info.memory,heap:performance.memory?.usedJSHeapSize}:null);
+      if(resources) {if(resources.gpu.geometries>1)throw Error('Replaced preview GPU geometries retained');log({kind:'cache-resources',...resources});}
       await page.screenshot({path:out+'/orbit.png'});
       await page.evaluate(()=>{
         window.diagControls.object.position.set(90,-120,-180);
@@ -301,7 +341,7 @@ try {
 finally {
   clearInterval(watchdog);
   if (status==='complete' && events.some(e=>e.kind==='error' && /CSG operation failed|Error creating/.test(e.text))) status='partial-output';
-  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js','new/dimensions.js','new/3mf.js','three/vendor/fflate/fflate.js']),'three/three-bvh-csg.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
+  const sources=Object.fromEntries(['app.html','new/new.js','new/leaflet.js','new/three.js',...(['baseline','reference'].includes(variant)?[]:['new/planar.js','new/planar-boolean.js','new/boundaries.js','new/islands.js','new/dimensions.js','new/3mf.js','three/vendor/fflate/fflate.js']),'three/three-bvh-csg.js',...(process.env.SOURCE_ROOT?[]:['new/cache.js','new/pipeline.js','new/presets.js'])].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
   writeFileSync(out+'/summary.json',JSON.stringify({variant,dataset,status,config,sources,profile:!!process.env.PROFILE,seed:12345,browser:browser.version(),limitMs,rssLimitKiB:rssLimit,peakRSSKiB:peakRSS,computePeakRSSKiB,computeCpuSeconds,processCpuSeconds:[...cpuByPid.values()].reduce((a,b)=>a+b,0),wallMs:Date.now()-wallStart,events},null,2));
   await launch.kill().catch(()=>{}); server.close();
 }

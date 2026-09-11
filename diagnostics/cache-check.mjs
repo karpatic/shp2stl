@@ -1,0 +1,20 @@
+// Author: Codex app agent, 2026-09-11.
+import assert from 'node:assert/strict';
+import {SessionCache} from '../new/cache.js';
+import {SOURCE_PRESETS} from '../new/presets.js';
+import {readFileSync} from 'node:fs';
+const manifest=JSON.parse(readFileSync('diagnostics/fixtures/manifest.json'));
+for(const city of ['dc','baltimore'])assert.equal(SOURCE_PRESETS[city],manifest[city+'.geojson'].url);
+let builds=0,release;
+const cache=new SessionCache(2);
+const a=cache.get('a',()=>{builds++;return new Promise(r=>release=r);});
+assert.equal(cache.get('a',()=>assert.fail('Duplicate in-flight work')),a);
+await Promise.resolve();release('ready');assert.equal(await a,'ready');assert.equal(builds,1);
+await assert.rejects(cache.get('fail',()=>{throw Error('retry');}),/retry/);
+assert.equal(await cache.get('fail',()=>42),42);
+await cache.get('b',()=>1);await cache.get('c',()=>2);assert.equal(cache.entries.size,2);
+let signal;
+const pending=cache.get('pending',s=>{signal=s;return new Promise(()=>{});});
+await Promise.resolve();await cache.get('d',()=>4);await cache.get('e',()=>5);assert(signal.aborted);
+assert.equal(cache.entries.size,2);
+console.log('PASS: established presets, shared in-flight work, rejection eviction/retry and bounded eviction/cancellation');
