@@ -23,6 +23,8 @@ import {
 import { Evaluator, SUBTRACTION } from "three-bvh-csg";
 
 export async function initialize() {
+  const downloadButton = document.getElementById("download-btn");
+  downloadButton.disabled = true;
   const defaults = {
     depth: 6,
     width: 0.5,
@@ -41,11 +43,11 @@ export async function initialize() {
   geojson = await simplifyGeoJSON(geojson, window.shpstl.simplifyBy);
   let hull = getConvexHull(geojson); 
   let lines = getOverlappingLines(geojson);
-  let interiorLines = getInteriorLines(geojson, hull);
+  let interiorLines = getInteriorLines(lines, hull);
 
   // Display the GeoJSON data on the map
   let { map } = createLeafletMap();
-  const { scene } = createScene("threejs"); 
+  const { scene, requestRender } = createScene("threejs");
   L.geoJSON(hullLines, {
     style: {
       color: "#ff0000",
@@ -114,6 +116,8 @@ export async function initialize() {
   const hullBrush = createBrush(hullGeometries[0].geometry);
   hullBrush.updateMatrixWorld();
   let currentResult = hullBrush;
+  const evaluator = new Evaluator();
+  evaluator.useGroups = true;
   for (let i = 0; i < interiorLineGeometries.length; i++) {
     try {   
       const lineEntry = interiorLineGeometries[i];
@@ -125,15 +129,22 @@ export async function initialize() {
       lineBrush.updateMatrixWorld();
 
       // Subtract this line from the current result
-      const evaluator = new Evaluator();
-      evaluator.useGroups = true;
-      currentResult = evaluator.evaluate(currentResult, lineBrush, SUBTRACTION);
+      const previousResult = currentResult;
+      currentResult = evaluator.evaluate(previousResult, lineBrush, SUBTRACTION);
+      previousResult.disposeCacheData();
+      previousResult.geometry.dispose();
+      lineBrush.disposeCacheData();
+      lineGeometry.dispose();
       console.log(`Successfully subtracted line geometry ${i + 1}/${interiorLineGeometries.length}`
       );
     } 
-    catch (error) {console.error(`CSG operation failed for line ${i + 1}:`, error);}
+    catch (error) {
+      throw new Error(`CSG operation failed for line ${i + 1}/${interiorLineGeometries.length}`, { cause: error });
+    }
   }
   scene.add(currentResult);
+  requestRender();
   // scene.add(hullMeshGroup);
-  document.getElementById("download-btn").addEventListener("click", () => exportToSTL(scene));
+  downloadButton.addEventListener("click", () => exportToSTL(scene));
+  downloadButton.disabled = false;
 }

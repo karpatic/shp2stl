@@ -1,0 +1,67 @@
+{
+  "dc.geojson": {
+    "url": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson",
+    "bytes": 892396,
+    "sha256": "8dd673449dde5fe406b11f9e9bf467a66e34bb33d9a4f87f4dc1cbf132494791"
+  },
+  "baltimore.geojson": {
+    "url": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson",
+    "bytes": 2328603,
+    "sha256": "ac4039c7f26ceb3e12424f059c4b4e8325ec0830f4a61ce86c1416c5a014fa6b"
+  },
+  "csg.js": {
+    "url": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.16/build/index.module.js",
+    "bytes": 82624,
+    "sha256": "a72e85389c4088990a0f9b375fa5046d0abebe118ced442807f15066a987d1cb"
+  },
+  "bvh.js": {
+    "url": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js",
+    "bytes": 185552,
+    "sha256": "dfb82fc704a834a54dd600334fd79b2cb8b0a850092ca0f368798d7f3e028405"
+  },
+  "leaflet.js": {
+    "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+    "bytes": 147552,
+    "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a"
+  },
+  "leaflet.css": {
+    "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+    "bytes": 14806,
+    "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6"
+  },
+  "leaflet.png": {
+    "url": "https://unpkg.com/leaflet@1.9.4/dist/images/layers.png",
+    "bytes": 696,
+    "sha256": "1dbbe9d028e292f36fcba8f8b3a28d5e8932754fc2215b9ac69e4cdecf5107c6"
+  },
+  "turf.js": {
+    "url": "https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js",
+    "bytes": 604610,
+    "sha256": "d00f3e8ff8a8f9c103dad61c2fd4bb58143e1404aadfdf09e29b6db1a2de0a3f"
+  },
+  "client.js": {
+    "url": "https://cdn.jsdelivr.net/npm/topojson-client@3",
+    "bytes": 7169,
+    "sha256": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89"
+  },
+  "simplify.js": {
+    "url": "https://cdn.jsdelivr.net/npm/topojson-simplify@3",
+    "bytes": 5709,
+    "sha256": "8804c5f220355fd007d433fa52592b0139bbd74829a92f6bf2159640b86a3718"
+  },
+  "server.js": {
+    "url": "https://cdn.jsdelivr.net/npm/topojson-server@3",
+    "bytes": 8847,
+    "sha256": "5c06cdfaae02fc29dd750005fcf169fac5aa75d778321542ac119349b88bbee7"
+  },
+  "LICENSE-three-bvh-csg": {
+    "url": "https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.16/LICENSE",
+    "bytes": 1072,
+    "sha256": "6304348bc85aa6c2c2f1338f3d33f0c26dd300f3a0776d0c8f2a02c0c2fea52b"
+  },
+  "LICENSE-three-mesh-bvh": {
+    "url": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/LICENSE",
+    "bytes": 1072,
+    "sha256": "b106ef6198a9862ed2b5b873e944ecf3583c631a84a7462d400ecc1910ce7fee"
+  }
+}

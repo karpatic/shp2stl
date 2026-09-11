@@ -1,0 +1,130 @@
+{
+  "left": "diagnostics/results/reference-baltimore-full",
+  "right": "diagnostics/results/optimized-baltimore-index",
+  "preprocessExact": true,
+  "attributesExact": {
+    "position": false,
+    "normal": false,
+    "uv": false,
+    "index": true,
+    "groups": false,
+    "drawRange": false
+  },
+  "csg": [
+    {
+      "triangles": 44511,
+      "bounds": [
+        [
+          -80.32528686523438,
+          -53.6739616394043,
+          0
+        ],
+        [
+          80.32528686523438,
+          100,
+          6
+        ]
+      ],
+      "area": 52816.791282199454,
+      "signedVolume": 121173.09731256071,
+      "zeroAreaTriangles": 18,
+      "exactEdgeIncidence": {
+        "1": 53475,
+        "2": 39968,
+        "3": 31,
+        "4": 4,
+        "5": 1,
+        "8": 1
+      },
+      "orientedSurfaceSHA256": "bac9c821c582f666bfdf75f61ecea2874de7b8ffcb815bb9d7afeaedb117d6bb"
+    },
+    {
+      "triangles": 45519,
+      "bounds": [
+        [
+          -80.32528686523438,
+          -53.6739616394043,
+          0
+        ],
+        [
+          80.32528686523438,
+          100,
+          6
+        ]
+      ],
+      "area": 52816.79128348987,
+      "signedVolume": 121173.097310983,
+      "zeroAreaTriangles": 20,
+      "exactEdgeIncidence": {
+        "1": 54879,
+        "2": 40778,
+        "3": 31,
+        "4": 4,
+        "5": 1,
+        "8": 1
+      },
+      "orientedSurfaceSHA256": "43276f82e638e0237339ee5d77037b4158e04708329b20b7cf82365d55b02055"
+    }
+  ],
+  "stlBytesExact": false,
+  "stlSHA256": [
+    "1274c01022b7af19d8cbd5ce81d8d5f6c63a48c2a434ffc1e1fac987fa989489",
+    "f9e38249b948500152ff8a6d0ad9e21aa506442c77de7ca92d8f2aa378b8e890"
+  ],
+  "exportedScene": [
+    {
+      "triangles": 48195,
+      "bounds": [
+        [
+          -80.67533874511719,
+          -100.29573822021484,
+          0.0
+        ],
+        [
+          80.57550811767578,
+          100.218017578125,
+          12.0
+        ]
+      ],
+      "area": 108639.71403824289,
+      "signedVolume": 134146.39862938435,
+      "zeroAreaTriangles": 18,
+      "exactEdgeIncidence": {
+        "1": 53475,
+        "2": 45494,
+        "3": 31,
+        "4": 4,
+        "5": 1,
+        "8": 1
+      },
+      "orientedSurfaceSHA256": "71dfae3d21fad351a2782ecaf07091e43d8140158b4afbe274e51e9e7f2f9c68"
+    },
+    {
+      "triangles": 49203,
+      "bounds": [
+        [
+          -80.67533874511719,
+          -100.29573822021484,
+          0.0
+        ],
+        [
+          80.57550811767578,
+          100.218017578125,
+          12.0
+        ]
+      ],
+      "area": 108639.71403953286,
+      "signedVolume": 134146.39862780657,
+      "zeroAreaTriangles": 20,
+      "exactEdgeIncidence": {
+        "1": 54879,
+        "2": 46304,
+        "3": 31,
+        "4": 4,
+        "5": 1,
+        "8": 1
+      },
+      "orientedSurfaceSHA256": "a727f99f815f754b7619f0da3dfb64c0155e6f7503ff51c4f148de6ee2a028c0"
+    }
+  ]
+}

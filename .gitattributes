@@ -1,0 +1,2 @@
+# Frozen network bytes must survive checkout without newline conversion.
+diagnostics/fixtures/** -text

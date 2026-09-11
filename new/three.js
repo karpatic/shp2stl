@@ -40,16 +40,24 @@ function createScene(elementId) {
   controls.enableDamping = true;
   controls.dampingFactor = 0.25;
 
-  let animate = () => {
-    requestAnimationFrame(animate);
+  let renderPending = false;
+  const requestRender = () => {
+    if (renderPending) return;
+    renderPending = true;
+    requestAnimationFrame(render);
+  };
+  function render() {
+    renderPending = false;
+    // Damping emits further change events until motion settles. A stationary
+    // model needs no continuous rendering or controls work.
     controls.update();
     renderer.render(scene, camera);
-  };
+  }
+  controls.addEventListener("change", requestRender);
+  // Preserve the original initial render; request another when geometry is ready.
+  render();
 
-  // Start animation loop
-  animate();
-
-  return { scene, camera, renderer, controls };
+  return { scene, camera, renderer, controls, requestRender };
 }
 
 function exportToSTL(group) {
@@ -138,8 +146,6 @@ function createThreeDGeometry(geojson) {
         const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
         return { geometry, featureIndex: featureIndices[i] };
     });
-    console.log("Geometries with indices:", geometriesWithIndices);
-    
     return geometriesWithIndices;
 }
 
@@ -165,12 +171,10 @@ function createThreeDGeometryLines(geojson, options = {}) {
   const roundSegments = typeof options.roundSegments === "number" ? options.roundSegments : 8;
 
   if (!geojson || !geojson.features) {
-    console.warn("Invalid GeoJSON provided to createThreeDGeometryLines");
-    return geometries;
+    throw new Error("Invalid GeoJSON provided to createThreeDGeometryLines");
   }
   if (!Number.isFinite(width) || width <= 0 || !Number.isFinite(depth) || depth <= 0) {
-    console.warn("Invalid width/depth for createThreeDGeometryLines", { width, depth });
-    return geometries;
+    throw new Error("Line width and depth must be finite positive numbers");
   }
 
   const EPS = 1e-9;
@@ -333,14 +337,14 @@ function createThreeDGeometryLines(geojson, options = {}) {
   geojson.features.forEach((feature) => {
     if (!feature?.geometry || feature.geometry.type !== "LineString") return;
     const coords = feature.geometry.coordinates;
-    if (!coords || coords.length < 2) return;
+    if (!coords || coords.length < 2) throw new Error("A line requires at least two coordinates");
 
     const pts = cleanPoints(coords);
-    if (pts.length < 2) return;
+    if (pts.length < 2) throw new Error("A line requires at least two distinct points");
 
     const halfW = width / 2;
     const shape = buildStripShape(pts, halfW);
-    if (!shape) return;
+    if (!shape) throw new Error("Could not build a complete line strip");
 
     const extrudeSettings = {
       depth,
@@ -360,7 +364,7 @@ function createThreeDGeometryLines(geojson, options = {}) {
       }
       geometries.push(geometry);
     } catch (error) {
-      console.error("Error creating strip-extruded geometry:", error);
+      throw new Error("Could not create a complete line geometry", { cause: error });
     }
   });
 

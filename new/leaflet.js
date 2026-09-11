@@ -10,14 +10,14 @@ function createLeafletMap() {
 
 // recieves and returns a featurecollection
 async function simplifyGeoJSON(geojson, simplifyBy = 0.01) {
-  console.log("Simplifying GeoJSON...", geojson);
+  console.log("Simplifying GeoJSON...");
   let topoData = topojson.topology({ collection: geojson });
   topoData = topojson.presimplify(topoData);
   let min_weight = topojson.quantile(topoData, simplifyBy); // default 0.5
   topoData = topojson.simplify(topoData, min_weight);
   const feat = topojson.feature(topoData, topoData.objects.collection);
 
-  console.log("Simplification complete", feat);
+  console.log("Simplification complete");
   return feat;
 }
 
@@ -92,29 +92,27 @@ function getConvexHullLines(geojson) {
 }
 
 function getOverlappingLines(geojson) {
-  // Gets the overlapping lines from the geojson
-  let handled = [];
-  let lines = turf.featureCollection([]);
-  geojson.features.forEach((feature, index) => {
-    geojson.features.forEach((feature2, index2) => {
-      if (
-        !["Polygon", "MultiPolygon"].includes(feature.geometry.type) ||
-        !["Polygon", "MultiPolygon"].includes(feature2.geometry.type) ||
-        index === index2 ||
-        handled.includes(feature2)
-      )
-        return;
-      // Get the overlapping parts
-      let overlap = turf.lineOverlap(feature, feature2);
-      if (overlap.features.length) {
-        overlap.features.forEach((line) => {
-          lines.features.push(line);
-        });
-      }
+  const polygons = geojson.features.filter(feature =>
+    ["Polygon", "MultiPolygon"].includes(feature.geometry.type));
+  // Calculate from the current coordinates, not potentially stale feature.bbox.
+  const bounds = polygons.map(feature => {
+    const box = [Infinity, Infinity, -Infinity, -Infinity];
+    turf.coordEach(feature, ([x, y]) => {
+      box[0] = Math.min(box[0], x); box[1] = Math.min(box[1], y);
+      box[2] = Math.max(box[2], x); box[3] = Math.max(box[3], y);
     });
-    handled.push(feature);
+    return box;
   });
-  
+  const lines = turf.featureCollection([]);
+  // Retain the original pair order and direction, including touching boxes.
+  for (let i = 0; i < polygons.length; i++) {
+    for (let j = i + 1; j < polygons.length; j++) {
+      const a = bounds[i], b = bounds[j];
+      if (a[2] < b[0] || b[2] < a[0] || a[3] < b[1] || b[3] < a[1]) continue;
+      const overlap = turf.lineOverlap(polygons[i], polygons[j]);
+      for (const line of overlap.features) lines.features.push(line);
+    }
+  }
   return lines;
 }
 
@@ -146,17 +144,21 @@ function getInteriorLines(geojson, hull, distance = 120) {
     });
 
     let getClosestPoint = (validPoint, removedPoint) => {
-      let checkPoint = turf.midpoint(validPoint, removedPoint);
-      let distToLine = turf.pointToLineDistance(checkPoint, line, {
-        units: "meters",
-      });
-      if (distToLine <= distance) {
-        return getClosestPoint(validPoint, checkPoint);
-      } else if (distToLine > distance + 20) {
-        return getClosestPoint(checkPoint, removedPoint);
-      } else {
-        return checkPoint;
+      // Same midpoint sequence and acceptance band as the recursive algorithm.
+      // Fail explicitly if it cannot converge; never substitute an approximate cut.
+      for (let iteration = 0; iteration < 64; iteration++) {
+        const checkPoint = turf.midpoint(validPoint, removedPoint);
+        const distToLine = turf.pointToLineDistance(checkPoint, line, { units: "meters" });
+        if (!Number.isFinite(distToLine)) break;
+        if (distToLine <= distance) {
+          removedPoint = checkPoint;
+        } else if (distToLine > distance + 20) {
+          validPoint = checkPoint;
+        } else {
+          return checkPoint;
+        }
       }
+      throw new Error("Interior boundary refinement did not converge");
     };
 
     if (check(removed) && check(valid)) {
@@ -178,10 +180,9 @@ function getInteriorLines(geojson, hull, distance = 120) {
 
   // Filter out lines that are OVERLAP w the hull
   let updatedLines = { features: [], type: "FeatureCollection" };
+  const outterLine = turf.lineString(hull.features[0].geometry.coordinates[0][0]);
   lines.features.forEach((innerLine) => {
     let innerCoords = turf.getCoords(innerLine);
-    let outtercoords = hull.features[0].geometry.coordinates[0][0];
-    let outterLine = turf.lineString(outtercoords);
     let filteredCoords = removeInDistance(innerCoords, outterLine, distance);
     filteredCoords = removeInDistance(
       filteredCoords.reverse(),

@@ -1,0 +1,381 @@
+{"kind":"stage","name":"truncateGeoJSON","ms":9.700000017881393}
+{"kind":"stage","name":"getConvexHull","ms":5063.5999999940395}
+{"kind":"stage","name":"getConvexHullLines","ms":5065.5}
+{"kind":"stage","name":"simplifyGeoJSON","ms":40.19999998807907}
+{"kind":"stage","name":"simplifyGeoJSON","ms":181.19999998807907}
+{"kind":"stage","name":"getConvexHull","ms":147.5}
+{"kind":"stage","name":"getOverlappingLines","ms":52.099999994039536}
+{"kind":"stage","name":"getInteriorLines","ms":81.09999999403954}
+{"kind":"stage","name":"reprojectGeoJSON","ms":2}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.20000001788139343}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.09999999403953552}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.5}
+{"kind":"stage","name":"reprojectGeoJSON","ms":0.5999999940395355}
+{"kind":"stage","name":"getMinMaxCoordinates","ms":0.9000000059604645}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.5999999940395355}
+{"kind":"stage","name":"createThreeDGeometry","ms":19.5}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.30000001192092896}
+{"kind":"stage","name":"createThreeDGeometryLines","ms":9.399999976158142}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.5999999940395355}
+{"kind":"stage","name":"createThreeDGeometryLines","ms":36}
+{"kind":"stage","name":"scaleGeoJSON","ms":0.29999998211860657}
+{"kind":"stage","name":"createThreeDGeometryLines","ms":24.69999998807907}
+{"kind":"cut-start","cut":1,"input":{"triangles":312,"vertices":936,"groups":2,"bytes":29952},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":31828926}
+{"kind":"cut-end","cut":1,"ms":144.59999999403954,"output":{"triangles":439,"vertices":1317,"groups":2,"bytes":42144},"heap":39710954}
+{"kind":"cut-start","cut":2,"input":{"triangles":439,"vertices":1317,"groups":2,"bytes":42144},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":39793122}
+{"kind":"cut-end","cut":2,"ms":71.2999999821186,"output":{"triangles":493,"vertices":1479,"groups":3,"bytes":47328},"heap":43828852}
+{"kind":"cut-start","cut":3,"input":{"triangles":493,"vertices":1479,"groups":3,"bytes":47328},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":43242232}
+{"kind":"cut-end","cut":3,"ms":28.900000005960464,"output":{"triangles":538,"vertices":1614,"groups":4,"bytes":51648},"heap":45369398}
+{"kind":"cut-start","cut":4,"input":{"triangles":538,"vertices":1614,"groups":4,"bytes":51648},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":45351478}
+{"kind":"cut-end","cut":4,"ms":58.29999998211861,"output":{"triangles":710,"vertices":2130,"groups":5,"bytes":68160},"heap":49842010}
+{"kind":"cut-start","cut":5,"input":{"triangles":710,"vertices":2130,"groups":5,"bytes":68160},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":49929398}
+{"kind":"cut-end","cut":5,"ms":162.69999998807907,"output":{"triangles":905,"vertices":2715,"groups":6,"bytes":86880},"heap":23920366}
+{"kind":"cut-start","cut":6,"input":{"triangles":905,"vertices":2715,"groups":6,"bytes":86880},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":24007422}
+{"kind":"cut-end","cut":6,"ms":62.099999994039536,"output":{"triangles":1063,"vertices":3189,"groups":7,"bytes":102048},"heap":27473780}
+{"kind":"cut-start","cut":7,"input":{"triangles":1063,"vertices":3189,"groups":7,"bytes":102048},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":27558016}
+{"kind":"cut-end","cut":7,"ms":58.20000001788139,"output":{"triangles":1166,"vertices":3498,"groups":8,"bytes":111936},"heap":30940774}
+{"kind":"cut-start","cut":8,"input":{"triangles":1166,"vertices":3498,"groups":8,"bytes":111936},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":31023746}
+{"kind":"cut-end","cut":8,"ms":26.80000001192093,"output":{"triangles":1188,"vertices":3564,"groups":9,"bytes":114048},"heap":33223502}
+{"kind":"cut-start","cut":9,"input":{"triangles":1188,"vertices":3564,"groups":9,"bytes":114048},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":33309374}
+{"kind":"cut-end","cut":9,"ms":23.900000005960464,"output":{"triangles":1273,"vertices":3819,"groups":10,"bytes":122208},"heap":35537818}
+{"kind":"cut-start","cut":10,"input":{"triangles":1273,"vertices":3819,"groups":10,"bytes":122208},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":35622494}
+{"kind":"cut-end","cut":10,"ms":77.09999999403954,"output":{"triangles":1384,"vertices":4152,"groups":11,"bytes":132864},"heap":40624224}
+{"kind":"cut-start","cut":11,"input":{"triangles":1384,"vertices":4152,"groups":11,"bytes":132864},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":40708668}
+{"kind":"cut-end","cut":11,"ms":36.099999994039536,"output":{"triangles":1502,"vertices":4506,"groups":12,"bytes":144192},"heap":43387720}
+{"kind":"cut-start","cut":12,"input":{"triangles":1502,"vertices":4506,"groups":12,"bytes":144192},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":43477064}
+{"kind":"cut-end","cut":12,"ms":39.89999997615814,"output":{"triangles":1621,"vertices":4863,"groups":13,"bytes":155616},"heap":46399276}
+{"kind":"cut-start","cut":13,"input":{"triangles":1621,"vertices":4863,"groups":13,"bytes":155616},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":46481992}
+{"kind":"cut-end","cut":13,"ms":33,"output":{"triangles":1664,"vertices":4992,"groups":14,"bytes":159744},"heap":48998302}
+{"kind":"cut-start","cut":14,"input":{"triangles":1664,"vertices":4992,"groups":14,"bytes":159744},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":49080994}
+{"kind":"cut-end","cut":14,"ms":119.90000000596046,"output":{"triangles":1746,"vertices":5238,"groups":15,"bytes":167616},"heap":22143574}
+{"kind":"cut-start","cut":15,"input":{"triangles":1746,"vertices":5238,"groups":15,"bytes":167616},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":22535842}
+{"kind":"cut-end","cut":15,"ms":23.69999998807907,"output":{"triangles":1797,"vertices":5391,"groups":16,"bytes":172512},"heap":24921934}
+{"kind":"cut-start","cut":16,"input":{"triangles":1797,"vertices":5391,"groups":16,"bytes":172512},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":25004694}
+{"kind":"cut-end","cut":16,"ms":22.69999998807907,"output":{"triangles":1826,"vertices":5478,"groups":17,"bytes":175296},"heap":27530660}
+{"kind":"cut-start","cut":17,"input":{"triangles":1826,"vertices":5478,"groups":17,"bytes":175296},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":27613152}
+{"kind":"cut-end","cut":17,"ms":61.30000001192093,"output":{"triangles":1971,"vertices":5913,"groups":18,"bytes":189216},"heap":33364812}
+{"kind":"cut-start","cut":18,"input":{"triangles":1971,"vertices":5913,"groups":18,"bytes":189216},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":33444516}
+{"kind":"cut-end","cut":18,"ms":31.099999994039536,"output":{"triangles":1999,"vertices":5997,"groups":19,"bytes":191904},"heap":36296738}
+{"kind":"cut-start","cut":19,"input":{"triangles":1999,"vertices":5997,"groups":19,"bytes":191904},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":36380526}
+{"kind":"cut-end","cut":19,"ms":68.40000000596046,"output":{"triangles":2154,"vertices":6462,"groups":20,"bytes":206784},"heap":41185592}
+{"kind":"cut-start","cut":20,"input":{"triangles":2154,"vertices":6462,"groups":20,"bytes":206784},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":41268556}
+{"kind":"cut-end","cut":20,"ms":35.900000005960464,"output":{"triangles":2222,"vertices":6666,"groups":21,"bytes":213312},"heap":44517040}
+{"kind":"cut-start","cut":21,"input":{"triangles":2222,"vertices":6666,"groups":21,"bytes":213312},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":44596732}
+{"kind":"cut-end","cut":21,"ms":65.09999999403954,"output":{"triangles":2323,"vertices":6969,"groups":22,"bytes":223008},"heap":49262568}
+{"kind":"cut-start","cut":22,"input":{"triangles":2323,"vertices":6969,"groups":22,"bytes":223008},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":49346852}
+{"kind":"cut-end","cut":22,"ms":39.5,"output":{"triangles":2385,"vertices":7155,"groups":23,"bytes":228960},"heap":52935482}
+{"kind":"cut-start","cut":23,"input":{"triangles":2385,"vertices":7155,"groups":23,"bytes":228960},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":53015146}
+{"kind":"cut-end","cut":23,"ms":29.399999976158142,"output":{"triangles":2411,"vertices":7233,"groups":24,"bytes":231456},"heap":56211996}
+{"kind":"cut-start","cut":24,"input":{"triangles":2411,"vertices":7233,"groups":24,"bytes":231456},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":56295716}
+{"kind":"cut-end","cut":24,"ms":54.30000001192093,"output":{"triangles":2577,"vertices":7731,"groups":25,"bytes":247392},"heap":25191408}
+{"kind":"cut-start","cut":25,"input":{"triangles":2577,"vertices":7731,"groups":25,"bytes":247392},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":25271088}
+{"kind":"cut-end","cut":25,"ms":44.5,"output":{"triangles":2655,"vertices":7965,"groups":26,"bytes":254880},"heap":29327790}
+{"kind":"cut-start","cut":26,"input":{"triangles":2655,"vertices":7965,"groups":26,"bytes":254880},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":29407478}
+{"kind":"cut-end","cut":26,"ms":64.69999998807907,"output":{"triangles":2728,"vertices":8184,"groups":27,"bytes":261888},"heap":34640972}
+{"kind":"cut-start","cut":27,"input":{"triangles":2728,"vertices":8184,"groups":27,"bytes":261888},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":34768536}
+{"kind":"cut-end","cut":27,"ms":68.69999998807907,"output":{"triangles":2819,"vertices":8457,"groups":28,"bytes":270624},"heap":40176408}
+{"kind":"cut-start","cut":28,"input":{"triangles":2819,"vertices":8457,"groups":28,"bytes":270624},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":40260064}
+{"kind":"cut-end","cut":28,"ms":45.30000001192093,"output":{"triangles":2913,"vertices":8739,"groups":29,"bytes":279648},"heap":44656810}
+{"kind":"cut-start","cut":29,"input":{"triangles":2913,"vertices":8739,"groups":29,"bytes":279648},"cutter":{"triangles":172,"vertices":516,"groups":2,"bytes":17544},"heap":44763358}
+{"kind":"cut-end","cut":29,"ms":323.09999999403954,"output":{"triangles":3857,"vertices":11571,"groups":30,"bytes":370272},"heap":58489508}
+{"kind":"cut-start","cut":30,"input":{"triangles":3857,"vertices":11571,"groups":30,"bytes":370272},"cutter":{"triangles":76,"vertices":228,"groups":2,"bytes":7752},"heap":58579908}
+{"kind":"cut-end","cut":30,"ms":120.59999999403954,"output":{"triangles":4179,"vertices":12537,"groups":31,"bytes":401184},"heap":31020416}
+{"kind":"cut-start","cut":31,"input":{"triangles":4179,"vertices":12537,"groups":31,"bytes":401184},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":31104608}
+{"kind":"cut-end","cut":31,"ms":58.5,"output":{"triangles":4199,"vertices":12597,"groups":32,"bytes":403104},"heap":37227522}
+{"kind":"cut-start","cut":32,"input":{"triangles":4199,"vertices":12597,"groups":32,"bytes":403104},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":37308490}
+{"kind":"cut-end","cut":32,"ms":106.5,"output":{"triangles":4346,"vertices":13038,"groups":33,"bytes":417216},"heap":45693376}
+{"kind":"cut-start","cut":33,"input":{"triangles":4346,"vertices":13038,"groups":33,"bytes":417216},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":45782252}
+{"kind":"cut-end","cut":33,"ms":75.30000001192093,"output":{"triangles":4484,"vertices":13452,"groups":34,"bytes":430464},"heap":52538960}
+{"kind":"cut-start","cut":34,"input":{"triangles":4484,"vertices":13452,"groups":34,"bytes":430464},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":52618620}
+{"kind":"cut-end","cut":34,"ms":177.59999999403954,"output":{"triangles":4572,"vertices":13716,"groups":35,"bytes":438912},"heap":63518820}
+{"kind":"cut-start","cut":35,"input":{"triangles":4572,"vertices":13716,"groups":35,"bytes":438912},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":63601156}
+{"kind":"cut-end","cut":35,"ms":75.90000000596046,"output":{"triangles":4627,"vertices":13881,"groups":36,"bytes":444192},"heap":34122350}
+{"kind":"cut-start","cut":36,"input":{"triangles":4627,"vertices":13881,"groups":36,"bytes":444192},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":34201974}
+{"kind":"cut-end","cut":36,"ms":85.59999999403954,"output":{"triangles":4679,"vertices":14037,"groups":37,"bytes":449184},"heap":40401420}
+{"kind":"cut-start","cut":37,"input":{"triangles":4679,"vertices":14037,"groups":37,"bytes":449184},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":40482428}
+{"kind":"cut-end","cut":37,"ms":93.90000000596046,"output":{"triangles":4774,"vertices":14322,"groups":38,"bytes":458304},"heap":47240674}
+{"kind":"cut-start","cut":38,"input":{"triangles":4774,"vertices":14322,"groups":38,"bytes":458304},"cutter":{"triangles":52,"vertices":156,"groups":2,"bytes":5304},"heap":47327046}
+{"kind":"cut-end","cut":38,"ms":89.5,"output":{"triangles":5084,"vertices":15252,"groups":39,"bytes":488064},"heap":55781458}
+{"kind":"cut-start","cut":39,"input":{"triangles":5084,"vertices":15252,"groups":39,"bytes":488064},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":55862478}
+{"kind":"cut-end","cut":39,"ms":60.400000005960464,"output":{"triangles":5160,"vertices":15480,"groups":40,"bytes":495360},"heap":62671750}
+{"kind":"cut-start","cut":40,"input":{"triangles":5160,"vertices":15480,"groups":40,"bytes":495360},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":62752766}
+{"kind":"cut-end","cut":40,"ms":63.099999994039536,"output":{"triangles":5250,"vertices":15750,"groups":41,"bytes":504000},"heap":69851826}
+{"kind":"cut-start","cut":41,"input":{"triangles":5250,"vertices":15750,"groups":41,"bytes":504000},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":69931490}
+{"kind":"cut-end","cut":41,"ms":58.70000001788139,"output":{"triangles":5270,"vertices":15810,"groups":42,"bytes":505920},"heap":41289534}
+{"kind":"cut-start","cut":42,"input":{"triangles":5270,"vertices":15810,"groups":42,"bytes":505920},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":41370542}
+{"kind":"cut-end","cut":42,"ms":61.69999998807907,"output":{"triangles":5341,"vertices":16023,"groups":43,"bytes":512736},"heap":48477442}
+{"kind":"cut-start","cut":43,"input":{"triangles":5341,"vertices":16023,"groups":43,"bytes":512736},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":48562834}
+{"kind":"cut-end","cut":43,"ms":104.5,"output":{"triangles":5573,"vertices":16719,"groups":44,"bytes":535008},"heap":57080284}
+{"kind":"cut-start","cut":44,"input":{"triangles":5573,"vertices":16719,"groups":44,"bytes":535008},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":57161304}
+{"kind":"cut-end","cut":44,"ms":87.19999998807907,"output":{"triangles":5634,"vertices":16902,"groups":45,"bytes":540864},"heap":65200126}
+{"kind":"cut-start","cut":45,"input":{"triangles":5634,"vertices":16902,"groups":45,"bytes":540864},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":65285154}
+{"kind":"cut-end","cut":45,"ms":89.40000000596046,"output":{"triangles":5790,"vertices":17370,"groups":46,"bytes":555840},"heap":73348886}
+{"kind":"cut-start","cut":46,"input":{"triangles":5790,"vertices":17370,"groups":46,"bytes":555840},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":73428526}
+{"kind":"cut-end","cut":46,"ms":79.59999999403954,"output":{"triangles":5862,"vertices":17586,"groups":47,"bytes":562752},"heap":44503570}
+{"kind":"cut-start","cut":47,"input":{"triangles":5862,"vertices":17586,"groups":47,"bytes":562752},"cutter":{"triangles":100,"vertices":300,"groups":2,"bytes":10200},"heap":44598006}
+{"kind":"cut-end","cut":47,"ms":117.09999999403954,"output":{"triangles":6179,"vertices":18537,"groups":48,"bytes":593184},"heap":54722022}
+{"kind":"cut-start","cut":48,"input":{"triangles":6179,"vertices":18537,"groups":48,"bytes":593184},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":54805706}
+{"kind":"cut-end","cut":48,"ms":200,"output":{"triangles":6483,"vertices":19449,"groups":49,"bytes":622368},"heap":66843244}
+{"kind":"cut-start","cut":49,"input":{"triangles":6483,"vertices":19449,"groups":49,"bytes":622368},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":66922956}
+{"kind":"cut-end","cut":49,"ms":86.39999997615814,"output":{"triangles":6501,"vertices":19503,"groups":50,"bytes":624096},"heap":75861010}
+{"kind":"cut-start","cut":50,"input":{"triangles":6501,"vertices":19503,"groups":50,"bytes":624096},"cutter":{"triangles":156,"vertices":468,"groups":2,"bytes":15912},"heap":75964866}
+{"kind":"cut-end","cut":50,"ms":276.30000001192093,"output":{"triangles":7084,"vertices":21252,"groups":51,"bytes":680064},"heap":55615884}
+{"kind":"cut-start","cut":51,"input":{"triangles":7084,"vertices":21252,"groups":51,"bytes":680064},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":55696880}
+{"kind":"cut-end","cut":51,"ms":93.69999998807907,"output":{"triangles":7143,"vertices":21429,"groups":52,"bytes":685728},"heap":65563920}
+{"kind":"cut-start","cut":52,"input":{"triangles":7143,"vertices":21429,"groups":52,"bytes":685728},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":65643608}
+{"kind":"cut-end","cut":52,"ms":190.40000000596046,"output":{"triangles":7302,"vertices":21906,"groups":53,"bytes":700992},"heap":78499838}
+{"kind":"cut-start","cut":53,"input":{"triangles":7302,"vertices":21906,"groups":53,"bytes":700992},"cutter":{"triangles":52,"vertices":156,"groups":2,"bytes":5304},"heap":78586246}
+{"kind":"cut-end","cut":53,"ms":105.40000000596046,"output":{"triangles":7558,"vertices":22674,"groups":54,"bytes":725568},"heap":52601302}
+{"kind":"cut-start","cut":54,"input":{"triangles":7558,"vertices":22674,"groups":54,"bytes":725568},"cutter":{"triangles":92,"vertices":276,"groups":2,"bytes":9384},"heap":52694382}
+{"kind":"cut-end","cut":54,"ms":231.09999999403954,"output":{"triangles":8089,"vertices":24267,"groups":55,"bytes":776544},"heap":68189130}
+{"kind":"cut-start","cut":55,"input":{"triangles":8089,"vertices":24267,"groups":55,"bytes":776544},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":68268894}
+{"kind":"cut-end","cut":55,"ms":190.19999998807907,"output":{"triangles":8087,"vertices":24261,"groups":56,"bytes":776352},"heap":83100932}
+{"kind":"cut-start","cut":56,"input":{"triangles":8087,"vertices":24261,"groups":56,"bytes":776352},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":83181940}
+{"kind":"cut-end","cut":56,"ms":102.90000000596046,"output":{"triangles":8195,"vertices":24585,"groups":57,"bytes":786720},"heap":57116704}
+{"kind":"cut-start","cut":57,"input":{"triangles":8195,"vertices":24585,"groups":57,"bytes":786720},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":57202380}
+{"kind":"cut-end","cut":57,"ms":150.2999999821186,"output":{"triangles":8426,"vertices":25278,"groups":58,"bytes":808896},"heap":70568470}
+{"kind":"cut-start","cut":58,"input":{"triangles":8426,"vertices":25278,"groups":58,"bytes":808896},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":70648166}
+{"kind":"cut-end","cut":58,"ms":151,"output":{"triangles":8543,"vertices":25629,"groups":59,"bytes":820128},"heap":83907430}
+{"kind":"cut-start","cut":59,"input":{"triangles":8543,"vertices":25629,"groups":59,"bytes":820128},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":83991102}
+{"kind":"cut-end","cut":59,"ms":183.59999999403954,"output":{"triangles":8786,"vertices":26358,"groups":60,"bytes":843456},"heap":60581620}
+{"kind":"cut-start","cut":60,"input":{"triangles":8786,"vertices":26358,"groups":60,"bytes":843456},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":60661272}
+{"kind":"cut-end","cut":60,"ms":110.7999999821186,"output":{"triangles":8809,"vertices":26427,"groups":61,"bytes":845664},"heap":72522176}
+{"kind":"cut-start","cut":61,"input":{"triangles":8809,"vertices":26427,"groups":61,"bytes":845664},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":72605852}
+{"kind":"cut-end","cut":61,"ms":168.40000000596046,"output":{"triangles":9083,"vertices":27249,"groups":62,"bytes":871968},"heap":87805986}
+{"kind":"cut-start","cut":62,"input":{"triangles":9083,"vertices":27249,"groups":62,"bytes":871968},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":87885638}
+{"kind":"cut-end","cut":62,"ms":128.69999998807907,"output":{"triangles":9144,"vertices":27432,"groups":63,"bytes":877824},"heap":62857400}
+{"kind":"cut-start","cut":63,"input":{"triangles":9144,"vertices":27432,"groups":63,"bytes":877824},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":62941108}
+{"kind":"cut-end","cut":63,"ms":168.5,"output":{"triangles":9558,"vertices":28674,"groups":64,"bytes":917568},"heap":78214712}
+{"kind":"cut-start","cut":64,"input":{"triangles":9558,"vertices":28674,"groups":64,"bytes":917568},"cutter":{"triangles":60,"vertices":180,"groups":2,"bytes":6120},"heap":78302416}
+{"kind":"cut-end","cut":64,"ms":164.7000000178814,"output":{"triangles":9809,"vertices":29427,"groups":65,"bytes":941664},"heap":93643720}
+{"kind":"cut-start","cut":65,"input":{"triangles":9809,"vertices":29427,"groups":65,"bytes":941664},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":93723360}
+{"kind":"cut-end","cut":65,"ms":1069,"output":{"triangles":10169,"vertices":30507,"groups":66,"bytes":976224},"heap":94428616}
+{"kind":"cut-start","cut":66,"input":{"triangles":10169,"vertices":30507,"groups":66,"bytes":976224},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":94509636}
+{"kind":"cut-end","cut":66,"ms":120.2000000178814,"output":{"triangles":10064,"vertices":30192,"groups":67,"bytes":966144},"heap":76167244}
+{"kind":"cut-start","cut":67,"input":{"triangles":10064,"vertices":30192,"groups":67,"bytes":966144},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":76246872}
+{"kind":"cut-end","cut":67,"ms":443.80000001192093,"output":{"triangles":10341,"vertices":31023,"groups":68,"bytes":992736},"heap":100019640}
+{"kind":"cut-start","cut":68,"input":{"triangles":10341,"vertices":31023,"groups":68,"bytes":992736},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":100099284}
+{"kind":"cut-end","cut":68,"ms":159.30000001192093,"output":{"triangles":10371,"vertices":31113,"groups":69,"bytes":995616},"heap":76755720}
+{"kind":"cut-start","cut":69,"input":{"triangles":10371,"vertices":31113,"groups":69,"bytes":995616},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":76836732}
+{"kind":"cut-end","cut":69,"ms":138.40000000596046,"output":{"triangles":10510,"vertices":31530,"groups":70,"bytes":1008960},"heap":91866206}
+{"kind":"cut-start","cut":70,"input":{"triangles":10510,"vertices":31530,"groups":70,"bytes":1008960},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":91945950}
+{"kind":"cut-end","cut":70,"ms":139.30000001192093,"output":{"triangles":10559,"vertices":31677,"groups":71,"bytes":1013664},"heap":106569186}
+{"kind":"cut-start","cut":71,"input":{"triangles":10559,"vertices":31677,"groups":71,"bytes":1013664},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":106651518}
+{"kind":"cut-end","cut":71,"ms":178.5,"output":{"triangles":10704,"vertices":32112,"groups":72,"bytes":1027584},"heap":32392834}
+{"kind":"cut-start","cut":72,"input":{"triangles":10704,"vertices":32112,"groups":72,"bytes":1027584},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":32483674}
+{"kind":"cut-end","cut":72,"ms":313,"output":{"triangles":10934,"vertices":32802,"groups":73,"bytes":1049664},"heap":54813286}
+{"kind":"cut-start","cut":73,"input":{"triangles":10934,"vertices":32802,"groups":73,"bytes":1049664},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":54902822}
+{"kind":"cut-end","cut":73,"ms":620.9000000059605,"output":{"triangles":11471,"vertices":34413,"groups":74,"bytes":1101216},"heap":47644864}
+{"kind":"cut-start","cut":74,"input":{"triangles":11471,"vertices":34413,"groups":74,"bytes":1101216},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":47734384}
+{"kind":"cut-end","cut":74,"ms":183.7000000178814,"output":{"triangles":11276,"vertices":33828,"groups":75,"bytes":1082496},"heap":64304330}
+{"kind":"cut-start","cut":75,"input":{"triangles":11276,"vertices":33828,"groups":75,"bytes":1082496},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":64399226}
+{"kind":"cut-end","cut":75,"ms":216.7999999821186,"output":{"triangles":11804,"vertices":35412,"groups":76,"bytes":1133184},"heap":48343988}
+{"kind":"cut-start","cut":76,"input":{"triangles":11804,"vertices":35412,"groups":76,"bytes":1133184},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":48438884}
+{"kind":"cut-end","cut":76,"ms":139.69999998807907,"output":{"triangles":11971,"vertices":35913,"groups":77,"bytes":1149216},"heap":65213444}
+{"kind":"cut-start","cut":77,"input":{"triangles":11971,"vertices":35913,"groups":77,"bytes":1149216},"cutter":{"triangles":52,"vertices":156,"groups":2,"bytes":5304},"heap":65309684}
+{"kind":"cut-end","cut":77,"ms":247.40000000596046,"output":{"triangles":12522,"vertices":37566,"groups":78,"bytes":1202112},"heap":47806170}
+{"kind":"cut-start","cut":78,"input":{"triangles":12522,"vertices":37566,"groups":78,"bytes":1202112},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":47895722}
+{"kind":"cut-end","cut":78,"ms":886.1999999880791,"output":{"triangles":12877,"vertices":38631,"groups":79,"bytes":1236192},"heap":53009792}
+{"kind":"cut-start","cut":79,"input":{"triangles":12877,"vertices":38631,"groups":79,"bytes":1236192},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":53100724}
+{"kind":"cut-end","cut":79,"ms":300.10000002384186,"output":{"triangles":12989,"vertices":38967,"groups":80,"bytes":1246944},"heap":75722718}
+{"kind":"cut-start","cut":80,"input":{"triangles":12989,"vertices":38967,"groups":80,"bytes":1246944},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":75817638}
+{"kind":"cut-end","cut":80,"ms":5875.0999999940395,"output":{"triangles":18360,"vertices":55080,"groups":81,"bytes":1762560},"heap":89443526}
+{"kind":"cut-start","cut":81,"input":{"triangles":18360,"vertices":55080,"groups":81,"bytes":1762560},"cutter":{"triangles":68,"vertices":204,"groups":2,"bytes":6936},"heap":89542454}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":81,"ms":63902.60000002384,"output":{"triangles":24186,"vertices":72558,"groups":82,"bytes":2321856},"heap":94678076}
+{"kind":"cut-start","cut":82,"input":{"triangles":24186,"vertices":72558,"groups":82,"bytes":2321856},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":94768940}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":82,"ms":437.39999997615814,"output":{"triangles":21152,"vertices":63456,"groups":83,"bytes":2030592},"heap":96138856}
+{"kind":"cut-start","cut":83,"input":{"triangles":21152,"vertices":63456,"groups":83,"bytes":2030592},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":96231076}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":83,"ms":259.30000001192093,"output":{"triangles":21211,"vertices":63633,"groups":84,"bytes":2036256},"heap":84183584}
+{"kind":"cut-start","cut":84,"input":{"triangles":21211,"vertices":63633,"groups":84,"bytes":2036256},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":84274448}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":84,"ms":294.19999998807907,"output":{"triangles":21310,"vertices":63930,"groups":85,"bytes":2045760},"heap":112413510}
+{"kind":"cut-start","cut":85,"input":{"triangles":21310,"vertices":63930,"groups":85,"bytes":2045760},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":112504398}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":85,"ms":275.59999999403954,"output":{"triangles":21377,"vertices":64131,"groups":86,"bytes":2052192},"heap":99550412}
+{"kind":"cut-start","cut":86,"input":{"triangles":21377,"vertices":64131,"groups":86,"bytes":2052192},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":99642584}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":86,"ms":537.5999999940395,"output":{"triangles":21729,"vertices":65187,"groups":87,"bytes":2085984},"heap":99563378}
+{"kind":"cut-start","cut":87,"input":{"triangles":21729,"vertices":65187,"groups":87,"bytes":2085984},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":99654254}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":87,"ms":242.5,"output":{"triangles":21829,"vertices":65487,"groups":88,"bytes":2095584},"heap":128062608}
+{"kind":"cut-start","cut":88,"input":{"triangles":21829,"vertices":65487,"groups":88,"bytes":2095584},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":128153460}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":88,"ms":366.7000000178814,"output":{"triangles":21878,"vertices":65634,"groups":89,"bytes":2100288},"heap":102319172}
+{"kind":"cut-start","cut":89,"input":{"triangles":21878,"vertices":65634,"groups":89,"bytes":2100288},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":102410024}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":89,"ms":231.80000001192093,"output":{"triangles":21953,"vertices":65859,"groups":90,"bytes":2107488},"heap":93070454}
+{"kind":"cut-start","cut":90,"input":{"triangles":21953,"vertices":65859,"groups":90,"bytes":2107488},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":93161294}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":90,"ms":356.09999999403954,"output":{"triangles":22119,"vertices":66357,"groups":91,"bytes":2123424},"heap":123918622}
+{"kind":"cut-start","cut":91,"input":{"triangles":22119,"vertices":66357,"groups":91,"bytes":2123424},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":124009462}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":91,"ms":332.69999998807907,"output":{"triangles":22193,"vertices":66579,"groups":92,"bytes":2130528},"heap":120728348}
+{"kind":"cut-start","cut":92,"input":{"triangles":22193,"vertices":66579,"groups":92,"bytes":2130528},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":120820556}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":92,"ms":356.19999998807907,"output":{"triangles":22303,"vertices":66909,"groups":93,"bytes":2141088},"heap":108154550}
+{"kind":"cut-start","cut":93,"input":{"triangles":22303,"vertices":66909,"groups":93,"bytes":2141088},"cutter":{"triangles":52,"vertices":156,"groups":2,"bytes":5304},"heap":108250794}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":93,"ms":320.2000000178814,"output":{"triangles":22607,"vertices":67821,"groups":94,"bytes":2170272},"heap":141094682}
+{"kind":"cut-start","cut":94,"input":{"triangles":22607,"vertices":67821,"groups":94,"bytes":2170272},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":141185498}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":94,"ms":513.3000000119209,"output":{"triangles":22791,"vertices":68373,"groups":95,"bytes":2187936},"heap":141369814}
+{"kind":"cut-start","cut":95,"input":{"triangles":22791,"vertices":68373,"groups":95,"bytes":2187936},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":141462010}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":95,"ms":399.2999999821186,"output":{"triangles":22970,"vertices":68910,"groups":96,"bytes":2205120},"heap":133233052}
+{"kind":"cut-start","cut":96,"input":{"triangles":22970,"vertices":68910,"groups":96,"bytes":2205120},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":133322568}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":96,"ms":299.7999999821186,"output":{"triangles":22955,"vertices":68865,"groups":97,"bytes":2203680},"heap":121368274}
+{"kind":"cut-start","cut":97,"input":{"triangles":22955,"vertices":68865,"groups":97,"bytes":2203680},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":121459146}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":97,"ms":325.2000000178814,"output":{"triangles":23127,"vertices":69381,"groups":98,"bytes":2220192},"heap":155411706}
+{"kind":"cut-start","cut":98,"input":{"triangles":23127,"vertices":69381,"groups":98,"bytes":2220192},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":155501214}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":98,"ms":343.80000001192093,"output":{"triangles":23291,"vertices":69873,"groups":99,"bytes":2235936},"heap":150600188}
+{"kind":"cut-start","cut":99,"input":{"triangles":23291,"vertices":69873,"groups":99,"bytes":2235936},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":150689708}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":99,"ms":271.90000000596046,"output":{"triangles":23317,"vertices":69951,"groups":100,"bytes":2238432},"heap":139188402}
+{"kind":"cut-start","cut":100,"input":{"triangles":23317,"vertices":69951,"groups":100,"bytes":2238432},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":139283310}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":100,"ms":1930.7999999821186,"output":{"triangles":24313,"vertices":72939,"groups":101,"bytes":2334048},"heap":144326092}
+{"kind":"cut-start","cut":101,"input":{"triangles":24313,"vertices":72939,"groups":101,"bytes":2334048},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":144415644}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":101,"ms":391.90000000596046,"output":{"triangles":24269,"vertices":72807,"groups":102,"bytes":2329824},"heap":139639456}
+{"kind":"cut-start","cut":102,"input":{"triangles":24269,"vertices":72807,"groups":102,"bytes":2329824},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":139730364}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":102,"ms":321.7000000178814,"output":{"triangles":24374,"vertices":73122,"groups":103,"bytes":2339904},"heap":173775284}
+{"kind":"cut-start","cut":103,"input":{"triangles":24374,"vertices":73122,"groups":103,"bytes":2339904},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":173864808}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":103,"ms":7074.0999999940395,"output":{"triangles":26944,"vertices":80832,"groups":104,"bytes":2586624},"heap":156519192}
+{"kind":"cut-start","cut":104,"input":{"triangles":26944,"vertices":80832,"groups":104,"bytes":2586624},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":156517656}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":104,"ms":725.8000000119209,"output":{"triangles":27000,"vertices":81000,"groups":105,"bytes":2592000},"heap":131721232}
+{"kind":"cut-start","cut":105,"input":{"triangles":27000,"vertices":81000,"groups":105,"bytes":2592000},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":131812136}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":105,"ms":7635.100000023842,"output":{"triangles":29469,"vertices":88407,"groups":106,"bytes":2829024},"heap":155960124}
+{"kind":"cut-start","cut":106,"input":{"triangles":29469,"vertices":88407,"groups":106,"bytes":2829024},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":156049648}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":106,"ms":311.09999999403954,"output":{"triangles":28688,"vertices":86064,"groups":107,"bytes":2754048},"heap":158184176}
+{"kind":"cut-start","cut":107,"input":{"triangles":28688,"vertices":86064,"groups":107,"bytes":2754048},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":158276344}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":107,"ms":598.9000000059605,"output":{"triangles":29241,"vertices":87723,"groups":108,"bytes":2807136},"heap":165716118}
+{"kind":"cut-start","cut":108,"input":{"triangles":29241,"vertices":87723,"groups":108,"bytes":2807136},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":165805654}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":108,"ms":376.90000000596046,"output":{"triangles":29186,"vertices":87558,"groups":109,"bytes":2801856},"heap":167602826}
+{"kind":"cut-start","cut":109,"input":{"triangles":29186,"vertices":87558,"groups":109,"bytes":2801856},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":167693734}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":109,"ms":447.90000000596046,"output":{"triangles":29462,"vertices":88386,"groups":110,"bytes":2828352},"heap":167832296}
+{"kind":"cut-start","cut":110,"input":{"triangles":29462,"vertices":88386,"groups":110,"bytes":2828352},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":167923180}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":110,"ms":5017,"output":{"triangles":31563,"vertices":94689,"groups":111,"bytes":3030048},"heap":197552992}
+{"kind":"cut-start","cut":111,"input":{"triangles":31563,"vertices":94689,"groups":111,"bytes":3030048},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":197645192}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":111,"ms":432.10000002384186,"output":{"triangles":30596,"vertices":91788,"groups":112,"bytes":2937216},"heap":211032752}
+{"kind":"cut-start","cut":112,"input":{"triangles":30596,"vertices":91788,"groups":112,"bytes":2937216},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":211122320}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":112,"ms":511.40000000596046,"output":{"triangles":30690,"vertices":92070,"groups":113,"bytes":2946240},"heap":182913336}
+{"kind":"cut-start","cut":113,"input":{"triangles":30690,"vertices":92070,"groups":113,"bytes":2946240},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":183002852}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":113,"ms":473.60000002384186,"output":{"triangles":30759,"vertices":92277,"groups":114,"bytes":2952864},"heap":161278656}
+{"kind":"cut-start","cut":114,"input":{"triangles":30759,"vertices":92277,"groups":114,"bytes":2952864},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":161368184}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":114,"ms":452.39999997615814,"output":{"triangles":30823,"vertices":92469,"groups":115,"bytes":2959008},"heap":202926704}
+{"kind":"cut-start","cut":115,"input":{"triangles":30823,"vertices":92469,"groups":115,"bytes":2959008},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":203016232}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":115,"ms":575.6999999880791,"output":{"triangles":31017,"vertices":93051,"groups":116,"bytes":2977632},"heap":170137278}
+{"kind":"cut-start","cut":116,"input":{"triangles":31017,"vertices":93051,"groups":116,"bytes":2977632},"cutter":{"triangles":20,"vertices":60,"groups":2,"bytes":2040},"heap":170228118}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":116,"ms":562.5999999940395,"output":{"triangles":31207,"vertices":93621,"groups":117,"bytes":2995872},"heap":178497888}
+{"kind":"cut-start","cut":117,"input":{"triangles":31207,"vertices":93621,"groups":117,"bytes":2995872},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":178590092}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":117,"ms":382.40000000596046,"output":{"triangles":31249,"vertices":93747,"groups":118,"bytes":2999904},"heap":178960446}
+{"kind":"cut-start","cut":118,"input":{"triangles":31249,"vertices":93747,"groups":118,"bytes":2999904},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":179049990}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":118,"ms":994.9000000059605,"output":{"triangles":31855,"vertices":95565,"groups":119,"bytes":3058080},"heap":194377088}
+{"kind":"cut-start","cut":119,"input":{"triangles":31855,"vertices":95565,"groups":119,"bytes":3058080},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":194469304}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":119,"ms":49579.40000000596,"output":{"triangles":54663,"vertices":163989,"groups":120,"bytes":5247648},"heap":237796214}
+{"kind":"cut-start","cut":120,"input":{"triangles":54663,"vertices":163989,"groups":120,"bytes":5247648},"cutter":{"triangles":28,"vertices":84,"groups":2,"bytes":2856},"heap":237888434}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":120,"ms":853.1000000238419,"output":{"triangles":41315,"vertices":123945,"groups":121,"bytes":3966240},"heap":218791832}
+{"kind":"cut-start","cut":121,"input":{"triangles":41315,"vertices":123945,"groups":121,"bytes":3966240},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":218885228}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":121,"ms":563.5,"output":{"triangles":41352,"vertices":124056,"groups":122,"bytes":3969792},"heap":211078182}
+{"kind":"cut-start","cut":122,"input":{"triangles":41352,"vertices":124056,"groups":122,"bytes":3969792},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":211170370}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":122,"ms":610,"output":{"triangles":41404,"vertices":124212,"groups":123,"bytes":3974784},"heap":223043188}
+{"kind":"cut-start","cut":123,"input":{"triangles":41404,"vertices":124212,"groups":123,"bytes":3974784},"cutter":{"triangles":52,"vertices":156,"groups":2,"bytes":5304},"heap":223139448}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":123,"ms":518.5999999940395,"output":{"triangles":41545,"vertices":124635,"groups":124,"bytes":3988320},"heap":239729920}
+{"kind":"cut-start","cut":124,"input":{"triangles":41545,"vertices":124635,"groups":124,"bytes":3988320},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":239819464}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":124,"ms":623.4000000059605,"output":{"triangles":41597,"vertices":124791,"groups":125,"bytes":3993312},"heap":212373904}
+{"kind":"cut-start","cut":125,"input":{"triangles":41597,"vertices":124791,"groups":125,"bytes":3993312},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":212465880}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":125,"ms":578.7000000178814,"output":{"triangles":41659,"vertices":124977,"groups":126,"bytes":3999264},"heap":235179600}
+{"kind":"cut-start","cut":126,"input":{"triangles":41659,"vertices":124977,"groups":126,"bytes":3999264},"cutter":{"triangles":44,"vertices":132,"groups":2,"bytes":4488},"heap":235275920}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":126,"ms":13677.200000017881,"output":{"triangles":45822,"vertices":137466,"groups":127,"bytes":4398912},"heap":265064130}
+{"kind":"cut-start","cut":127,"input":{"triangles":45822,"vertices":137466,"groups":127,"bytes":4398912},"cutter":{"triangles":36,"vertices":108,"groups":2,"bytes":3672},"heap":265157694}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":127,"ms":761.2000000178814,"output":{"triangles":44493,"vertices":133479,"groups":128,"bytes":4271328},"heap":259935818}
+{"kind":"cut-start","cut":128,"input":{"triangles":44493,"vertices":133479,"groups":128,"bytes":4271328},"cutter":{"triangles":12,"vertices":36,"groups":2,"bytes":1224},"heap":260025382}
+{"kind":"warning","text":"MeshBVH: Max depth of 40 reached when generating BVH. Consider increasing maxDepth."}
+{"kind":"warning","text":"BufferGeometry"}
+{"kind":"cut-end","cut":128,"ms":557.7000000178814,"output":{"triangles":44511,"vertices":133533,"groups":129,"bytes":4273056},"heap":282740862}
+{"kind":"complete","ms":193194.89999997616}
+{"kind":"warning","text":"[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."}
+{"kind":"warning","text":"[.WebGL-0x1f7c017a5e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0x1f7c017a5e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0x1f7c017a5e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"}
+{"kind":"warning","text":"[.WebGL-0x1f7c017a5e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"}
+{"kind":"ui-check","idleFrames":0,"before":{"frames":1,"angle":0,"distance":200},"after":{"frames":31,"angle":-0.7013998310328842,"distance":190.00000000000003}}

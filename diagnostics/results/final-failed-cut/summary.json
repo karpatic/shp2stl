@@ -1,0 +1,224 @@
+{
+  "variant": "optimized",
+  "dataset": "dc",
+  "status": "expected-failure",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson"
+    }
+  },
+  "sources": {
+    "app.html": "32b6950738e29e5cc2211f0d51092cde6ee23e0d9da8f69bd125d225ba2c2831",
+    "new/new.js": "907055b22c68e86bbfad798910a2d87760f70b5fa8542e94119a6d0802d30138",
+    "new/leaflet.js": "f30ca8b4931f44f0ab02aa9b2e4a81baa49e6a60569059bf040d947152fa3ddf",
+    "new/three.js": "903db604f3c3bec455322225f03804f7c9a1d579d68cae04b7c44e85edbbee91",
+    "three/three-bvh-csg.js": "3410e8645302877dc2f8600091e17325261350074434a76d7d94c7645f9784b8"
+  },
+  "profile": false,
+  "seed": 12345,
+  "browser": "152.0.7977.82",
+  "limitMs": 120000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1323204,
+  "computePeakRSSKiB": null,
+  "computeCpuSeconds": null,
+  "processCpuSeconds": 10,
+  "wallMs": 4354,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "truncateGeoJSON",
+      "ms": 1.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 1312.300000011921
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHullLines",
+      "ms": 1315.699999988079
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 163.60000002384186
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 122.5
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 13.299999982118607
+    },
+    {
+      "kind": "stage",
+      "name": "getOverlappingLines",
+      "ms": 26.899999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 16
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 1.300000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.4000000059604645
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.29999998211860657
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 0.7000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 20.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 31.700000017881393
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 19
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.19999998807907104
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 14.799999982118607
+    },
+    {
+      "kind": "cut-start",
+      "cut": 1,
+      "input": {
+        "triangles": 240,
+        "vertices": 720,
+        "groups": 2,
+        "bytes": 23040
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 94286416
+    },
+    {
+      "kind": "cut-end",
+      "cut": 1,
+      "ms": 187.5,
+      "output": {
+        "triangles": 540,
+        "vertices": 1620,
+        "groups": 2,
+        "bytes": 51840
+      },
+      "heap": 77878330
+    },
+    {
+      "kind": "cut-start",
+      "cut": 2,
+      "input": {
+        "triangles": 540,
+        "vertices": 1620,
+        "groups": 2,
+        "bytes": 51840
+      },
+      "cutter": {
+        "triangles": 84,
+        "vertices": 252,
+        "groups": 2,
+        "bytes": 8568
+      },
+      "heap": 77973154
+    },
+    {
+      "kind": "cut-end",
+      "cut": 2,
+      "ms": 179.40000000596046,
+      "output": {
+        "triangles": 977,
+        "vertices": 2931,
+        "groups": 3,
+        "bytes": 93792
+      },
+      "heap": 88890854
+    },
+    {
+      "kind": "error",
+      "text": "Error: CSG operation failed for line 3/15\n    at initialize (http://127.0.0.1:34955/new/new.js:164:13)\n    at async runWithCurrentInputs (http://127.0.0.1:34955/app.html:350:13)\n    at async http://127.0.0.1:34955/app.html:430:17"
+    },
+    {
+      "kind": "warning",
+      "text": "[]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content."
+    },
+    {
+      "kind": "warning",
+      "text": "[.WebGL-0x37240174de00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "kind": "failure-check",
+      "disabled": true,
+      "uiStatus": "Failed on start (see console)"
+    }
+  ]
+}

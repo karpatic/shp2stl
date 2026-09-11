@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>SHP2STL local review</title>
+<style>body{font:18px system-ui;max-width:720px;margin:64px auto;line-height:1.6}button{font:inherit;padding:12px;margin:8px}</style>
+<h1>SHP2STL local review</h1>
+<p>These presets use the frozen public inputs and original reproduction settings. Each opens the actual app and saves its settings on this local origin.</p>
+<button data-dataset="dc">DC — 15 cuts</button>
+<button data-dataset="baltimore">Baltimore — 128 cuts</button>
+<p><a href="./README.md">Investigation and commands</a> · <a href="./REPORT.md">Measured results</a></p>
+<small>Author: Codex app agent · 2026-09-11</small>
+<script>
+for(const button of document.querySelectorAll('button'))button.onclick=()=>{
+  localStorage.setItem('shp2stl.appConfig.v1',JSON.stringify({
+    props:{innerHeight:600,innerWidth:800,precision:100,scaleToThisSize:180},
+    shpstl:{depth:6,width:.5,simplifyBy:.01,simplifyHullBy:.01,
+      geoJsonUrl:new URL(`./fixtures/${button.dataset.dataset}.geojson`,location.href).href},
+  }));
+  location.href='../app.html';
+};
+</script>

@@ -1,0 +1,55 @@
+{
+  "paths": [
+    "diagnostics/results/reference-baltimore-full",
+    "diagnostics/results/optimized-baltimore-index"
+  ],
+  "surface": [
+    {
+      "count": 311577,
+      "max": 0.23440179477901188,
+      "mean": 0.000027374400700238038,
+      "above1e6": 5470,
+      "above1e4": 756,
+      "worst": {
+        "point": [
+          29.236608505249023,
+          8.909600257873535,
+          0
+        ],
+        "closest": [
+          29.470742190284163,
+          8.920808242861392,
+          0
+        ],
+        "triangle": 33274
+      }
+    },
+    {
+      "count": 318633,
+      "max": 0.15931749673766307,
+      "mean": 0.000022638185596790428,
+      "above1e6": 6074,
+      "above1e4": 1083,
+      "worst": {
+        "point": [
+          -20.603605270385742,
+          -22.56068229675293,
+          0
+        ],
+        "closest": [
+          -20.493695235118885,
+          -22.676015938481584,
+          0
+        ],
+        "triangle": 33191
+      }
+    }
+  ],
+  "coverage": {
+    "gridPoints": 160801,
+    "spacing": 0.5,
+    "coverageMismatches": 0,
+    "maxHeightDelta": 0,
+    "examples": []
+  }
+}

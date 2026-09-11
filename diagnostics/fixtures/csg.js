@@ -1,9 +1,5 @@
 import { BufferAttribute, Vector3, Ray, Vector2, Vector4, Mesh, Matrix4, Line3, Plane, Triangle, DoubleSide, Matrix3, BufferGeometry, Group, Color, MeshPhongMaterial, MathUtils, LineSegments, LineBasicMaterial, InstancedMesh, SphereGeometry, MeshBasicMaterial } from 'three';
 import { MeshBVH, ExtendedTriangle } from 'three-mesh-bvh';
-import RBush from './vendor/rbush.js';
-
-// Local optimizations of three-bvh-csg 0.0.16.
-// Author: Codex app agent — 2026-09-11. See diagnostics/README.md.
 
 const HASH_WIDTH = 1e-6;
 const HASH_HALF_WIDTH = HASH_WIDTH * 0.5;
@@ -594,11 +590,6 @@ class HalfEdgeMap {
 		const attrKeys = useAllAttributes ? Object.keys( attributes ) : null;
 		const indexAttr = geometry.index;
 		const posAttr = attributes.position;
-		// Intern the existing hashes (including their original rounding/collisions).
-		// Numeric edge keys avoid allocating two long coordinate strings per edge.
-		const vertexIds = new Map();
-		const edgeStride = posAttr.count;
-		const numericEdges = edgeStride <= Math.sqrt( Number.MAX_SAFE_INTEGER );
 
 		// get the potential number of triangles
 		let triCount = getTriCount( geometry );
@@ -642,17 +633,7 @@ class HalfEdgeMap {
 
 				}
 
-				const hash = hashFunction( i0 );
-				if ( numericEdges ) {
-
-					if ( ! vertexIds.has( hash ) ) vertexIds.set( hash, vertexIds.size );
-					_hashes[ e ] = vertexIds.get( hash );
-
-				} else {
-
-					_hashes[ e ] = hash;
-
-				}
+				_hashes[ e ] = hashFunction( i0 );
 
 			}
 
@@ -662,7 +643,7 @@ class HalfEdgeMap {
 				const vh0 = _hashes[ e ];
 				const vh1 = _hashes[ nextE ];
 
-				const reverseHash = numericEdges ? vh1 * edgeStride + vh0 : `${ vh1 }_${ vh0 }`;
+				const reverseHash = `${ vh1 }_${ vh0 }`;
 				if ( map.has( reverseHash ) ) {
 
 					// create a reference between the two triangles and clear the hash
@@ -679,7 +660,7 @@ class HalfEdgeMap {
 					// save the triangle and triangle edge index captured in one value
 					// triIndex = ~ ~ ( i0 / 3 );
 					// edgeIndex = i0 % 3;
-					const hash = numericEdges ? vh0 * edgeStride + vh1 : `${ vh0 }_${ vh1 }`;
+					const hash = `${ vh0 }_${ vh1 }`;
 					const index = i3 + e;
 					map.set( hash, index );
 					unmatchedSet.add( index );
@@ -929,10 +910,7 @@ class TrianglePool {
 
 		}
 
-		const triangle = this._pool[ this._index ++ ];
-		triangle.fragmentOrder = this._index;
-		triangle.fragmentBox = null;
-		return triangle;
+		return this._pool[ this._index ++ ];
 
 	}
 
@@ -960,8 +938,6 @@ class TriangleSplitter {
 		this.triangles = [];
 		this.normal = new Vector3();
 		this.coplanarTriangleUsed = false;
-		this.fragmentIndex = null;
-		this.uncertainFragments = new Set();
 
 	}
 
@@ -1059,68 +1035,11 @@ class TriangleSplitter {
 		// init our triangle to check for intersection
 		_splittingTriangle.copy( clippingTriangle );
 		_splittingTriangle.needsUpdate = true;
-		const { a: ca, b: cb, c: cc } = clippingTriangle;
-		// Conservative broad phase. Keep a generous floating point margin and send
-		// all touching/nearby boxes through the original intersection predicate.
-		const margin = 1e-10 * Math.max( 1,
-			Math.abs( ca.x ), Math.abs( ca.y ), Math.abs( ca.z ),
-			Math.abs( cb.x ), Math.abs( cb.y ), Math.abs( cb.z ),
-			Math.abs( cc.x ), Math.abs( cc.y ), Math.abs( cc.z ) );
-		const minX = Math.min( ca.x, cb.x, cc.x ) - margin;
-		const minY = Math.min( ca.y, cb.y, cc.y ) - margin;
-		const minZ = Math.min( ca.z, cb.z, cc.z ) - margin;
-		const maxX = Math.max( ca.x, cb.x, cc.x ) + margin;
-		const maxY = Math.max( ca.y, cb.y, cc.y ) + margin;
-		const maxZ = Math.max( ca.z, cb.z, cc.z ) + margin;
-		const query = { minX, minY, maxX, maxY };
-		const uncertainClip = isIllConditioned( clippingTriangle );
-		if ( ! this.fragmentIndex && triangles.length >= 128 ) {
-
-			this.fragmentIndex = new RBush();
-			this.fragmentIndex.load( triangles.map( makeFragmentBox ).filter( box => {
-
-				if ( box.uncertain ) this.uncertainFragments.add( box.triangle );
-				return ! box.uncertain;
-
-			} ) );
-
-		}
-
-		const index = this.fragmentIndex;
-		const uncertain = this.uncertainFragments;
-		// A plane visits only fragments that existed on entry, in original array
-		// order. New fragments are appended and become eligible on the next plane.
-		const candidates = index && ! uncertainClip && uncertain.size < triangles.length / 4 ?
-			[ ...index.search( query ).map( box => box.triangle ), ...uncertain ]
-				.sort( ( a, b ) => a.fragmentOrder - b.fragmentOrder ) : triangles.slice();
-		const removed = new Set();
-		const indexFragment = triangle => {
-
-			const box = makeFragmentBox( triangle );
-			if ( box.uncertain ) uncertain.add( triangle );
-			else index.insert( box );
-
-		};
-		const addFragment = triangle => {
-
-			triangles.push( triangle );
-			if ( index ) indexFragment( triangle );
-
-		};
 
 		// try to split every triangle in the class
-		for ( let i = 0, l = candidates.length; i < l; i ++ ) {
+		for ( let i = 0, l = triangles.length; i < l; i ++ ) {
 
-			const tri = candidates[ i ];
-			const { a, b, c } = tri;
-			// Degenerate SAT axes can make the upstream predicate report an
-			// intersection outside either box. Preserve that numerical behavior for
-			// ill-conditioned inputs instead of approximating away their fragments.
-			if ( ! uncertainClip && ! ( index ? tri.fragmentBox.uncertain : isIllConditioned( tri ) ) && (
-				Math.max( a.x, b.x, c.x ) < minX || Math.min( a.x, b.x, c.x ) > maxX ||
-				Math.max( a.y, b.y, c.y ) < minY || Math.min( a.y, b.y, c.y ) > maxY ||
-				Math.max( a.z, b.z, c.z ) < minZ || Math.min( a.z, b.z, c.z ) > maxZ
-			) ) continue;
+			const tri = triangles[ i ];
 
 			// skip the triangle if we don't intersect with it
 			if ( ! _splittingTriangle.intersectsTriangle( tri, _edge$2, true ) ) {
@@ -1129,6 +1048,7 @@ class TriangleSplitter {
 
 			}
 
+			const { a, b, c } = tri;
 			let intersects = 0;
 			let vertexSplitEnd = - 1;
 			let coplanarEdge = false;
@@ -1217,13 +1137,6 @@ class TriangleSplitter {
 			// - we're not along a coplanar edge
 			if ( ! coplanarEdge && intersects === 2 && _foundEdge.distance() > COPLANAR_EPSILON ) {
 
-				if ( index ) {
-
-					if ( tri.fragmentBox.uncertain ) uncertain.delete( tri );
-					else index.remove( tri.fragmentBox );
-
-				}
-
 				if ( vertexSplitEnd !== - 1 ) {
 
 					vertexSplitEnd = ( vertexSplitEnd + 1 ) % 3;
@@ -1250,7 +1163,7 @@ class TriangleSplitter {
 
 					if ( ! isTriDegenerate( nextTri ) ) {
 
-						addFragment( nextTri );
+						triangles.push( nextTri );
 
 					}
 
@@ -1261,7 +1174,9 @@ class TriangleSplitter {
 					// finish off the adjusted triangle
 					if ( isTriDegenerate( tri ) ) {
 
-						removed.add( tri );
+						triangles.splice( i, 1 );
+						i --;
+						l --;
 
 					}
 
@@ -1322,44 +1237,32 @@ class TriangleSplitter {
 					// don't add degenerate triangles to the list
 					if ( ! isTriDegenerate( nextTri1 ) ) {
 
-						addFragment( nextTri1 );
+						triangles.push( nextTri1 );
 
 					}
 
 					if ( ! isTriDegenerate( nextTri2 ) ) {
 
-						addFragment( nextTri2 );
+						triangles.push( nextTri2 );
 
 					}
 
 					// finish off the adjusted triangle
 					if ( isTriDegenerate( tri ) ) {
 
-						removed.add( tri );
+						triangles.splice( i, 1 );
+						i --;
+						l --;
 
 					}
 
 				}
-
-				if ( index && ! removed.has( tri ) ) indexFragment( tri );
 
 			} else if ( intersects === 3 ) {
 
 				console.warn( 'TriangleClipper: Coplanar clip not handled' );
 
 			}
-
-		}
-
-		if ( removed.size ) {
-
-			let write = 0;
-			for ( const triangle of triangles ) {
-
-				if ( ! removed.has( triangle ) ) triangles[ write ++ ] = triangle;
-
-			}
-			triangles.length = write;
 
 		}
 
@@ -1370,35 +1273,8 @@ class TriangleSplitter {
 		this.triangles.length = 0;
 		this.trianglePool.clear();
 		this.coplanarTriangleUsed = false;
-		this.fragmentIndex = null;
-		this.uncertainFragments.clear();
 
 	}
-
-}
-
-function makeFragmentBox( triangle ) {
-
-	const { a, b, c } = triangle;
-	const box = {
-		minX: Math.min( a.x, b.x, c.x ), minY: Math.min( a.y, b.y, c.y ),
-		maxX: Math.max( a.x, b.x, c.x ), maxY: Math.max( a.y, b.y, c.y ),
-		triangle,
-		uncertain: isIllConditioned( triangle ),
-	};
-	triangle.fragmentBox = box;
-	return box;
-
-}
-
-function isIllConditioned( { a, b, c } ) {
-
-	const ux = b.x - a.x, uy = b.y - a.y, uz = b.z - a.z;
-	const vx = c.x - a.x, vy = c.y - a.y, vz = c.z - a.z;
-	const nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
-	const edgeSquared = Math.max( ux * ux + uy * uy + uz * uz, vx * vx + vy * vy + vz * vz,
-		( ux - vx ) ** 2 + ( uy - vy ) ** 2 + ( uz - vz ) ** 2 );
-	return ! Number.isFinite( edgeSquared ) || nx * nx + ny * ny + nz * nz <= 1e-10 * edgeSquared * edgeSquared;
 
 }
 
@@ -1752,34 +1628,12 @@ function setDebugContext( debugData ) {
 
 }
 
-const raycastGeometryViews = new WeakMap();
-
-function raycastFirstForCSG( bvh, ray ) {
-
-	// Classification uses hit.distance and hit.face.normal only. Keep the same
-	// BVH, index, positions, traversal and geometric face normal; avoid computing
-	// unused interpolated UVs/normals (r176 returns null for singular triangles).
-	let view = raycastGeometryViews.get( bvh );
-	if ( ! view ) {
-
-		const geometry = Object.create( bvh.geometry );
-		geometry.attributes = { position: bvh.geometry.attributes.position };
-		view = Object.create( bvh );
-		view.geometry = geometry;
-		raycastGeometryViews.set( bvh, view );
-
-	}
-
-	return view.raycastFirst( ray, DoubleSide );
-
-}
-
 function getHitSide( tri, bvh ) {
 
 	tri.getMidpoint( _ray$1.origin );
 	tri.getNormal( _ray$1.direction );
 
-	const hit = raycastFirstForCSG( bvh, _ray$1 );
+	const hit = bvh.raycastFirst( _ray$1, DoubleSide );
 	const hitBackSide = Boolean( hit && _ray$1.direction.dot( hit.face.normal ) > 0 );
 	return hitBackSide ? BACK_SIDE : FRONT_SIDE;
 
@@ -1814,7 +1668,7 @@ function getHitSideWithCoplanarCheck( tri, bvh ) {
 		_ray$1.direction.multiplyScalar( - 1 );
 
 		// check if the ray hit the backside
-		const hit = raycastFirstForCSG( bvh, _ray$1 );
+		const hit = bvh.raycastFirst( _ray$1, DoubleSide );
 		let hitBackSide = Boolean( hit && _ray$1.direction.dot( hit.face.normal ) > 0 );
 		if ( hitBackSide ) {
 
@@ -2440,6 +2294,12 @@ const _barycoordTri = new Triangle();
 const _attr = [];
 const _actions = [];
 
+function getFirstIdFromSet( set ) {
+
+	for ( const id of set ) return id;
+
+}
+
 // runs the given operation against a and b using the splitter and appending data to the
 // attributeData object.
 function performOperation(
@@ -2651,9 +2511,9 @@ function performWholeTriangleOperations(
 
 	}
 
-	// Deleting visited entries preserves Set iteration order. A single iterator
-	// avoids repeatedly scanning deleted slots from the start for each component.
-	for ( const id of traverseSet ) {
+	while ( traverseSet.size > 0 ) {
+
+		const id = getFirstIdFromSet( traverseSet );
 		traverseSet.delete( id );
 
 		stack.push( id );

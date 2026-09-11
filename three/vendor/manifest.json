@@ -1,0 +1,22 @@
+{
+  "rbush.js": {
+    "url": "https://cdn.jsdelivr.net/npm/rbush@4.0.1/index.js",
+    "upstreamSHA256": "43d5358b57cab22e9e9bddc81df9cd6ca37409a31b7c1d718504c6168b773661",
+    "localSHA256": "83856068045ddbcd171af78255c8786738d66cd2f2c51b7560613a9b5f2e54a9"
+  },
+  "quickselect.js": {
+    "url": "https://cdn.jsdelivr.net/npm/quickselect@3.0.0/index.js",
+    "upstreamSHA256": "68b7f6be024c4133fee963502b24b804237144d8ec95d4f873a37f4749b89b72",
+    "localSHA256": "68b7f6be024c4133fee963502b24b804237144d8ec95d4f873a37f4749b89b72"
+  },
+  "rbush-LICENSE": {
+    "url": "https://cdn.jsdelivr.net/npm/rbush@4.0.1/LICENSE",
+    "upstreamSHA256": "bf20b07b8e41f306d22b73bfa6b0e248e81ee8caaa6a04285acb0b8e963c01ec",
+    "localSHA256": "bf20b07b8e41f306d22b73bfa6b0e248e81ee8caaa6a04285acb0b8e963c01ec"
+  },
+  "quickselect-LICENSE": {
+    "url": "https://cdn.jsdelivr.net/npm/quickselect@3.0.0/LICENSE",
+    "upstreamSHA256": "238ddb00e12a420a54e060afa19bdab4f70bf49e0e2a8ebb1a5e851f9ef447df",
+    "localSHA256": "238ddb00e12a420a54e060afa19bdab4f70bf49e0e2a8ebb1a5e851f9ef447df"
+  }
+}

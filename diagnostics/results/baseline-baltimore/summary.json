@@ -1,0 +1,3931 @@
+{
+  "variant": "baseline",
+  "dataset": "baltimore",
+  "status": "partial-output",
+  "config": {
+    "props": {
+      "innerHeight": 600,
+      "innerWidth": 800,
+      "precision": 100,
+      "scaleToThisSize": 180
+    },
+    "shpstl": {
+      "depth": 6,
+      "width": 0.5,
+      "simplifyBy": 0.01,
+      "simplifyHullBy": 0.01,
+      "geoJsonUrl": "https://services1.arcgis.com/mVFRs7NF4iFitgbY/ArcGIS/rest/services/Tpop/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=pgeojson"
+    }
+  },
+  "browser": "152.0.7977.82",
+  "limitMs": 120000,
+  "rssLimitKiB": 2097152,
+  "peakRSSKiB": 1627244,
+  "wallMs": 84054,
+  "events": [
+    {
+      "kind": "stage",
+      "name": "truncateGeoJSON",
+      "ms": 5.600000023841858
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 4064.5999999940395
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHullLines",
+      "ms": 4067.899999976158
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 47.599999994039536
+    },
+    {
+      "kind": "stage",
+      "name": "simplifyGeoJSON",
+      "ms": 144.19999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "getConvexHull",
+      "ms": 105.2999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "getOverlappingLines",
+      "ms": 95.7999999821186
+    },
+    {
+      "kind": "stage",
+      "name": "getOverlappingLines",
+      "ms": 45.69999998807907
+    },
+    {
+      "kind": "stage",
+      "name": "getInteriorLines",
+      "ms": 103.40000000596046
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 3.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.30000001192092896
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "reprojectGeoJSON",
+      "ms": 0.800000011920929
+    },
+    {
+      "kind": "stage",
+      "name": "getMinMaxCoordinates",
+      "ms": 1.699999988079071
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 1.2000000178813934
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometry",
+      "ms": 35.900000005960464
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.5999999940395355
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 13
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 2.399999976158142
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 60.20000001788139
+    },
+    {
+      "kind": "stage",
+      "name": "scaleGeoJSON",
+      "ms": 0.20000001788139343
+    },
+    {
+      "kind": "stage",
+      "name": "createThreeDGeometryLines",
+      "ms": 30.200000017881393
+    },
+    {
+      "kind": "cut-start",
+      "cut": 1,
+      "input": {
+        "triangles": 312,
+        "vertices": 936,
+        "groups": 2,
+        "bytes": 29952
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 75090244
+    },
+    {
+      "kind": "cut-end",
+      "cut": 1,
+      "ms": 213.2999999821186,
+      "output": {
+        "triangles": 439,
+        "vertices": 1317,
+        "groups": 2,
+        "bytes": 42144
+      },
+      "heap": 49503908
+    },
+    {
+      "kind": "cut-start",
+      "cut": 2,
+      "input": {
+        "triangles": 439,
+        "vertices": 1317,
+        "groups": 2,
+        "bytes": 42144
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 49890276
+    },
+    {
+      "kind": "cut-end",
+      "cut": 2,
+      "ms": 69.19999998807907,
+      "output": {
+        "triangles": 493,
+        "vertices": 1479,
+        "groups": 3,
+        "bytes": 47328
+      },
+      "heap": 52641262
+    },
+    {
+      "kind": "cut-start",
+      "cut": 3,
+      "input": {
+        "triangles": 493,
+        "vertices": 1479,
+        "groups": 3,
+        "bytes": 47328
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 52507978
+    },
+    {
+      "kind": "cut-end",
+      "cut": 3,
+      "ms": 36.89999997615814,
+      "output": {
+        "triangles": 538,
+        "vertices": 1614,
+        "groups": 4,
+        "bytes": 51648
+      },
+      "heap": 54751044
+    },
+    {
+      "kind": "cut-start",
+      "cut": 4,
+      "input": {
+        "triangles": 538,
+        "vertices": 1614,
+        "groups": 4,
+        "bytes": 51648
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 54835820
+    },
+    {
+      "kind": "cut-end",
+      "cut": 4,
+      "ms": 51.30000001192093,
+      "output": {
+        "triangles": 710,
+        "vertices": 2130,
+        "groups": 5,
+        "bytes": 68160
+      },
+      "heap": 58769824
+    },
+    {
+      "kind": "cut-start",
+      "cut": 5,
+      "input": {
+        "triangles": 710,
+        "vertices": 2130,
+        "groups": 5,
+        "bytes": 68160
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 58854252
+    },
+    {
+      "kind": "cut-end",
+      "cut": 5,
+      "ms": 95.90000000596046,
+      "output": {
+        "triangles": 905,
+        "vertices": 2715,
+        "groups": 6,
+        "bytes": 86880
+      },
+      "heap": 63630220
+    },
+    {
+      "kind": "cut-start",
+      "cut": 6,
+      "input": {
+        "triangles": 905,
+        "vertices": 2715,
+        "groups": 6,
+        "bytes": 86880
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 63715140
+    },
+    {
+      "kind": "cut-end",
+      "cut": 6,
+      "ms": 47.099999994039536,
+      "output": {
+        "triangles": 1063,
+        "vertices": 3189,
+        "groups": 7,
+        "bytes": 102048
+      },
+      "heap": 67132634
+    },
+    {
+      "kind": "cut-start",
+      "cut": 7,
+      "input": {
+        "triangles": 1063,
+        "vertices": 3189,
+        "groups": 7,
+        "bytes": 102048
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 67213798
+    },
+    {
+      "kind": "cut-end",
+      "cut": 7,
+      "ms": 66.39999997615814,
+      "output": {
+        "triangles": 1166,
+        "vertices": 3498,
+        "groups": 8,
+        "bytes": 111936
+      },
+      "heap": 20675642
+    },
+    {
+      "kind": "cut-start",
+      "cut": 8,
+      "input": {
+        "triangles": 1166,
+        "vertices": 3498,
+        "groups": 8,
+        "bytes": 111936
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 20765930
+    },
+    {
+      "kind": "cut-end",
+      "cut": 8,
+      "ms": 17.900000005960464,
+      "output": {
+        "triangles": 1188,
+        "vertices": 3564,
+        "groups": 9,
+        "bytes": 114048
+      },
+      "heap": 23575966
+    },
+    {
+      "kind": "cut-start",
+      "cut": 9,
+      "input": {
+        "triangles": 1188,
+        "vertices": 3564,
+        "groups": 9,
+        "bytes": 114048
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 23669098
+    },
+    {
+      "kind": "cut-end",
+      "cut": 9,
+      "ms": 19.900000005960464,
+      "output": {
+        "triangles": 1273,
+        "vertices": 3819,
+        "groups": 10,
+        "bytes": 122208
+      },
+      "heap": 26602110
+    },
+    {
+      "kind": "cut-start",
+      "cut": 10,
+      "input": {
+        "triangles": 1273,
+        "vertices": 3819,
+        "groups": 10,
+        "bytes": 122208
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 26694010
+    },
+    {
+      "kind": "cut-end",
+      "cut": 10,
+      "ms": 53.60000002384186,
+      "output": {
+        "triangles": 1384,
+        "vertices": 4152,
+        "groups": 11,
+        "bytes": 132864
+      },
+      "heap": 31178696
+    },
+    {
+      "kind": "cut-start",
+      "cut": 11,
+      "input": {
+        "triangles": 1384,
+        "vertices": 4152,
+        "groups": 11,
+        "bytes": 132864
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 31269908
+    },
+    {
+      "kind": "cut-end",
+      "cut": 11,
+      "ms": 34.599999994039536,
+      "output": {
+        "triangles": 1502,
+        "vertices": 4506,
+        "groups": 12,
+        "bytes": 144192
+      },
+      "heap": 34877268
+    },
+    {
+      "kind": "cut-start",
+      "cut": 12,
+      "input": {
+        "triangles": 1502,
+        "vertices": 4506,
+        "groups": 12,
+        "bytes": 144192
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 34968400
+    },
+    {
+      "kind": "cut-end",
+      "cut": 12,
+      "ms": 33.400000005960464,
+      "output": {
+        "triangles": 1621,
+        "vertices": 4863,
+        "groups": 13,
+        "bytes": 155616
+      },
+      "heap": 38852812
+    },
+    {
+      "kind": "cut-start",
+      "cut": 13,
+      "input": {
+        "triangles": 1621,
+        "vertices": 4863,
+        "groups": 13,
+        "bytes": 155616
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 38942600
+    },
+    {
+      "kind": "cut-end",
+      "cut": 13,
+      "ms": 24.19999998807907,
+      "output": {
+        "triangles": 1664,
+        "vertices": 4992,
+        "groups": 14,
+        "bytes": 159744
+      },
+      "heap": 42520390
+    },
+    {
+      "kind": "cut-start",
+      "cut": 14,
+      "input": {
+        "triangles": 1664,
+        "vertices": 4992,
+        "groups": 14,
+        "bytes": 159744
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 42610178
+    },
+    {
+      "kind": "cut-end",
+      "cut": 14,
+      "ms": 50.900000005960464,
+      "output": {
+        "triangles": 1746,
+        "vertices": 5238,
+        "groups": 15,
+        "bytes": 167616
+      },
+      "heap": 47339566
+    },
+    {
+      "kind": "cut-start",
+      "cut": 15,
+      "input": {
+        "triangles": 1746,
+        "vertices": 5238,
+        "groups": 15,
+        "bytes": 167616
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 47430698
+    },
+    {
+      "kind": "cut-end",
+      "cut": 15,
+      "ms": 22.30000001192093,
+      "output": {
+        "triangles": 1797,
+        "vertices": 5391,
+        "groups": 16,
+        "bytes": 172512
+      },
+      "heap": 51218550
+    },
+    {
+      "kind": "cut-start",
+      "cut": 16,
+      "input": {
+        "triangles": 1797,
+        "vertices": 5391,
+        "groups": 16,
+        "bytes": 172512
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 51334254
+    },
+    {
+      "kind": "cut-end",
+      "cut": 16,
+      "ms": 19.099999994039536,
+      "output": {
+        "triangles": 1826,
+        "vertices": 5478,
+        "groups": 17,
+        "bytes": 175296
+      },
+      "heap": 54928236
+    },
+    {
+      "kind": "cut-start",
+      "cut": 17,
+      "input": {
+        "triangles": 1826,
+        "vertices": 5478,
+        "groups": 17,
+        "bytes": 175296
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 55020776
+    },
+    {
+      "kind": "cut-end",
+      "cut": 17,
+      "ms": 48.80000001192093,
+      "output": {
+        "triangles": 1971,
+        "vertices": 5913,
+        "groups": 18,
+        "bytes": 189216
+      },
+      "heap": 60266632
+    },
+    {
+      "kind": "cut-start",
+      "cut": 18,
+      "input": {
+        "triangles": 1971,
+        "vertices": 5913,
+        "groups": 18,
+        "bytes": 189216
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 60356500
+    },
+    {
+      "kind": "cut-end",
+      "cut": 18,
+      "ms": 26.69999998807907,
+      "output": {
+        "triangles": 1999,
+        "vertices": 5997,
+        "groups": 19,
+        "bytes": 191904
+      },
+      "heap": 22366420
+    },
+    {
+      "kind": "cut-start",
+      "cut": 19,
+      "input": {
+        "triangles": 1999,
+        "vertices": 5997,
+        "groups": 19,
+        "bytes": 191904
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 22460248
+    },
+    {
+      "kind": "cut-end",
+      "cut": 19,
+      "ms": 57.79999998211861,
+      "output": {
+        "triangles": 2154,
+        "vertices": 6462,
+        "groups": 20,
+        "bytes": 206784
+      },
+      "heap": 28237754
+    },
+    {
+      "kind": "cut-start",
+      "cut": 20,
+      "input": {
+        "triangles": 2154,
+        "vertices": 6462,
+        "groups": 20,
+        "bytes": 206784
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 28331198
+    },
+    {
+      "kind": "cut-end",
+      "cut": 20,
+      "ms": 30,
+      "output": {
+        "triangles": 2222,
+        "vertices": 6666,
+        "groups": 21,
+        "bytes": 213312
+      },
+      "heap": 33063130
+    },
+    {
+      "kind": "cut-start",
+      "cut": 21,
+      "input": {
+        "triangles": 2222,
+        "vertices": 6666,
+        "groups": 21,
+        "bytes": 213312
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 33154618
+    },
+    {
+      "kind": "cut-end",
+      "cut": 21,
+      "ms": 52.5,
+      "output": {
+        "triangles": 2323,
+        "vertices": 6969,
+        "groups": 22,
+        "bytes": 223008
+      },
+      "heap": 39053458
+    },
+    {
+      "kind": "cut-start",
+      "cut": 22,
+      "input": {
+        "triangles": 2323,
+        "vertices": 6969,
+        "groups": 22,
+        "bytes": 223008
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 39149074
+    },
+    {
+      "kind": "cut-end",
+      "cut": 22,
+      "ms": 31,
+      "output": {
+        "triangles": 2385,
+        "vertices": 7155,
+        "groups": 23,
+        "bytes": 228960
+      },
+      "heap": 44244516
+    },
+    {
+      "kind": "cut-start",
+      "cut": 23,
+      "input": {
+        "triangles": 2385,
+        "vertices": 7155,
+        "groups": 23,
+        "bytes": 228960
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 44334288
+    },
+    {
+      "kind": "cut-end",
+      "cut": 23,
+      "ms": 23.900000005960464,
+      "output": {
+        "triangles": 2411,
+        "vertices": 7233,
+        "groups": 24,
+        "bytes": 231456
+      },
+      "heap": 49103278
+    },
+    {
+      "kind": "cut-start",
+      "cut": 24,
+      "input": {
+        "triangles": 2411,
+        "vertices": 7233,
+        "groups": 24,
+        "bytes": 231456
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 49197098
+    },
+    {
+      "kind": "cut-end",
+      "cut": 24,
+      "ms": 36.30000001192093,
+      "output": {
+        "triangles": 2577,
+        "vertices": 7731,
+        "groups": 25,
+        "bytes": 247392
+      },
+      "heap": 54668096
+    },
+    {
+      "kind": "cut-start",
+      "cut": 25,
+      "input": {
+        "triangles": 2577,
+        "vertices": 7731,
+        "groups": 25,
+        "bytes": 247392
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 54757884
+    },
+    {
+      "kind": "cut-end",
+      "cut": 25,
+      "ms": 32.19999998807907,
+      "output": {
+        "triangles": 2655,
+        "vertices": 7965,
+        "groups": 26,
+        "bytes": 254880
+      },
+      "heap": 60397002
+    },
+    {
+      "kind": "cut-start",
+      "cut": 26,
+      "input": {
+        "triangles": 2655,
+        "vertices": 7965,
+        "groups": 26,
+        "bytes": 254880
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 60486790
+    },
+    {
+      "kind": "cut-end",
+      "cut": 26,
+      "ms": 47.19999998807907,
+      "output": {
+        "triangles": 2728,
+        "vertices": 8184,
+        "groups": 27,
+        "bytes": 261888
+      },
+      "heap": 22364212
+    },
+    {
+      "kind": "cut-start",
+      "cut": 27,
+      "input": {
+        "triangles": 2728,
+        "vertices": 8184,
+        "groups": 27,
+        "bytes": 261888
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 22455592
+    },
+    {
+      "kind": "cut-end",
+      "cut": 27,
+      "ms": 46.099999994039536,
+      "output": {
+        "triangles": 2819,
+        "vertices": 8457,
+        "groups": 28,
+        "bytes": 270624
+      },
+      "heap": 29182280
+    },
+    {
+      "kind": "cut-start",
+      "cut": 28,
+      "input": {
+        "triangles": 2819,
+        "vertices": 8457,
+        "groups": 28,
+        "bytes": 270624
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 29276068
+    },
+    {
+      "kind": "cut-end",
+      "cut": 28,
+      "ms": 38.19999998807907,
+      "output": {
+        "triangles": 2913,
+        "vertices": 8739,
+        "groups": 29,
+        "bytes": 279648
+      },
+      "heap": 35426650
+    },
+    {
+      "kind": "cut-start",
+      "cut": 29,
+      "input": {
+        "triangles": 2913,
+        "vertices": 8739,
+        "groups": 29,
+        "bytes": 279648
+      },
+      "cutter": {
+        "triangles": 172,
+        "vertices": 516,
+        "groups": 2,
+        "bytes": 17544
+      },
+      "heap": 35543286
+    },
+    {
+      "kind": "error",
+      "text": "CSG operation failed for line 29: TypeError: Cannot read properties of null (reading 'dot')\n    at checkBufferGeometryIntersection (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:2920:29)\n    at intersectTri (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:2965:23)\n    at intersectClosestTri_indirect (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:3376:18)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4223:10)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4250:37)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4274:37)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4274:37)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4250:37)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4274:37)\n    at _raycastFirst (https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.7.3/build/index.module.js:4274:37)"
+    },
+    {
+      "kind": "cut-start",
+      "cut": 30,
+      "input": {
+        "triangles": 2913,
+        "vertices": 8739,
+        "groups": 29,
+        "bytes": 297126
+      },
+      "cutter": {
+        "triangles": 76,
+        "vertices": 228,
+        "groups": 2,
+        "bytes": 7752
+      },
+      "heap": 40382252
+    },
+    {
+      "kind": "cut-end",
+      "cut": 30,
+      "ms": 55,
+      "output": {
+        "triangles": 3405,
+        "vertices": 10215,
+        "groups": 30,
+        "bytes": 326880
+      },
+      "heap": 45906588
+    },
+    {
+      "kind": "cut-start",
+      "cut": 31,
+      "input": {
+        "triangles": 3405,
+        "vertices": 10215,
+        "groups": 30,
+        "bytes": 326880
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 45997672
+    },
+    {
+      "kind": "cut-end",
+      "cut": 31,
+      "ms": 49.29999998211861,
+      "output": {
+        "triangles": 3449,
+        "vertices": 10347,
+        "groups": 31,
+        "bytes": 331104
+      },
+      "heap": 53617338
+    },
+    {
+      "kind": "cut-start",
+      "cut": 32,
+      "input": {
+        "triangles": 3449,
+        "vertices": 10347,
+        "groups": 31,
+        "bytes": 331104
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 53712170
+    },
+    {
+      "kind": "cut-end",
+      "cut": 32,
+      "ms": 54.60000002384186,
+      "output": {
+        "triangles": 3565,
+        "vertices": 10695,
+        "groups": 32,
+        "bytes": 342240
+      },
+      "heap": 61866892
+    },
+    {
+      "kind": "cut-start",
+      "cut": 33,
+      "input": {
+        "triangles": 3565,
+        "vertices": 10695,
+        "groups": 32,
+        "bytes": 342240
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 61960680
+    },
+    {
+      "kind": "cut-end",
+      "cut": 33,
+      "ms": 54.400000005960464,
+      "output": {
+        "triangles": 3700,
+        "vertices": 11100,
+        "groups": 33,
+        "bytes": 355200
+      },
+      "heap": 26798616
+    },
+    {
+      "kind": "cut-start",
+      "cut": 34,
+      "input": {
+        "triangles": 3700,
+        "vertices": 11100,
+        "groups": 33,
+        "bytes": 355200
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 26894152
+    },
+    {
+      "kind": "cut-end",
+      "cut": 34,
+      "ms": 153.2999999821186,
+      "output": {
+        "triangles": 3786,
+        "vertices": 11358,
+        "groups": 34,
+        "bytes": 363456
+      },
+      "heap": 38437548
+    },
+    {
+      "kind": "cut-start",
+      "cut": 35,
+      "input": {
+        "triangles": 3786,
+        "vertices": 11358,
+        "groups": 34,
+        "bytes": 363456
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 38529996
+    },
+    {
+      "kind": "cut-end",
+      "cut": 35,
+      "ms": 44.29999998211861,
+      "output": {
+        "triangles": 3825,
+        "vertices": 11475,
+        "groups": 35,
+        "bytes": 367200
+      },
+      "heap": 46332416
+    },
+    {
+      "kind": "cut-start",
+      "cut": 36,
+      "input": {
+        "triangles": 3825,
+        "vertices": 11475,
+        "groups": 35,
+        "bytes": 367200
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 46422192
+    },
+    {
+      "kind": "cut-end",
+      "cut": 36,
+      "ms": 42.400000005960464,
+      "output": {
+        "triangles": 3877,
+        "vertices": 11631,
+        "groups": 36,
+        "bytes": 372192
+      },
+      "heap": 54382434
+    },
+    {
+      "kind": "cut-start",
+      "cut": 37,
+      "input": {
+        "triangles": 3877,
+        "vertices": 11631,
+        "groups": 36,
+        "bytes": 372192
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 54473550
+    },
+    {
+      "kind": "cut-end",
+      "cut": 37,
+      "ms": 49.400000005960464,
+      "output": {
+        "triangles": 3973,
+        "vertices": 11919,
+        "groups": 37,
+        "bytes": 381408
+      },
+      "heap": 62910840
+    },
+    {
+      "kind": "cut-start",
+      "cut": 38,
+      "input": {
+        "triangles": 3973,
+        "vertices": 11919,
+        "groups": 37,
+        "bytes": 381408
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 63007332
+    },
+    {
+      "kind": "cut-end",
+      "cut": 38,
+      "ms": 96.30000001192093,
+      "output": {
+        "triangles": 4283,
+        "vertices": 12849,
+        "groups": 38,
+        "bytes": 411168
+      },
+      "heap": 28964056
+    },
+    {
+      "kind": "cut-start",
+      "cut": 39,
+      "input": {
+        "triangles": 4283,
+        "vertices": 12849,
+        "groups": 38,
+        "bytes": 411168
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 29055172
+    },
+    {
+      "kind": "cut-end",
+      "cut": 39,
+      "ms": 76.09999999403954,
+      "output": {
+        "triangles": 4359,
+        "vertices": 13077,
+        "groups": 39,
+        "bytes": 418464
+      },
+      "heap": 37906610
+    },
+    {
+      "kind": "cut-start",
+      "cut": 40,
+      "input": {
+        "triangles": 4359,
+        "vertices": 13077,
+        "groups": 39,
+        "bytes": 418464
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 37997726
+    },
+    {
+      "kind": "cut-end",
+      "cut": 40,
+      "ms": 65.90000000596046,
+      "output": {
+        "triangles": 4447,
+        "vertices": 13341,
+        "groups": 40,
+        "bytes": 426912
+      },
+      "heap": 47046636
+    },
+    {
+      "kind": "cut-start",
+      "cut": 41,
+      "input": {
+        "triangles": 4447,
+        "vertices": 13341,
+        "groups": 40,
+        "bytes": 426912
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 47136408
+    },
+    {
+      "kind": "cut-end",
+      "cut": 41,
+      "ms": 55.30000001192093,
+      "output": {
+        "triangles": 4468,
+        "vertices": 13404,
+        "groups": 41,
+        "bytes": 428928
+      },
+      "heap": 55798514
+    },
+    {
+      "kind": "cut-start",
+      "cut": 42,
+      "input": {
+        "triangles": 4468,
+        "vertices": 13404,
+        "groups": 41,
+        "bytes": 428928
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 55889630
+    },
+    {
+      "kind": "cut-end",
+      "cut": 42,
+      "ms": 52.599999994039536,
+      "output": {
+        "triangles": 4539,
+        "vertices": 13617,
+        "groups": 42,
+        "bytes": 435744
+      },
+      "heap": 65521278
+    },
+    {
+      "kind": "cut-start",
+      "cut": 43,
+      "input": {
+        "triangles": 4539,
+        "vertices": 13617,
+        "groups": 42,
+        "bytes": 435744
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 65617726
+    },
+    {
+      "kind": "cut-end",
+      "cut": 43,
+      "ms": 88.80000001192093,
+      "output": {
+        "triangles": 4780,
+        "vertices": 14340,
+        "groups": 43,
+        "bytes": 458880
+      },
+      "heap": 31298556
+    },
+    {
+      "kind": "cut-start",
+      "cut": 44,
+      "input": {
+        "triangles": 4780,
+        "vertices": 14340,
+        "groups": 43,
+        "bytes": 458880
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 31389676
+    },
+    {
+      "kind": "cut-end",
+      "cut": 44,
+      "ms": 57.20000001788139,
+      "output": {
+        "triangles": 4830,
+        "vertices": 14490,
+        "groups": 44,
+        "bytes": 463680
+      },
+      "heap": 42023088
+    },
+    {
+      "kind": "cut-start",
+      "cut": 45,
+      "input": {
+        "triangles": 4830,
+        "vertices": 14490,
+        "groups": 44,
+        "bytes": 463680
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 42118236
+    },
+    {
+      "kind": "cut-end",
+      "cut": 45,
+      "ms": 77.19999998807907,
+      "output": {
+        "triangles": 5042,
+        "vertices": 15126,
+        "groups": 45,
+        "bytes": 484032
+      },
+      "heap": 53006040
+    },
+    {
+      "kind": "cut-start",
+      "cut": 46,
+      "input": {
+        "triangles": 5042,
+        "vertices": 15126,
+        "groups": 45,
+        "bytes": 484032
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 53095812
+    },
+    {
+      "kind": "cut-end",
+      "cut": 46,
+      "ms": 68.7999999821186,
+      "output": {
+        "triangles": 5142,
+        "vertices": 15426,
+        "groups": 46,
+        "bytes": 493632
+      },
+      "heap": 64013576
+    },
+    {
+      "kind": "cut-start",
+      "cut": 47,
+      "input": {
+        "triangles": 5142,
+        "vertices": 15426,
+        "groups": 46,
+        "bytes": 493632
+      },
+      "cutter": {
+        "triangles": 100,
+        "vertices": 300,
+        "groups": 2,
+        "bytes": 10200
+      },
+      "heap": 64118144
+    },
+    {
+      "kind": "cut-end",
+      "cut": 47,
+      "ms": 102.7999999821186,
+      "output": {
+        "triangles": 5370,
+        "vertices": 16110,
+        "groups": 47,
+        "bytes": 515520
+      },
+      "heap": 30590938
+    },
+    {
+      "kind": "cut-start",
+      "cut": 48,
+      "input": {
+        "triangles": 5370,
+        "vertices": 16110,
+        "groups": 47,
+        "bytes": 515520
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 30684742
+    },
+    {
+      "kind": "cut-end",
+      "cut": 48,
+      "ms": 92,
+      "output": {
+        "triangles": 5534,
+        "vertices": 16602,
+        "groups": 48,
+        "bytes": 531264
+      },
+      "heap": 43355306
+    },
+    {
+      "kind": "cut-start",
+      "cut": 49,
+      "input": {
+        "triangles": 5534,
+        "vertices": 16602,
+        "groups": 48,
+        "bytes": 531264
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 43445062
+    },
+    {
+      "kind": "cut-end",
+      "cut": 49,
+      "ms": 51.69999998807907,
+      "output": {
+        "triangles": 5580,
+        "vertices": 16740,
+        "groups": 49,
+        "bytes": 535680
+      },
+      "heap": 54863830
+    },
+    {
+      "kind": "cut-start",
+      "cut": 50,
+      "input": {
+        "triangles": 5580,
+        "vertices": 16740,
+        "groups": 49,
+        "bytes": 535680
+      },
+      "cutter": {
+        "triangles": 156,
+        "vertices": 468,
+        "groups": 2,
+        "bytes": 15912
+      },
+      "heap": 54977794
+    },
+    {
+      "kind": "cut-end",
+      "cut": 50,
+      "ms": 192.59999999403954,
+      "output": {
+        "triangles": 6108,
+        "vertices": 18324,
+        "groups": 50,
+        "bytes": 586368
+      },
+      "heap": 27821050
+    },
+    {
+      "kind": "cut-start",
+      "cut": 51,
+      "input": {
+        "triangles": 6108,
+        "vertices": 18324,
+        "groups": 50,
+        "bytes": 586368
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 27912170
+    },
+    {
+      "kind": "cut-end",
+      "cut": 51,
+      "ms": 68.7000000178814,
+      "output": {
+        "triangles": 6177,
+        "vertices": 18531,
+        "groups": 51,
+        "bytes": 592992
+      },
+      "heap": 40796006
+    },
+    {
+      "kind": "cut-start",
+      "cut": 52,
+      "input": {
+        "triangles": 6177,
+        "vertices": 18531,
+        "groups": 51,
+        "bytes": 592992
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 40885778
+    },
+    {
+      "kind": "cut-end",
+      "cut": 52,
+      "ms": 157.2000000178814,
+      "output": {
+        "triangles": 6341,
+        "vertices": 19023,
+        "groups": 52,
+        "bytes": 608736
+      },
+      "heap": 56100884
+    },
+    {
+      "kind": "cut-start",
+      "cut": 53,
+      "input": {
+        "triangles": 6341,
+        "vertices": 19023,
+        "groups": 52,
+        "bytes": 608736
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 56197376
+    },
+    {
+      "kind": "cut-end",
+      "cut": 53,
+      "ms": 89.10000002384186,
+      "output": {
+        "triangles": 6590,
+        "vertices": 19770,
+        "groups": 53,
+        "bytes": 632640
+      },
+      "heap": 24934544
+    },
+    {
+      "kind": "cut-start",
+      "cut": 54,
+      "input": {
+        "triangles": 6590,
+        "vertices": 19770,
+        "groups": 53,
+        "bytes": 632640
+      },
+      "cutter": {
+        "triangles": 92,
+        "vertices": 276,
+        "groups": 2,
+        "bytes": 9384
+      },
+      "heap": 25037756
+    },
+    {
+      "kind": "cut-end",
+      "cut": 54,
+      "ms": 180.80000001192093,
+      "output": {
+        "triangles": 7119,
+        "vertices": 21357,
+        "groups": 54,
+        "bytes": 683424
+      },
+      "heap": 43910556
+    },
+    {
+      "kind": "cut-start",
+      "cut": 55,
+      "input": {
+        "triangles": 7119,
+        "vertices": 21357,
+        "groups": 54,
+        "bytes": 683424
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 44000328
+    },
+    {
+      "kind": "cut-end",
+      "cut": 55,
+      "ms": 148.30000001192093,
+      "output": {
+        "triangles": 7106,
+        "vertices": 21318,
+        "groups": 55,
+        "bytes": 682176
+      },
+      "heap": 61484106
+    },
+    {
+      "kind": "cut-start",
+      "cut": 56,
+      "input": {
+        "triangles": 7106,
+        "vertices": 21318,
+        "groups": 55,
+        "bytes": 682176
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 61575222
+    },
+    {
+      "kind": "cut-end",
+      "cut": 56,
+      "ms": 87.5,
+      "output": {
+        "triangles": 7211,
+        "vertices": 21633,
+        "groups": 56,
+        "bytes": 692256
+      },
+      "heap": 31849762
+    },
+    {
+      "kind": "cut-start",
+      "cut": 57,
+      "input": {
+        "triangles": 7211,
+        "vertices": 21633,
+        "groups": 56,
+        "bytes": 692256
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 31943554
+    },
+    {
+      "kind": "cut-end",
+      "cut": 57,
+      "ms": 121.90000000596046,
+      "output": {
+        "triangles": 7446,
+        "vertices": 22338,
+        "groups": 57,
+        "bytes": 714816
+      },
+      "heap": 49423008
+    },
+    {
+      "kind": "cut-start",
+      "cut": 58,
+      "input": {
+        "triangles": 7446,
+        "vertices": 22338,
+        "groups": 57,
+        "bytes": 714816
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 49512780
+    },
+    {
+      "kind": "cut-end",
+      "cut": 58,
+      "ms": 155.69999998807907,
+      "output": {
+        "triangles": 7563,
+        "vertices": 22689,
+        "groups": 58,
+        "bytes": 726048
+      },
+      "heap": 66529628
+    },
+    {
+      "kind": "cut-start",
+      "cut": 59,
+      "input": {
+        "triangles": 7563,
+        "vertices": 22689,
+        "groups": 58,
+        "bytes": 726048
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 66623432
+    },
+    {
+      "kind": "cut-end",
+      "cut": 59,
+      "ms": 148.09999999403954,
+      "output": {
+        "triangles": 7809,
+        "vertices": 23427,
+        "groups": 59,
+        "bytes": 749664
+      },
+      "heap": 37078204
+    },
+    {
+      "kind": "cut-start",
+      "cut": 60,
+      "input": {
+        "triangles": 7809,
+        "vertices": 23427,
+        "groups": 59,
+        "bytes": 749664
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 37167976
+    },
+    {
+      "kind": "cut-end",
+      "cut": 60,
+      "ms": 97.30000001192093,
+      "output": {
+        "triangles": 7833,
+        "vertices": 23499,
+        "groups": 60,
+        "bytes": 751968
+      },
+      "heap": 53184730
+    },
+    {
+      "kind": "cut-start",
+      "cut": 61,
+      "input": {
+        "triangles": 7833,
+        "vertices": 23499,
+        "groups": 60,
+        "bytes": 751968
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 53278538
+    },
+    {
+      "kind": "cut-end",
+      "cut": 61,
+      "ms": 154.90000000596046,
+      "output": {
+        "triangles": 8105,
+        "vertices": 24315,
+        "groups": 61,
+        "bytes": 778080
+      },
+      "heap": 26966596
+    },
+    {
+      "kind": "cut-start",
+      "cut": 62,
+      "input": {
+        "triangles": 8105,
+        "vertices": 24315,
+        "groups": 61,
+        "bytes": 778080
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 27056368
+    },
+    {
+      "kind": "cut-end",
+      "cut": 62,
+      "ms": 103.60000002384186,
+      "output": {
+        "triangles": 8161,
+        "vertices": 24483,
+        "groups": 62,
+        "bytes": 783456
+      },
+      "heap": 44184962
+    },
+    {
+      "kind": "cut-start",
+      "cut": 63,
+      "input": {
+        "triangles": 8161,
+        "vertices": 24483,
+        "groups": 62,
+        "bytes": 783456
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 44278766
+    },
+    {
+      "kind": "cut-end",
+      "cut": 63,
+      "ms": 162.10000002384186,
+      "output": {
+        "triangles": 8555,
+        "vertices": 25665,
+        "groups": 63,
+        "bytes": 821280
+      },
+      "heap": 63803448
+    },
+    {
+      "kind": "cut-start",
+      "cut": 64,
+      "input": {
+        "triangles": 8555,
+        "vertices": 25665,
+        "groups": 63,
+        "bytes": 821280
+      },
+      "cutter": {
+        "triangles": 60,
+        "vertices": 180,
+        "groups": 2,
+        "bytes": 6120
+      },
+      "heap": 63901284
+    },
+    {
+      "kind": "cut-end",
+      "cut": 64,
+      "ms": 130.60000002384186,
+      "output": {
+        "triangles": 8842,
+        "vertices": 26526,
+        "groups": 64,
+        "bytes": 848832
+      },
+      "heap": 36814760
+    },
+    {
+      "kind": "cut-start",
+      "cut": 65,
+      "input": {
+        "triangles": 8842,
+        "vertices": 26526,
+        "groups": 64,
+        "bytes": 848832
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 36904532
+    },
+    {
+      "kind": "cut-end",
+      "cut": 65,
+      "ms": 1821.699999988079,
+      "output": {
+        "triangles": 9230,
+        "vertices": 27690,
+        "groups": 65,
+        "bytes": 886080
+      },
+      "heap": 31164090
+    },
+    {
+      "kind": "cut-start",
+      "cut": 66,
+      "input": {
+        "triangles": 9230,
+        "vertices": 27690,
+        "groups": 65,
+        "bytes": 886080
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 31255206
+    },
+    {
+      "kind": "cut-end",
+      "cut": 66,
+      "ms": 92.59999999403954,
+      "output": {
+        "triangles": 9147,
+        "vertices": 27441,
+        "groups": 66,
+        "bytes": 878112
+      },
+      "heap": 49277074
+    },
+    {
+      "kind": "cut-start",
+      "cut": 67,
+      "input": {
+        "triangles": 9147,
+        "vertices": 27441,
+        "groups": 66,
+        "bytes": 878112
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 49366846
+    },
+    {
+      "kind": "cut-end",
+      "cut": 67,
+      "ms": 243.59999999403954,
+      "output": {
+        "triangles": 9432,
+        "vertices": 28296,
+        "groups": 67,
+        "bytes": 905472
+      },
+      "heap": 33240088
+    },
+    {
+      "kind": "cut-start",
+      "cut": 68,
+      "input": {
+        "triangles": 9432,
+        "vertices": 28296,
+        "groups": 67,
+        "bytes": 905472
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 33332088
+    },
+    {
+      "kind": "cut-end",
+      "cut": 68,
+      "ms": 95.59999999403954,
+      "output": {
+        "triangles": 9456,
+        "vertices": 28368,
+        "groups": 68,
+        "bytes": 907776
+      },
+      "heap": 52197232
+    },
+    {
+      "kind": "cut-start",
+      "cut": 69,
+      "input": {
+        "triangles": 9456,
+        "vertices": 28368,
+        "groups": 68,
+        "bytes": 907776
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 52288352
+    },
+    {
+      "kind": "cut-end",
+      "cut": 69,
+      "ms": 112.90000000596046,
+      "output": {
+        "triangles": 9585,
+        "vertices": 28755,
+        "groups": 69,
+        "bytes": 920160
+      },
+      "heap": 71947776
+    },
+    {
+      "kind": "cut-start",
+      "cut": 70,
+      "input": {
+        "triangles": 9585,
+        "vertices": 28755,
+        "groups": 69,
+        "bytes": 920160
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 71941620
+    },
+    {
+      "kind": "cut-end",
+      "cut": 70,
+      "ms": 114.90000000596046,
+      "output": {
+        "triangles": 9637,
+        "vertices": 28911,
+        "groups": 70,
+        "bytes": 925152
+      },
+      "heap": 44487108
+    },
+    {
+      "kind": "cut-start",
+      "cut": 71,
+      "input": {
+        "triangles": 9637,
+        "vertices": 28911,
+        "groups": 70,
+        "bytes": 925152
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 44579568
+    },
+    {
+      "kind": "cut-end",
+      "cut": 71,
+      "ms": 118.5,
+      "output": {
+        "triangles": 9778,
+        "vertices": 29334,
+        "groups": 71,
+        "bytes": 938688
+      },
+      "heap": 64468746
+    },
+    {
+      "kind": "cut-start",
+      "cut": 72,
+      "input": {
+        "triangles": 9778,
+        "vertices": 29334,
+        "groups": 71,
+        "bytes": 938688
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 64559850
+    },
+    {
+      "kind": "cut-end",
+      "cut": 72,
+      "ms": 307.59999999403954,
+      "output": {
+        "triangles": 10001,
+        "vertices": 30003,
+        "groups": 72,
+        "bytes": 960096
+      },
+      "heap": 44250066
+    },
+    {
+      "kind": "cut-start",
+      "cut": 73,
+      "input": {
+        "triangles": 10001,
+        "vertices": 30003,
+        "groups": 72,
+        "bytes": 960096
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 44333170
+    },
+    {
+      "kind": "cut-end",
+      "cut": 73,
+      "ms": 263.69999998807907,
+      "output": {
+        "triangles": 10176,
+        "vertices": 30528,
+        "groups": 73,
+        "bytes": 976896
+      },
+      "heap": 68963392
+    },
+    {
+      "kind": "cut-start",
+      "cut": 74,
+      "input": {
+        "triangles": 10176,
+        "vertices": 30528,
+        "groups": 73,
+        "bytes": 976896
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 69046496
+    },
+    {
+      "kind": "cut-end",
+      "cut": 74,
+      "ms": 123.30000001192093,
+      "output": {
+        "triangles": 10201,
+        "vertices": 30603,
+        "groups": 74,
+        "bytes": 979296
+      },
+      "heap": 46047762
+    },
+    {
+      "kind": "cut-start",
+      "cut": 75,
+      "input": {
+        "triangles": 10201,
+        "vertices": 30603,
+        "groups": 74,
+        "bytes": 979296
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 46136242
+    },
+    {
+      "kind": "cut-end",
+      "cut": 75,
+      "ms": 145.40000000596046,
+      "output": {
+        "triangles": 10721,
+        "vertices": 32163,
+        "groups": 75,
+        "bytes": 1029216
+      },
+      "heap": 69761568
+    },
+    {
+      "kind": "cut-start",
+      "cut": 76,
+      "input": {
+        "triangles": 10721,
+        "vertices": 32163,
+        "groups": 75,
+        "bytes": 1029216
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 69850048
+    },
+    {
+      "kind": "cut-end",
+      "cut": 76,
+      "ms": 125.7999999821186,
+      "output": {
+        "triangles": 10893,
+        "vertices": 32679,
+        "groups": 76,
+        "bytes": 1045728
+      },
+      "heap": 47646180
+    },
+    {
+      "kind": "cut-start",
+      "cut": 77,
+      "input": {
+        "triangles": 10893,
+        "vertices": 32679,
+        "groups": 76,
+        "bytes": 1045728
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 47736004
+    },
+    {
+      "kind": "cut-end",
+      "cut": 77,
+      "ms": 257.09999999403954,
+      "output": {
+        "triangles": 11421,
+        "vertices": 34263,
+        "groups": 77,
+        "bytes": 1096416
+      },
+      "heap": 30740000
+    },
+    {
+      "kind": "cut-start",
+      "cut": 78,
+      "input": {
+        "triangles": 11421,
+        "vertices": 34263,
+        "groups": 77,
+        "bytes": 1096416
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 30823104
+    },
+    {
+      "kind": "cut-end",
+      "cut": 78,
+      "ms": 246.09999999403954,
+      "output": {
+        "triangles": 11574,
+        "vertices": 34722,
+        "groups": 78,
+        "bytes": 1111104
+      },
+      "heap": 57852054
+    },
+    {
+      "kind": "cut-start",
+      "cut": 79,
+      "input": {
+        "triangles": 11574,
+        "vertices": 34722,
+        "groups": 78,
+        "bytes": 1111104
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 57936502
+    },
+    {
+      "kind": "cut-end",
+      "cut": 79,
+      "ms": 231.90000000596046,
+      "output": {
+        "triangles": 11797,
+        "vertices": 35391,
+        "groups": 79,
+        "bytes": 1132512
+      },
+      "heap": 41448932
+    },
+    {
+      "kind": "cut-start",
+      "cut": 80,
+      "input": {
+        "triangles": 11797,
+        "vertices": 35391,
+        "groups": 79,
+        "bytes": 1132512
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 41537412
+    },
+    {
+      "kind": "cut-end",
+      "cut": 80,
+      "ms": 2452.5999999940395,
+      "output": {
+        "triangles": 12636,
+        "vertices": 37908,
+        "groups": 80,
+        "bytes": 1213056
+      },
+      "heap": 66581506
+    },
+    {
+      "kind": "cut-start",
+      "cut": 81,
+      "input": {
+        "triangles": 12636,
+        "vertices": 37908,
+        "groups": 80,
+        "bytes": 1213056
+      },
+      "cutter": {
+        "triangles": 68,
+        "vertices": 204,
+        "groups": 2,
+        "bytes": 6936
+      },
+      "heap": 66674018
+    },
+    {
+      "kind": "cut-end",
+      "cut": 81,
+      "ms": 11386.59999999404,
+      "output": {
+        "triangles": 18170,
+        "vertices": 54510,
+        "groups": 81,
+        "bytes": 1744320
+      },
+      "heap": 64827734
+    },
+    {
+      "kind": "cut-start",
+      "cut": 82,
+      "input": {
+        "triangles": 18170,
+        "vertices": 54510,
+        "groups": 81,
+        "bytes": 1744320
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 64912182
+    },
+    {
+      "kind": "cut-end",
+      "cut": 82,
+      "ms": 230.40000000596046,
+      "output": {
+        "triangles": 15245,
+        "vertices": 45735,
+        "groups": 82,
+        "bytes": 1463520
+      },
+      "heap": 62130910
+    },
+    {
+      "kind": "cut-start",
+      "cut": 83,
+      "input": {
+        "triangles": 15245,
+        "vertices": 45735,
+        "groups": 82,
+        "bytes": 1463520
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 62216702
+    },
+    {
+      "kind": "cut-end",
+      "cut": 83,
+      "ms": 176.09999999403954,
+      "output": {
+        "triangles": 15300,
+        "vertices": 45900,
+        "groups": 83,
+        "bytes": 1468800
+      },
+      "heap": 32177122
+    },
+    {
+      "kind": "cut-start",
+      "cut": 84,
+      "input": {
+        "triangles": 15300,
+        "vertices": 45900,
+        "groups": 83,
+        "bytes": 1468800
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 32268050
+    },
+    {
+      "kind": "cut-end",
+      "cut": 84,
+      "ms": 208.5,
+      "output": {
+        "triangles": 15394,
+        "vertices": 46182,
+        "groups": 84,
+        "bytes": 1477824
+      },
+      "heap": 67147150
+    },
+    {
+      "kind": "cut-start",
+      "cut": 85,
+      "input": {
+        "triangles": 15394,
+        "vertices": 46182,
+        "groups": 84,
+        "bytes": 1477824
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 67238066
+    },
+    {
+      "kind": "cut-end",
+      "cut": 85,
+      "ms": 186.19999998807907,
+      "output": {
+        "triangles": 15465,
+        "vertices": 46395,
+        "groups": 85,
+        "bytes": 1484640
+      },
+      "heap": 55228466
+    },
+    {
+      "kind": "cut-start",
+      "cut": 86,
+      "input": {
+        "triangles": 15465,
+        "vertices": 46395,
+        "groups": 85,
+        "bytes": 1484640
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 55320746
+    },
+    {
+      "kind": "cut-end",
+      "cut": 86,
+      "ms": 639.1999999880791,
+      "output": {
+        "triangles": 16165,
+        "vertices": 48495,
+        "groups": 86,
+        "bytes": 1551840
+      },
+      "heap": 58711112
+    },
+    {
+      "kind": "cut-start",
+      "cut": 87,
+      "input": {
+        "triangles": 16165,
+        "vertices": 48495,
+        "groups": 86,
+        "bytes": 1551840
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 58803024
+    },
+    {
+      "kind": "cut-end",
+      "cut": 87,
+      "ms": 211.09999999403954,
+      "output": {
+        "triangles": 16078,
+        "vertices": 48234,
+        "groups": 87,
+        "bytes": 1543488
+      },
+      "heap": 52186806
+    },
+    {
+      "kind": "cut-start",
+      "cut": 88,
+      "input": {
+        "triangles": 16078,
+        "vertices": 48234,
+        "groups": 87,
+        "bytes": 1543488
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 52277734
+    },
+    {
+      "kind": "cut-end",
+      "cut": 88,
+      "ms": 224.10000002384186,
+      "output": {
+        "triangles": 16131,
+        "vertices": 48393,
+        "groups": 88,
+        "bytes": 1548576
+      },
+      "heap": 83907182
+    },
+    {
+      "kind": "cut-start",
+      "cut": 89,
+      "input": {
+        "triangles": 16131,
+        "vertices": 48393,
+        "groups": 88,
+        "bytes": 1548576
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 83998110
+    },
+    {
+      "kind": "cut-end",
+      "cut": 89,
+      "ms": 251.19999998807907,
+      "output": {
+        "triangles": 16202,
+        "vertices": 48606,
+        "groups": 89,
+        "bytes": 1555392
+      },
+      "heap": 69334640
+    },
+    {
+      "kind": "cut-start",
+      "cut": 90,
+      "input": {
+        "triangles": 16202,
+        "vertices": 48606,
+        "groups": 89,
+        "bytes": 1555392
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 69425568
+    },
+    {
+      "kind": "cut-end",
+      "cut": 90,
+      "ms": 271.90000000596046,
+      "output": {
+        "triangles": 16365,
+        "vertices": 49095,
+        "groups": 90,
+        "bytes": 1571040
+      },
+      "heap": 60197700
+    },
+    {
+      "kind": "cut-start",
+      "cut": 91,
+      "input": {
+        "triangles": 16365,
+        "vertices": 49095,
+        "groups": 90,
+        "bytes": 1571040
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 60288628
+    },
+    {
+      "kind": "cut-end",
+      "cut": 91,
+      "ms": 236.2999999821186,
+      "output": {
+        "triangles": 16439,
+        "vertices": 49317,
+        "groups": 91,
+        "bytes": 1578144
+      },
+      "heap": 92887642
+    },
+    {
+      "kind": "cut-start",
+      "cut": 92,
+      "input": {
+        "triangles": 16439,
+        "vertices": 49317,
+        "groups": 91,
+        "bytes": 1578144
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 92979914
+    },
+    {
+      "kind": "cut-end",
+      "cut": 92,
+      "ms": 215.59999999403954,
+      "output": {
+        "triangles": 16549,
+        "vertices": 49647,
+        "groups": 92,
+        "bytes": 1588704
+      },
+      "heap": 79819564
+    },
+    {
+      "kind": "cut-start",
+      "cut": 93,
+      "input": {
+        "triangles": 16549,
+        "vertices": 49647,
+        "groups": 92,
+        "bytes": 1588704
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 79915872
+    },
+    {
+      "kind": "cut-end",
+      "cut": 93,
+      "ms": 238.69999998807907,
+      "output": {
+        "triangles": 16861,
+        "vertices": 50583,
+        "groups": 93,
+        "bytes": 1618656
+      },
+      "heap": 73022154
+    },
+    {
+      "kind": "cut-start",
+      "cut": 94,
+      "input": {
+        "triangles": 16861,
+        "vertices": 50583,
+        "groups": 93,
+        "bytes": 1618656
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 73113082
+    },
+    {
+      "kind": "cut-end",
+      "cut": 94,
+      "ms": 386.40000000596046,
+      "output": {
+        "triangles": 17056,
+        "vertices": 51168,
+        "groups": 94,
+        "bytes": 1637376
+      },
+      "heap": 69026504
+    },
+    {
+      "kind": "cut-start",
+      "cut": 95,
+      "input": {
+        "triangles": 17056,
+        "vertices": 51168,
+        "groups": 94,
+        "bytes": 1637376
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 69118776
+    },
+    {
+      "kind": "cut-end",
+      "cut": 95,
+      "ms": 234.59999999403954,
+      "output": {
+        "triangles": 17183,
+        "vertices": 51549,
+        "groups": 95,
+        "bytes": 1649568
+      },
+      "heap": 104869188
+    },
+    {
+      "kind": "cut-start",
+      "cut": 96,
+      "input": {
+        "triangles": 17183,
+        "vertices": 51549,
+        "groups": 95,
+        "bytes": 1649568
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 104958772
+    },
+    {
+      "kind": "cut-end",
+      "cut": 96,
+      "ms": 205.30000001192093,
+      "output": {
+        "triangles": 17209,
+        "vertices": 51627,
+        "groups": 96,
+        "bytes": 1652064
+      },
+      "heap": 98332842
+    },
+    {
+      "kind": "cut-start",
+      "cut": 97,
+      "input": {
+        "triangles": 17209,
+        "vertices": 51627,
+        "groups": 96,
+        "bytes": 1652064
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 98423770
+    },
+    {
+      "kind": "cut-end",
+      "cut": 97,
+      "ms": 212.60000002384186,
+      "output": {
+        "triangles": 17384,
+        "vertices": 52152,
+        "groups": 97,
+        "bytes": 1668864
+      },
+      "heap": 90328040
+    },
+    {
+      "kind": "cut-start",
+      "cut": 98,
+      "input": {
+        "triangles": 17384,
+        "vertices": 52152,
+        "groups": 97,
+        "bytes": 1668864
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 90417812
+    },
+    {
+      "kind": "cut-end",
+      "cut": 98,
+      "ms": 219.09999999403954,
+      "output": {
+        "triangles": 17448,
+        "vertices": 52344,
+        "groups": 98,
+        "bytes": 1675008
+      },
+      "heap": 91381860
+    },
+    {
+      "kind": "cut-start",
+      "cut": 99,
+      "input": {
+        "triangles": 17448,
+        "vertices": 52344,
+        "groups": 98,
+        "bytes": 1675008
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 91471444
+    },
+    {
+      "kind": "cut-end",
+      "cut": 99,
+      "ms": 217.09999999403954,
+      "output": {
+        "triangles": 17484,
+        "vertices": 52452,
+        "groups": 99,
+        "bytes": 1678464
+      },
+      "heap": 86948400
+    },
+    {
+      "kind": "cut-start",
+      "cut": 100,
+      "input": {
+        "triangles": 17484,
+        "vertices": 52452,
+        "groups": 99,
+        "bytes": 1678464
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 87043360
+    },
+    {
+      "kind": "cut-end",
+      "cut": 100,
+      "ms": 1503.2999999821186,
+      "output": {
+        "triangles": 18326,
+        "vertices": 54978,
+        "groups": 100,
+        "bytes": 1759296
+      },
+      "heap": 106287904
+    },
+    {
+      "kind": "cut-start",
+      "cut": 101,
+      "input": {
+        "triangles": 18326,
+        "vertices": 54978,
+        "groups": 100,
+        "bytes": 1759296
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 106377828
+    },
+    {
+      "kind": "cut-end",
+      "cut": 101,
+      "ms": 226.5,
+      "output": {
+        "triangles": 18337,
+        "vertices": 55011,
+        "groups": 101,
+        "bytes": 1760352
+      },
+      "heap": 109647980
+    },
+    {
+      "kind": "cut-start",
+      "cut": 102,
+      "input": {
+        "triangles": 18337,
+        "vertices": 55011,
+        "groups": 101,
+        "bytes": 1760352
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 109738912
+    },
+    {
+      "kind": "cut-end",
+      "cut": 102,
+      "ms": 243,
+      "output": {
+        "triangles": 18445,
+        "vertices": 55335,
+        "groups": 102,
+        "bytes": 1770720
+      },
+      "heap": 106020602
+    },
+    {
+      "kind": "cut-start",
+      "cut": 103,
+      "input": {
+        "triangles": 18445,
+        "vertices": 55335,
+        "groups": 102,
+        "bytes": 1770720
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 106110194
+    },
+    {
+      "kind": "cut-end",
+      "cut": 103,
+      "ms": 2839.5,
+      "output": {
+        "triangles": 23037,
+        "vertices": 69111,
+        "groups": 103,
+        "bytes": 2211552
+      },
+      "heap": 127775816
+    },
+    {
+      "kind": "cut-start",
+      "cut": 104,
+      "input": {
+        "triangles": 23037,
+        "vertices": 69111,
+        "groups": 103,
+        "bytes": 2211552
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 127865624
+    },
+    {
+      "kind": "cut-end",
+      "cut": 104,
+      "ms": 361.59999999403954,
+      "output": {
+        "triangles": 21412,
+        "vertices": 64236,
+        "groups": 104,
+        "bytes": 2055552
+      },
+      "heap": 146837960
+    },
+    {
+      "kind": "cut-start",
+      "cut": 105,
+      "input": {
+        "triangles": 21412,
+        "vertices": 64236,
+        "groups": 104,
+        "bytes": 2055552
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 146929228
+    },
+    {
+      "kind": "cut-end",
+      "cut": 105,
+      "ms": 2173,
+      "output": {
+        "triangles": 22486,
+        "vertices": 67458,
+        "groups": 105,
+        "bytes": 2158656
+      },
+      "heap": 137815092
+    },
+    {
+      "kind": "cut-start",
+      "cut": 106,
+      "input": {
+        "triangles": 22486,
+        "vertices": 67458,
+        "groups": 105,
+        "bytes": 2158656
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 137904680
+    },
+    {
+      "kind": "cut-end",
+      "cut": 106,
+      "ms": 267.60000002384186,
+      "output": {
+        "triangles": 22153,
+        "vertices": 66459,
+        "groups": 106,
+        "bytes": 2126688
+      },
+      "heap": 99404192
+    },
+    {
+      "kind": "cut-start",
+      "cut": 107,
+      "input": {
+        "triangles": 22153,
+        "vertices": 66459,
+        "groups": 106,
+        "bytes": 2126688
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 99496484
+    },
+    {
+      "kind": "cut-end",
+      "cut": 107,
+      "ms": 440.5,
+      "output": {
+        "triangles": 22661,
+        "vertices": 67983,
+        "groups": 107,
+        "bytes": 2175456
+      },
+      "heap": 112683980
+    },
+    {
+      "kind": "cut-start",
+      "cut": 108,
+      "input": {
+        "triangles": 22661,
+        "vertices": 67983,
+        "groups": 107,
+        "bytes": 2175456
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 112773568
+    },
+    {
+      "kind": "cut-end",
+      "cut": 108,
+      "ms": 265.90000000596046,
+      "output": {
+        "triangles": 22632,
+        "vertices": 67896,
+        "groups": 108,
+        "bytes": 2172672
+      },
+      "heap": 115769432
+    },
+    {
+      "kind": "cut-start",
+      "cut": 109,
+      "input": {
+        "triangles": 22632,
+        "vertices": 67896,
+        "groups": 108,
+        "bytes": 2172672
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 115864032
+    },
+    {
+      "kind": "cut-end",
+      "cut": 109,
+      "ms": 276.60000002384186,
+      "output": {
+        "triangles": 22903,
+        "vertices": 68709,
+        "groups": 109,
+        "bytes": 2198688
+      },
+      "heap": 117350260
+    },
+    {
+      "kind": "cut-start",
+      "cut": 110,
+      "input": {
+        "triangles": 22903,
+        "vertices": 68709,
+        "groups": 109,
+        "bytes": 2198688
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 117441208
+    },
+    {
+      "kind": "cut-end",
+      "cut": 110,
+      "ms": 3119.800000011921,
+      "output": {
+        "triangles": 24961,
+        "vertices": 74883,
+        "groups": 110,
+        "bytes": 2396256
+      },
+      "heap": 136807208
+    },
+    {
+      "kind": "cut-start",
+      "cut": 111,
+      "input": {
+        "triangles": 24961,
+        "vertices": 74883,
+        "groups": 110,
+        "bytes": 2396256
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 136899496
+    },
+    {
+      "kind": "cut-end",
+      "cut": 111,
+      "ms": 274.69999998807907,
+      "output": {
+        "triangles": 23980,
+        "vertices": 71940,
+        "groups": 111,
+        "bytes": 2302080
+      },
+      "heap": 152852120
+    },
+    {
+      "kind": "cut-start",
+      "cut": 112,
+      "input": {
+        "triangles": 23980,
+        "vertices": 71940,
+        "groups": 111,
+        "bytes": 2302080
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 152941724
+    },
+    {
+      "kind": "cut-end",
+      "cut": 112,
+      "ms": 350.10000002384186,
+      "output": {
+        "triangles": 24062,
+        "vertices": 72186,
+        "groups": 112,
+        "bytes": 2309952
+      },
+      "heap": 151363536
+    },
+    {
+      "kind": "cut-start",
+      "cut": 113,
+      "input": {
+        "triangles": 24062,
+        "vertices": 72186,
+        "groups": 112,
+        "bytes": 2309952
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 151453140
+    },
+    {
+      "kind": "cut-end",
+      "cut": 113,
+      "ms": 307.2999999821186,
+      "output": {
+        "triangles": 24138,
+        "vertices": 72414,
+        "groups": 113,
+        "bytes": 2317248
+      },
+      "heap": 161284320
+    },
+    {
+      "kind": "cut-start",
+      "cut": 114,
+      "input": {
+        "triangles": 24138,
+        "vertices": 72414,
+        "groups": 113,
+        "bytes": 2317248
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 161373920
+    },
+    {
+      "kind": "cut-end",
+      "cut": 114,
+      "ms": 296,
+      "output": {
+        "triangles": 24209,
+        "vertices": 72627,
+        "groups": 114,
+        "bytes": 2324064
+      },
+      "heap": 166162528
+    },
+    {
+      "kind": "cut-start",
+      "cut": 115,
+      "input": {
+        "triangles": 24209,
+        "vertices": 72627,
+        "groups": 114,
+        "bytes": 2324064
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 166252200
+    },
+    {
+      "kind": "cut-end",
+      "cut": 115,
+      "ms": 438,
+      "output": {
+        "triangles": 24351,
+        "vertices": 73053,
+        "groups": 115,
+        "bytes": 2337696
+      },
+      "heap": 174389888
+    },
+    {
+      "kind": "cut-start",
+      "cut": 116,
+      "input": {
+        "triangles": 24351,
+        "vertices": 73053,
+        "groups": 115,
+        "bytes": 2337696
+      },
+      "cutter": {
+        "triangles": 20,
+        "vertices": 60,
+        "groups": 2,
+        "bytes": 2040
+      },
+      "heap": 174480812
+    },
+    {
+      "kind": "cut-end",
+      "cut": 116,
+      "ms": 458.59999999403954,
+      "output": {
+        "triangles": 24633,
+        "vertices": 73899,
+        "groups": 116,
+        "bytes": 2364768
+      },
+      "heap": 145663244
+    },
+    {
+      "kind": "cut-start",
+      "cut": 117,
+      "input": {
+        "triangles": 24633,
+        "vertices": 73899,
+        "groups": 116,
+        "bytes": 2364768
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 145755536
+    },
+    {
+      "kind": "cut-end",
+      "cut": 117,
+      "ms": 259.5,
+      "output": {
+        "triangles": 24657,
+        "vertices": 73971,
+        "groups": 117,
+        "bytes": 2367072
+      },
+      "heap": 156335328
+    },
+    {
+      "kind": "cut-start",
+      "cut": 118,
+      "input": {
+        "triangles": 24657,
+        "vertices": 73971,
+        "groups": 117,
+        "bytes": 2367072
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 156424908
+    },
+    {
+      "kind": "cut-end",
+      "cut": 118,
+      "ms": 687.5999999940395,
+      "output": {
+        "triangles": 25573,
+        "vertices": 76719,
+        "groups": 118,
+        "bytes": 2455008
+      },
+      "heap": 182550528
+    },
+    {
+      "kind": "cut-start",
+      "cut": 119,
+      "input": {
+        "triangles": 25573,
+        "vertices": 76719,
+        "groups": 118,
+        "bytes": 2455008
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 182642808
+    },
+    {
+      "kind": "cut-end",
+      "cut": 119,
+      "ms": 8694.09999999404,
+      "output": {
+        "triangles": 29286,
+        "vertices": 87858,
+        "groups": 119,
+        "bytes": 2811456
+      },
+      "heap": 187860024
+    },
+    {
+      "kind": "cut-start",
+      "cut": 120,
+      "input": {
+        "triangles": 29286,
+        "vertices": 87858,
+        "groups": 119,
+        "bytes": 2811456
+      },
+      "cutter": {
+        "triangles": 28,
+        "vertices": 84,
+        "groups": 2,
+        "bytes": 2856
+      },
+      "heap": 187953160
+    },
+    {
+      "kind": "cut-end",
+      "cut": 120,
+      "ms": 457.10000002384186,
+      "output": {
+        "triangles": 27387,
+        "vertices": 82161,
+        "groups": 120,
+        "bytes": 2629152
+      },
+      "heap": 166034616
+    },
+    {
+      "kind": "cut-start",
+      "cut": 121,
+      "input": {
+        "triangles": 27387,
+        "vertices": 82161,
+        "groups": 120,
+        "bytes": 2629152
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 166124212
+    },
+    {
+      "kind": "cut-end",
+      "cut": 121,
+      "ms": 412.7000000178814,
+      "output": {
+        "triangles": 27432,
+        "vertices": 82296,
+        "groups": 121,
+        "bytes": 2633472
+      },
+      "heap": 186878784
+    },
+    {
+      "kind": "cut-start",
+      "cut": 122,
+      "input": {
+        "triangles": 27432,
+        "vertices": 82296,
+        "groups": 121,
+        "bytes": 2633472
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 186969028
+    },
+    {
+      "kind": "cut-end",
+      "cut": 122,
+      "ms": 369.09999999403954,
+      "output": {
+        "triangles": 27484,
+        "vertices": 82452,
+        "groups": 122,
+        "bytes": 2638464
+      },
+      "heap": 196589720
+    },
+    {
+      "kind": "cut-start",
+      "cut": 123,
+      "input": {
+        "triangles": 27484,
+        "vertices": 82452,
+        "groups": 122,
+        "bytes": 2638464
+      },
+      "cutter": {
+        "triangles": 52,
+        "vertices": 156,
+        "groups": 2,
+        "bytes": 5304
+      },
+      "heap": 196686036
+    },
+    {
+      "kind": "cut-end",
+      "cut": 123,
+      "ms": 481.7000000178814,
+      "output": {
+        "triangles": 27734,
+        "vertices": 83202,
+        "groups": 123,
+        "bytes": 2662464
+      },
+      "heap": 209140220
+    },
+    {
+      "kind": "cut-start",
+      "cut": 124,
+      "input": {
+        "triangles": 27734,
+        "vertices": 83202,
+        "groups": 123,
+        "bytes": 2662464
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 209229812
+    },
+    {
+      "kind": "cut-end",
+      "cut": 124,
+      "ms": 405.40000000596046,
+      "output": {
+        "triangles": 27775,
+        "vertices": 83325,
+        "groups": 124,
+        "bytes": 2666400
+      },
+      "heap": 179174328
+    },
+    {
+      "kind": "cut-start",
+      "cut": 125,
+      "input": {
+        "triangles": 27775,
+        "vertices": 83325,
+        "groups": 124,
+        "bytes": 2666400
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 179263924
+    },
+    {
+      "kind": "cut-end",
+      "cut": 125,
+      "ms": 347.59999999403954,
+      "output": {
+        "triangles": 27840,
+        "vertices": 83520,
+        "groups": 125,
+        "bytes": 2672640
+      },
+      "heap": 203621968
+    },
+    {
+      "kind": "cut-start",
+      "cut": 126,
+      "input": {
+        "triangles": 27840,
+        "vertices": 83520,
+        "groups": 125,
+        "bytes": 2672640
+      },
+      "cutter": {
+        "triangles": 44,
+        "vertices": 132,
+        "groups": 2,
+        "bytes": 4488
+      },
+      "heap": 203718064
+    },
+    {
+      "kind": "cut-end",
+      "cut": 126,
+      "ms": 1176.199999988079,
+      "output": {
+        "triangles": 29624,
+        "vertices": 88872,
+        "groups": 126,
+        "bytes": 2843904
+      },
+      "heap": 202137976
+    },
+    {
+      "kind": "cut-start",
+      "cut": 127,
+      "input": {
+        "triangles": 29624,
+        "vertices": 88872,
+        "groups": 126,
+        "bytes": 2843904
+      },
+      "cutter": {
+        "triangles": 36,
+        "vertices": 108,
+        "groups": 2,
+        "bytes": 3672
+      },
+      "heap": 202231600
+    },
+    {
+      "kind": "cut-end",
+      "cut": 127,
+      "ms": 448.2999999821186,
+      "output": {
+        "triangles": 29147,
+        "vertices": 87441,
+        "groups": 127,
+        "bytes": 2798112
+      },
+      "heap": 232884284
+    },
+    {
+      "kind": "cut-start",
+      "cut": 128,
+      "input": {
+        "triangles": 29147,
+        "vertices": 87441,
+        "groups": 127,
+        "bytes": 2798112
+      },
+      "cutter": {
+        "triangles": 12,
+        "vertices": 36,
+        "groups": 2,
+        "bytes": 1224
+      },
+      "heap": 232973876
+    },
+    {
+      "kind": "cut-end",
+      "cut": 128,
+      "ms": 356.7000000178814,
+      "output": {
+        "triangles": 29166,
+        "vertices": 87498,
+        "groups": 128,
+        "bytes": 2799936
+      },
+      "heap": 245826580
+    },
+    {
+      "kind": "complete",
+      "ms": 62059.20000001788
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "kind": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    }
+  ],
+  "classificationNote": "Initial baseline UI reported completion, but cut 29 failed and was skipped. Classified from the preserved error event."
+}

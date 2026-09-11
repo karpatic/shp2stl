@@ -35,3 +35,8 @@ yarn-error.log*
 *.7z
 *.tar
 *.tar.gz
+
+# Local investigation cache and generated runs (selected evidence is committed)
+diagnostics/.cache/
+diagnostics/results/
+/.tmp/
