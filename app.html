@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js GeoJSON Render with Leaflet</title>
+    <title>SHP2STL · Map builder</title>
+    <meta name="description" content="Build a printable map from polygon boundaries. Set dimensions, add holes and labels, and export STL or aligned 3MF parts in your browser.">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
@@ -15,163 +16,7 @@
     <!-- TopoJSON-Server -->
     <script src="https://cdn.jsdelivr.net/npm/topojson-server@3"></script>
 
-    <link rel="stylesheet" href="./test.css">
-
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-
-        /* Make the split-view reliably full height */
-        html, body { height: 100%; }
-        .container { height: 100%; min-height: 100vh; }
-        #map, #threejs { height: 100%; }
-        #threejs canvas { display: block; width: 100% !important; height: 100% !important; }
-
-        #config-panel {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 1200;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 12px 12px;
-            width: 320px;
-            max-width: calc(100% - 40px);
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-        }
-        #config-panel .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        #config-panel h3 {
-            margin: 0;
-            font-size: 14px;
-            font-weight: 700;
-        }
-        #toggle-config {
-            padding: 6px 8px;
-            background: rgba(0,0,0,0.06);
-            border: 1px solid rgba(0,0,0,0.12);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            color: #222;
-        }
-        #config-panel .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        #config-panel label {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            font-size: 12px;
-            color: #222;
-            min-width: 0;
-        }
-        #config-panel input, #config-panel select {
-            padding: 6px 8px;
-            border: 1px solid rgba(0,0,0,0.2);
-            border-radius: 6px;
-            font-size: 12px;
-            width: 100%;
-            min-width: 0;
-        }
-        #config-panel .row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        #create-btn {
-            padding: 10px 12px;
-            background-color: #1f6feb;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        #create-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        #status {
-            font-size: 12px;
-            color: #333;
-        }
-        #config-panel.collapsed {
-            padding-bottom: 10px;
-        }
-        #config-panel.collapsed .config-body {
-            display: none;
-        }
-
-        #about-details {
-            margin-top: 10px;
-            border-top: 1px solid rgba(0,0,0,0.08);
-            padding-top: 8px;
-        }
-        #about-details summary {
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            color: #222;
-            list-style: none;
-        }
-        #about-details summary::-webkit-details-marker { display: none; }
-        #about-details summary::before {
-            content: '▸';
-            display: inline-block;
-            width: 16px;
-            color: rgba(0,0,0,0.55);
-        }
-        #about-details[open] summary::before { content: '▾'; }
-        #about-details .content {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #222;
-            line-height: 1.35;
-        }
-        #about-details .content p { margin: 0 0 8px 0; }
-        #about-details .content ul { margin: 0; padding-left: 18px; }
-        #about-details .content li { margin: 4px 0; }
-
-        /* Small screens: stack map above 3D view */
-        @media (max-width: 900px) {
-            .container { flex-direction: column; }
-            #map, #threejs {
-                flex: none;
-                width: 100%;
-            }
-            #map { height: 45vh; min-height: 280px; }
-            #threejs { height: 55vh; min-height: 320px; }
-        }
-        @media (max-width: 600px) {
-            #config-panel { top: 10px; left: 10px; width: calc(100% - 20px); }
-            #download-btn { bottom: 12px; right: 12px; }
-        }
-        #map.local-drawing .leaflet-pane, #map.local-drawing .leaflet-control-container {visibility:hidden}
-        #local-note {position:absolute;left:15px;bottom:20px;z-index:1100;background:white;padding:15px;max-width:35%;font:14px system-ui}
-        #config-panel .config-body { max-height: calc(100vh - 170px); overflow-y: auto; }
-        #download-3mf-btn { position:absolute; bottom:70px; right:20px; z-index:1000; padding:10px 20px; border:0; border-radius:5px; background:#237d80; color:white; cursor:pointer; }
-        #download-3mf-btn:disabled { opacity:.5; cursor:default; }
-        .container.drawing-source #map { display:none; }
-        .container.drawing-source #threejs { width:100%; height:100vh; flex:1; }
-        @media(max-width:900px){
-            #config-panel { position:fixed; top:10px; left:10px; width:calc(100% - 20px); max-width:none; }
-            #config-panel .config-body { max-height:calc(100dvh - 200px); }
-            #local-note { max-width:calc(100% - 150px); left:10px; bottom:10px; padding:8px; font-size:11px; }
-        }
-        /* keep the existing download button styling from test.css */
-    </style>
+    <link rel="stylesheet" href="./builder.css">
 </head>
 <script type="importmap">
     {
@@ -185,127 +30,63 @@
     }
 </script>
 <body>
-    <div class="container">
-        <div id="map"></div><p id="local-note" hidden>Local Cartesian drawing. No geographic location or source ownership is inferred. The 3D model has a base and inward perimeter walls; source holes remain open.</p>
-        <div id="threejs">
-            <div id="config-panel">
-                <div class="header">
-                    <h3>Parameters</h3>
-                    <button id="toggle-config" type="button" aria-expanded="true">Hide</button>
-                </div>
-
-                <div class="config-body">
+    <header class="app-header"><a class="brand" href="./index.html">SHP2STL<span>Map builder</span></a><nav aria-label="Main"><a href="./converter.html">SVG converter</a><a href="https://github.com/karpatic/shp2stl">GitHub ↗</a></nav></header>
+    <main class="container">
+        <aside id="config-panel" aria-label="Model settings">
+            <div class="panel-header"><h1>Model settings</h1><button id="toggle-config" type="button" aria-expanded="true" aria-controls="config-body">Hide settings</button></div>
+            <div class="config-body" id="config-body" tabindex="0" aria-label="Scrollable settings">
+                <section class="settings-section" aria-labelledby="source-heading">
+                    <h2 id="source-heading"><span>01</span> Source</h2>
+                    <label for="cfg-geoJsonUrl">Polygon GeoJSON URL</label>
+                    <input id="cfg-geoJsonUrl" type="text" inputmode="url" spellcheck="false" value="https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson" aria-describedby="source-help">
+                    <div class="row presets" role="group" aria-label="Load a source preset"><button id="preset-dc" type="button">DC</button><button id="preset-baltimore" type="button">Baltimore</button><button id="refresh-source" type="button" title="Check the URL for updated content; unchanged source geometry is reused.">Refresh source</button></div>
+                    <p class="hint" id="source-help">Presets load immediately. URL edits apply with Update model. Sources are cached for this session.</p>
+                    <label for="import-file">Or import a local file</label><input id="import-file" type="file" accept=".geojson,.json,.zip,.svg" aria-describedby="import-status">
+                    <p id="import-status" class="hint" role="status">GeoJSON / JSON or polygon shapefile ZIP · up to 10 MB. Files stay in this browser.</p>
+                    <details><summary>File formats & SVG conversion</summary><p>Geographic polygons use WGS84 coordinates. Shapefile ZIPs need 2D polygons and a WGS84 .prj; DBF attributes are not imported. Converter local-mm ZIPs are also supported. Reimport local files after reloading.</p><a href="./converter.html" target="_blank" rel="noopener">Convert an SVG to polygons ↗</a></details>
+                </section>
+                <section class="settings-section" aria-labelledby="dimensions-heading">
+                    <h2 id="dimensions-heading"><span>02</span> Dimensions <small>millimeters</small></h2>
                     <div class="grid">
-                        <label>
-                            innerHeight
-                            <input id="cfg-innerHeight" type="number" min="1" step="1" value="600" />
-                        </label>
-                        <label>
-                            innerWidth
-                            <input id="cfg-innerWidth" type="number" min="1" step="1" value="800" />
-                        </label>
-                        <label>
-                            precision
-                            <input id="cfg-precision" type="number" min="1" step="1" value="100" />
-                        </label>
-                        <label>
-                            Map size (mm) · max XY extent
-                            <input id="cfg-mapSize" type="number" min="10" max="500" step="1" value="200" />
-                        </label>
-
-                        <label>
-                            Base height (mm)
-                            <input id="cfg-baseHeight" type="number" min="0.01" max="200" step="0.01" value="6" />
-                        </label>
-                        <label>
-                            Wall height above base (mm)
-                            <input id="cfg-wallHeight" type="number" min="0.01" max="200" step="0.01" value="6" />
-                        </label>
-                        <label>
-                            Minimum connector width (mm)
-                            <input id="cfg-minConnectorWidth" type="number" min="0.01" max="200" step="0.01" value="1.2" />
-                        </label>
-                        <label>
-                            Wall width (mm)
-                            <input id="cfg-width" type="number" min="0.01" step="0.01" value="0.5" />
-                        </label>
-                        <label>
-                            simplifyBy
-                            <input id="cfg-simplifyBy" type="number" min="0" step="0.001" value="0.01" />
-                        </label>
-                        <label>
-                            simplifyHullBy
-                            <input id="cfg-simplifyHullBy" type="number" min="0" step="0.001" value="0.01" />
-                        </label>
+                        <label>Map size <span class="field-hint">Longest XY extent</span><input id="cfg-mapSize" type="number" min="10" max="500" step="1" value="200"></label>
+                        <label>Wall width <span class="field-hint">Fixed physical width</span><input id="cfg-width" type="number" min="0.01" step="0.01" value="0.5"></label>
+                        <label>Base height <input id="cfg-baseHeight" type="number" min="0.01" max="200" step="0.01" value="6"></label>
+                        <label>Wall height <input id="cfg-wallHeight" type="number" min="0.01" max="200" step="0.01" value="6" aria-describedby="height-help"></label>
                     </div>
-
-                    <label style="margin-top: 10px;">
-                        geoJsonUrl
-                        <input id="cfg-geoJsonUrl" type="url" value="https://raw.githubusercontent.com/benbalter/dc-maps/master/maps/ward-2012.geojson" />
-                    </label>
-
-                    <div class="row" style="margin-top:6px">
-                        <button id="preset-dc" type="button">DC</button>
-                        <button id="preset-baltimore" type="button">Baltimore</button>
-                        <button id="refresh-source" type="button" title="Fetch the current URL again, bypassing the browser response cache. Reuse geometry only if the source content is identical.">Refresh source</button>
-                    </div>
-                    <label style="margin-top:10px">Import local file<input id="import-file" type="file" accept=".geojson,.json,.zip,.svg"></label>
-                    <p id="import-status" style="font-size:11px">GeoJSON/JSON polygons; zipped 2D polygon shapefile with WGS84 .prj, or converter local-mm ZIP. 10 MB maximum. Files stay in this browser. DBF attributes are not imported.</p>
-                    <a href="converter.html" target="_blank" rel="noopener" style="font-size:12px">SVG → polygon converter</a>
-                    <p style="font-size:11px;margin:6px 0">Sources are reused for this session. Refresh source checks for updated URL content.</p>
-                    <label style="margin-top: 10px;" for="cfg-islandConnections">
-                        Island connections
-                        <select id="cfg-islandConnections" aria-describedby="island-help" disabled>
-                            <option value="connections" selected>Connections</option>
-                            <option value="disconnected">Disconnected</option>
-                            <option value="hull">Hull base</option>
-                        </select>
-                    </label>
-                    <p id="island-help" style="font-size:12px;line-height:1.35;margin:6px 0;">
-                        All islands have filled bases. Connections add broad shoreline pads at base height,
-                        with compact local joins where needed. Connections enforce the minimum at each continuous attachment and the narrowest neck;
-                        features too small for that contact need another mode.
-                        Disconnected keeps islands separate; Hull base fills their convex hull.
-                    </p>
-                    <p id="dimension-readback" style="font-size:12px;line-height:1.4">Base height applies to all faces, pads and hull backing. Grooves scale with the base. Import STL in mm. Map size changes the geography; wall, hole and text widths stay physical millimeters.</p>
-                    <div class="row">
-                        <button id="create-btn" type="button">Create</button>
-                        <div id="status" role="status" aria-live="polite">Not created yet</div>
-                    </div>
-
-                    <fieldset style="margin:12px 0;border:1px solid #b9caca;border-radius:6px">
-                        <legend>Place on the 3D map</legend>
-                        <div class="grid"><label>Hole diameter (mm)<input id="hole-diameter" type="number" min="1" max="30" step=".5" value="3"></label><button id="hole-tool" type="button" aria-pressed="false">Hole</button>
-                        <label>Label text<input id="label-text" maxlength="24" value="DC"></label><label>Text size (mm)<input id="label-size" type="number" min="1" max="30" step=".5" value="3"></label></div>
-                        <div class="row"><button id="label-tool" type="button" aria-pressed="false">Label</button><button id="cancel-placement" type="button">Cancel</button><button id="undo-placement" type="button">Undo</button></div>
-                        <p id="placement-status" role="status" style="font-size:12px">Set dimensions first, then click an open face. Labels rise 0.8 mm above the base.</p>
-                        <select id="placement-list" aria-label="Placed holes and labels"></select>
-                        <div class="row"><button id="remove-placement" type="button" disabled>Remove selected</button><button id="edit-label" type="button" disabled>Apply text/size to selected</button></div>
-                    </fieldset>
-                    <p style="font-size:12px">Small maps can have tight features. Choose widths for your printer; placement checks do not establish physical strength. Text uses bundled Helvetiker outlines; size is the font em size.</p>
-                    <details id="about-details">
-                        <summary>About / How to use</summary>
-                        <div class="content">
-                            <p>
-                                This page turns a GeoJSON boundary into a <strong>3D-printable</strong> model and lets you download STL or 3MF.
-                                It fills every island base, preserves community walls, and adds your selected print supports at base height.
-                            </p>
-                            <ul>
-                                <li>Edit parameters (URL, simplification, heights and widths).</li>
-                                <li>Click <strong>Create</strong> to apply parameter edits. Island connections rebuild immediately; pending parameter edits apply together with the switch.</li>
-                                <li>Use mouse/touch in the 3D view: drag to orbit, scroll/pinch to zoom.</li>
-                                <li>Download STL as one unified solid, or 3MF with named Base, Walls and optional Labels parts aligned in one assembly for slicer assignments. No colors or materials are assigned by the file.</li>
-                            </ul>
-                        </div>
-                    </details>
-                </div>
+                    <p class="hint" id="height-help">Wall height is measured above the base. Base + wall height = wall top. Map size scales the geography; wall, hole and label widths stay in mm.</p>
+                    <details><summary>Applied model dimensions</summary><p id="dimension-readback">Create a model to see its applied dimensions.</p></details>
+                </section>
+                <section class="settings-section" aria-labelledby="islands-heading">
+                    <h2 id="islands-heading"><span>03</span> Island connections</h2>
+                    <label for="cfg-islandConnections">Base treatment</label>
+                    <select id="cfg-islandConnections" aria-describedby="island-help" disabled><option value="connections" selected>Connections</option><option value="disconnected">Disconnected</option><option value="hull">Hull base</option></select>
+                    <p id="island-help" class="hint">Broad shoreline pads join islands at base height.</p>
+                    <label for="cfg-minConnectorWidth">Minimum connector width <span class="field-hint">mm · Connections mode only</span></label>
+                    <input id="cfg-minConnectorWidth" type="number" min="0.01" max="200" step="0.01" value="1.2">
+                    <p class="hint">Changing mode applies all pending settings immediately.</p>
+                    <details><summary>Compare modes & limits</summary><p><strong>Connections</strong> adds broad shoreline pads and compact local joins. The minimum applies at continuous attachments and narrow necks; tiny features may need another mode.</p><p><strong>Disconnected</strong> keeps filled island bases separate. <strong>Hull base</strong> fills their convex hull. All modes preserve community walls. Local Cartesian drawings use perimeter walls without island connectors.</p></details>
+                </section>
+                <section class="settings-section" aria-labelledby="customize-heading">
+                    <h2 id="customize-heading"><span>04</span> Customize</h2>
+                    <p class="hint">Apply dimensions first. Arm a tool, preview over an open 3D face, then click or tap to place. Escape cancels.</p>
+                    <div class="grid tool-row"><label>Hole diameter <span class="field-hint">mm · through the base</span><input id="hole-diameter" type="number" min="1" max="30" step=".5" value="3"></label><button id="hole-tool" type="button" aria-pressed="false">Place hole</button></div>
+                    <div class="grid"><label>Label text<input id="label-text" maxlength="24" value="DC"></label><label>Text size <span class="field-hint">mm</span><input id="label-size" type="number" min="1" max="30" step=".5" value="3"></label></div>
+                    <div class="row"><button id="label-tool" type="button" aria-pressed="false">Place label</button><button id="undo-placement" type="button">Undo placement</button></div>
+                    <p class="hint">Labels rise 0.8 mm above the base. Text size is the font em size.</p>
+                    <label for="placement-list">Placed holes & labels</label><select id="placement-list" aria-label="Placed holes and labels" disabled></select>
+                    <div class="row"><button id="remove-placement" type="button" disabled>Remove selected</button><button id="edit-label" type="button" disabled>Update selected label</button></div>
+                </section>
+                <details class="settings-section" id="advanced-details"><summary>Advanced simplification</summary><p>Quantiles for simplifying boundaries and the hull. Higher values remove more detail; wall width bounds simplification.</p><div class="grid"><label>Boundaries<input id="cfg-simplifyBy" type="number" min="0" step="0.001" value="0.01"></label><label>Hull<input id="cfg-simplifyHullBy" type="number" min="0" step="0.001" value="0.01"></label></div>
+                    <!-- Retained compatibility values; these do not affect standard-model geometry. -->
+                    <input id="cfg-innerHeight" type="hidden" value="600"><input id="cfg-innerWidth" type="hidden" value="800"><input id="cfg-precision" type="hidden" value="100">
+                </details>
+                <details class="settings-section" id="about-details"><summary>Using & exporting your model</summary><p>Drag to orbit; scroll or pinch to zoom. Enabled downloads contain the applied model. Editing dimensions or the source pauses downloads until you update.</p><p><strong>STL:</strong> one unified solid; import in millimeters. <strong>3MF:</strong> named Base, Walls and optional Labels parts aligned in one assembly. Assign colors or materials in your slicer.</p><p>Choose widths for your printer and inspect small features before printing. Placement checks do not establish physical strength. Geographic underside grooves use 30% of the base height. Source data and supported SVG subsets can limit the result.</p><a href="https://github.com/karpatic/shp2stl#readme">Documentation & source ↗</a></details>
             </div>
-
-            <button id="download-3mf-btn" disabled>Download 3MF</button>
-            <button id="download-btn" disabled>Download STL</button>
-        </div>
-    </div>
-
+            <div class="panel-actions"><button id="create-btn" type="button" class="primary">Create model</button><p id="status" role="status" aria-live="polite">Preparing model…</p><div class="downloads" role="group" aria-label="Download applied model"><button id="download-btn" disabled>Download STL</button><button id="download-3mf-btn" disabled>Download 3MF</button></div></div>
+        </aside>
+        <section class="map-workspace" aria-label="Geographic source map"><div class="view-title">Source map</div><div id="map"></div></section>
+        <section class="model-workspace" aria-label="3D model preview"><div class="view-title">3D model <span>Drag to orbit · scroll / pinch to zoom</span></div><div id="threejs"></div><div class="placement-feedback"><p id="placement-status" role="status">Choose Place hole or Place label to customize the model.</p><button id="cancel-placement" type="button" disabled>Cancel</button></div><p id="local-note" hidden>Local drawing · Cartesian millimeters. Source holes remain open; no geographic location is inferred.</p></section>
+    </main>
 
     <script type="module">
         import * as THREE from 'three';
@@ -396,7 +177,6 @@
                 setNumber('cfg-innerHeight', props.innerHeight);
                 setNumber('cfg-innerWidth', props.innerWidth);
                 setNumber('cfg-precision', props.precision);
-                setNumber('cfg-scaleToThisSize', props.scaleToThisSize);
             }
             if (shpstl) {
                 setString('cfg-islandConnections', ['connections','disconnected','hull'].includes(shpstl.islandConnections) ? shpstl.islandConnections : 'connections');
@@ -416,14 +196,24 @@
         const downloadButtons = [document.getElementById('download-btn'), document.getElementById('download-3mf-btn')];
         const useCSG = new URLSearchParams(location.search).get('geometry') === 'csg';
         let request = 0;
+        function updateSourceUI() {
+            const url = document.getElementById('cfg-geoJsonUrl').value;
+            for (const city of ['dc','baltimore']) document.getElementById('preset-'+city).setAttribute('aria-pressed', String(url === SOURCE_PRESETS[city]));
+            document.getElementById('refresh-source').disabled = url.startsWith('local:');
+            const local = url.startsWith('local:') && document.querySelector('.container').classList.contains('drawing-source');
+            document.getElementById('cfg-minConnectorWidth').disabled = useCSG || local || connectionsSelect.value !== 'connections';
+            if (!useCSG) document.getElementById('island-help').textContent = local ? 'Local drawings use a base and perimeter walls; island modes do not change them.' : ({connections:'Broad shoreline pads join islands at base height.', disconnected:'Each island keeps its own filled base, with no joins.', hull:'One filled convex hull supports all islands.'})[connectionsSelect.value];
+        }
         // Edits cancel publication by pending requests, even before Create.
         document.querySelectorAll('#config-panel input[id^=cfg-]').forEach(input => input.addEventListener('input', () => {
             request++; invalidate();
-            setStatus('Parameters changed. Click Create to apply.');
+            setStatus('Pending changes — update to apply. Downloads paused.');
+            updateSourceUI();
         }));
         async function applyInputs({refresh=false} = {}) {
             const id = ++request, config = readConfigFromInputs();
             invalidate();
+            updateSourceUI();
             try {
                 dimensions(config.shpstl);
                 saveConfig(config);
@@ -437,13 +227,13 @@
                     const applied = await build(config.shpstl, {refresh});
                     if (!applied || id !== request) return;
                 }
-                if (id === request) setStatus('Created — ' + connectionsSelect.selectedOptions[0].textContent);
+                if (id === request) { createBtn.textContent = 'Update model'; setStatus('Ready to download · settings applied'); updateSourceUI(); }
                 return id === request;
             } catch (err) {
                 if (id !== request) return;
                 console.error(err);
                 downloadButtons.forEach(button => button.disabled = true);
-                setStatus(err.message + '. Choose a mode to retry or click Create.');
+                setStatus(err.message + '. Choose a mode to retry or update the model.');
             }
         }
         createBtn.addEventListener('click', () => applyInputs());
@@ -455,11 +245,11 @@
         });
 
         document.getElementById('import-file').addEventListener('change',async event=>{
-            const file=event.target.files[0];if(!file)return;const importRequest=++request;invalidate();
+            const file=event.target.files[0];if(!file)return;const importRequest=++request;invalidate();setStatus('Reading local file…');
             const status=document.getElementById('import-status');
-            if(/\.svg$/i.test(file.name)){status.textContent='Open the SVG converter link above and choose this SVG there. The converter previews its supported polygon subset before export.';event.target.value='';return;}
+            if(/\.svg$/i.test(file.name)){status.textContent='Use File formats & SVG conversion above to open the converter, then choose this SVG there.';setStatus('SVG needs conversion first. Update to restore the current model.');event.target.value='';return;}
             try{const {readLocalFile}=await import('./new/file-formats.js');const json=await readLocalFile(file);if(importRequest!==request)return;const url=await registerSource(json);if(importRequest!==request)return;setString('cfg-geoJsonUrl',url);status.textContent=`Loaded ${file.name} locally. ${json.shp2stl?'Cartesian millimeters; no geographic projection.':'WGS84 polygon coordinates.'} Reimport after reloading this page.`;await applyInputs();}
-            catch(e){if(importRequest===request)status.textContent='Import failed: '+e.message+'. Click Create to restore the current source.';}event.target.value='';
+            catch(e){if(importRequest===request){status.textContent='Import failed: '+e.message;setStatus('Import failed. Update to restore the current source.');}}event.target.value='';
         });
         // Collapsible config panel (persisted).
         const configPanel = document.getElementById('config-panel');
@@ -467,7 +257,8 @@
 
         function setCollapsed(collapsed) {
             configPanel.classList.toggle('collapsed', !!collapsed);
-            toggleBtn.textContent = collapsed ? 'Show' : 'Hide';
+            toggleBtn.textContent = collapsed ? 'Show settings' : 'Hide settings';
+            window.dispatchEvent(new Event('resize'));
             toggleBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
             try {
                 localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ collapsed: !!collapsed }));

@@ -12,7 +12,9 @@ Serve this directory over HTTP and open `app.html`:
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Open <http://127.0.0.1:8765/app.html>. Edit the URL, base height, wall height above the base, minimum connector width, wall width or simplification settings, then click **Create**. Dimensions are in millimeters; defaults remain a 6 mm base plus 6 mm walls. Settings persist in local storage. All standard-model edits rebuild in place and preserve the camera. Height edits reuse validated mesh structure; unchanged Create reuses the ready output. DC and Baltimore buttons beside the URL load the established sources immediately. A fresh start uses DC; saved/custom URLs and an explicit `?geoJsonUrl=...` (or `?url=...`) selection are preserved. Both downloads become available only after the complete solid and all named parts pass validation. Drag or scroll in the 3D view to inspect the model.
+Open <http://127.0.0.1:8765/app.html>. Edit the URL, base height, wall height above the base, minimum connector width, wall width or simplification settings, then click **Update model**. Dimensions are in millimeters; defaults remain a 6 mm base plus 6 mm walls. Settings persist in local storage. All standard-model edits rebuild in place and preserve the camera. Height edits reuse validated mesh structure; unchanged Update reuses the ready output. DC and Baltimore buttons beside the URL load the established sources immediately. A fresh start uses DC; saved/custom URLs and an explicit `?geoJsonUrl=...` (or `?url=...`) selection are preserved. Both downloads become available only after the complete solid and all named parts pass validation. Drag or scroll in the 3D view to inspect the model.
+
+The [homepage](https://karpatic.github.io/shp2stl/) links to the [builder](https://karpatic.github.io/shp2stl/app.html) and [SVG converter](https://karpatic.github.io/shp2stl/converter.html). Settings scroll independently from the persistent update/status/download controls. Narrow desktops show the map and model vertically beside settings; phones stack the settings and workspaces. [UI polish validation](diagnostics/UI_POLISH.md).
 
 The application is static; npm is only needed for the optional diagnostic tools. `index.html` is the landing page, `app.html` the configurable app, and `new.html` the older entry point. `demo.html` demonstrates CSG independently.
 
@@ -42,7 +44,7 @@ Map size sets the maximum XY geography extent in millimeters (default 200, range
 
 ## 3MF and dimensions local review
 
-[Downloaded-part viewer](diagnostics/3mf-review.html) · [Dimensions, package validation, actual times and limitations](diagnostics/3MF_DIMENSIONS.md). No public deployment or push. 3MF uses millimeters; import unitless STL as mm. No material/color assignment or mechanical strength guarantee is encoded. Slicer import has not been tested locally.
+[Downloaded-part viewer](diagnostics/3mf-review.html) · [Dimensions, package validation, actual times and limitations](diagnostics/3MF_DIMENSIONS.md). 3MF uses millimeters; import unitless STL as mm. No material/color assignment or mechanical strength guarantee is encoded. Slicer import has not been tested locally.
 
 ## Measured local investigation
 

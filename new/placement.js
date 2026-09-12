@@ -8,11 +8,11 @@ export function setupPlacement(rebuild) {
  let mode=null,preview=null,down=null,serial=0,last=null,canvas;
  const fields=kind=>kind==='hole'?{kind,diameter:Number($('hole-diameter').value)}:{kind,text:$('label-text').value,size:Number($('label-size').value)};
  function clear(){serial++;if(preview){const v=modelState()?.view;v?.scene.remove(preview);preview.geometry.dispose();preview.material.dispose();preview=null;v?.requestRender();}}
- function cancel(){mode=null;last=null;clear();$('hole-tool').ariaPressed='false';$('label-tool').ariaPressed='false';message('Placement canceled. Drag to orbit.');}
- function list(){const s=modelState();if(!s)return;const select=$('placement-list');select.replaceChildren();s.edits.forEach((e,i)=>{const o=document.createElement('option');o.value=i;o.textContent=e.kind==='hole'?`Hole ${i+1} · Ø ${e.diameter} mm`:`Label ${i+1} · ${e.text} · ${e.size} mm`;select.append(o);});$('remove-placement').disabled=!s.edits.length;$('edit-label').disabled=!s.edits.some(e=>e.kind==='label');}
+ function cancel(){mode=null;last=null;clear();$('hole-tool').ariaPressed='false';$('label-tool').ariaPressed='false';$('cancel-placement').disabled=true;message('Choose Place hole or Place label, or drag to orbit.');}
+ function list(){const s=modelState();if(!s)return;const select=$('placement-list');select.replaceChildren();s.edits.forEach((e,i)=>{const o=document.createElement('option');o.value=i;o.textContent=e.kind==='hole'?`Hole ${i+1} · Ø ${e.diameter} mm`:`Label ${i+1} · ${e.text} · ${e.size} mm`;select.append(o);});select.disabled=!s.edits.length;$('remove-placement').disabled=!s.edits.length;$('edit-label').disabled=s.edits[Number(select.value)]?.kind!=='label';}
  async function start(kind){
   if($('download-btn').disabled){message('Create the current parameters before placing.');return;}
-  try{await editShape({...fields(kind),x:0,y:0},modelState().dims.mapSize);cancel();mode=kind;$('hole-tool').ariaPressed=String(kind==='hole');$('label-tool').ariaPressed=String(kind==='label');message(`Move over an open face, then click to place ${kind}. Escape cancels; dragging orbits.`);}catch(e){message(e.message);}
+  try{await editShape({...fields(kind),x:0,y:0},modelState().dims.mapSize);cancel();mode=kind;$('cancel-placement').disabled=false;if(matchMedia('(max-width:760px)').matches)document.querySelector('.model-workspace').scrollIntoView({block:'start'});$('hole-tool').ariaPressed=String(kind==='hole');$('label-tool').ariaPressed=String(kind==='label');message(`Move over an open face, then click to place ${kind}. Escape cancels; dragging orbits.`);}catch(e){message(e.message);}
  }
  async function candidate(event,paint=true){
   const s=modelState();if(!mode||!s||$('download-btn').disabled)return null;
@@ -38,6 +38,6 @@ export function setupPlacement(rebuild) {
  document.addEventListener('keydown',e=>{if(e.key==='Escape')cancel();});
  $('undo-placement').onclick=async()=>{const s=modelState();if(s&&undoEdits(s.identity)){invalidate();cancel();await rebuild();list();}};
  $('remove-placement').onclick=()=>{const s=modelState(),edits=editsFor(s.identity);edits.splice(Number($('placement-list').value),1);commit(edits);};
- $('placement-list').onchange=()=>{const e=modelState().edits[Number($('placement-list').value)];if(e?.kind==='label'){$('label-text').value=e.text;$('label-size').value=e.size;}};
+ $('placement-list').onchange=()=>{const e=modelState().edits[Number($('placement-list').value)];$('edit-label').disabled=e?.kind!=='label';if(e?.kind==='label'){$('label-text').value=e.text;$('label-size').value=e.size;}};
  $('edit-label').onclick=async()=>{const s=modelState(),edits=editsFor(s.identity),i=Number($('placement-list').value);if(edits[i]?.kind!=='label'){message('Select a label first.');return;}const edit={...edits[i],...fields('label')};try{const others=edits.filter((_,j)=>j!==i);const {customize}=await import('./customize.js');await customize(s.originalRegions,[...others,edit],s.options);edits[i]=edit;await commit(edits);}catch(e){message(e.message);}};
 }

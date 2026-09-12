@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import { resolve, extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { checkPolishUI } from './polish-ui.mjs';
 import { checkDimensionsUI } from './dimensions-ui.mjs';
 import { checkImportUI } from './import-ui.mjs';
 import { checkCustomUI } from './custom-ui.mjs';
@@ -259,11 +260,13 @@ try {
     await page.locator('#download-btn').click();
     const download=await downloadPromise;
     await download.saveAs(out+'/scene.stl');
+    if(process.env.EXPORT_3MF) { const pending=page.waitForEvent('download'); await page.locator('#download-3mf-btn').click(); await(await pending).saveAs(out+'/scene.3mf'); }
     const geometry=await page.evaluate(()=>{
       const g=window.diagResult.geometry;
       return {position:Array.from(g.attributes.position.array),normal:Array.from(g.attributes.normal.array),uv:Array.from(g.attributes.uv.array),index:g.index?Array.from(g.index.array):null,groups:g.groups,drawRange:g.drawRange};
     });
     writeFileSync(out+'/result-geometry.json',JSON.stringify(geometry));
+    if(process.env.POLISH_CHECK) await checkPolishUI(page,out,log);
     if(process.env.IMPORT_CHECK) await checkImportUI(page,out,log);
     if(process.env.CUSTOM_CHECK) await checkCustomUI(page,out,log,dataset);
     if(process.env.CACHE_CHECK) await checkCacheUI(page,out,log,dataset,!!process.env.SOURCE_ROOT);

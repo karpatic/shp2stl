@@ -1,0 +1,21 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-11",
+  "baseline": "1188b03a2f1dea4eed10a449d820be419a151883",
+  "datasets": {
+    "dc": {
+      "stlSHA256": "ad7c1f532c2f715a1a293675fd68007c718c89114747c7a61d9aa65234906e76",
+      "exactSTL": true,
+      "exactPreview": true,
+      "exact3MFMembers": true,
+      "3mfModelSHA256": "edabbbbabfe7b86e6b7f0288b3217f4d55484cd2854e9ba9cc603efa50ba19d7"
+    },
+    "baltimore": {
+      "stlSHA256": "ff029e63f560f627f50b0386f157eb32f2ef87e27cf725d0e211ea7c38798a35",
+      "exactSTL": true,
+      "exactPreview": true,
+      "exact3MFMembers": true,
+      "3mfModelSHA256": "823e8db62285e3e763d6fda298dfda908d36791fe91c457a7469cc4390cc2717"
+    }
+  }
+}
