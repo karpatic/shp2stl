@@ -5,6 +5,17 @@ function createLeafletMap() {
     maxZoom: 19,
     attribution: "© OpenStreetMap",
   }).addTo(map);
+  // Pane resizing preserves the geographic center/zoom; no fit or source work.
+  let resizeFrame = 0;
+  const observer = new ResizeObserver(() => {
+    if (!resizeFrame) resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = 0;
+      const container = map.getContainer();
+      if (container.clientWidth && container.clientHeight) map.invalidateSize({animate:false, debounceMoveend:true});
+    });
+  });
+  observer.observe(map.getContainer());
+  map.on('unload', () => { observer.disconnect(); cancelAnimationFrame(resizeFrame); });
   return { map };
 }
 

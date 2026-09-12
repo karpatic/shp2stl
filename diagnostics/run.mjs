@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import { resolve, extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { checkLayoutUI } from './layout-ui.mjs';
 import { checkPolishUI } from './polish-ui.mjs';
 import { checkDimensionsUI } from './dimensions-ui.mjs';
 import { checkImportUI } from './import-ui.mjs';
@@ -266,6 +267,7 @@ try {
       return {position:Array.from(g.attributes.position.array),normal:Array.from(g.attributes.normal.array),uv:Array.from(g.attributes.uv.array),index:g.index?Array.from(g.index.array):null,groups:g.groups,drawRange:g.drawRange};
     });
     writeFileSync(out+'/result-geometry.json',JSON.stringify(geometry));
+    if(process.env.LAYOUT_CHECK) await checkLayoutUI(page,out,log);
     if(process.env.POLISH_CHECK) await checkPolishUI(page,out,log);
     if(process.env.IMPORT_CHECK) await checkImportUI(page,out,log);
     if(process.env.CUSTOM_CHECK) await checkCustomUI(page,out,log,dataset);

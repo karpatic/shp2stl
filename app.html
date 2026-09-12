@@ -82,15 +82,22 @@
                 </details>
                 <details class="settings-section" id="about-details"><summary>Using & exporting your model</summary><p>Drag to orbit; scroll or pinch to zoom. Enabled downloads contain the applied model. Editing dimensions or the source pauses downloads until you update.</p><p><strong>STL:</strong> one unified solid; import in millimeters. <strong>3MF:</strong> named Base, Walls and optional Labels parts aligned in one assembly. Assign colors or materials in your slicer.</p><p>Choose widths for your printer and inspect small features before printing. Placement checks do not establish physical strength. Geographic underside grooves use 30% of the base height. Source data and supported SVG subsets can limit the result.</p><a href="https://github.com/karpatic/shp2stl#readme">Documentation & source ↗</a></details>
             </div>
-            <div class="panel-actions"><button id="create-btn" type="button" class="primary">Create model</button><p id="status" role="status" aria-live="polite">Preparing model…</p><div class="downloads" role="group" aria-label="Download applied model"><button id="download-btn" disabled>Download STL</button><button id="download-3mf-btn" disabled>Download 3MF</button></div></div>
+
         </aside>
-        <section class="map-workspace" aria-label="Geographic source map"><div class="view-title">Source map</div><div id="map"></div></section>
-        <section class="model-workspace" aria-label="3D model preview"><div class="view-title">3D model <span>Drag to orbit · scroll / pinch to zoom</span></div><div id="threejs"></div><div class="placement-feedback"><p id="placement-status" role="status">Choose Place hole or Place label to customize the model.</p><button id="cancel-placement" type="button" disabled>Cancel</button></div><p id="local-note" hidden>Local drawing · Cartesian millimeters. Source holes remain open; no geographic location is inferred.</p></section>
+        <div class="views" id="views">
+        <section id="map-pane" class="map-workspace" aria-label="Geographic source map"><div class="view-title">Map</div><div id="map"></div></section>
+        <div id="view-splitter" role="separator" tabindex="0" aria-label="Map height" aria-orientation="horizontal" aria-controls="map-pane model-pane" aria-valuemin="20" aria-valuemax="80" aria-valuenow="50" title="Drag or use arrow keys to resize; Home / End expand a pane"><span aria-hidden="true">⋯</span></div>
+        <section id="model-pane" class="model-workspace" aria-label="3D model preview"><div class="view-title">3D model <span>Drag to orbit · scroll / pinch to zoom</span></div><div id="threejs"></div><div class="placement-feedback"><p id="placement-status" role="status">Choose Place hole or Place label to customize the model.</p><button id="cancel-placement" type="button" disabled>Cancel</button></div><p id="local-note" hidden>Local drawing · Cartesian millimeters. Source holes remain open; no geographic location is inferred.</p></section>
+        </div>
+            <div class="panel-actions"><button id="create-btn" type="button" class="primary">Create model</button><p id="status" role="status" aria-live="polite">Preparing model…</p><div class="downloads" role="group" aria-label="Download applied model"><button id="download-btn" disabled>Download STL</button><button id="download-3mf-btn" disabled>Download 3MF</button></div></div>
     </main>
 
     <script type="module">
         import * as THREE from 'three';
         window.THREE = THREE;
+
+        import { setupLayout } from './new/layout.js';
+        setupLayout();
 
         import { initialize } from './new/new.js';
         import { dimensions } from './new/dimensions.js';
@@ -258,12 +265,16 @@
         function setCollapsed(collapsed) {
             configPanel.classList.toggle('collapsed', !!collapsed);
             toggleBtn.textContent = collapsed ? 'Show settings' : 'Hide settings';
-            window.dispatchEvent(new Event('resize'));
+            if (collapsed && document.getElementById('config-body').contains(document.activeElement)) toggleBtn.focus();
             toggleBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
             try {
                 localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ collapsed: !!collapsed }));
             } catch {}
         }
+
+        configPanel.addEventListener('keydown', event => {
+            if (event.key === 'Escape') { setCollapsed(true); toggleBtn.focus(); }
+        });
 
         // Restore collapsed state.
         try {

@@ -1,0 +1,13 @@
+# Stacked builder layout
+
+Author: Codex app agent · 2026-09-11.
+
+Map above 3D on desktop and mobile, balanced by default. The horizontal separator adjusts vertical allocation with pointer/touch drag, arrows (Shift for larger steps), and Home/End. Both panes retain a recoverable minimum. Settings open downward over the full workspace; the handle and persistent Update/status/STL/3MF footer remain accessible. Existing setting IDs, content, defaults and persistence are retained. Local drawings retain their existing model-only presentation.
+
+Leaflet observes its container and invalidates its size in a coalesced animation frame without fitting bounds. Three's existing ResizeObserver updates camera aspect and renderer size and requests an on-demand render. No geometry, exporter, cache, placement or camera-fit implementation changed.
+
+Focused actual-app checks used an isolated Chrome profile, frozen DC/dependency fixtures and placeholder basemap tiles. Verified 1440×960, 390×844, 1280×540, 390×480 and 844×390: full-width vertical panes, full-width open/closed drawer, scrollable settings, reachable actions, no page overflow, renderer aspect/size and Leaflet size agreement, pointer drag, keyboard endpoints, emulated touch cancellation, focus return on Escape, unchanged camera/target/zoom, zero geometry counters on resizing and zero stationary render frames. A validated world point projected through the resized camera was placed by actual pointer input within 0.000001 source-relative units. Overlay clicks/scroll did not orbit or place. Invalid dimensions paused exports; correction recovered. Actual STL and 3MF downloads succeeded.
+
+Default DC downloaded STL bytes, preview arrays and all extracted 3MF members match the fresh isolated 9ade0ba baseline exactly (ZIP metadata excluded). Undoing the focused placement restores identical exports. Evidence and screenshots: [stacked-layout](evidence/stacked-layout/). The first test assertion needed pixel rounding; a subsequent test scrolled a focused numeric field, correctly canceling placement, and was corrected to scroll the settings heading. The final run passed without page errors. No broad historical geometry suite was run.
+
+Reproduce: `LAYOUT_CHECK=1 EXPORT_3MF=1 LIMIT_SECONDS=60 node diagnostics/run.mjs optimized dc layout-dc`. Baseline: `SOURCE_ROOT=.tmp/layout-baseline EXPORT_3MF=1 LIMIT_SECONDS=30 node diagnostics/run.mjs optimized dc layout-baseline`, using a detached worktree at 9ade0ba. Raw artifacts remain ignored under diagnostics/results. Touch and reduced keyboard viewport checks are browser emulation, not physical-device testing.
