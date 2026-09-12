@@ -5,6 +5,7 @@ export async function checkTextHeightUI(page,out,log){
  const ready=()=>page.waitForFunction(()=>!document.querySelector('#download-btn').disabled&&!document.querySelector('#download-3mf-btn').disabled);
  const state=()=>page.evaluate(async()=>{const s=(await import('/new/pipeline.js')).modelState();return {edits:s.edits,dims:s.dims,camera:s.view.camera.position.toArray(),target:s.view.controls.target.toArray(),validation:s.complete.userData.validation};});
  if(await page.locator('#config-panel').evaluate(e=>e.classList.contains('collapsed')))await page.locator('#toggle-config').click();
+ await page.locator('#view-splitter').focus();await page.keyboard.press('Home');
  const apply=async fields=>{for(const [k,v]of Object.entries(fields))await page.locator('#cfg-'+k).fill(String(v));await page.locator('#create-btn').click();await ready();};
  await apply({mapSize:80,wallHeight:.8});
  assert.equal(await page.locator('#label-height').inputValue(),'0.8');

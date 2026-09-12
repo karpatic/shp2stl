@@ -1,0 +1,17 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-12",
+  "overlappingAllViewports": true,
+  "pointerKeyboardTouch": true,
+  "cameraStable": true,
+  "noGeometryWork": true,
+  "idleFrames": 0,
+  "placement": {
+    "kind": "hole",
+    "diameter": 3,
+    "x": -0.0750001079863879,
+    "y": -0.3250001303039852
+  },
+  "failureRecovery": true,
+  "errors": []
+}

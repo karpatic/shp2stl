@@ -1,0 +1,74 @@
+{
+  "author": "Codex app agent",
+  "date": "2026-09-12",
+  "approvedTextHeightDefaultSTLIdentical": true,
+  "STL3MFSectionsEquivalent": true,
+  "stats": {
+    "STL": {
+      "triangles": 8654,
+      "bounds": [
+        [
+          -80.23912048339844,
+          -100.0,
+          0.0
+        ],
+        [
+          80.23912048339844,
+          100.0,
+          12.0
+        ]
+      ],
+      "area": 46451.27493348098,
+      "signedVolume": 85348.79416733506,
+      "zeroAreaTriangles": 0,
+      "exactEdgeIncidence": {
+        "2": 12981
+      },
+      "orientedSurfaceSHA256": "b219ee83a7f94aa64d807b2a8235c36a72b5c5a9be8d08254785a0642ffd5381"
+    },
+    "Base": {
+      "triangles": 4414,
+      "bounds": [
+        [
+          -80.23912048339844,
+          -100.0,
+          0.0
+        ],
+        [
+          80.23912048339844,
+          100.0,
+          6.0
+        ]
+      ],
+      "area": 32977.993075191574,
+      "signedVolume": 81961.65423715251,
+      "zeroAreaTriangles": 0,
+      "exactEdgeIncidence": {
+        "2": 6621
+      },
+      "orientedSurfaceSHA256": "983ce55add28eec7c4180d2e8473968970ef6ba0ab1ea81b6a407898efb2ae94"
+    },
+    "Walls": {
+      "triangles": 4832,
+      "bounds": [
+        [
+          -80.23912048339844,
+          -100.0,
+          6.0
+        ],
+        [
+          80.23912048339844,
+          100.0,
+          12.0
+        ]
+      ],
+      "area": 14602.328501683573,
+      "signedVolume": 3387.1399301821,
+      "zeroAreaTriangles": 0,
+      "exactEdgeIncidence": {
+        "2": 7248
+      },
+      "orientedSurfaceSHA256": "1f46b5679f22d9d34fad6afeee0c4573eb0db0adf36279785364e69065dcb11c"
+    }
+  }
+}

@@ -32,8 +32,9 @@
 <body>
     <header class="app-header"><a class="brand" href="./index.html">SHP2STL<span>Map builder</span></a><nav aria-label="Main"><a href="./converter.html">SVG converter</a><a href="https://github.com/karpatic/shp2stl">GitHub ↗</a></nav></header>
     <main class="container">
+        <div class="workspace-toolbar"><span>Map / 3D comparison</span><button id="toggle-config" type="button" aria-expanded="true" aria-controls="config-panel">Hide settings</button></div>
         <aside id="config-panel" aria-label="Model settings">
-            <div class="panel-header"><h1>Model settings</h1><button id="toggle-config" type="button" aria-expanded="true" aria-controls="config-body">Hide settings</button></div>
+            <div class="panel-header"><h1>Model settings</h1><button id="close-config" type="button" aria-label="Close model settings">Close ×</button></div>
             <div class="config-body" id="config-body" tabindex="0" aria-label="Scrollable settings">
                 <section class="settings-section" aria-labelledby="source-heading">
                     <h2 id="source-heading"><span>01</span> Source</h2>
@@ -87,8 +88,9 @@
         </aside>
         <div class="views" id="views">
         <section id="map-pane" class="map-workspace" aria-label="Geographic source map"><div class="view-title">Map</div><div id="map"></div></section>
-        <div id="view-splitter" role="separator" tabindex="0" aria-label="Map height" aria-orientation="horizontal" aria-controls="map-pane model-pane" aria-valuemin="20" aria-valuemax="80" aria-valuenow="50" title="Drag or use arrow keys to resize; Home / End expand a pane"><span aria-hidden="true">⋯</span></div>
-        <section id="model-pane" class="model-workspace" aria-label="3D model preview"><div class="view-title">3D model <span>Drag to orbit · scroll / pinch to zoom</span></div><div id="threejs"></div><div class="placement-feedback"><p id="placement-status" role="status">Choose Place hole or Place label to customize the model.</p><button id="cancel-placement" type="button" disabled>Cancel</button></div><p id="local-note" hidden>Local drawing · Cartesian millimeters. Source holes remain open; no geographic location is inferred.</p></section>
+        <div id="view-splitter" role="separator" tabindex="0" aria-label="Map reveal" aria-orientation="vertical" aria-controls="map-pane model-pane" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" title="Drag left / right or use arrow keys; Home shows 3D, End shows Map"><span aria-hidden="true">↔</span></div>
+        <section id="model-pane" class="model-workspace" aria-label="3D model preview"><div class="view-title">3D</div><div id="threejs"></div><p id="local-note" hidden>Local drawing · Cartesian millimeters. Source holes remain open; no geographic location is inferred.</p></section>
+        <div class="placement-feedback"><p id="placement-status" role="status">Choose Place hole or Place label to customize the model.</p><button id="cancel-placement" type="button" disabled>Cancel</button></div>
         </div>
             <div class="panel-actions"><button id="create-btn" type="button" class="primary">Create model</button><p id="status" role="status" aria-live="polite">Preparing model…</p><div class="downloads" role="group" aria-label="Download applied model"><button id="download-btn" disabled>Download STL</button><button id="download-3mf-btn" disabled>Download 3MF</button></div></div>
     </main>
@@ -265,8 +267,9 @@
 
         function setCollapsed(collapsed) {
             configPanel.classList.toggle('collapsed', !!collapsed);
+            configPanel.inert = !!collapsed;
             toggleBtn.textContent = collapsed ? 'Show settings' : 'Hide settings';
-            if (collapsed && document.getElementById('config-body').contains(document.activeElement)) toggleBtn.focus();
+            if (collapsed && configPanel.contains(document.activeElement)) toggleBtn.focus();
             toggleBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
             try {
                 localStorage.setItem(UI_STORAGE_KEY, JSON.stringify({ collapsed: !!collapsed }));
@@ -274,8 +277,10 @@
         }
 
         configPanel.addEventListener('keydown', event => {
-            if (event.key === 'Escape') { setCollapsed(true); toggleBtn.focus(); }
+            if (event.key === 'Escape') { event.stopPropagation(); setCollapsed(true); toggleBtn.focus(); }
         });
+
+        document.getElementById('close-config').addEventListener('click', () => setCollapsed(true));
 
         // Restore collapsed state.
         try {
@@ -289,7 +294,9 @@
         } catch {}
 
         toggleBtn.addEventListener('click', () => {
-            setCollapsed(!configPanel.classList.contains('collapsed'));
+            const opening = configPanel.classList.contains('collapsed');
+            setCollapsed(!opening);
+            if (opening) document.getElementById('close-config').focus({preventScroll:true});
         });
 
         // About section: collapsible (persisted).

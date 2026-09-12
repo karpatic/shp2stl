@@ -1,26 +1,22 @@
-// Author: Codex app agent · 2026-09-11. Layout only; resizing never builds a model.
+// Author: Codex app agent · 2026-09-12. Comparison reveal only; wiping never resizes or builds a model.
 export function setupLayout() {
   const views = document.getElementById('views');
   const splitter = document.getElementById('view-splitter');
   let ratio = .5, pointer = null, frame = 0;
   function size() {
     frame = 0;
-    const height = views.clientHeight - splitter.offsetHeight;
-    if (height <= 0) return;
-    // Keep both panes recoverable, including their labels and placement feedback.
-    const minimum = Math.min(120, height * .35);
-    const low = Math.max(.2, minimum / height), high = 1 - low;
-    ratio = Math.max(low, Math.min(high, ratio));
-    views.style.gridTemplateRows = `minmax(0,${ratio}fr) 24px minmax(0,${1-ratio}fr)`;
-    splitter.setAttribute('aria-valuemin', Math.ceil(low * 100));
-    splitter.setAttribute('aria-valuemax', Math.floor(high * 100));
+    ratio = Math.max(0, Math.min(1, ratio));
+    // Clip the full-size wrapper; neither renderer is resized or reframed.
+    views.style.setProperty('--reveal', `${ratio * 100}%`);
     splitter.setAttribute('aria-valuenow', Math.round(ratio * 100));
     splitter.setAttribute('aria-valuetext', `Map ${Math.round(ratio * 100)}%, 3D ${Math.round((1-ratio) * 100)}%`);
+    document.getElementById('map-pane').inert = ratio === 0;
+    document.getElementById('model-pane').inert = ratio === 1 && !views.parentElement.classList.contains('drawing-source');
   }
   const schedule = () => { if (!frame) frame = requestAnimationFrame(size); };
   const move = event => {
     const rect = views.getBoundingClientRect();
-    ratio = (event.clientY - rect.top - splitter.offsetHeight / 2) / (rect.height - splitter.offsetHeight);
+    ratio = (event.clientX - rect.left) / rect.width;
     schedule();
   };
   splitter.addEventListener('pointerdown', event => {
@@ -47,5 +43,6 @@ export function setupLayout() {
     event.preventDefault(); schedule();
   });
   new ResizeObserver(schedule).observe(views);
+  new MutationObserver(schedule).observe(views.parentElement, {attributes:true, attributeFilter:['class']});
   size();
 }
