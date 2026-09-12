@@ -287,7 +287,8 @@ export function regionArea(polygons) {
   );
 }
 
-export function validateSolid(geometry, layers, levels, invariant) {
+export function validateSolid(geometry, layers, levels, invariant, expectedVolume = layers.reduce(
+  (v, region, i) => v + regionArea(region) * (levels[i + 1] - levels[i]), 0)) {
   const p = geometry.attributes.position,
     index = geometry.index.array,
     edges = new Map(),
@@ -348,10 +349,6 @@ export function validateSolid(geometry, layers, levels, invariant) {
     if (visited.size !== link.size)
       throw Error("Planar shells touch at a nonmanifold vertex");
   }
-  const expectedVolume = layers.reduce(
-    (v, region, i) => v + regionArea(region) * (levels[i + 1] - levels[i]),
-    0,
-  );
   const volumeTolerance = Math.max(0.002, Math.abs(expectedVolume) * 1e-7);
   if (volume <= 0 || Math.abs(volume - expectedVolume) > volumeTolerance)
     throw Error("Planar volume does not match its height regions");
@@ -371,6 +368,54 @@ export function validateSolid(geometry, layers, levels, invariant) {
 // vertex-link proof are immutable. A strictly increasing per-layer Z mapping
 // preserves that proof; every changed mesh still checks faces and actual volume.
 export function retargetGeometry(template, layers, levels) {
+  return remapGeometry(template,layers,levels);
+}
+
+// Author: Codex app agent, 2026-09-12. Separated raised footprints share one
+// interface-free template. Each column may rise independently, even through the
+// other tops: XY separation and a strictly positive rise preserve the solid.
+export function columnGeometry(layers,levels,columns) {
+  const raised=layers.at(-1),joined=pc.union(...columns);
+  if(regionArea(pc.difference(raised,joined))+regionArea(pc.difference(joined,raised))>1e-6)
+    throw Error('Column footprints do not cover the raised layer');
+  for(let i=0;i<columns.length;i++)for(let j=0;j<i;j++)
+    if(regionArea(pc.intersection(columns[i],columns[j]))>1e-6)throw Error('Raised columns overlap');
+  const geometry=layerGeometry(layers,levels),proof=heightTemplates.get(geometry);
+  try {
+    const p=geometry.attributes.position;
+    const contains=(region,x,y)=>region.some(poly=>{
+      let inside=false;
+      for(const ring of poly)for(let i=1;i<ring.length;i++){
+        const [ax,ay]=ring[i-1],[bx,by]=ring[i],dx=bx-ax,dy=by-ay;
+        const t=Math.max(0,Math.min(1,((x-ax)*dx+(y-ay)*dy)/(dx*dx+dy*dy)));
+        if(Math.hypot(x-ax-t*dx,y-ay-t*dy)<=FLOAT32_CONFORMITY*2)return true;
+        if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax)inside=!inside;
+      }
+      return inside;
+    });
+    const owners=proof.recipes.map((r,i)=>{
+      if(r.length!==1||r[0]!==levels.length-1)return -1;
+      const hits=columns.flatMap((c,j)=>contains(c,p.getX(i),p.getY(i))?[j]:[]);
+      if(hits.length!==1)throw Error('Ambiguous raised column vertex');
+      return hits[0];
+    });
+    // Includes cap/side fan vertices derived from previously classified vertices.
+    const ownerSets=proof.recipes.map((r,i)=>owners[i]<0?new Set():new Set([owners[i]]));
+    proof.recipes.forEach((r,i)=>{if(r.length>1)ownerSets[i]=new Set(r.flatMap(j=>[...ownerSets[j]]));});
+    const index=geometry.index.array;
+    for(let i=0;i<index.length;i+=3)if(new Set(Array.from(index.slice(i,i+3)).flatMap(j=>[...ownerSets[j]])).size>1)
+      throw Error('Raised columns share a face');
+    proof.columns={owners,areas:columns.map(regionArea),baseIndex:levels.length-2};
+    return geometry;
+  }catch(e){geometry.dispose();throw e;}
+}
+export function retargetColumns(template,layers,levels,tops) {
+  const columns=heightTemplates.get(template)?.columns;
+  if(!columns||tops.length!==columns.areas.length||tops.some(z=>!Number.isFinite(z)||z<=levels[columns.baseIndex]))
+    throw Error('Invalid raised column heights');
+  return remapGeometry(template,layers,levels,{...columns,tops});
+}
+function remapGeometry(template, layers, levels, columns) {
   if (levels.length !== layers.length + 1 || levels.some((v,i) =>
     !Number.isFinite(v) || (i && v <= levels[i-1]))) throw Error('Invalid height layers');
   const proof = heightTemplates.get(template);
@@ -386,11 +431,13 @@ export function retargetGeometry(template, layers, levels) {
       const recipe = recipes[i];
       if (recipe.length === 1) {
         if (recipe[0] < 0) throw Error('Unclassified template height');
-        p.setZ(i, levels[recipe[0]]);
+        p.setZ(i, columns&&columns.owners[i]>=0?columns.tops[columns.owners[i]]:levels[recipe[0]]);
       } else p.setZ(i, (p.getZ(recipe[0])+p.getZ(recipe[1])+p.getZ(recipe[2]))/3);
     }
     p.needsUpdate = true;
-    geometry.userData.validation = validateSolid(geometry, layers, levels, proof.validation);
+    const expectedVolume=columns?layers.slice(0,-1).reduce((v,r,i)=>v+regionArea(r)*(levels[i+1]-levels[i]),0)
+      +columns.areas.reduce((v,area,i)=>v+area*(columns.tops[i]-levels[columns.baseIndex]),0):undefined;
+    geometry.userData.validation = validateSolid(geometry, layers, levels, proof.validation, expectedVolume);
     delete geometry.userData.rawArea;
     geometry.userData.levels = levels.slice();
     geometry.computeVertexNormals();

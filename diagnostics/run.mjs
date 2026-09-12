@@ -10,6 +10,7 @@ import { checkLayoutUI } from './layout-ui.mjs';
 import { checkPolishUI } from './polish-ui.mjs';
 import { checkDimensionsUI } from './dimensions-ui.mjs';
 import { checkImportUI } from './import-ui.mjs';
+import { checkTextHeightUI } from './text-height-ui.mjs';
 import { checkCustomUI } from './custom-ui.mjs';
 import { checkCacheUI } from './cache-ui.mjs';
 
@@ -270,6 +271,7 @@ try {
     if(process.env.LAYOUT_CHECK) await checkLayoutUI(page,out,log);
     if(process.env.POLISH_CHECK) await checkPolishUI(page,out,log);
     if(process.env.IMPORT_CHECK) await checkImportUI(page,out,log);
+    if(process.env.TEXT_HEIGHT_CHECK) await checkTextHeightUI(page,out,log);
     if(process.env.CUSTOM_CHECK) await checkCustomUI(page,out,log,dataset);
     if(process.env.CACHE_CHECK) await checkCacheUI(page,out,log,dataset,!!process.env.SOURCE_ROOT);
     if(process.env.ISLAND_CHECK) {

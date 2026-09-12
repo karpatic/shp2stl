@@ -3,17 +3,18 @@ import * as THREE from 'three';
 import { communityBoundaries } from './boundaries.js';
 import { createLeafletMap, reprojectGeoJSON, scaleGeoJSON, getMinMaxCoordinates } from './leaflet.js';
 import { createScene, exportToSTL } from './three.js';
-import { prepareRegionInputs, heightRegions, layerGeometry, retargetGeometry } from './planar.js';
+import { prepareRegionInputs, heightRegions, layerGeometry, retargetGeometry, columnGeometry, retargetColumns } from './planar.js';
 import { dimensions } from './dimensions.js';
 import { exportTo3MF } from './3mf.js';
 import { prepareDrawing, drawingRegions } from './local-drawing.js';
+import { textHeight } from './customize.js';
 import { editsFor } from './edit-store.js';
 import { SessionCache } from './cache.js';
 
 const sources = new SessionCache(3), geography = new SessionCache(3);
 const footprints = new SessionCache(3, value => value.walls.dispose());
 const regionsCache = new SessionCache(4), editsCache = new SessionCache(4);
-const templates = new SessionCache(6, t => {t.complete.dispose(); t.base.dispose();t.labels?.dispose();if(t.ownWalls)t.walls.dispose();for(const v of Object.values(t.variants||{}))if(v.complete!==t.complete)v.complete.dispose();});
+const templates = new SessionCache(6, t => {t.complete.dispose(); t.base.dispose();t.labels?.dispose();if(t.ownWalls)t.walls.dispose();});
 let view, current, revision = 0, wallKey, mapKey;
 export const modelState = () => current;
 const localSources = new Map();
@@ -70,8 +71,8 @@ function compile(regions, wallTemplate) {
     return {regions,complete,base,walls,colors};
   } catch(error) {complete?.dispose();base?.dispose();throw error;}
 }
-function output(template, dims) {
-  if(template.custom)return outputCustom(template,dims);
+function output(template, dims, heights) {
+  if(template.custom)return outputCustom(template,dims,heights);
   let complete,base,walls,preview;
   try {
     complete=retargetGeometry(template.complete,template.regions.layers,dims.levels);
@@ -110,9 +111,10 @@ export async function build(options, {refresh=false} = {}) {
   // implicit in this module lifetime; no geometry survives a page/code reload.
   const geoKey=JSON.stringify([data.identity,options.width,options.simplifyBy,options.simplifyHullBy,dims.mapSize]);
   const regionKey=JSON.stringify([geoKey,options.islandConnections,options.islandConnections==='connections'?dims.minConnectorWidth:null]);
-  const edits=editsFor(data.identity), editKey=JSON.stringify([regionKey,edits]);
+  const edits=editsFor(data.identity),heights=edits.filter(e=>e.kind==='label').map(textHeight);
+  const editKey=JSON.stringify([regionKey,edits.map(({height,...xy})=>xy)]);
   const templateKey=edits.length?editKey:regionKey;
-  const readyKey=JSON.stringify([templateKey,dims.levels]);
+  const readyKey=JSON.stringify([templateKey,dims.levels,heights]);
   if(current?.key===readyKey) {
     readback(dims,current.prepared); buttons().forEach(b=>b.disabled=false); mark('readyReuse',start); return true;
   }
@@ -129,10 +131,9 @@ export async function build(options, {refresh=false} = {}) {
   }):originalRegions; if(!valid())return false;
   const template=await templates.get(templateKey,async()=>{
     if(!edits.length)return measure('template',()=>compile(originalRegions,staticRegions.walls));
-    const {customLayers,customLevels}=await import('./customize.js');
-    return measure('template',()=>compileCustom(edited,dims,customLayers,customLevels));
+    return measure('template',()=>compileCustom(edited));
   }); if(!valid())return false;
-  const result=measure('heightCompute',()=>output(template,dims));
+  const result=measure('heightCompute',()=>output(template,dims,heights));
   if(!valid()) {dispose(result);return false;}
   const v=getView();
   if(current?.dims.mapSize!==dims.mapSize){v.controls.target.set(0,0,0);v.camera.position.set(0,0,Math.max(dims.mapSize,40));v.controls.update();}
@@ -170,34 +171,28 @@ export async function build(options, {refresh=false} = {}) {
 function readback(dims,prepared) {
   const el=document.getElementById('dimension-readback');
   if(prepared?.local){if(el)el.textContent=`Applied: local drawing ${dims.mapSize} mm maximum XY extent; base ${dims.baseHeight} mm + perimeter walls ${dims.wallHeight} mm. Wall width ${current?.options.width ?? .5} mm. No geographic grooves, island filtering or connectors are added.`;return;}
-  if(el) el.textContent=`Applied: map ${dims.mapSize} mm maximum XY extent; base ${dims.baseHeight} mm + walls ${dims.wallHeight} mm = ${dims.baseHeight+dims.wallHeight} mm wall top; ${dims.baseHeight+Math.max(dims.wallHeight,current?.labels ? .8 : 0)} mm overall height. Underside grooves: ${Number((dims.baseHeight*.3).toFixed(6))} mm deep (30% of base); ${Number((dims.baseHeight*.7).toFixed(6))} mm floor remains above them. Connector minimum: ${dims.minConnectorWidth} mm.`;
+  if(el) el.textContent=`Applied: map ${dims.mapSize} mm maximum XY extent; base ${dims.baseHeight} mm + walls ${dims.wallHeight} mm = ${dims.baseHeight+dims.wallHeight} mm wall top; ${dims.baseHeight+Math.max(dims.wallHeight,...(current?.edits||[]).filter(e=>e.kind==='label').map(textHeight))} mm overall height. Underside grooves: ${Number((dims.baseHeight*.3).toFixed(6))} mm deep (30% of base); ${Number((dims.baseHeight*.7).toFixed(6))} mm floor remains above them. Connector minimum: ${dims.minConnectorWidth} mm.`;
 }
 
-function compileCustom(regions,dims,customLayers,customLevels) {
- const t={custom:true,ownWalls:true,regions,customLevels,variants:{}};
+function compileCustom(regions) {
+ const t={custom:true,ownWalls:true,regions};
  try {
-  // Precompute the three possible vertical orderings once. Even crossing the
-  // fixed emboss height can then retarget without new XY work or cap tessellation.
-  for(const height of regions.labels.length?[6,.4,.8]:[6]){
-   const shape=customLayers(regions,height),levels=shape.order?customLevels(dimensions({wallHeight:height}),shape.order):dimensions({}).levels;
-   const complete=layerGeometry(shape.layers,levels);
-   t.variants[shape.order||'plain']={shape,complete};
-   t.complete ||= complete;
-  }
+  t.layers=[...regions.layers.slice(0,2),regions.raised||regions.layers[2]];
+  t.columns=[regions.layers[2],...regions.labelShapes];
+  t.complete=columnGeometry(t.layers,dimensions({}).levels,t.columns);
   t.base=layerGeometry(regions.layers.slice(0,2),dimensions({}).levels.slice(0,3));
   t.walls=layerGeometry([regions.layers[2]],[6,12]);
-  if(regions.labels.length)t.labels=layerGeometry([regions.labels],[6,6.8]);
+  if(regions.labels.length)t.labels=columnGeometry([regions.labels],[6,12],regions.labelShapes);
   return t;
- }catch(e){for(const v of Object.values(t.variants))v.complete.dispose();for(const k of ['base','walls','labels'])t[k]?.dispose();throw e;}
+ }catch(e){for(const k of ['complete','base','walls','labels'])t[k]?.dispose();throw e;}
 }
-function outputCustom(t,dims) {
- const variant=t.variants[t.labels?(dims.wallHeight>.8?"above":dims.wallHeight<.8?"below":"equal"):"plain"],shape=variant.shape;
- const result={},levels=shape.order?t.customLevels(dims,shape.order):dims.levels;
+function outputCustom(t,dims,heights) {
+ const result={},tops=heights.map(h=>Math.fround(dims.baseHeight+h));
  try {
-  result.complete=retargetGeometry(variant.complete,shape.layers,levels);
+  result.complete=retargetColumns(t.complete,t.layers,dims.levels,[dims.levels[3],...tops]);
   result.base=retargetGeometry(t.base,t.regions.layers.slice(0,2),dims.levels.slice(0,3));
   result.walls=retargetGeometry(t.walls,[t.regions.layers[2]],dims.levels.slice(2));
-  if(t.labels)result.labels=retargetGeometry(t.labels,[t.regions.labels],[Math.fround(dims.baseHeight),Math.fround(dims.baseHeight+.8)]);
+  if(t.labels)result.labels=retargetColumns(t.labels,[t.regions.labels],dims.levels.slice(2),tops);
   result.preview=result.complete.toNonIndexed();result.preview.computeVertexNormals();
   const p=result.preview.attributes.position,colors=[];
   for(let i=0;i<p.count;i+=3){const high=Math.max(p.getZ(i),p.getZ(i+1),p.getZ(i+2))>dims.baseHeight;
